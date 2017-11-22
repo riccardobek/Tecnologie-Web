@@ -8,4 +8,15 @@ Queste sono le istruzioni da seguire per configurare il progetto con php storm s
 6. A dx selezionare "Add content root"
 7. Selezionare la cartella condivisa del progetto
 8. Dopo aver dato l'ok clickare su il tasto Sources 
-9. Profit
+--------CONNESSIONE AL SERVER DI TAGLIA-------
+Questo serve a far sì che il codice php scritto su phpstorm giri sul server di taglia.
+
+1. Doppio click in alto a sx sul nome del progetto (si dovrebbe aprire la dinestra Settings)
+2. clickare sulla voce Build, deployment ecc.
+3. Selezionare deployment
+4. in alto a sx cliccare il +
+5. Copiare dal'immagine 
+6. nella scheda mapping selezionare la cartella del progetto( non quella condivisa) e cliccare sul - a dx
+7. nel menu a destra sotto deployment selezionare la voce del sotto menu Options
+8. nel menu a tendina "upload changes file auto..." selezionare " On explicit save".
+9. PROFIT :D
