@@ -16,6 +16,7 @@ Questo serve a far sì che il codice php scritto su phpstorm giri sul server di t
 3. Selezionare deployment
 4. in alto a sx cliccare il +
 5. Copiare dal'immagine 
+	5.1 password: mauroemichele
 6. nella scheda mapping selezionare la cartella del progetto( non quella condivisa) e cliccare sul - a dx
 7. nel menu a destra sotto deployment selezionare la voce del sotto menu Options
 8. nel menu a tendina "upload changes file auto..." selezionare " On explicit save".
