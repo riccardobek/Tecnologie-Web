@@ -1,0 +1,11 @@
+Queste sono le istruzioni da seguire per configurare il progetto con php storm senza fare casini:
+
+1. Aprire php storm
+2. Selezionare "create new project from existing file" (ultima opzione)
+3. Nel nuova finestra selezionare l'ultima opzione "Source file in a local diractory, no Web server is yet configured"
+4. Selezionare o creare una cartella dove creare il progetto (non quella condivisa)
+5. Doppio click in alto a sx sul nome del progetto (si dovrebbe aprire la dinestra Settings)
+6. A dx selezionare "Add content root"
+7. Selezionare la cartella condivisa del progetto
+8. Dopo aver dato l'ok clickare su il tasto Sources 
+9. Profit
