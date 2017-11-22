@@ -1,0 +1,81 @@
+﻿Completa separazione tra Comportamento, Presentazione e Struttura.
+
+
+COMPORTAMENTO:
+
+	-Accessibilità garantita attraverso linee guida del WCAG.
+
+	-Dare uno strumento di ricerca per trovare elementi del sito.
+
+	-Offrire ancore nella stessa pagina per facilitare la navigazione in pagine grandi. ("torna su").
+
+	-Non infrangere convenzioni interne o esterne.
+-Evitare pop-up, fastidiosi.
+	
+-Non dare indicazioni visive. ("premi il pulsante in alto a destra").
+	
+-Testare sempre il sito con tutti i maggiori browser, screen reader ed INS.  (??INS??)
+	
+-Dare le informazioni con un numero limitato di click.
+
+	-Non obbligare utente e reinserire i campi dei form dopo messaggi di errore.
+	
+-Ogni messaggio di errore deve essere corredato da "che errore è" e da "Come fare a risolvere".
+	.prevenire ogni tipo di errore, se possibile
+	
+-Non mettere link circolari (che puntano alla stessa pagina).
+
+
+
+STRUTTURA
+	
+-Utilizzo standard web W3C.
+ .non utilizzare tag obsoleti o deprecati
+ .utilizzare marckup pulito e corretto
+ .
+	 chiudere tutti i tag aperti nell'ordine giusto
+	.utilizzare gli attributi "alt" su ogni elemento utile
+	.utilizzare marckup semantico
+.
+	 <a>…</a>[spazio]<a>…</a>
+	.tabelle accessibili
+	.rimuovo media non testuale per vedere se struttura e contenuto regge
+.
+	 utilizzare label per element del form, in modo da facilitate gli screen reader
+-Struttura utilizzando elementi di blocco, come div, o di linea,
+	  come span, ed utilizzare tabelle solo per elencare dati tabellari.
+	.garantire una visualizzazione fluida del contenuto
+. 
+	 modificare la struttura a seconda delle capacità del dispositivo che si utilizza
+
+	-Usare Access Key per i comandi rapidi alle funzioni principali.
+	
+-Ogni link deve avere un'ancora diversa per evitare link che portano alla stessa pagina.
+ .ancore con nomi significativi
+	
+-Esplicitare acronimi di abbreviazioni e sigle per screen reader e motori ricerca.
+	
+-Tenere sempre presente il "Dove sono", "Da dove sono venuto" e "Dove posso andare".
+	
+-Dividere form in fieldset.
+	
+-Struttura corretta tabella:
+	.thead
+	.tfooter
+	.tbody
+	.scope
+	.id
+
+PRESENTAZIONE
+	
+-Dichiarazione corretta lingua documento.
+	.dichiarare lingua corretta per parole non appartenenti alla lingua dichiarate per il documento
+	
+-Controllare i colori utilizzati per i contrasti.
+	
+-Usare classi CSS che definiscono il contenuto dell'oggetto e non il comportamento.
+	
+-CSS diversi per ogni tipo di dispositivo.
+	.stampa con solo testo e tabelle, no link, no menu e no sfondi.
+	
+-Caratteri definiti con "em" per permettere un ridimensionamento corretto.

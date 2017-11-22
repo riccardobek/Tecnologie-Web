@@ -1,0 +1,74 @@
+/** INSERIRE reset.css **/
+body, html {
+    font-family: "Roboto Lt","Verdana","Arial",sans-serif;
+    margin: 0px;
+    padding: 0px;
+    font-size: 100%;
+}
+
+body {
+    max-width: 1024px;
+    margin: auto;
+}
+
+#menu {
+    position: fixed;
+
+    height: 100%;
+    width: 12em;
+
+    color: white;
+
+    background: #061a35;
+}
+
+#menu img {
+    width: 80%;
+    margin: 2em 10%;
+
+}
+
+#menu ul {
+    list-style-type: none;
+    padding: 0em;
+    margin-left: 2em;
+}
+
+#menu ul li.active {
+    font-size: 120%;
+    padding-top: 0.3em;
+    padding-bottom: 1em;
+}
+
+#menu ul li a {
+    color: white;
+}
+
+#menu ul li a:visited {
+    color: #f9d6b1;
+}
+
+#contenuto {
+    margin-left: 12em;
+}
+
+#contenuto img#banner {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    vertical-align: middle;
+}
+
+#contenuto #breadcrumb {
+    width: 100%;
+    color: white;
+    background: #061a35;
+    height: 2em;
+
+    margin-top: 0em;
+    padding-top: 0.4em;
+}
+
+#contenuto #breadcrumb > span {
+    margin-left: 0.4em;
+}

@@ -1,0 +1,23 @@
+Queste sono le istruzioni da seguire per configurare il progetto con php storm senza fare casini:
+
+1. Aprire php storm
+2. Selezionare "create new project from existing file" (ultima opzione)
+3. Nel nuova finestra selezionare l'ultima opzione "Source file in a local diractory, no Web server is yet configured"
+4. Selezionare o creare una cartella dove creare il progetto (non quella condivisa)
+5. Doppio click in alto a sx sul nome del progetto (si dovrebbe aprire la dinestra Settings)
+6. A dx selezionare "Add content root"
+7. Selezionare la cartella condivisa del progetto
+8. Dopo aver dato l'ok clickare su il tasto Sources 
+--------CONNESSIONE AL SERVER DI TAGLIA-------
+Questo serve a far sì che il codice php scritto su phpstorm giri sul server di taglia.
+
+1. Doppio click in alto a sx sul nome del progetto (si dovrebbe aprire la dinestra Settings)
+2. clickare sulla voce Build, deployment ecc.
+3. Selezionare deployment
+4. in alto a sx cliccare il +
+5. Copiare dal'immagine 
+	5.1 password: mauroemichele
+6. nella scheda mapping selezionare la cartella del progetto( non quella condivisa) e cliccare sul - a dx
+7. nel menu a destra sotto deployment selezionare la voce del sotto menu Options
+8. nel menu a tendina "upload changes file auto..." selezionare " On explicit save".
+9. PROFIT :D
