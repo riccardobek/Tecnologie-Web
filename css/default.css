@@ -63,7 +63,12 @@ body {
     width: 100%;
     color: white;
     background: #061a35;
-    height: 1.3em;
+    height: 2em;
 
     margin-top: 0em;
+    padding-top: 0.4em;
+}
+
+#contenuto #breadcrumb > span {
+    margin-left: 0.4em;
 }
