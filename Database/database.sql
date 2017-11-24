@@ -28,7 +28,6 @@ Codice VARCHAR(20) PRIMARY KEY,
 Nome VARCHAR(50) NOT NULL,
 Descrizione VARCHAR(500) NOT NULL,
 Prezzo DECIMAL(8,2) NOT NULL,
-Amministratore VARCHAR(20) REFERENCES Utenti(ID)
 );
 
 
@@ -58,10 +57,8 @@ CREATE TABLE Disponibilita(
 Attivita VARCHAR(20),
 Giorno DATE,
 PostiDisponibili INTEGER NOT NULL,
-Amministratore VARCHAR(20) NOT NULL,
 PRIMARY KEY(Attivita,Giorno),
 FOREIGN KEY (Attivita) REFERENCES Attivita(Codice), 
-FOREIGN KEY (Amministratore) REFERENCES Utenti(ID)
 );
 
 
