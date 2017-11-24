@@ -11,15 +11,28 @@ body, html {
     width: 100%;
     margin:0;
     padding: 0;
+    font-size:1.2em;
+}
+
+#header img{
+    width: 100%;
 }
 
 #menu{
     width: 20%;
     float:left;
     width: 200px;
-    background-color: black;
+
     height: 100%;
 }
+
+#menu ul{
+    list-style-type:none;
+}
+#menu li{
+    padding: 1em 1em;
+}
+
 
 #content{
     max-width: 1024px;
