@@ -14,9 +14,7 @@ body, html {
     font-size:1.2em;
 }
 
-#header img{
-    width: 100%;
-}
+
 
 #menu{
     width: 20%;
@@ -38,4 +36,10 @@ body, html {
     max-width: 1024px;
     margin:auto;
 
+}
+.schede{
+    background-color: #FFF;
+}
+.schede img{
+    width: 100%;
 }
