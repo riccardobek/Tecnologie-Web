@@ -21,8 +21,7 @@ body, html {
 }
 #header{
 
-    background: #B3E5FC;
-    height:;
+
 }
 #logo{
     display:block;
@@ -43,8 +42,7 @@ body, html {
     width: 250px;
     margin:0 ;
     position: fixed;
-    background: #311B92;
-    color: #FFFFFF;
+
     text-align: center;
 }
 
@@ -99,11 +97,3 @@ body, html {
     width: 100%;
 }
 
-#menu a:link {
-    color: #ffffff;
-}
-
-#menu a:visited{
-    color:#EEEEEE;
-
-}
