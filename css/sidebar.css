@@ -13,7 +13,7 @@
 #sidebar h1 {
     font-size: 20pt;
     margin-bottom: 0.5em;
-    font-family: "Roboto";
+    font-weight: bold;
 }
 
 #sidebar h2 {
@@ -47,3 +47,17 @@
 #menu li a, #menu li a:visited {
     color: #dae3ea;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
