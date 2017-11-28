@@ -1,0 +1,49 @@
+#sidebar {
+    width: 20%;
+    float: left;
+}
+
+#sidebar img {
+    display: block;
+    width: 80%;
+    max-width:300px;
+    margin: 3em auto;
+}
+
+#sidebar h1 {
+    font-size: 20pt;
+    margin-bottom: 0.5em;
+    font-family: "Roboto";
+}
+
+#sidebar h2 {
+    font-size: 14pt;
+    margin-bottom:3.5em;
+}
+
+#sidebar h1, #sidebar h2 {
+    text-align: center;
+    display: block;
+}
+
+#menu {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+#menu li {
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+#menu li.active {
+    background-color: #485460;
+}
+
+#menu li a, #menu li a:visited {
+    color: #dae3ea;
+}
