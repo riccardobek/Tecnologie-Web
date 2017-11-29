@@ -1,0 +1,41 @@
+@import url("default/default.css");
+
+body > div {
+    width: 320px;
+    margin: auto;
+    margin-top: 8%;
+}
+
+body > div > img {
+    display: block;
+    margin: auto;
+    margin-bottom: 3em;
+}
+
+body > div > form {
+    background-color: white;
+    width: 100%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+div.elements-wrapper {
+    margin: 1em;
+}
+
+input:not([type=submit]):not([type=button]) {
+    width: 100%;
+}
+
+input[type=submit] {
+    margin-top: 2em;
+}
+
+form label {
+    color: black;
+    display: block;
+}
+
+form .field-container:not(:first-child) label {
+    margin-top: 2em;
+}
