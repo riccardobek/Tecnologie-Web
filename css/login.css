@@ -11,12 +11,23 @@ body > div > img {
     margin: auto;
     margin-bottom: 3em;
 }
+p{
+    
+    color: black;
+    font-size: 75%
+}
 
 body > div > form {
-    background-color: white;
+    background-color: cornsilk;
     width: 100%;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
+    border-radius: 4px ;
+}
+
+div.button-holder{
+
+    text-align: center;
 }
 
 div.elements-wrapper {
@@ -24,12 +35,18 @@ div.elements-wrapper {
 }
 
 input:not([type=submit]):not([type=button]) {
-    width: 100%;
+    width: 95%;
+    height: 25px;
+    border-radius: 8px;
+    background-color: whitesmoke;
 }
 
 input[type=submit] {
     margin-top: 2em;
+    border-radius: 8px;
 }
+
+
 
 form label {
     color: black;
