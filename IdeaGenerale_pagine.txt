@@ -12,7 +12,7 @@ ATTIVITA' (su menu si può espandere se si preme la freccetta bassa e c'è
 l'elenco delle attività)
 (utente generico)
 Elenco delle attività tutte indistintamente che portano ciascuna alla descrizione
-della attività selezionata, le stelle di recensione e il numero delle recensioni 
+della attività selezionata, le stelle di recensione(le stelle non vanno bene per l'accessibilià)  e il numero delle recensioni 
 avute che si trovano alla fine della pagina. Subito sotto la descrizione le nuove 
 ed eventuali offerte di quella attività.
 
