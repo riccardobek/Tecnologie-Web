@@ -1,7 +1,7 @@
 @import url("default/default.css");
 
 body > div {
-    width: 320px;
+    width: 350px;
     margin: auto;
     margin-top: 8%;
 }
@@ -9,7 +9,8 @@ body > div {
 body > div > img {
     display: block;
     margin: auto;
-    margin-bottom: 3em;
+
+    max-width: 350px;
 }
 p{
     
@@ -18,7 +19,7 @@ p{
 }
 
 body > div > form {
-    background-color: cornsilk;
+
     width: 100%;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
@@ -35,10 +36,12 @@ div.elements-wrapper {
 }
 
 input:not([type=submit]):not([type=button]) {
-    width: 95%;
+    width: 100%;
     height: 25px;
     border-radius: 8px;
     background-color: whitesmoke;
+
+
 }
 
 input[type=submit] {
@@ -49,8 +52,10 @@ input[type=submit] {
 
 
 form label {
-    color: black;
+    color: white;
     display: block;
+    text-align: center;
+    padding-bottom: 10px;
 }
 
 form .field-container:not(:first-child) label {
