@@ -13,7 +13,7 @@ body > div > img {
     width: 350px;
 }
 p{
-    
+
     color: black;
     font-size: 100%
 }
@@ -78,4 +78,3 @@ form label {
 form .field-container:not(:first-child) label {
     margin-top: 1em;
 }
-
