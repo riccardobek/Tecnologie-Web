@@ -3,19 +3,19 @@
 body > div {
     width: 350px;
     margin: auto;
-    margin-top: 8%;
+    margin-top: 4%;
 }
 
 body > div > img {
     display: block;
     margin: auto;
 
-    max-width: 350px;
+    width: 350px;
 }
 p{
     
     color: black;
-    font-size: 75%
+    font-size: 100%
 }
 
 body > div > form {
@@ -26,8 +26,12 @@ body > div > form {
     border-radius: 4px ;
 }
 
+form h2 {
+    font-weight: 100;
+    color:#E0E0E0;
+    margin-top:1.5em;
+}
 div.button-holder{
-
     text-align: center;
 }
 
@@ -47,17 +51,31 @@ input:not([type=submit]):not([type=button]) {
 input[type=submit] {
     margin-top: 2em;
     border-radius: 8px;
+    background: #ecf0f1;
+    border: 0;
+    height: 35px;
+    width: 100px;
 }
 
 
+#sx{
+    float:left;
+    width: 80%;
+}
+#dx{
+    text-align: right;
+}
 
+#dx input{
+    width: 40px;
+}
 form label {
     color: white;
     display: block;
-    text-align: center;
     padding-bottom: 10px;
 }
 
 form .field-container:not(:first-child) label {
-    margin-top: 2em;
+    margin-top: 1em;
 }
+
