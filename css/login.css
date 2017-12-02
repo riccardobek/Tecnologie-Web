@@ -101,7 +101,7 @@ form .field-container:not(:first-child) label {
 
 #container_form{
 	width: 700px;
-
+	margin-bottom:60px;
 }
 
 #sectionPersonalData{
