@@ -4,6 +4,9 @@ body > div {
     width: 350px;
     margin: auto;
     margin-top: 4%;
+    padding: 2em;
+    background: white;
+    color: black;
 }
 
 body > div > img {
@@ -28,7 +31,7 @@ body > div > form {
 
 form h2 {
     font-weight: 100;
-    color:#E0E0E0;
+    color:black;
     margin-top:1.5em;
 }
 div.button-holder{
@@ -41,22 +44,40 @@ div.elements-wrapper {
 
 input:not([type=submit]):not([type=button]) {
     width: 100%;
-    height: 25px;
-    border-radius: 8px;
-    background-color: whitesmoke;
+    height: 25pt;
+    background-color: white;
 
+    border: 0;
+    border-bottom: 1px solid silver;
 
+    outline: none; /* Rimuove il bordino azzurrino che il browser mette di default quando l'input è focused */
+}
+
+input:not([type=submit]):not([type=button]):focus {
+    border-bottom: 2px solid #302A85;
 }
 
 input[type=submit] {
     margin-top: 2em;
-    border-radius: 8px;
-    background: #ecf0f1;
-    border: 0;
-    height: 35px;
-    width: 100px;
+
+    height: 3em;
+    width: 10em;
+
+    background: #019FE3;
+    color: white;
+    border: 1px solid silver;
+
+    cursor: pointer; /* Per far comparire la manina */
+    outline: none;
 }
 
+input[type=submit]:hover {
+    background: #312783;
+}
+
+input[type=submit]:active {
+    outline: silver solid 2px;
+}
 
 #sx{
     float:left;
@@ -70,9 +91,8 @@ input[type=submit] {
     width: 40px;
 }
 form label {
-    color: white;
     display: block;
-    padding-bottom: 10px;
+    padding-bottom: 0.3em;
 }
 
 form .field-container:not(:first-child) label {
