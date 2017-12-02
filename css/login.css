@@ -79,16 +79,16 @@ input[type=submit]:active {
     outline: silver solid 2px;
 }
 
-#sx{
+#indirizzo-container{
     float:left;
     width: 80%;
 }
-#dx{
+#civico-container{
     text-align: right;
 }
 
-#dx input{
-    width: 40px;
+#civico-container input{
+    width: 3em;
 }
 form label {
     display: block;
