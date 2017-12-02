@@ -11,12 +11,13 @@
     <title>Registrati</title>
 </head>
 <body>
-<div>
+<div id="container_form">
     <img src="images/new_logo.png" alt="Onda Selvaggia - Logo">
 
     <form action="" method="POST">
         <h1>Crea account</h1>
         <p class="elements-wrapper"></p>
+<div id="sectionPersonalData">
         <h2>Dati personali</h2>
         <div class="field-container">
             <label for="nome">Nome: </label>
@@ -34,6 +35,8 @@
             <label for="civico">Civico: </label>
             <input type="text"  size="4" id="civico" name="civico" placeholder="N.">
         </div>
+</div>
+<div id="sectionAccountData">
         <h2>Dati Account</h2>
         <div class="field-container">
             <label for="email">Email: </label>
@@ -51,8 +54,9 @@
             <label for="password2">Ripeti password: </label>
             <input type="password" id="password2" name="password2" placeholder="Ripeti password..">
         </div>
-        <div class="button-holder">  <input type="submit" value="Registrati"></div>
 </div>
+        <div class="button-holder">  <input type="submit" value="Registrati"></div>
+		
 </form>
 </div>
 

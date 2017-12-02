@@ -98,3 +98,19 @@ form label {
 form .field-container:not(:first-child) label {
     margin-top: 1em;
 }
+
+#container_form{
+	width: 700px;
+
+}
+
+#sectionPersonalData{
+	width:330px;
+	float:left;
+	margin-right:0px;
+}
+
+#sectionAccountData{
+	width: 330px;
+	margin-left:350px;
+}
