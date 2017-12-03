@@ -2,12 +2,13 @@ div#menu-wrapper {
     position: fixed;
     top: 0;
     width: 100%;
-    height: 3.2em;
+    height: 2.5em;
     background: #F3F3F3;
 }
 
 #menu ul {
     list-style-type: none;
+    margin-top: 0.6em;
 }
 
 #menu ul li {
@@ -19,6 +20,7 @@ div#menu-wrapper {
     color: #008bc6;
 }
 
+
 #menu ul li a {
     color: black;
 }
@@ -29,7 +31,7 @@ div#menu-wrapper {
     border: 2px solid #1C1C1C;
 
     margin-left: 1em;
-    margin-top: -0.5em;
+    margin-top: -0.3em;
 
     padding: 0.4em;
 }
@@ -46,24 +48,28 @@ div#menu-wrapper {
     color: #1C1C1C;
 }
 
+#menu a.button, #menu ul li {
+    font-size: 0.8em;
+}
+
 #header {
-    margin-top: 3.2em;
+    margin-top: 2.5em;
     background: white;
 }
 #header div.length-wrapper > img {
     padding: 1em;
-    max-height: 5em;
+    max-height: 4em;
     vertical-align: middle;
 }
 
 #contatti-header {
-    margin-top: 1.5em;
+    margin-top: 1.8em;
     float:right;
 }
 
 #contatti-header span {
     display: block;
-    font-size: 1.5em;
+    font-size: 1em;
     text-align: right;
 }
 
