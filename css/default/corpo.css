@@ -1,7 +1,77 @@
 #content {
     width: 100%;
+    color:white;
+    text-align: justify;
 }
 
 #content img.banner {
     width: 100%;
+}
+
+div.even , div.odd{
+    width: 100%;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.even{
+    background-color: #3b3b3b;
+    color: white;
+}
+
+.column{
+    width: 33.33%;
+    float: left;
+}
+.column .wrapper p{
+    color: #1C1C1C;
+    padding: 1.3em;
+    padding-top: 0em;
+
+}
+
+.title-wrapper{
+    position: relative;
+}
+
+.title-wrapper h1{
+    left: 0px;
+    right: 0px;
+    bottom: 0.1em;
+    margin: 0;
+    color: #F3F3F3;
+    text-align: center;
+    font-weight: 500;
+    position: absolute;
+
+    background: rgba(59, 59, 59, 0.6); /* browsers */
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#4c3b3b3b', endColorstr='#4c3b3b3b'); /* IE */
+}
+.wrapper{
+    background: white;
+    margin: 0.2em;
+}
+
+
+.wrapper img{
+    max-width: 100%;
+
+}
+
+.clearfix{
+    clear:both;
+}
+
+
+.img-attivita{
+    max-width: 8em;
+    max-height:8em;
+
+    float: left;
+    margin-right: 2em;
+}
+
+div.attivita > div.content-wrapper{
+    margin-left:8.5em;
+
 }
