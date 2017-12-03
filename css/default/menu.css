@@ -6,11 +6,6 @@ div#menu-wrapper {
     background: #F3F3F3;
 }
 
-#menu {
-    max-width: 1024px;
-    margin: auto;
-}
-
 #menu ul {
     list-style-type: none;
 }
@@ -55,6 +50,25 @@ div#menu-wrapper {
     margin-top: 3.2em;
     background: white;
 }
-#header img {
-    max-height: 2em;
+#header div.length-wrapper > img {
+    padding: 1em;
+    max-height: 5em;
+    vertical-align: middle;
+}
+
+#contatti-header {
+    margin-top: 1.5em;
+    float:right;
+}
+
+#contatti-header span {
+    display: block;
+    font-size: 1.5em;
+    text-align: right;
+}
+
+#contatti-header img {
+    vertical-align: middle;
+    max-width: 1em;
+    padding-bottom: 4px;
 }
