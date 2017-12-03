@@ -1,10 +1,10 @@
 html,body {
-    background-color: #616c7e;
+    background-color: #1C1C1C;
     padding: 0;
     margin: 0;
     clear: both;
     font-family: 'Roboto',serif;
-    color: #dae3ea;
+    color: #1C1C1C;
     font-size: 100%;
 }
 
@@ -15,4 +15,8 @@ h1,h2,h3,h4,h5,h6 {
 div, form {
     margin: 0;
     padding: 0;
+}
+
+a, .button, button, input[type=button], input[type=submit], input[type=reset] {
+    cursor: pointer;
 }

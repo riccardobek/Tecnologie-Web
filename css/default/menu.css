@@ -1,0 +1,60 @@
+div#menu-wrapper {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 3.2em;
+    background: #F3F3F3;
+}
+
+#menu {
+    max-width: 1024px;
+    margin: auto;
+}
+
+#menu ul {
+    list-style-type: none;
+}
+
+#menu ul li {
+    display: inline;
+    padding-right: 1em;
+}
+
+#menu ul li.active {
+    color: #008bc6;
+}
+
+#menu ul li a {
+    color: black;
+}
+
+#menu a.button {
+    float: right;
+    font-style: normal;
+    border: 2px solid #1C1C1C;
+
+    margin-left: 1em;
+    margin-top: -0.5em;
+
+    padding: 0.4em;
+}
+
+
+#menu a.button:hover,
+#menu a.button:visited:hover{
+    color: white;
+    background-color:#008bc6;
+}
+
+#menu a.button:visited,
+#menu a.button:active {
+    color: #1C1C1C;
+}
+
+#header {
+    margin-top: 3.2em;
+    background: white;
+}
+#header img {
+    max-height: 2em;
+}
