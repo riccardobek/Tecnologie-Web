@@ -7,7 +7,7 @@ body > div {
     color: black;
 }
 
-body > div > img {
+body > div > a > img{
     display: block;
     margin: auto;
 
