@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS progetto;
-CREATE DATABASE progetto;
+DROP DATABASE IF EXISTS tecweb;
+CREATE DATABASE tecweb;
 
-USE progetto;
+USE tecweb;
 
 
 DROP TABLE IF EXISTS Disponibilita;

@@ -66,15 +66,17 @@ div.even , div.odd{
 }
 
 
-.img-attivita{
-    max-width: 8em;
-    max-height:8em;
-
-    float: left;
-    margin-right: 2em;
+.banner-attivita{
+    width: 100%;
+    margin:0;
+    padding:0;
 }
 
-div.attivita > div.content-wrapper{
-    margin-left:8.5em;
-
+.subattivita {
+    border-left: 0.3em solid #008BC6;
+    padding-left: 1em;
+    margin-bottom: 0.8em;
+}
+.subattivita > h2 {
+    margin-top: 0;
 }
