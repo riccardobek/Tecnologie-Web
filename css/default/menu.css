@@ -25,14 +25,17 @@ div#menu-wrapper {
     color: black;
 }
 
-#menu a.button {
-    float: right;
-    font-style: normal;
+
+#menu a.button{
     border: 2px solid #1C1C1C;
 
+}
+#menu .button  {
+    float: right;
+    font-style: normal;
     margin-left: 1em;
     margin-top: -0.3em;
-
+    color:#008bc6;
     padding: 0.4em;
 }
 
@@ -43,12 +46,12 @@ div#menu-wrapper {
     background-color:#008bc6;
 }
 
-#menu a.button:visited,
-#menu a.button:active {
+#menu .button:visited,
+#menu .button:active {
     color: #1C1C1C;
 }
 
-#menu a.button, #menu ul li {
+#menu .button, #menu ul li {
     font-size: 0.8em;
 }
 

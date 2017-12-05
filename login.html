@@ -4,30 +4,50 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/default.css"/>
     <link rel="stylesheet" type="text/css" href="css/login.css" >
     <link rel="icon" href="images/favicon.ico">
 
 </head>
-<body>
-    <div>
-        <a href="index.html"> <img src="images/new_logo.png" alt="Ludo fuma così tanto"/></a>
+    <body>
+        <div id="menu-wrapper">
+            <div id="menu" class="length-wrapper">
+                <a href="registrazione.html" class="button">Registrati</a>
+                <span class="button">Login</span>
 
-        <form action="" method="POST">
-            <h1>Accedi</h1>
-            <p class="elements-wrapper"></p>
-                <div class="field-container">
-                    <label for="username">Nome utente: </label>
-                    <input type="text" id="username" name="username" placeholder="Nome utente..">
-                </div>
-                <div class="field-container">
-                    <label for="password">Password: </label>
-                    <input type="password" id="password" name="password" placeholder="Password..">
-                </div>
-              <div class="button-holder">  <input type="submit" value="Login"></div>
-
-                <p>Non sei ancora registrato? <a href="registrazione.html">Registrati</a></p>
+                <ul>
+                    <li><a href="index.html"> Home</a></li>
+                    <li><a href="attivita.html">Attivit&agrave;</a></li>
+                    <li><a href="chi_siamo.html">Chi siamo</a></li>
+                    <li><a href="contattaci.html">Contattaci</a></li>
+                </ul>
             </div>
-        </form>
-    </div>
-</body>
+        </div>
+        <div id="header">
+            <div class="length-wrapper">
+                <img src="images/new_logo.png" alt="Onda Selvaggia - Logo">
+                <div id="contatti-header"><span><img src="images/icona_telefono.png" alt="telefono fisso"> 0424 99581 |
+                        <img src="images/icona_cellulare.png" alt="cellulare"> 3473767729</span>
+                    <span><img src="images/icona_email.png" alt="email"> info@ondaselvaggia.com</span>
+                </div>
+            </div>
+        </div>
+        <div class="form">
+            <form action="" method="POST">
+                <h1>Accedi</h1>
+                <p class="elements-wrapper"></p>
+                    <div class="field-container">
+                        <label for="username">Nome utente: </label>
+                        <input type="text" id="username" name="username" placeholder="Nome utente..">
+                    </div>
+                    <div class="field-container">
+                        <label for="password">Password: </label>
+                        <input type="password" id="password" name="password" placeholder="Password..">
+                    </div>
+                  <div class="button-holder">  <input type="submit" value="Login"></div>
+
+                    <p>Non sei ancora registrato? <a href="registrazione.html">Registrati</a></p>
+            </form>
+        </div>
+    </body>
 </html>
