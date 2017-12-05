@@ -1,9 +1,3 @@
-DROP DATABASE IF EXISTS tecweb;
-CREATE DATABASE tecweb;
-
-USE tecweb;
-
-
 DROP TABLE IF EXISTS Disponibilita;
 DROP TABLE IF EXISTS Prenotazioni;
 DROP TABLE IF EXISTS Commenti;
@@ -26,7 +20,7 @@ CREATE TABLE Macroattivita(
 Codice INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 Nome VARCHAR(50) NOT NULL,
 Descrizione VARCHAR(500) NOT NULL,
-Immagine VARCHAR(255),
+Immagine VARCHAR(255)
 );
 
 CREATE TABLE Attivita(
