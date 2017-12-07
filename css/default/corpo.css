@@ -90,7 +90,7 @@ body> div#content> div#odd> div.length-wrapper> div.google_maps{
 
 #google_maps{
     padding-bottom: 10%;
-    height:200px;
+    height:15em;
 }
 
 #google_maps> iframe{
