@@ -80,3 +80,20 @@ div.even , div.odd{
 .subattivita > h2 {
     margin-top: 0;
 }
+
+body> div#content> div#odd> div.length-wrapper> div.google_maps{
+    position: relative;
+    padding-bottom: 75%;
+    height: 0;
+    overflow: hidden;
+}
+
+body> div#content> div#odd> div.length-wrapper> div.google_maps> iframe{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 50% ;
+
+
+}
