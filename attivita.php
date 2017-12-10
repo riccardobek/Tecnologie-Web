@@ -30,7 +30,7 @@ require_once "php/funzioni/funzioni_pagina.php";
             </p>
         </div>
         <?php
-        $class = array("even","odd");
+        $class = array("odd","even");
         $classIndex = false;
         $listaMacroAttivita = getMacroattivita($db);
 
