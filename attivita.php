@@ -15,49 +15,56 @@ require_once "php/funzioni/funzioni_pagina.php";
 </head>
 <body>
     <?php
-    intestazione("Attività");
+    intestazione(1);
     ?>
 
-    <div class="length-wrapper" id="content">
-        <h1>Attivit&agrave; offerte</h1>
-        <p>
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident."
-        </p>
-
+    <div id="content">
+        <div class="length-wrapper">
+            <h1>Attivit&agrave; offerte</h1>
+            <p>
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+                ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident."
+            </p>
+        </div>
         <?php
+        $class = array("even","odd");
+        $classIndex = false;
         $listaMacroAttivita = getMacroattivita($db);
+
         foreach($listaMacroAttivita as $macro) {
             echo <<<MACROATTIVITA
             
-        <div class="attivita">
-            <img class="banner-attivita" src="images/rafting-banner.png">
-            <div class="content-wrapper">
-                <h1>{$macro["Nome"]}</h1>
-                <p>
-                    {$macro["Descrizione"]}
-                </p>
-            </div>
+        <div class="macroattivita {$class[$classIndex]}">
+            <div class="length-wrapper">
+                <img class="banner" src="images/attivita/banner/{$macro["Banner"]}" alt="{$macro["Nome"]} - immagine promozionale">
+                <div class="content-wrapper">
+                    <h1>{$macro["Nome"]}</h1>
+                    <p>
+                        {$macro["Descrizione"]}
+                    </p>
+                </div>
 MACROATTIVITA;
             foreach($macro["Attivita"] as $attivita)
             echo <<<ATTIVITA
             
-            <div class="subattivita">
-                <h2>{$attivita["Nome"]}</h2>
-                <p>
-                    {$attivita["Descrizione"]}
-                    <span>Prezzo: {$attivita["Prezzo"]} euro</span>
-                </p>
-                <a class="button">Prenota</a>
-            </div>
+                <div class="attivita">
+                    <h2>{$attivita["Nome"]}</h2>
+                    <p>
+                        {$attivita["Descrizione"]}
+                        <span>Prezzo: {$attivita["Prezzo"]} euro</span>
+                    </p>
+                    <a class="button">Prenota</a>
+                </div>
 ATTIVITA;
             echo <<<MACROATTIVITA
             
+            </div>
         </div>
 MACROATTIVITA;
+            $classIndex = !$classIndex;
         }
         ?>
         

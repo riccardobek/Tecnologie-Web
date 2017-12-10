@@ -1,3 +1,6 @@
+<?php
+require_once "php/funzioni/funzioni_pagina.php";
+?>
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -8,34 +11,14 @@
     <link rel="stylesheet" type="text/css" href="css/default.css"/>
 </head>
 <body>
-    <div id="menu-wrapper">
-        <div id="menu" class="length-wrapper">
-            <a href="registrazione.html" class="button">Registrati</a>
-            <a href="login.html" class="button">Login</a>
-
-            <ul>
-                <li class="active">Home</li>
-                <li><a href="attivita.php">Attivit&agrave;</a></li>
-                <li><a href="chi_siamo.html">Chi siamo</a></li>
-                <li><a href="contattaci.html">Contattaci</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <div id="header">
-        <div class="length-wrapper">
-            <img src="images/new_logo.png" alt="Onda Selvaggia - Logo">
-            <div id="contatti-header"><span><img src="images/icona_telefono.png" alt="telefono fisso"> 0424 99581 | <img src="images/icona_cellulare.png" alt="cellulare"> 3473767729</span><span><img src="images/icona_email.png" alt="email"> info@ondaselvaggia.com</span></div>
-        </div>
-    </div>
-
+    <?php intestazione(0);?>
     <div id="content">
         <img  src="images/fiume_montagne.png" class="banner">
          <div class="odd">
               <div class="length-wrapper">
                  <h1>Titolo</h1>
 
-                 "Loressm ipsum dolor sit amet, consectetur adipiscing elit,
+                 Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
                  ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
@@ -73,7 +56,7 @@
                      <div class="wrapper">
                          <div class="title-wrapper">
                              <h1>Canoa</h1>
-                             <img src="images/canoa.png">
+                             <img src="images/attivita/index/canoa.png">
                          </div>
                          <p>
                              Corsi per tutti i livelli, esperti, principianti e
@@ -87,7 +70,7 @@
                      <div class="wrapper">
                          <div class="title-wrapper">
                              <h1>Rafting</h1>
-                             <img src="images/rafting.png">
+                             <img src="images/attivita/index/rafting.png">
                          </div>
                          <p>
                              Entusiasmante discesa percorrendo rapide lunghe di acqua cristallina lungo un corso d'acqua che conserva un ambiente naturale ancora intatto.
@@ -101,7 +84,7 @@
                      <div class="wrapper">
                          <div class="title-wrapper">
                              <h1>Hydrospeed</h1>
-                            <img src="images/hydrospeed.jpg">
+                            <img src="images/attivita/index/hydrospeed.jpg">
                          </div>
                          <p>
                              Con un bob gonfio d’aria e usando le pinne potrete percorrere

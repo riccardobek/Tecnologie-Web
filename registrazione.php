@@ -1,5 +1,8 @@
-<!DOCTYPE html>
+<?php
+require_once "php/funzioni/funzioni_pagina.php";
+?>
 
+<!DOCTYPE html>
 <html lang="it">
 <head>
     <link rel="icon" href="images/favicon.ico">
@@ -12,29 +15,7 @@
     <title>Registrati</title>
 </head>
 <body>
-    <div id="menu-wrapper">
-        <div id="menu" class="length-wrapper">
-            <span class="button">Registrati</span>
-            <a href="login.html" class="button">Login</a>
-
-            <ul>
-                <li><a href="index.html"> Home</a></li>
-                <li><a href="attivita.php">Attivit&agrave;</a></li>
-                <li><a href="chi_siamo.html">Chi siamo</a></li>
-                <li><a href="contattaci.html">Contattaci</a></li>
-            </ul>
-        </div>
-    </div>
-    <div id="header">
-        <div class="length-wrapper">
-            <img src="images/new_logo.png" alt="Onda Selvaggia - Logo">
-            <div id="contatti-header"><span><img src="images/icona_telefono.png" alt="telefono fisso"> 0424 99581 |
-                    <img src="images/icona_cellulare.png" alt="cellulare"> 3473767729</span>
-                <span><img src="images/icona_email.png" alt="email"> info@ondaselvaggia.com</span>
-            </div>
-        </div>
-    </div>
-
+    <?php intestazione(4);?>
     <div class="form" id="container_form">
 
         <form action="" method="POST">

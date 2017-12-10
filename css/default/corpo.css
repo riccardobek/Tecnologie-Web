@@ -65,21 +65,28 @@ div.even , div.odd{
     clear:both;
 }
 
+.macroattivita {
+    padding-bottom: 1.5em;
+    padding-top: 1.5em;
+}
 
-.banner-attivita{
+.macroattivita .banner {
     width: 100%;
     margin:0;
     padding:0;
 }
 
-.subattivita {
+
+.attivita {
     border-left: 0.3em solid #008BC6;
     padding-left: 1em;
     margin-bottom: 0.8em;
 }
-.subattivita > h2 {
+
+.attivita > h2 {
     margin-top: 0;
 }
+
 
 body> div#content> div#odd> div.length-wrapper> div.google_maps{
     position: relative;
@@ -98,8 +105,4 @@ body> div#content> div#odd> div.length-wrapper> div.google_maps{
     left: 0;
     width: 100%;
     height: 100% ;
-    frameborder="0";
-    style= 'border:0';
-    allowfullscreen;
-
 }
