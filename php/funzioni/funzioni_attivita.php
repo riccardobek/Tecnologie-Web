@@ -1,6 +1,6 @@
 <?php
 function getMacroattivita($db) {
-    $query = $db->prepare("SELECT * FROM Macroattivita");
+    $query = $db->prepare("SELECT Codice, Nome, Descrizione, Immagine, Banner, REPLACE(LOWER(`Nome`), ' ', '-') AS Ancora FROM Macroattivita; FROM Macroattivita");
     $query->execute();
 
     $listaMacro = $query->fetchAll();
