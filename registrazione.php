@@ -18,7 +18,7 @@ require_once "php/funzioni/funzioni_pagina.php";
     <?php intestazione(4);?>
     <div class="form" id="container_form">
 
-        <form action="" method="POST">
+        <form action="php/do_registrazione.php" method="POST">
             <h1>Crea account</h1>
             <div id="sectionPersonalData">
                 <div class="field-container">
