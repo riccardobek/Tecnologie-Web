@@ -60,7 +60,7 @@ require_once "php/funzioni/funzioni_pagina.php";
                     <input type="password" id="password2" name="password2" placeholder="Ripeti password..">
                 </div>
             </div>
-            <div class="button-holder">  <input type="submit" value="Registrati"></div>
+            <div class="button-holder">  <input type="submit" value="Registrati" class="primary-btn inline-btn"></div>
         </form>
     </div>
 </body>

@@ -59,7 +59,7 @@ require_once "php/funzioni/funzioni_attivita.php";
                  foreach($listaMacroAttivita as $macroAttivita) {
                      echo <<<MACROATTIVITA
                  <div class="column">
-                     <div class="wrapper">
+                     <div class="wrapper" id="{$macroAttivita["Ancora"]}">
                          <div class="title-wrapper">
                              <h1>{$macroAttivita["Nome"]}</h1>
                              <img src="images/attivita/index/{$macroAttivita["Immagine"]}">
@@ -67,6 +67,10 @@ require_once "php/funzioni/funzioni_attivita.php";
                          <p>
                              {$macroAttivita["Descrizione"]}
                          </p>
+                         <div class="button-holder">
+                            <a  class="primary-btn index-btn"  href="attivita.php#{$macroAttivita["Ancora"]}">Dettagli</a>
+                         </div>
+                         
                     </div>
                  </div>
 

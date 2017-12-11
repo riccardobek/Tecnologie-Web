@@ -17,6 +17,6 @@ div, form {
     padding: 0;
 }
 
-a, a.button, button, input[type=button], input[type=submit], input[type=reset] {
+a, a.button, button, .inline-btn, .primary-btn, input[type=submit], input[type=reset] {
     cursor: pointer;
 }

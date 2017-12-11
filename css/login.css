@@ -32,50 +32,10 @@ form h2 {
     color:black;
     margin-top:1.5em;
 }
-div.button-holder{
-    margin-top: 1em;
-    text-align: center;
-}
+
 
 div.elements-wrapper {
     margin: 1em;
-}
-
-input:not([type=submit]):not([type=button]) {
-    width: 100%;
-    height: 25pt;
-    background-color: white;
-
-    border: 0;
-    border-bottom: 1px solid silver;
-
-    outline: none; /* Rimuove il bordino azzurrino che il browser mette di default quando l'input è focused */
-}
-
-input:not([type=submit]):not([type=button]):focus {
-    border-bottom: 2px solid #302A85;
-}
-
-input[type=submit] {
-    margin-top: 2em;
-
-    height: 3em;
-    width: 10em;
-
-    background: #019FE3;
-    color: white;
-    border: 1px solid silver;
-
-    cursor: pointer; /* Per far comparire la manina */
-    outline: none;
-}
-
-input[type=submit]:hover {
-    background: #312783;
-}
-
-input[type=submit]:active {
-    outline: silver solid 2px;
 }
 
 #indirizzo-container{

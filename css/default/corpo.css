@@ -31,7 +31,7 @@ div.even , div.odd{
 }
 
 .title-wrapper{
-    position: relative;
+    /*position: relative;*/
 }
 
 .title-wrapper h1{
@@ -42,7 +42,7 @@ div.even , div.odd{
     color: #F3F3F3;
     text-align: center;
     font-weight: 500;
-    position: absolute;
+   /* position: absolute;*/
 
     background: rgba(59, 59, 59, 0.6); /* browsers */
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#4c3b3b3b', endColorstr='#4c3b3b3b'); /* IE */
@@ -88,17 +88,15 @@ div.even , div.odd{
 }
 
 
-body> div#content> div#odd> div.length-wrapper> div.google_maps{
-    position: relative;
-    padding-bottom: 75%;
-    height: 0;
-    overflow: hidden;
-}
-
 #google_maps{
+    position: relative;
+
+    overflow: hidden;
     padding-bottom: 10%;
     height:15em;
 }
+
+
 
 #google_maps> iframe{
     top: 0;

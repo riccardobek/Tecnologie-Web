@@ -25,7 +25,7 @@ require_once "php/funzioni/funzioni_pagina.php";
                     <label for="password">Password: </label>
                     <input type="password" id="password" name="password" placeholder="Password..">
                 </div>
-                <div class="button-holder"><input type="submit" value="Login"></div>
+                <div class="button-holder"><input type="submit" value="Login" class="primary-btn inline-btn" ></div>
 
                 <p>Non sei ancora registrato? <a href="registrazione.php">Registrati</a></p>
             </form>

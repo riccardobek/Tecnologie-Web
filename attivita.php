@@ -37,7 +37,7 @@ require_once "php/funzioni/funzioni_pagina.php";
         foreach($listaMacroAttivita as $macro) {
             echo <<<MACROATTIVITA
             
-        <div class="macroattivita {$class[$classIndex]}">
+        <div class="macroattivita {$class[$classIndex]}" id="{$macro["Ancora"]}">
             <div class="length-wrapper">
                 <img class="banner" src="images/attivita/banner/{$macro["Banner"]}" alt="{$macro["Nome"]} - immagine promozionale">
                 <div class="content-wrapper">
