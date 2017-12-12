@@ -29,8 +29,8 @@ input:not([type=submit]):not([type=button]):focus {
     color: white;
     border: 1px solid silver;
 
- cursor: pointer; /* Per far comparire la manina */
-outline: none;
+    cursor: pointer; /* Per far comparire la manina */
+    outline: none;
 }
 .primary-btn.index-btn{
     padding:0.6em;
@@ -46,6 +46,6 @@ outline: none;
 }
 
 .primary-btn:active {
-    outline: silver solid 2px;
+    border: 2px solid silver;
 }
 
