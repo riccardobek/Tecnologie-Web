@@ -23,3 +23,9 @@
 img.banner{
     display: none;
 }
+
+.column{
+    width:100%;
+    float:none;
+    margin-bottom:1.5em;
+}
