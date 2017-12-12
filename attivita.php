@@ -32,7 +32,7 @@ require_once "php/funzioni/funzioni_pagina.php";
         <?php
         $class = array("odd","even");
         $classIndex = false;
-        $listaMacroAttivita = getMacroattivita($db);
+        $listaMacroAttivita = getMacroattivita();
 
         foreach($listaMacroAttivita as $macro) {
             echo <<<MACROATTIVITA

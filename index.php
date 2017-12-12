@@ -55,7 +55,7 @@ require_once "php/funzioni/funzioni_attivita.php";
              <div class="length-wrapper">
                  <h1>Attivit&agrave; offerte</h1>
                  <?php
-                 $listaMacroAttivita = getMacroattivita($db);
+                 $listaMacroAttivita = getMacroattivita();
                  foreach($listaMacroAttivita as $macroAttivita) {
                      echo <<<MACROATTIVITA
                  <div class="column">

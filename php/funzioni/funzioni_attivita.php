@@ -1,17 +1,19 @@
 <?php
-function getMacroattivita($db) {
+function getMacroattivita() {
+    global $db;
     $query = $db->prepare("SELECT Codice, Nome, Descrizione, Immagine, Banner, REPLACE(LOWER(`Nome`), ' ', '-') AS Ancora FROM Macroattivita");
     $query->execute();
 
     $listaMacro = $query->fetchAll();
     for($i=0; $i<count($listaMacro);$i++) {
-        $listaMacro[$i]["Attivita"] = getAttivita($db,$listaMacro[$i]["Codice"]);
+        $listaMacro[$i]["Attivita"] = getAttivita($listaMacro[$i]["Codice"]);
     }
 
     return $listaMacro;
 }
 
-function getAttivita($db,$codiceMacro) {
+function getAttivita($codiceMacro) {
+    global $db;
     $query = $db->prepare("SELECT * FROM Attivita WHERE Macro = ?");
     $query->execute(array($codiceMacro));
 
