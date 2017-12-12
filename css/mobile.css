@@ -1,0 +1,25 @@
+
+#menu-wrapper{
+    display:none;
+}
+
+.length-wrapper{
+    max-width: 100%;
+    padding:1.2em;
+}
+
+
+#header{
+    margin-top:0;
+    text-align:center;
+}
+#header img{
+    margin: 0 auto;
+}
+ #header span{
+     display:none;
+ }
+
+img.banner{
+    display: none;
+}
