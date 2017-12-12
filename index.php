@@ -11,6 +11,7 @@ require_once "php/funzioni/funzioni_attivita.php";
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" rel="stylesheet">
     <title>Onda Selvaggia - Home</title>
     <link rel="stylesheet" type="text/css" href="css/default.css"/>
+    <link rel="stylesheet" type="text/css"  href="css/default_mobile.css" media="handheld, screen and (max-width:480px), only screen and (max-device-width:480px)"/>
 </head>
 <body>
     <?php intestazione(0);?>
