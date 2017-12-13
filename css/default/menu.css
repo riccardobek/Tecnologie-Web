@@ -81,3 +81,7 @@ div#menu-wrapper {
     max-width: 1em;
     padding-bottom: 4px;
 }
+
+.hamburger {
+    display: none;
+}

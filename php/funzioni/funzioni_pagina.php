@@ -115,16 +115,36 @@ HEADER;
     <div id="header">
         <div class="length-wrapper">
             <img src="images/new_logo.png" alt="Onda Selvaggia - Logo">
-            <div id="contatti-header"><span><img src="images/icona_telefono.png" alt="telefono fisso"> 0424 99581 |
-                <img src="images/icona_cellulare.png" alt="cellulare"> 3473767729</span>
-                <span><img src="images/icona_email.png" alt="email"> info@ondaselvaggia.com</span>
+            <a href="#" class="hamburger"><img src="images/icone/icona_menu.png" alt="Mostra menu"></a>
+            <div id="contatti-header"><span><img src="images/icone/icona_telefono.png" alt="telefono fisso"> 0424 99581 |
+                <img src="images/icone/icona_cellulare.png" alt="cellulare"> 3473767729</span>
+                <span><img src="images/icone/icona_email.png" alt="email"> info@ondaselvaggia.com</span>
             </div>
         </div>
     </div>
 HEADER;
 }
 
-function footer() {
+function footer($activeIndex)
+{
+    global $menuElements;
+
     echo <<<FOOTER
+    <div id="footer">
 FOOTER;
+    for ($i = 0; $i < count($menuElements); $i++) {
+        if ($menuElements[$i]["Pulsante"])
+            echo creaElementoMenu($i, $activeIndex, false);
+        echo <<<FOOTER
+            <ul>
+FOOTER;
+    }
+    for ($i = 0; $i < count($menuElements); $i++) {
+        if (!$menuElements[$i]["Pulsante"])
+            echo creaElementoMenu($i, $activeIndex, false);
+        echo <<<FOOTER
+            </ul>
+    </div>
+FOOTER;
+    }
 }

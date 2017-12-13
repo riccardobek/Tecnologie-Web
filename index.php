@@ -12,9 +12,9 @@ require_once "php/funzioni/funzioni_attivita.php";
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" rel="stylesheet">
     <title>Onda Selvaggia - Home</title>
     <link rel="stylesheet" type="text/css" href="css/default.css"/>
-    <link rel="stylesheet" type="text/css"  href="css/default_mobile.css" media="handheld, screen and (max-width:480px), only screen and (max-device-width:480px)"/>
+    <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="handheld, screen and (max-width:480px), only screen and (max-device-width:480px)"/>
 </head>
-<body>
+<body ontouchstart> <!-- ontouchstart fixa il comportamento degli eventi touch su Safari per iOS -->
     <?php intestazione(0);?>
     <div id="content">
         <img  src="images/fiume_montagne.png" class="banner">
@@ -84,5 +84,6 @@ MACROATTIVITA;
              <div class="clearfix"></div>
          </div>
     </div>
+    <?php footer(0);?>
 </body>
 </html>

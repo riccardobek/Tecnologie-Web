@@ -15,15 +15,34 @@
 }
 
 #header div.length-wrapper {
-    padding: 0.5em;
+    padding: 1em;
     text-align: left;
 }
 
-#header div.length-wrapper > img{
+.hamburger {
+    display: inline;
+    float: right;
+
+    margin: 0;
+    padding: 0;
+}
+
+.hamburger:active {
+    background: #1C1C1C;
+}
+
+.hamburger > img {
+    border: 1px solid #16a5e1;
+    border-radius: 3px;
+}
+
+#header div.length-wrapper > img,
+.hamburger > img {
     margin: 0 auto;
     max-height: 3em;
     padding: 0em;
 }
+
 #header span{
     display:none;
 }
