@@ -15,8 +15,10 @@ $activeIndex = 0;
         <link rel="stylesheet" type="text/css" href="css/default.css"/>
         <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="handheld, screen and (max-width:768px), only screen and (max-device-width:768px)"/>
     </head>
-    <body ontouchstart> <!-- ontouchstart fixa il comportamento degli eventi touch su Safari per iOS -->
+    <body ontouchstart> <!-- ontouchstart: fix del comportamento degli eventi touch su Safari per iOS -->
         <?php intestazione($activeIndex);?>
-    
+        <div id="content">
+
+        </div>
     </body>
 </html>
