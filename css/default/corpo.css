@@ -65,6 +65,9 @@ div.even , div.odd{
     clear:both;
 }
 
+.responsive-banner{
+    display: none;
+}
 .macroattivita {
     padding-bottom: 1.5em;
     padding-top: 1.5em;

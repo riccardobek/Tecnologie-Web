@@ -50,7 +50,13 @@
 img.banner{
     display: none;
 }
+.responsive-banner{
+    display: block;
+    width:100%;
+    height: 5em;
+    background-size: cover;
 
+}
 .column{
     width:100%;
     float:none;

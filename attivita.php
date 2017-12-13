@@ -41,6 +41,8 @@ $activeIndex = 1;
             
         <div class="macroattivita {$class[$classIndex]}" id="{$macro["Ancora"]}">
             <div class="length-wrapper">
+                <div class="responsive-banner" style=" background-image: url('images/attivita/banner/{$macro["Banner"]}')">
+                </div>
                 <img class="banner" src="images/attivita/banner/{$macro["Banner"]}" alt="{$macro["Nome"]} - immagine promozionale">
                 <div class="content-wrapper">
                     <h1>{$macro["Nome"]}</h1>
