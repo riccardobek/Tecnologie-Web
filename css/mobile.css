@@ -13,12 +13,20 @@
     margin-top:0;
     text-align:center;
 }
-#header img{
-    margin: 0 auto;
+
+#header div.length-wrapper {
+    padding: 0.5em;
+    text-align: left;
 }
- #header span{
-     display:none;
- }
+
+#header div.length-wrapper > img{
+    margin: 0 auto;
+    max-height: 3em;
+    padding: 0em;
+}
+#header span{
+    display:none;
+}
 
 img.banner{
     display: none;
