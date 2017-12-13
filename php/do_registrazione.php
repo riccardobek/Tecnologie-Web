@@ -7,8 +7,8 @@ if(!isset($_POST["registrazione"])) {
     die("Parametri non validi");
 }
 
-$nome = $_POST["nome"];
-$cognome = $_POST["cognome"];
+$nome = filter_var($_POST["nome"],FILTER_SANITIZE_STRING);
+$cognome = filter_var($_POST["cognome"],FILTER_SANITIZE_STRING);
 
 $username = $_POST["username"];
 
@@ -16,9 +16,10 @@ $email = $_POST["email"];
 $password = $_POST["password"];
 $password2 = $_POST["password2"];
 
-$indirizzo = $_POST["indirizzo"];
-$civico = $_POST["civico"];
-$citta = $_POST["citta"];
+$indirizzo = filter_var($_POST["indirizzo"],FILTER_SANITIZE_STRING);
+$civico = filter_var($_POST["civico"],FILTER_SANITIZE_STRING);
+$citta = filter_var($_POST["citta"],FILTER_SANITIZE_STRING);
+$CAP = filter_var($_POST["CAP"],FILTER_SANITIZE_NUMBER_INT);
 
 foreach($campiRichiesti as $campo) {
     if(!(validaCampo($$campo))) {
@@ -34,21 +35,29 @@ if($password != $password2) {
     die("Le due password non combaciano");
 }
 
+if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    die("Email inserita non valida");
+}
+
 $db->beginTransaction();
-$insertStatement = $db->prepare("INSERT INTO Utenti VALUES (NULL,?,?,?,?,?,?)");
+$insertStatement = $db->prepare("INSERT INTO Utenti VALUES (NULL,?,?,?,?,?,?,?,?,?,'Utente')");
 if($insertStatement->execute(array(
     $nome,
     $cognome,
     $username,
     $email,
-    $password,
-    $indirizzo
+    hash('sha512',$password),
+    $indirizzo,
+    $civico,
+    $citta,
+    $CAP
 ))) {
     $db->commit();
 }
 
 else {
     $db->rollBack();
+    print_r($insertStatement->errorInfo());
     die("Errore nell'inserimento dell'utente.");
 }
 

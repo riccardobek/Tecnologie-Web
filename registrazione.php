@@ -39,10 +39,15 @@ $activeIndex = 4;
                     <label for="civico">Civico: </label>
                     <input type="text"  size="4" id="civico" name="civico" placeholder="N.">
                 </div>
-                <div class="field-container">
+                <div class="field-container" id="citta-container">
                     <label for="citta">Citt&agrave;: </label>
                     <input type="text" id="citta" name="citta" placeholder="Inserisci la tua città di residenza">
                 </div>
+                <div class="field-container" id="cap-container">
+                    <label for="CAP">CAP: </label>
+                    <input type="text"  size="4" id="CAP" name="CAP" placeholder="CAP...">
+                </div>
+
             </div>
             <div id="sectionAccountData">
                 <div class="field-container">
@@ -62,7 +67,7 @@ $activeIndex = 4;
                     <input type="password" id="password2" name="password2" placeholder="Ripeti password..">
                 </div>
             </div>
-            <div class="button-holder">  <input type="submit" value="Registrati" class="primary-btn inline-btn"></div>
+            <div class="button-holder">  <input type="submit" value="Registrati" name="registrazione" class="primary-btn inline-btn"></div>
         </form>
     </div>
     <?php footer($activeIndex);?>
