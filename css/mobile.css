@@ -62,3 +62,22 @@ img.banner{
     float:none;
     margin-bottom:1.5em;
 }
+
+div.form{
+   width:auto;
+
+}
+
+#container_form{
+    width:auto;
+}
+
+#sectionPersonalData , #sectionAccountData {
+    float:none;
+    width: 100%;
+    margin:0;
+}
+
+#sectionAccountData {
+    padding-top: 1em;
+}
