@@ -2,6 +2,7 @@
 require_once "php/database.php";
 require_once "php/funzioni/funzioni_pagina.php";
 require_once "php/funzioni/funzioni_attivita.php";
+$activeIndex = 0;
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -15,7 +16,7 @@ require_once "php/funzioni/funzioni_attivita.php";
     <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="handheld, screen and (max-width:480px), only screen and (max-device-width:480px)"/>
 </head>
 <body ontouchstart> <!-- ontouchstart fixa il comportamento degli eventi touch su Safari per iOS -->
-    <?php intestazione(0);?>
+    <?php intestazione($activeIndex);?>
     <div id="content">
         <img  src="images/fiume_montagne.png" class="banner">
          <div class="odd">
@@ -84,6 +85,6 @@ MACROATTIVITA;
              <div class="clearfix"></div>
          </div>
     </div>
-    <?php footer(0);?>
+    <?php footer($activeIndex);?>
 </body>
 </html>
