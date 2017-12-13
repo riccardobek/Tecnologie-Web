@@ -5,7 +5,7 @@
 
 .length-wrapper{
     max-width: 100%;
-    padding:1.2em;
+
 }
 
 
@@ -13,19 +13,71 @@
     margin-top:0;
     text-align:center;
 }
-#header img{
-    margin: 0 auto;
+
+#header div.length-wrapper {
+    padding: 1em;
+    text-align: left;
 }
- #header span{
-     display:none;
- }
+
+.hamburger {
+    display: inline;
+    float: right;
+
+    margin: 0;
+    padding: 0;
+}
+
+.hamburger:active {
+    background: #1C1C1C;
+}
+
+.hamburger > img {
+    border: 1px solid #16a5e1;
+    border-radius: 3px;
+}
+
+#header div.length-wrapper > img,
+.hamburger > img {
+    margin: 0 auto;
+    max-height: 3em;
+    padding: 0em;
+}
+
+#header span{
+    display:none;
+}
 
 img.banner{
     display: none;
 }
+.responsive-banner{
+    display: block;
+    width:100%;
+    height: 5em;
+    background-size: cover;
 
+}
 .column{
     width:100%;
     float:none;
     margin-bottom:1.5em;
+}
+
+div.form{
+   width:auto;
+
+}
+
+#container_form{
+    width:auto;
+}
+
+#sectionPersonalData , #sectionAccountData {
+    float:none;
+    width: 100%;
+    margin:0;
+}
+
+#sectionAccountData {
+    padding-top: 1em;
 }

@@ -2,20 +2,22 @@
 require_once "php/database.php";
 require_once "php/funzioni/funzioni_attivita.php";
 require_once "php/funzioni/funzioni_pagina.php";
+$activeIndex = 1;
 ?>
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="images/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" rel="stylesheet">
     <title>Onda Selvaggia - Attività</title>
     <link rel="stylesheet" type="text/css" href="css/default.css"/>
+    <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="handheld, screen and (max-width:768px), only screen and (max-device-width:768px)"/>
 </head>
 <body>
     <?php
-    intestazione(1);
+    intestazione($activeIndex);
     ?>
 
     <div id="content">
@@ -39,6 +41,8 @@ require_once "php/funzioni/funzioni_pagina.php";
             
         <div class="macroattivita {$class[$classIndex]}" id="{$macro["Ancora"]}">
             <div class="length-wrapper">
+                <div class="responsive-banner" style=" background-image: url('images/attivita/banner/{$macro["Banner"]}')">
+                </div>
                 <img class="banner" src="images/attivita/banner/{$macro["Banner"]}" alt="{$macro["Nome"]} - immagine promozionale">
                 <div class="content-wrapper">
                     <h1>{$macro["Nome"]}</h1>
@@ -70,7 +74,7 @@ MACROATTIVITA;
         
     </div>
 
-    <?php footer();?>
+    <?php footer($activeIndex);?>
 
 </body>
 </html>

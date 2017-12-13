@@ -1,21 +1,23 @@
 <?php
 require_once "php/funzioni/funzioni_pagina.php";
+$activeIndex = 4;
 ?>
 
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <link rel="icon" href="images/favicon.ico">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="images/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/default.css" >
     <link rel="stylesheet" type="text/css" href="css/login.css" >
+    <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="handheld, screen and (max-width:768px), only screen and (max-device-width:768px)"/>
 
     <title>Registrati</title>
 </head>
 <body>
-    <?php intestazione(4);?>
+    <?php intestazione($activeIndex);?>
     <div class="form" id="container_form">
 
         <form action="php/do_registrazione.php" method="POST">
@@ -37,10 +39,15 @@ require_once "php/funzioni/funzioni_pagina.php";
                     <label for="civico">Civico: </label>
                     <input type="text"  size="4" id="civico" name="civico" placeholder="N.">
                 </div>
-                <div class="field-container">
+                <div class="field-container" id="citta-container">
                     <label for="citta">Citt&agrave;: </label>
                     <input type="text" id="citta" name="citta" placeholder="Inserisci la tua città di residenza">
                 </div>
+                <div class="field-container" id="cap-container">
+                    <label for="CAP">CAP: </label>
+                    <input type="text"  size="4" id="CAP" name="CAP" placeholder="CAP...">
+                </div>
+
             </div>
             <div id="sectionAccountData">
                 <div class="field-container">
@@ -60,8 +67,9 @@ require_once "php/funzioni/funzioni_pagina.php";
                     <input type="password" id="password2" name="password2" placeholder="Ripeti password..">
                 </div>
             </div>
-            <div class="button-holder">  <input type="submit" value="Registrati" class="primary-btn inline-btn"></div>
+            <div class="button-holder">  <input type="submit" value="Registrati" name="registrazione" class="primary-btn inline-btn"></div>
         </form>
     </div>
+    <?php footer($activeIndex);?>
 </body>
 </html>

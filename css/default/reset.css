@@ -8,6 +8,17 @@ html,body {
     font-size: 100%;
 }
 
+
+textarea,
+input.text,
+input[type="text"],
+input[type="button"],
+input[type="submit"],
+.input-checkbox {
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+
 h1,h2,h3,h4,h5,h6 {
     font-weight: 100;
 }

@@ -2,19 +2,21 @@
 require_once "php/database.php";
 require_once "php/funzioni/funzioni_pagina.php";
 require_once "php/funzioni/funzioni_attivita.php";
+$activeIndex = 0;
 ?>
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="images/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" rel="stylesheet">
     <title>Onda Selvaggia - Home</title>
     <link rel="stylesheet" type="text/css" href="css/default.css"/>
-    <link rel="stylesheet" type="text/css"  href="css/default_mobile.css" media="handheld, screen and (max-width:480px), only screen and (max-device-width:480px)"/>
+    <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="handheld, screen and (max-width:768px), only screen and (max-device-width:768px)"/>
 </head>
-<body>
-    <?php intestazione(0);?>
+<body ontouchstart> <!-- ontouchstart fixa il comportamento degli eventi touch su Safari per iOS -->
+    <?php intestazione($activeIndex);?>
     <div id="content">
         <img  src="images/fiume_montagne.png" class="banner">
          <div class="odd">
@@ -63,7 +65,10 @@ require_once "php/funzioni/funzioni_attivita.php";
                      <div class="wrapper" id="{$macroAttivita["Ancora"]}">
                          <div class="title-wrapper">
                              <h1>{$macroAttivita["Nome"]}</h1>
-                             <img src="images/attivita/index/{$macroAttivita["Immagine"]}">
+                             <div class="img-wrapper">
+                                <img src="images/attivita/index/{$macroAttivita["Immagine"]}">
+                             </div>
+                             
                          </div>
                          <p>
                              {$macroAttivita["Descrizione"]}
@@ -83,5 +88,6 @@ MACROATTIVITA;
              <div class="clearfix"></div>
          </div>
     </div>
+    <?php footer($activeIndex);?>
 </body>
 </html>
