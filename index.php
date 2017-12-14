@@ -21,35 +21,13 @@ $activeIndex = 0;
         <img  src="images/fiume_montagne.png" class="banner">
          <div class="odd">
               <div class="length-wrapper">
-                 <h1>Titolo</h1>
+                 <h1>Onda Selvaggia</h1>
 
-                 Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                 ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                 sunt in culpa qui officia deserunt mollit anim id est laborum." "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                 ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                 sunt in culpa qui officia deserunt mollit anim id est laborum." "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                 ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                 sunt in culpa qui officia deserunt mollit anim id est laborum." "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                 ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                 sunt in culpa qui officia deserunt mollit anim id est laborum."
-                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                 ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                 sunt in culpa qui officia m ipsum dolor sit amet, consectetur adipiscing elit,
+                 <p>
+                     Vieni ad apprendere le meraviglie del Brenta! I nostri istruttori sono pronti ad accoglierti
+                     e a farti appasionare ai nostri sport. Le attività che hanno dato inizio alla nostra associazione sono
+                     canottaggio, 
+                 </p>
 
              </div>
          </div>
