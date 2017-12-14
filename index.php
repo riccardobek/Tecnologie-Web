@@ -23,11 +23,23 @@ $activeIndex = 0;
               <div class="length-wrapper">
                  <h1>Onda Selvaggia</h1>
 
-                 <p>
-                     Vieni ad apprendere le meraviglie del Brenta! I nostri istruttori sono pronti ad accoglierti
-                     e a farti appasionare ai nostri sport. Le attività che hanno dato inizio alla nostra associazione sono
-                     canottaggio, 
+                  <p>
+                      Situata nella valle del Brenta, il Centro Onda Selvaggia® offre la possibilità di praticare sport fluviali
+                      rimanendo a stretto contatto con la natura e in un contesto denso di richiami storici e di tradizioni culturali.
+                      Questa attività, nata nel 1996 dalla passione per gli sport fluviali dei suoi fondatori (Chicco e Sonia),
+                       è una miscela di energia e competenza, di simpatia e professionalità.
+                  </p>
+                  <p>
+                      Vieni a scoprire le meraviglie del Brenta! I nostri istruttori sono pronti ad accoglierti
+                      e a farti appasionare ai nostri sport. </br>
+                      Disponiamo di una vasta gamma di attività aperte a tutti: Canoa, Rafting, HydroSpeed con la possibilità di prenotare
+                      per un periodo di tempo prolungato grazie alle offerte Week-end e Settimane Multisport.
                  </p>
+                  <p>
+                      Per nessuna di queste attività è richiesta una particolare preparazione fisica o tecnica, complice anche la natura
+                      placida del fiume Brenta.Si avranno a disposizione le migliori attrezzature ed equipaggiamenti che il Centro
+                      Sportivo ha da offrire.
+                  </p>
 
              </div>
          </div>

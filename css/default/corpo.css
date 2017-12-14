@@ -118,12 +118,10 @@ div.even , div.odd{
 }
 
 
-
-
 /*box sicurezza e personalità*/
 #box{
     border-style: solid;
-    border-color: #008BC6;
+    border-color: #FFFFFF;
     border-radius: 10px 10px 10px 10px;
     width: 300px;
     float:left;
