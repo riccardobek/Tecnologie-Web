@@ -130,7 +130,7 @@ function footer($activeIndex)
     global $menuElements;
 
     echo <<<FOOTER
-    <div id="footer">
+    <div id="footer" class="even">
 FOOTER;
     for ($i = 0; $i < count($menuElements); $i++) {
         if ($menuElements[$i]["Pulsante"])

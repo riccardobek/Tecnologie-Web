@@ -39,7 +39,7 @@ $activeIndex = 2;
     <div>
             <div id="box">
                 <h2>Professionalità</h2>
-                <img src="images/icona_professionalita.png" class="" alt=" "/>
+                <img src="images/icona_professionalita.png" class="box_icon" alt=" "/>
                 <p>I nostri collaboratori sono dotati di titoli e brevetti riconosciuti a livello Nazionale nelle discipline fluviali.
                     Ogni anno si prestano ad aggiornare le loro conoscenze per assicurare ai nostri clienti il massimo divertimento
                     con altrettanta preparazione.
@@ -49,7 +49,7 @@ $activeIndex = 2;
 
             <div id="box">
                 <h2>Sicurezza</h2>
-                <img src="images/icona_sicurezza.png" class="" alt=" "/>
+                <img src="images/icona_sicurezza.png" class="box_icon" alt=" "/>
                 <p>Utilizziamo equipaggiamento e attrezzatura tecnica omologata secondo le direttive EN UNI ISO 12402-5 oppure
                     CE EN 1385 per le attività sia Fluviali e secondo le normative vigenti per le attività Montane. Aggiornamenti
                     continui dei nostri Collaboratori per essere sempre informati sulle nuove procedure di sicurezza.

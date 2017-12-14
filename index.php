@@ -50,6 +50,7 @@ $activeIndex = 0;
                  <?php
                  $listaMacroAttivita = getMacroattivita();
                  foreach($listaMacroAttivita as $macroAttivita) {
+                     $macroAttivita["Descrizione"]= substr($macroAttivita["Descrizione"], 0, 202)."...";
                      echo <<<MACROATTIVITA
                  <div class="column">
                      <div class="wrapper" id="{$macroAttivita["Ancora"]}">
@@ -77,6 +78,31 @@ MACROATTIVITA;
              </div>
              <div class="clearfix"></div>
          </div>
+        <div class="odd">
+            <div class="length-wrapper">
+            <div id="box">
+                <img src="images/icona_professionalita.png" class="box_icon" alt=" "/>
+                <div class="box_title">
+                    <h2>Professionalità</h2>
+                </div>
+                <p>I nostri collaboratori sono dotati di titoli e brevetti riconosciuti a livello Nazionale nelle discipline fluviali.
+                    Ogni anno si prestano ad aggiornare le loro conoscenze per assicurare ai nostri clienti il massimo divertimento
+                    con altrettanta preparazione.
+                </p>
+            </div>
+
+            <div id="box">
+                <img src="images/icona_sicurezza.png" class="box_icon" alt=" "/>
+                <h2 class="box_title">Sicurezza</h2>
+
+                    <p>Utilizziamo equipaggiamento e attrezzatura tecnica omologata secondo le direttive EN UNI ISO 12402-5 oppure
+                        CE EN 1385 per le attività sia Fluviali e secondo le normative vigenti per le attività Montane. Aggiornamenti
+                        continui dei nostri Collaboratori per essere sempre informati sulle nuove procedure di sicurezza.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
     </div>
     <?php footer($activeIndex);?>
 </body>

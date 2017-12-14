@@ -129,10 +129,14 @@ div.even , div.odd{
     margin: 50px 50px 20px 50px;
 }
 
-div#box > h2{
+.box_title{
+    margin: 0 auto;
     text-align: center;
 }
 
-div#box > img{
-
+.box_icon{
+    width: 50px;
+    float:left;
+    padding: 0em;
+    margin: 0;
 }
