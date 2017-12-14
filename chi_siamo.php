@@ -17,47 +17,22 @@ $activeIndex = 2;
 <body>
 <?php intestazione($activeIndex);?>
     <div id="content">
-    <div class="even">
-        <div class="length-wrapper">
-            <h1>Chi siamo</h1>
-            <p>Questa attività, nata nel 1996 dalla passione per gli sport fluviali dei suoi fondatori (Chicco e Sonia),
-                Onda Selvaggia® è una miscela di energia e competenza, di simpatia e professionalità.
-            </p>
-            <p>Situata nella valle del Brenta, il Centro Onda Selvaggia® offre la possibilità di praticare sport fluviali
-                rimanendo a stretto contatto con la natura e in un contesto denso di richiami storici e di tradizioni culturali.
-                Offriamo una vasta gamma di attività aperte a tutti: Canoa, Rafting, HydroSpeed con la possibilità di prenotare
+        <div class="even">
+            <div class="length-wrapper">
+                <h1>Chi siamo</h1>
+                <p>
+                Questa attività, nata nel 1996 dalla passione per gli sport fluviali dei suoi fondatori (Chicco e Sonia), Onda Selvaggia® è una miscela di energia e competenza, di simpatia e professionalità.
+                Situata nella valle del Brenta, il Centro Onda Selvaggia® offre la possibilità di praticare sport fluviali rimanendo a stretto contatto con la natura e in un contesto
+                denso di richiami storici e di tradizioni culturali. Offriamo una vasta gamma di attività aperte a tutti: Canoa, Rafting, HydroSpeed con la possibilità di prenotare
                 per un periodo di tempo prolungato grazie alle offerte Week-end e Settimane Multisport.
-            </p>
-            <p>Per nessuna di queste attività è richiesta una particolare preparazione fisica o tecnica, complice anche la natura
-                placida del fiume Brenta.Si avranno a disposizione le migliori attrezzature ed equipaggiamenti che il Centro
-                Sportivo ha da offrire.
-            </p>
+                </p>
+
+                <p>Per nessuna di queste attività è richiesta una particolare preparazione fisica o tecnica, complice anche la natura placida del fiume Brenta.
+                    Si avranno a disposizione le migliori attrezzature ed equipaggiamenti che il Centro Sportivo ha da offrire.
+                </p>
+            </div>
         </div>
     </div>
-
-
-    <div>
-            <div id="box">
-                <h2>Professionalità</h2>
-                <img src="images/icona_professionalita.png" class="" alt=" "/>
-                <p>I nostri collaboratori sono dotati di titoli e brevetti riconosciuti a livello Nazionale nelle discipline fluviali.
-                    Ogni anno si prestano ad aggiornare le loro conoscenze per assicurare ai nostri clienti il massimo divertimento
-                    con altrettanta preparazione.
-                </p>
-            </div>
-
-
-            <div id="box">
-                <h2>Sicurezza</h2>
-                <img src="images/icona_sicurezza.png" class="" alt=" "/>
-                <p>Utilizziamo equipaggiamento e attrezzatura tecnica omologata secondo le direttive EN UNI ISO 12402-5 oppure
-                    CE EN 1385 per le attività sia Fluviali e secondo le normative vigenti per le attività Montane. Aggiornamenti
-                    continui dei nostri Collaboratori per essere sempre informati sulle nuove procedure di sicurezza.
-                </p>
-            </div>
-
-    </div>
-</div>
-<?php footer($activeIndex);?>
+    <?php footer($activeIndex);?>
 </body>
 </html>
