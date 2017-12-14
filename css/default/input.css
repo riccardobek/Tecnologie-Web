@@ -19,11 +19,15 @@ input:not([type=submit]):not([type=button]):focus {
     text-align: center;
 }
 
+.column .button-holder{
+    margin-top: 0;
+}
+
 .primary-btn {
 
     display: block;
-    height: 3em;
-    width: 10em;
+    height: 2em;
+    width: 7em;
     margin:0 auto;
     background: #019FE3;
     color: white;
@@ -33,7 +37,7 @@ input:not([type=submit]):not([type=button]):focus {
     outline: none;
 }
 .primary-btn.index-btn{
-    padding:0.6em;
+    padding:0.3em;
     height:1.5em;
     font-size: 1.1em;
 }

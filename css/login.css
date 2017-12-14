@@ -38,17 +38,21 @@ div.elements-wrapper {
     margin: 1em;
 }
 
-#indirizzo-container{
+#indirizzo-container,
+#citta-container{
     float:left;
-    width: 80%;
+    width: 78%;
 }
-#civico-container{
+#civico-container, #cap-container{
     text-align: right;
 }
 
-#civico-container input{
-    width: 3em;
+#civico-container input,
+#cap-container input{
+    width: 4em;
+    text-align: right;
 }
+
 form label {
     display: block;
     padding-bottom: 0.3em;
