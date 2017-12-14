@@ -17,17 +17,6 @@ $activeIndex = 2;
 <body>
 <?php intestazione($activeIndex);?>
     <div id="content">
-        <div class="even">
-            <div class="length-wrapper">
-                <h1>Chi siamo</h1>
-                <p>
-                Questa attività, nata nel 1996 dalla passione per gli sport fluviali dei suoi fondatori (Chicco e Sonia), Onda Selvaggia® è una miscela di energia e competenza, di simpatia e professionalità.
-                Situata nella valle del Brenta, il Centro Onda Selvaggia® offre la possibilità di praticare sport fluviali rimanendo a stretto contatto con la natura e in un contesto
-                denso di richiami storici e di tradizioni culturali. Offriamo una vasta gamma di attività aperte a tutti: Canoa, Rafting, HydroSpeed con la possibilità di prenotare
-                per un periodo di tempo prolungato grazie alle offerte Week-end e Settimane Multisport.
-                </p>
-
-<<<<<<< HEAD
     <div class="even">
         <div class="length-wrapper">
             <h1>Chi siamo</h1>
@@ -69,16 +58,6 @@ $activeIndex = 2;
 
     </div>
 </div>
-
-
-=======
-                <p>Per nessuna di queste attività è richiesta una particolare preparazione fisica o tecnica, complice anche la natura placida del fiume Brenta.
-                    Si avranno a disposizione le migliori attrezzature ed equipaggiamenti che il Centro Sportivo ha da offrire.
-                </p>
-            </div>
-        </div>
-    </div>
-    <?php footer($activeIndex);?>
->>>>>>> aa26ac314f8eaad00c30d9c5e37c1686879bfdf0
+<?php footer($activeIndex);?>
 </body>
 </html>
