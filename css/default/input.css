@@ -53,3 +53,16 @@ input:not([type=submit]):not([type=button]):focus {
     border: 2px solid silver;
 }
 
+a.primary-btn.inline-btn{
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+    border-color: #019FE3;
+}
+
+span.price-tag{
+
+    float: right;
+    margin-top: 2em;
+    font-weight: bold;
+    font-size: 1.1em;
+}

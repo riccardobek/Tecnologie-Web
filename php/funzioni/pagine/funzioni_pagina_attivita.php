@@ -28,10 +28,10 @@ MACROATTIVITA;
                     <h2>{$attivita["Nome"]}</h2>
                     <p>
                         {$attivita["Descrizione"]}
-                        <span>Prezzo: {$attivita["Prezzo"]} euro</span>
+                        <span class="price-tag">Prezzo: {$attivita["Prezzo"]} euro</span>
                     </p>
-                    <a class="button">Prenota</a>
-                </div>
+                    <a class="primary-btn inline-btn">Prenota</a></div>
+                
 ATTIVITA;
         $output.= <<<MACROATTIVITA
             
