@@ -120,6 +120,7 @@ div.even , div.odd{
 
 /*box sicurezza e personalità*/
 #box{
+    position:relative;
     border-style: solid;
     border-color: #FFFFFF;
     border-radius: 10px 10px 10px 10px;
@@ -129,14 +130,15 @@ div.even , div.odd{
     margin: 50px 50px 20px 50px;
 }
 
-.box_title{
-    margin: 0 auto;
+.box_title h2{
     text-align: center;
+    margin-top:1em;
 }
 
 .box_icon{
     width: 50px;
-    float:left;
-    padding: 0em;
-    margin: 0;
+    position:absolute;
+    top:1em;
+    left:0.2em;
+
 }

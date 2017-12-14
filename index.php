@@ -81,10 +81,11 @@ MACROATTIVITA;
         <div class="odd">
             <div class="length-wrapper">
             <div id="box">
-                <img src="images/icona_professionalita.png" class="box_icon" alt=" "/>
                 <div class="box_title">
+                    <img src="images/icona_professionalita.png" class="box_icon" alt=" "/>
                     <h2>Professionalità</h2>
                 </div>
+
                 <p>I nostri collaboratori sono dotati di titoli e brevetti riconosciuti a livello Nazionale nelle discipline fluviali.
                     Ogni anno si prestano ad aggiornare le loro conoscenze per assicurare ai nostri clienti il massimo divertimento
                     con altrettanta preparazione.
