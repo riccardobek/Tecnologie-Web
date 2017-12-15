@@ -90,5 +90,19 @@ div.form{
 
 div#footer.even{
     display: list-item;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
+div#footer.even ul{
+    list-style-type: none;
+    text-align: center;
+    -webkit-padding-start: 0;
+}
+
+div#footer.even ul li{
+    height: 3em;
+    font-size: 1em;
+    border-style: solid;
+    padding-top: 2em;
+}
