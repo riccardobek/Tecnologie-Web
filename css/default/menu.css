@@ -85,3 +85,5 @@ div#menu-wrapper {
 .hamburger {
     display: none;
 }
+
+div#footer.even{display: none;}

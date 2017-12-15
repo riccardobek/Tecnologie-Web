@@ -87,3 +87,8 @@ div.form{
     margin-right: 0;
     text-align: left;
 }
+
+div#footer.even{
+    display: list-item;
+}
+

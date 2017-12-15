@@ -125,8 +125,37 @@ HEADER;
 HEADER;
 }
 
+/*
+function creaFooter($index, $activeIndex, $utenteLoggato){
+    global $menuElements;
+        $element = ($index == $activeIndex) ? <<<ELEMENTO
+        <li class="active">{$menuElements[$index]["Nome"]}</li>
+ELEMENTO
+            : <<<ELEMENTO
+        <li><a href="{$menuElements[$index]["URL"]}">{$menuElements[$index]["Nome"]}</a></li>
+ELEMENTO;
+        }
+        return $element;
+}
+
+*/
+
 function footer($activeIndex)
 {
+    /*
+    echo <<<FOOTER
+<div id="footer" class="even">
+<ul>
+FOOTER;
+    for ($i = 0; $i < count($menuElements); $i++) {
+        echo creaFooter($i, $activeIndex, false);
+    }
+<<<FOOTER
+</ul>
+</div>
+FOOTER;
+
+    */
     global $menuElements;
 
     echo <<<FOOTER
@@ -138,7 +167,6 @@ FOOTER;
     }
     echo <<<FOOTER
             <ul>
-
 FOOTER;
     for ($i = 0; $i < count($menuElements); $i++) {
         if (!$menuElements[$i]["Pulsante"])
@@ -149,5 +177,6 @@ FOOTER;
             </ul>
     </div>
 FOOTER;
+
 
 }
