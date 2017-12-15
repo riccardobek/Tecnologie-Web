@@ -125,27 +125,30 @@ HEADER;
 HEADER;
 }
 
-/*
+
 function creaFooter($index, $activeIndex, $utenteLoggato){
     global $menuElements;
-        $element = ($index == $activeIndex) ? <<<ELEMENTO
-        <li class="active">{$menuElements[$index]["Nome"]}</li>
+    $element = ($index == $activeIndex) ?
+<<<ELEMENTO
+    <li class="active">{$menuElements[$index]["Nome"]}</li>\n
 ELEMENTO
-            : <<<ELEMENTO
-        <li><a href="{$menuElements[$index]["URL"]}">{$menuElements[$index]["Nome"]}</a></li>
+            :
+<<<ELEMENTO
+    <li><a href="{$menuElements[$index]["URL"]}">{$menuElements[$index]["Nome"]}</a></li>\n
 ELEMENTO;
-        }
-        return $element;
+
+    return $element;
 }
 
-*/
+
 
 function footer($activeIndex)
 {
-    /*
+    global $menuElements;
+
     echo <<<FOOTER
 <div id="footer" class="even">
-<ul>
+    <ul>\n
 FOOTER;
     for ($i = 0; $i < count($menuElements); $i++) {
         echo creaFooter($i, $activeIndex, false);
@@ -155,9 +158,8 @@ FOOTER;
 </div>
 FOOTER;
 
-    */
-    global $menuElements;
 
+    /*
     echo <<<FOOTER
     <div id="footer" class="even">
 FOOTER;
@@ -177,6 +179,6 @@ FOOTER;
             </ul>
     </div>
 FOOTER;
-
+*/
 
 }
