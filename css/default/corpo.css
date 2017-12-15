@@ -28,8 +28,7 @@ div.even , div.odd{
 }
 .column .wrapper p{
     color: #1C1C1C;
-    padding: 1.3em;
-    padding-top: 0em;
+    padding: 0 1.3em 1.3em 1.3em;
 
 }
 
@@ -38,8 +37,8 @@ div.even , div.odd{
 }
 
 .title-wrapper h1{
-    left: 0px;
-    right: 0px;
+    left: 0;
+    right: 0;
     bottom: 0.1em;
     margin: 0;
     color: #F3F3F3;
@@ -118,19 +117,19 @@ div.even , div.odd{
 }
 
 
-/*box sicurezza e personalità*/
+/*box sicurezza e personalità
 #box{
     position:relative;
     border-style: solid;
     border-color: #FFFFFF;
-    border-radius: 10px 10px 10px 10px;
-    width: 300px;
+    border-radius: 1em 1em 1em 1em;
+    width: 25em;
     float:left;
-    padding: 10px 10px 10px 10px;
-    margin: 50px 50px 20px 50px;
+    padding: 1.5em 1.5em 1.5em 1.5em;
+    margin: 1em;
 }
 
-.box_title h2{
+.box_title{
     text-align: center;
     margin-top:1em;
 }
@@ -141,4 +140,13 @@ div.even , div.odd{
     top:1em;
     left:0.2em;
 
+}*/
+
+.box_SP{
+    margin: 4em 4em 4em 0;
+}
+
+.icon_SP{
+    width: 8em;
+    float: left;
 }

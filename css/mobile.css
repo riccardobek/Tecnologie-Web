@@ -81,3 +81,9 @@ div.form{
 #sectionAccountData {
     padding-top: 1em;
 }
+
+.box_SP{
+    margin-left: 0;
+    margin-right: 0;
+    text-align: left;
+}

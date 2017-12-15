@@ -80,27 +80,30 @@ MACROATTIVITA;
          </div>
         <div class="odd">
             <div class="length-wrapper">
-            <div id="box">
-                <div class="box_title">
-                    <img src="images/icona_professionalita.png" class="box_icon" alt=" "/>
-                    <h2>Professionalità</h2>
+
+                <div class="box_SP">
+                    <img src="images/icona_professionalita.png" class="icon_SP" alt=" "/>
+                    <div>
+                        <h2>Professionalità</h2>
+                        <p>I nostri collaboratori sono dotati di titoli e brevetti riconosciuti a livello Nazionale nelle discipline fluviali.
+                            Ogni anno si prestano ad aggiornare le loro conoscenze per assicurare ai nostri clienti il massimo divertimento
+                            con altrettanta preparazione.
+                        </p>
+                    </div>
                 </div>
 
-                <p>I nostri collaboratori sono dotati di titoli e brevetti riconosciuti a livello Nazionale nelle discipline fluviali.
-                    Ogni anno si prestano ad aggiornare le loro conoscenze per assicurare ai nostri clienti il massimo divertimento
-                    con altrettanta preparazione.
-                </p>
-            </div>
+                <div class="box_SP">
+                    <img src="images/icona_sicurezza.png" class="icon_SP" alt=" "/>
+                    <div>
+                        <h2 class="box_title">Sicurezza</h2>
 
-            <div id="box">
-                <img src="images/icona_sicurezza.png" class="box_icon" alt=" "/>
-                <h2 class="box_title">Sicurezza</h2>
-
-                    <p>Utilizziamo equipaggiamento e attrezzatura tecnica omologata secondo le direttive EN UNI ISO 12402-5 oppure
-                        CE EN 1385 per le attività sia Fluviali e secondo le normative vigenti per le attività Montane. Aggiornamenti
-                        continui dei nostri Collaboratori per essere sempre informati sulle nuove procedure di sicurezza.
-                    </p>
+                        <p>Utilizziamo equipaggiamento e attrezzatura tecnica omologata secondo le direttive EN UNI ISO 12402-5 oppure
+                            CE EN 1385 per le attività sia Fluviali e secondo le normative vigenti per le attività Montane. Aggiornamenti
+                            continui dei nostri Collaboratori per essere sempre informati sulle nuove procedure di sicurezza.
+                        </p>
+                    </div>
                 </div>
+
             </div>
         </div>
         <div class="clearfix"></div>
