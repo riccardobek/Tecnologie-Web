@@ -89,8 +89,9 @@ div.form{
 }
 
 #footer{
-    height:100vh;
+    /*height:100vh;*/
 }
+
 div#footer.even{
     display: list-item;
     padding-top: 0;
@@ -107,7 +108,7 @@ div#footer.even ul{
 div#footer.even ul li{
     height: 3em;
     font-size: 1em;
-    border-style: solid;
+    border: none;
     padding-top: 2em;
 }
 #footer a{
@@ -125,4 +126,9 @@ div#footer.even ul li{
     float:right;
     padding-right: 0.5em;
     margin-bottom:1em;
+}
+
+.icon_SP {
+    float: none;
+    clear: both;
 }

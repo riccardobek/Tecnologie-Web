@@ -22,6 +22,12 @@ div.even , div.odd{
     color: white;
 }
 
+.odd {
+    background-color: #1C1C1C;
+    color: white;
+}
+
+
 .column{
     width: 33.33%;
     float: left;
@@ -149,4 +155,5 @@ div.even , div.odd{
 .icon_SP{
     width: 8em;
     float: left;
+    padding-right: 1em;
 }

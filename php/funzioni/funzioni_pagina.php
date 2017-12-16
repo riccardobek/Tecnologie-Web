@@ -126,15 +126,16 @@ HEADER;
 }
 
 
-function creaFooter($index, $activeIndex, $utenteLoggato){
+function creaElementoMenuFooter($index, $activeIndex, $odd, $utenteLoggato){
     global $menuElements;
+    $class = ($odd) ? "odd" : "even";
     $element = ($index == $activeIndex) ?
 <<<ELEMENTO
-    <li class="active">{$menuElements[$index]["Nome"]}</li>\n
+    <li class="active {$class}">{$menuElements[$index]["Nome"]}</li>\n
 ELEMENTO
             :
 <<<ELEMENTO
-    <li><a href="{$menuElements[$index]["URL"]}">{$menuElements[$index]["Nome"]}</a></li>\n
+    <li class="{$class}"><a href="{$menuElements[$index]["URL"]}">{$menuElements[$index]["Nome"]}</a></li>\n
 ELEMENTO;
 
     return $element;
@@ -151,10 +152,11 @@ function footer($activeIndex)
     <a href="#header" id="icona-wrapper"><img src="images/icone/icona_chiudi_menu.png" alt="chiudi menu"></a>
     <ul>\n
 FOOTER;
-    for ($i = 0; $i < count($menuElements); $i++) {
-        echo creaFooter($i, $activeIndex, false);
+
+    for ($i = 0, $odd = true; $i < count($menuElements); $i++,$odd=!$odd) {
+        echo creaElementoMenuFooter($i, $activeIndex, $odd,false);
     }
-<<<FOOTER
+echo <<<FOOTER
 </ul>
 </div>
 FOOTER;

@@ -8,19 +8,19 @@ $activeIndex = 4;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrati</title>
     <link rel="icon" href="images/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/default.css" >
     <link rel="stylesheet" type="text/css" href="css/login.css" >
     <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="handheld, screen and (max-width:768px), only screen and (max-device-width:768px)"/>
-
-    <title>Registrati</title>
+    <script type="text/javascript" src="js/registrazione.js"></script>
 </head>
 <body>
     <?php intestazione($activeIndex);?>
     <div class="form" id="container_form">
 
-        <form action="php/do_registrazione.php" method="POST">
+        <form action="php/do_registrazione.php" method="POST" onsubmit="return validaForm()">
             <h1>Crea account</h1>
             <div id="sectionPersonalData">
                 <div class="field-container">
