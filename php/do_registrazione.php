@@ -1,5 +1,6 @@
 <?php
 require_once "database.php";
+require_once "funzioni/funzioni_sicurezza.php";
 
 $campiRichiesti = array("nome","cognome","username","password","password2");
 
@@ -10,7 +11,7 @@ if(!isset($_POST["registrazione"])) {
 $nome = filter_var($_POST["nome"],FILTER_SANITIZE_STRING);
 $cognome = filter_var($_POST["cognome"],FILTER_SANITIZE_STRING);
 
-$username = $_POST["username"];
+$username = filter_var($_POST["username"],FILTER_SANITIZE_STRING);
 
 $email = $_POST["email"];
 $password = $_POST["password"];
@@ -46,7 +47,7 @@ if($insertStatement->execute(array(
     $cognome,
     $username,
     $email,
-    hash('sha512',$password),
+    criptaPassword($password),
     $indirizzo,
     $civico,
     $citta,
@@ -61,7 +62,8 @@ else {
     die("Errore nell'inserimento dell'utente.");
 }
 
-echo "Utente inserito con successo!";
+echo "<p>Utente inserito con successo!</p>";
+echo "<a href='../login.php'>Vai al login</a>";
 
 /**
  * Funzione che controlla se il parametro passato è settato e non vuoto

@@ -1,4 +1,7 @@
 <?php
+session_start();
+require_once "funzioni_sicurezza.php";
+
 $menuElements = array(
     array(
         "Nome" => "Home",
@@ -38,6 +41,13 @@ $menuElements = array(
         "LoginDipendente"=>true,
         "VisibileGuest"=>true
 
+    ),
+    array(
+        "Nome" => "Logout",
+        "URL" => "php/do_logout.php",
+        "Pulsante"=>true,
+        "LoginDipendente"=>true,
+        "VisibileGuest"=>false
     )
 );
 /**
@@ -48,17 +58,17 @@ $menuElements = array(
  * collegamento ma solo un elemento statico
  * @param $utenteLoggato indica se l'utente è loggato o no
  */
-function creaElementoMenu($index, $activeIndex, $utenteLoggato) {
+function creaElementoMenu($index, $activeIndex) {
     global $menuElements;
     $element = "";
 
-    if($menuElements[$index]["LoginDipendente"] && !$menuElements[$index]["VisibileGuest"] && !$utenteLoggato) {
+    if($menuElements[$index]["LoginDipendente"] && !$menuElements[$index]["VisibileGuest"] && !isUtenteLoggato()) {
         //Se l'elemento del menu può essere visualizzato solo dagli utenti loggati, e l'utente non è loggato allora non
         //lo visualizzo
         return $element;
     }
 
-    else if($menuElements[$index]["LoginDipendente"] && $menuElements[$index]["VisibileGuest"] && $utenteLoggato) {
+    else if($menuElements[$index]["LoginDipendente"] && $menuElements[$index]["VisibileGuest"] && isUtenteLoggato()) {
         //Se l'elemento del menu può essere visualizzato solo dagli utenti non loggati (ad esempio link alla pagina
         //"login") e l'utente corrente è loggato, allora non lo visualizzo
         return $element;
@@ -126,7 +136,7 @@ HEADER;
 }
 
 
-function creaElementoMenuFooter($index, $activeIndex, $odd, $utenteLoggato){
+function creaElementoMenuFooter($index, $activeIndex, $odd){
     global $menuElements;
     $class = ($odd) ? "odd" : "even";
     $element = ($index == $activeIndex) ?
@@ -154,7 +164,7 @@ function footer($activeIndex)
 FOOTER;
 
     for ($i = 0, $odd = true; $i < count($menuElements); $i++,$odd=!$odd) {
-        echo creaElementoMenuFooter($i, $activeIndex, $odd,false);
+        echo creaElementoMenuFooter($i, $activeIndex, $odd);
     }
 echo <<<FOOTER
 </ul>

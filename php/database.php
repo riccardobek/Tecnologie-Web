@@ -9,4 +9,6 @@ catch (PDOException $e) {
     print "ERRORE DI CONNESSIONE AL DATABASE:" . $e->getMessage() . "<br/>";
     die();
 }
+
+
 ?>

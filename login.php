@@ -18,7 +18,7 @@ $activeIndex=5;
     <body>
         <?php intestazione($activeIndex);?>
         <div class="form">
-            <form action="" method="POST">
+            <form action="php/do_login.php" method="POST">
                 <h1>Accedi</h1>
                 <div class="field-container">
                     <label for="username">Nome utente: </label>
