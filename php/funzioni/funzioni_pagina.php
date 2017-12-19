@@ -54,9 +54,8 @@ $menuElements = array(
  * Questa funzione crea un elemento del menu tenendo conto di numerosi paramentri
  *
  * @param $index indica l'elemento del menù che si vuole creare nell'array menuElements
- * @param $activeIndex indica l'elemento del menù che è attivo. Se activeIndex = index, allora non viene creato un
+ * @param $activeIndex indica l'elemento del menù che è attivo. Se activeIndex == index, allora non viene creato un
  * collegamento ma solo un elemento statico
- * @param $utenteLoggato indica se l'utente è loggato o no
  */
 function creaElementoMenu($index, $activeIndex) {
     global $menuElements;
@@ -75,28 +74,19 @@ function creaElementoMenu($index, $activeIndex) {
     }
 
     if($menuElements[$index]["Pulsante"]) {
-        //L'elemento che devo creare è un pulsante, quindi un "a" o uno "span" (in base al fatto che sia active o no
-        $element = ($index == $activeIndex) ? <<<ELEMENTO
-        <span class="button">{$menuElements[$index]["Nome"]}</span>
-
-ELEMENTO
-            : <<<ELEMENTO
-        <a href="{$menuElements[$index]["URL"]}" class="button">{$menuElements[$index]["Nome"]}</a>
-
-ELEMENTO;
+        //L'elemento che devo creare è un pulsante, quindi un "a" o uno "span" (in base al fatto che sia active o no)
+        $element = ($index == $activeIndex) ? file_get_contents("template/menu/pulsante_attivo.html")
+            : file_get_contents("template/menu/pulsante.html");
     }
 
     else {
         //L'elemento che devo creare è un "li" che contiene o no un link (in base al fatto che sia o no active)
-        $element = ($index == $activeIndex) ? <<<ELEMENTO
-        <li class="active">{$menuElements[$index]["Nome"]}</li>
-
-ELEMENTO
-            : <<<ELEMENTO
-        <li><a href="{$menuElements[$index]["URL"]}">{$menuElements[$index]["Nome"]}</a></li>
-
-ELEMENTO;
+        $element = ($index == $activeIndex) ? file_get_contents("template/menu/voce_attiva.html")
+            : file_get_contents("template/menu/voce.html");
     }
+
+    $element = str_replace("[#NOME_ELEMENTO]",$menuElements[$index]["Nome"],$element);
+    $element = str_replace("[#LINK_ELEMENTO]",$menuElements[$index]["URL"],$element);
 
     return $element;
 }
@@ -104,35 +94,23 @@ ELEMENTO;
 
 function intestazione($activeIndex) {
     global $menuElements;
-    echo <<<HEADER
-    
-    <div id="menu-wrapper">
-        <div id="menu" class="length-wrapper">
-HEADER;
-    for($i=0;$i<count($menuElements);$i++)
-        if($menuElements[$i]["Pulsante"])
-            echo creaElementoMenu($i,$activeIndex, false);
-    echo <<<HEADER
-            <ul>
-HEADER;
-    for($i=0;$i<count($menuElements);$i++)
-        if(!$menuElements[$i]["Pulsante"])
-            echo creaElementoMenu($i,$activeIndex, false);
-    echo <<<HEADER
-            </ul>
-        </div>
-    </div>
-    <div id="header">
-        <div class="length-wrapper">
-            <img src="images/new_logo.png" alt="Onda Selvaggia - Logo">
-            <a href="#footer" class="hamburger"><img src="images/icone/icona_menu.png" alt="Mostra menu"></a>
-            <div id="contatti-header"><span><img src="images/icone/icona_telefono.png" alt="telefono fisso"> 0424 99581 |
-                <img src="images/icone/icona_cellulare.png" alt="cellulare"> 3473767729</span>
-                <span><img src="images/icone/icona_email.png" alt="email"> info@ondaselvaggia.com</span>
-            </div>
-        </div>
-    </div>
-HEADER;
+
+    $INTESTAZIONE = file_get_contents("template/intestazione.html");
+
+    $PULSANTI = "";
+    $VOCI_MENU="";
+
+    for($i=0;$i<count($menuElements);$i++) {
+        if ($menuElements[$i]["Pulsante"])
+            $PULSANTI .= creaElementoMenu($i, $activeIndex);
+        else
+            $VOCI_MENU .= creaElementoMenu($i,$activeIndex);
+    }
+
+    $INTESTAZIONE = str_replace("[#PULSANTI_INTESTAZIONE]",$PULSANTI,$INTESTAZIONE);
+    $INTESTAZIONE = str_replace("[#VOCI_MENU]",$VOCI_MENU,$INTESTAZIONE);
+
+    return $INTESTAZIONE;
 }
 
 
@@ -156,17 +134,17 @@ ELEMENTO;
 function footer($activeIndex)
 {
     global $menuElements;
-
-    echo <<<FOOTER
+    $FOOTER = "";
+    $FOOTER.= <<<FOOTER
 <div id="footer" class="even">
     <a href="#header" id="icona-wrapper"><img src="images/icone/icona_chiudi_menu.png" alt="chiudi menu"></a>
     <ul>\n
 FOOTER;
 
     for ($i = 0, $odd = true; $i < count($menuElements); $i++,$odd=!$odd) {
-        echo creaElementoMenuFooter($i, $activeIndex, $odd);
+        $FOOTER.=creaElementoMenuFooter($i, $activeIndex, $odd);
     }
-echo <<<FOOTER
+$FOOTER.= <<<FOOTER
 </ul>
 </div>
 FOOTER;
@@ -193,5 +171,6 @@ FOOTER;
     </div>
 FOOTER;
 */
+    return $FOOTER;
 
 }
