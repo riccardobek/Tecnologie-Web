@@ -9,12 +9,13 @@ $activeIndex = 1;
 $HTML_INTESTAZIONE = intestazione($activeIndex);
 
 /*Richiamo pagina contatti*/
-$HTML = file_get_contents("template/attivita.html");
+$HTML = file_get_contents("template/attivita/attivita.html");
 
 /*Rimpiazza il segnaposto con il menù*/
 $HTML = str_replace("[#INTESTAZIONE]",$HTML_INTESTAZIONE, $HTML);
 
-$HTML = str_replace( "[#ATTIVITA]",stampaAttivita(), $HTML);
+/*$HTML = str_replace( "[#ATTIVITA]",stampaAttivita(), $HTML);
+*/
 
 /*Footer*/
 $HTML = str_replace("[#FOOTER]",footer($activeIndex),$HTML);

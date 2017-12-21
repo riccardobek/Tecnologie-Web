@@ -7,7 +7,15 @@ function stampaAttivita() {
     $output = "";
 
     foreach($listaMacroAttivita as $macro) {
-        $output.= <<<MACROATTIVITA
+        $output.= file_get_contents("template/attivita/sezione_macroattivita.html");
+        $output = str_replace("[#CLASS_MACROATTIVITA]",$class[$classIndex], $output);
+        $output = str_replace("[#ID_MACROATTIVITA]",$macro["Ancora"], $output);
+        $output = str_replace("[#MACRO_BANNER]",$macro["Banner"], $output);
+        $output = str_replace("[#MACRO_NOME]",$macro["Nome"], $output);
+        $output = str_replace("[#MACRO_DESCRIZIONE]",$macro["Descrizione"], $output);
+
+
+        /*$output.= <<<MACROATTIVITA
             
         <div class="macroattivita {$class[$classIndex]}" id="{$macro["Ancora"]}">
             <div class="length-wrapper">
@@ -21,15 +29,9 @@ function stampaAttivita() {
                     </p>
                 </div>
 MACROATTIVITA;
-        foreach($macro["Attivita"] as $attivita) {
-
-            $output .= file_get_contents("template/attivita/sezioni_attivita.html");
-            $output = str_replace("[#ATTIVITA_NOME]", $attivita["Nome"], $output);
-            $output = str_replace("[#ATTIVITA_DESCRIZIONE]", $attivita["Descrizione"], $output);
-            $output = str_replace("[#ATTIVITA_PREZZO]", $attivita["Prezzo"], $output);
-        }
-
-            /*
+        */
+        /*
+        foreach($macro["Attivita"] as $attivita)
             $output.= <<<ATTIVITA
             
                 <div class="attivita">
@@ -41,13 +43,13 @@ MACROATTIVITA;
                     <a class="primary-btn inline-btn">Prenota</a>
                     </div>
                 
-ATTIVITA;*/
+ATTIVITA;
 
         $output.= <<<MACROATTIVITA
             
             </div>
         </div>
-MACROATTIVITA;
+MACROATTIVITA;*/
         $classIndex = !$classIndex;
     }
 
