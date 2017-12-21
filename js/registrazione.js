@@ -37,7 +37,10 @@ function validaForm() {
         formValido = false;
     }
 
-    return formValido;
+        $.post($("form").attr("action"),$("form").serialize(),function(risposta){
+            alert(risposta);
+        });
+    return false;
 }
 
 /**

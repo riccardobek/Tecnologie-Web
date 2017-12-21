@@ -14,44 +14,16 @@ function stampaAttivita() {
         $output = str_replace("[#MACRO_NOME]",$macro["Nome"], $output);
         $output = str_replace("[#MACRO_DESCRIZIONE]",$macro["Descrizione"], $output);
 
-
-        /*$output.= <<<MACROATTIVITA
-            
-        <div class="macroattivita {$class[$classIndex]}" id="{$macro["Ancora"]}">
-            <div class="length-wrapper">
-                <div class="responsive-banner" style=" background-image: url('images/attivita/banner/{$macro["Banner"]}')">
-                </div>
-                <img class="banner" src="images/attivita/banner/{$macro["Banner"]}" alt="{$macro["Nome"]} - immagine promozionale">
-                <div class="content-wrapper">
-                    <h1>{$macro["Nome"]}</h1>
-                    <p>
-                        {$macro["Descrizione"]}
-                    </p>
-                </div>
-MACROATTIVITA;
-        */
-        /*
-        foreach($macro["Attivita"] as $attivita)
-            $output.= <<<ATTIVITA
-            
-                <div class="attivita">
-                    <h2>{$attivita["Nome"]}</h2>
-                    <p>
-                        {$attivita["Descrizione"]}
-                        <span class="price-tag">Prezzo: {$attivita["Prezzo"]} euro</span>
-                    </p>
-                    <a class="primary-btn inline-btn">Prenota</a>
-                    </div>
-                
-ATTIVITA;
-
-        $output.= <<<MACROATTIVITA
-            
-            </div>
-        </div>
-MACROATTIVITA;*/
+        $sottoattivita = "";
+        foreach($macro["Attivita"] as $attivita) {
+            $sottoattivita  .= file_get_contents("template/attivita/sezione_sottoattivita.html");
+            $sottoattivita  = str_replace("[#NOME-SOTTOATTIVITA]", $attivita["Nome"], $sottoattivita );
+            $sottoattivita  = str_replace("[#DESCRIZIONE-SOTTOATTIVITA]", $attivita["Descrizione"], $sottoattivita );
+            $sottoattivita  = str_replace("[#PREZZO-SOTTOATTIVITA]", $attivita["Prezzo"], $sottoattivita );
+        }
+        $output = str_replace("[#SOTTOATTIVITA]", $sottoattivita, $output);
         $classIndex = !$classIndex;
     }
 
-    echo $output;
+    return $output;
 }

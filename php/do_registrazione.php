@@ -1,3 +1,4 @@
+asdasdasd
 <?php
 require_once "database.php";
 require_once "funzioni/funzioni_sicurezza.php";
