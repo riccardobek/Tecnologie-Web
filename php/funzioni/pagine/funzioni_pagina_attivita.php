@@ -21,7 +21,15 @@ function stampaAttivita() {
                     </p>
                 </div>
 MACROATTIVITA;
-        foreach($macro["Attivita"] as $attivita)
+        foreach($macro["Attivita"] as $attivita) {
+
+            $output .= file_get_contents("template/attivita/sezioni_attivita.html");
+            $output = str_replace("[#ATTIVITA_NOME]", $attivita["Nome"], $output);
+            $output = str_replace("[#ATTIVITA_DESCRIZIONE]", $attivita["Descrizione"], $output);
+            $output = str_replace("[#ATTIVITA_PREZZO]", $attivita["Prezzo"], $output);
+        }
+
+            /*
             $output.= <<<ATTIVITA
             
                 <div class="attivita">
@@ -30,9 +38,11 @@ MACROATTIVITA;
                         {$attivita["Descrizione"]}
                         <span class="price-tag">Prezzo: {$attivita["Prezzo"]} euro</span>
                     </p>
-                    <a class="primary-btn inline-btn">Prenota</a></div>
+                    <a class="primary-btn inline-btn">Prenota</a>
+                    </div>
                 
-ATTIVITA;
+ATTIVITA;*/
+
         $output.= <<<MACROATTIVITA
             
             </div>
