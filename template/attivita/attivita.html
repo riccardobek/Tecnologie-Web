@@ -8,10 +8,27 @@
     <title>Onda Selvaggia - Attività</title>
     <link rel="stylesheet" type="text/css" href="css/default.css"/>
     <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="handheld, screen and (max-width:768px), only screen and (max-device-width:768px)"/>
+    <!-- JS per la finestra di dialogo -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="prenotazione_dialog.js"></script>
+
 </head>
 <body>
+
 [#INTESTAZIONE]
+
     <div id="content">
+        <div id="overlay">
+            <div id="dialog-box" class="length-wrapper">
+                <div id="dialog-header">
+                    <img src="images/icone/icona_chiudi_menu_nero.png" alt="chiudi menu">
+                    <h1>Prenotazione</h1>
+                </div>
+                <div id="dialog-content">
+                    [#NOME-ATTIVITA]
+                </div>
+            </div>
+        </div>
         <div class="odd">
             <div class="length-wrapper">
                 <h1>Attivit&agrave; offerte</h1>
@@ -21,7 +38,7 @@
                 </p>
                 <p>
                     Se desiderate avere maggiori informazioni non esitate a contattarci via mail o telefono.
-                    I contatti li trovate a <a href="../tecweb/contattaci.php">questa painga</a>.
+                    I contatti li trovate a <a href="../tecweb/contattaci.php">questa pagina</a>.
                 </p>
             </div>
         </div>
