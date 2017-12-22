@@ -1,9 +1,15 @@
 $(document).ready(function() {
-    $(".primary-btn.inline-btn").click(function () {
+    $(".primary-btn.inline-btn").on('click', function () {
         $("#overlay").show();
     });
 
-    $("#overlay").click(function () {
+    $("#overlay, #dialog-header > img ").on('click', function (event) {
+
         $("#overlay").hide();
     });
+
+    $("#dialog-box").click(function (event) {
+        event.stopPropagation();
+
+    })
 });

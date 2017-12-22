@@ -79,25 +79,22 @@ div.even , div.odd{
 }
 /*Finestra di dialogo prenotazioni in attivita*/
 #overlay{
-    display: none;
-    height: 100%;
-    width: 100%;
     position: fixed;
-    z-index: 1;
+    display: none;
+    min-height: 100%;
+    width: 100%;
+    z-index: 100;
     top: 0px;
     left: 0px;
     right: 0px;
     bottom: 0px;
     background-color:rgba(0,0,0,0.8);
-    overflow-y: scroll;
+
 }
 #dialog-box{
-
-    /*da togliere quando si metteranno i contenuti*/
-    height: 50%;
-    /****/
-
+    position: relative;
     margin: auto;
+    z-index: 1000;
     background-color: white;
 }
 #dialog-box h1{
@@ -111,6 +108,9 @@ div.even , div.odd{
     padding-top:0.5em;
     /*padding-right:1em;*/
     max-width: 1.5em;
+}
+#dialog-content{
+    color:#1C1C1C;
 }
 /***************/
 .responsive-banner{
