@@ -1,11 +1,13 @@
 $(document).ready(function() {
     $(".primary-btn.inline-btn").on('click', function () {
-        $("#overlay").show();
+        $("body").css({ overflow: 'hidden' })
+        $("#overlay").fadeIn();
     });
 
     $("#overlay, #dialog-header > img ").on('click', function (event) {
 
-        $("#overlay").hide();
+        $("#overlay").fadeOut();
+        $("body").css({ overflow: 'auto' })
     });
 
     $("#dialog-box").click(function (event) {

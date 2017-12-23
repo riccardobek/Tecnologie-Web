@@ -88,27 +88,37 @@ div.even , div.odd{
     left: 0px;
     right: 0px;
     bottom: 0px;
+    overflow-y: auto;
     background-color:rgba(0,0,0,0.8);
 
 }
+
 #dialog-box{
     position: relative;
+    padding-left: 1em;
+    padding-right: 1em;
     margin: auto;
     z-index: 1000;
     background-color: white;
 }
+
 #dialog-box h1{
+    padding-top:0.1em;
+    /*vertical-align: baseline;*/
     color: #1C1C1C;
 }
+
 #dialog-header{
     text-align: center;
 }
+
 #dialog-header img{
-    float:right;
     padding-top:0.5em;
-    /*padding-right:1em;*/
-    max-width: 1.5em;
+    float:right;
+    max-width: 2em;
+    cursor: pointer;
 }
+
 #dialog-content{
     color:#1C1C1C;
 }
