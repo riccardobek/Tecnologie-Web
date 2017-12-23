@@ -149,28 +149,6 @@ $FOOTER.= <<<FOOTER
 </div>
 FOOTER;
 
-
-    /*
-    echo <<<FOOTER
-    <div id="footer" class="even">
-FOOTER;
-    for ($i = 0; $i < count($menuElements); $i++) {
-        if ($menuElements[$i]["Pulsante"])
-            echo creaElementoMenu($i, $activeIndex, false);
-    }
-    echo <<<FOOTER
-            <ul>
-FOOTER;
-    for ($i = 0; $i < count($menuElements); $i++) {
-        if (!$menuElements[$i]["Pulsante"])
-            echo creaElementoMenu($i, $activeIndex, false);
-    }
-    echo <<<FOOTER
-            
-            </ul>
-    </div>
-FOOTER;
-*/
     return $FOOTER;
 
 }
