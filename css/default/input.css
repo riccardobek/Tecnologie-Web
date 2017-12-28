@@ -64,5 +64,16 @@ span.price-tag{
     float: right;
     margin-top: 2em;
     font-weight: bolder;
+}
 
+/*** VISUALIZZAZIONE DEGLI ERRORI NEL FORM ******/
+div.field-container.error > span{
+    display: block;
+    width: 100%;
+    padding: 0.3em;
+    color: red;
+}
+
+div.field-container.error > input{
+    border-bottom-color: red;
 }

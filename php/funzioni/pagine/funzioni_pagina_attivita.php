@@ -19,6 +19,7 @@ function stampaAttivita() {
             $sottoattivita  .= file_get_contents("template/attivita/sezione_sottoattivita.html");
             $sottoattivita  = str_replace("[#NOME-SOTTOATTIVITA]", $attivita["Nome"], $sottoattivita );
             $sottoattivita  = str_replace("[#DESCRIZIONE-SOTTOATTIVITA]", $attivita["Descrizione"], $sottoattivita );
+            $sottoattivita  = str_replace("[#CODICE-SOTTOATTIVITA]", $attivita["Codice"], $sottoattivita );
             $sottoattivita  = str_replace("[#PREZZO-SOTTOATTIVITA]", $attivita["Prezzo"], $sottoattivita );
         }
         $output = str_replace("[#SOTTOATTIVITA]", $sottoattivita, $output);

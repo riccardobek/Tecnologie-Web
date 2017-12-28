@@ -201,3 +201,11 @@ div.even , div.odd{
     float: left;
     padding-right: 1em;
 }
+
+#dialog-content {
+    text-align: left;
+}
+
+#dialog-content div.field-container {
+    margin-bottom: 1em;
+}

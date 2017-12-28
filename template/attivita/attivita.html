@@ -9,9 +9,6 @@
     <link rel="stylesheet" type="text/css" href="css/default.css"/>
     <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="handheld, screen and (max-width:768px), only screen and (max-device-width:768px)"/>
     <!-- JS per la finestra di dialogo -->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/prenotazione_dialog.js"></script>
-
 </head>
 <body>
 
@@ -26,6 +23,27 @@
                 </div>
                 <div id="dialog-content">
                     <h2>[#NOME-ATTIVITA]</h2>
+                    <form onsubmit="return false">
+                        <div class="field-container error">
+                            <label for="data">Data (formato dd/mm/yyyy):</label>
+                            <input type="text" id="data" placeholder="Data (formato dd/mm/yyyy)">
+                        </div>
+
+                        <div class="field-container">
+                            <label for="posti">Posti: </label>
+                            <input type="number" id="posti" min="1" value="1">
+                        </div>
+
+                        <div class="field-container">
+                            <label for="totale">Importo totale: </label>
+                            <input type="text" id="totale" readonly>
+                        </div>
+
+                        <input type="submit" value="Prenota">
+
+                        <input type="hidden" id="puAttivita"><!--Prezzo unitario dell'attività selezionata-->
+                        <input type="hidden" id="attivitaSelezionata">
+                    </form>
                 </div>
             </div>
         </div>
@@ -44,6 +62,7 @@
         </div>
         [#ATTIVITA]
     </div>
-[#FOOTER]
+    [#FOOTER]
+    <script type="text/javascript" src="js/prenotazione_dialog.js"></script>
 </body>
 </html>
