@@ -1,18 +1,40 @@
 $(document).ready(function() {
     $(".primary-btn.inline-btn").on('click', function () {
-        $("body").css({ overflow: 'hidden' })
-        $("#overlay").fadeIn();
-        var a = $(this).siblings('h2').text();
-        $("#dialog-content > h2").text(a);
-    });
 
-    $("#overlay, #dialog-header > img ").on('click', function (event) {
-        $("#overlay").fadeOut();
-        $("body").css({ overflow: 'auto' })
-    });
 
-    $("#dialog-box").click(function (event) {
-        event.stopPropagation();
+        //non so dove mettere AJAX
+        $.ajax({
+            url:"php/check_login.php",
+            type:"POST",
+            dataType : "json",
+            success: function (response) {
+                console.log(response);
+
+                var checkLogin = response.logged;
+
+                console.log("ckLogin");
+                console.log(checkLogin);
+
+                if(checkLogin){
+                    $("body").css({ overflow: 'hidden' });
+                    $("#overlay").fadeIn();
+                    var a = $(this).siblings('h2').text();
+                    $("#dialog-content > h2").text(a);
+
+                    $("#overlay, #dialog-header > img ").on('click', function (event) {
+                        $("#overlay").fadeOut();
+                        $("body").css({ overflow: 'auto' })
+                    });
+
+                    $("#dialog-box").click(function (event) {
+                        event.stopPropagation();
+                    });
+                }
+                else{
+                    alert("Non sei loggato!!!");
+                }
+            }
+        });
     });
 });
 

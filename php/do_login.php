@@ -18,5 +18,6 @@ if(!$utente) {
 
 $_SESSION["Utente"] = array();
 $_SESSION["Utente"] = $utente;
+$_SESSION["logged"] = 1;
 
 echo "Login completato con successo. <a href='../index.php'>Torna al sito</a>";
