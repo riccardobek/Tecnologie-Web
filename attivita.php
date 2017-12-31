@@ -2,7 +2,6 @@
 require_once "php/funzioni/funzioni_pagina.php";
 require_once "php/database.php";
 require_once "php/funzioni/funzioni_attivita.php";
-require_once "php/funzioni/pagine/funzioni_pagina_attivita.php";
 $activeIndex = 1;
 
 /*Intestazione: indica la pagina attualmente attiva --> attività */
