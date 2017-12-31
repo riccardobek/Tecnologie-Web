@@ -17,10 +17,14 @@ $(function () {
         $(event.target).parent().parent().find("span.totale").text(totale);
     });
 
+    $("input.data").asDatepicker();
+
+    /*
     $("input.data").on("focusout",function (event) {
         if(!validaData($(event.target).val()))
             notificaErrore(event.target.parentNode,"Inserire una data valida");
-    });
+    });*/
+
 });
 
 /*
@@ -42,5 +46,5 @@ function validaData(d) {
     /* La funzione Date accetta qualsiasi parametro come anno, mese, giorno e lo converte
     * in una data valida. Quindi basta confrontare i valori del giorno, mese, anno in input
     * con quelli generati dall'oggetto date */
-    return date.getDate() == day && date.getMonth() == month && date.getFullYear() == year;
+    return date.getDate() == giorno && date.getMonth() == mese && date.getFullYear() == anno;
 }
