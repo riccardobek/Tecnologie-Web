@@ -53,10 +53,24 @@ input:not([type=submit]):not([type=button]):focus {
     border: 2px solid silver;
 }
 
+span.primary-btn:hover {
+    border-color: #019FE3;
+}
+
 a.primary-btn.inline-btn{
     padding-left: 0.25em;
     padding-right: 0.25em;
     border-color: #019FE3;
+}
+
+div.attivita span.primary-btn.inline-btn,
+div.attivita span.primary-btn.inline-btn:hover,
+div.attivita span.primary-btn.inline-btn:active {
+    cursor: default;
+    background: transparent;
+    color: white;
+    border: none;
+    border-bottom: 1px solid red;
 }
 
 span.price-tag{
