@@ -225,3 +225,20 @@ div.even , div.odd{
 .form-prenotazione-container div.field-container {
     padding-top: 1em;
 }
+
+div.alert {
+    padding: 0.7em 1.2em;
+    display: none;
+    margin-bottom: 1em;
+    border: none;
+}
+
+div.alert.errore {
+    background: #f44336;
+    color: white;
+}
+
+div.alert.successo {
+    background: #4CAF50;
+    color: white;
+}

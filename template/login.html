@@ -16,8 +16,10 @@
     [#INTESTAZIONE]
 
     <div class="form">
-        <form action="php/do_login.php" method="POST">
+        <form method="POST">
             <h1>Accedi</h1>
+            <div class="alert successo">Login effettuato con successo. <br>Reindirizzamento in corso (se non funziona cliccare <a href="[#HTTP_REFERER]">qua</a>).</div>
+            <div class="alert errore">Si è verificato un errore: username o password non corretti</div>
             <div class="field-container">
                 <label for="username">Nome utente: </label>
                 <input type="text" id="username" name="username" placeholder="Nome utente..">
@@ -28,11 +30,13 @@
             </div>
             <div class="button-holder"><input type="submit" value="Login" class="primary-btn inline-btn" ></div>
 
+            <input type="hidden" id="HTTP_REFERER" name="HTTP_REFERER" value="[#HTTP_REFERER]">
+
             <p>Non sei ancora registrato? <a href="registrazione.php">Registrati</a></p>
         </form>
     </div>
 
     [#FOOTER]
-
+    <script type="text/javascript" src="js/login.js"></script>
     </body>
 </html>
