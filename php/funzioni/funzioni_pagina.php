@@ -117,9 +117,9 @@ function intestazione($activeIndex) {
 
 /*Genera in modo dinamico l'elenco delle voci del menu */
 
-function creaElementoMenuMobile($index, $activeIndex, $odd){
+function creaElementoMenuMobile($index, $activeIndex){
     global $menuElements;
-    $class = ($odd) ? "odd" : "even";
+
     $element ="";
     if($menuElements[$index]["LoginDipendente"] && !$menuElements[$index]["VisibileGuest"] && !isUtenteLoggato()) {
         //Se l'elemento del menu può essere visualizzato solo dagli utenti loggati, e l'utente non è loggato allora non
@@ -134,11 +134,11 @@ function creaElementoMenuMobile($index, $activeIndex, $odd){
     }
     $element = ($index == $activeIndex) ?
 <<<ELEMENTO
-    <li class="active {$class}">{$menuElements[$index]["Nome"]}</li>\n
+    <li class="active"><span><img class="icona-menu" src='images/icone/icona_rafting.png'>{$menuElements[$index]["Nome"]}</span></li>\n
 ELEMENTO
             :
 <<<ELEMENTO
-    <li class="{$class}"><a href="{$menuElements[$index]["URL"]}">{$menuElements[$index]["Nome"]}</a></li>\n
+    <li><a href="{$menuElements[$index]["URL"]}"><img  class="icona-menu" src='images/icone/icona_rafting.png'>{$menuElements[$index]["Nome"]}</a></li>\n
 ELEMENTO;
 
     return $element;
@@ -151,8 +151,8 @@ function menuMobile($activeIndex)
     global $menuElements;
     $MENU_MOBILE = file_get_contents("template/menu/menu_mobile.html");
     $VOCI_MENU = "";
-    for ($i = 0, $odd = true; $i < count($menuElements); $i++,$odd=!$odd) {
-        $VOCI_MENU.=creaElementoMenuMobile($i, $activeIndex, $odd);
+    for ($i = 0; $i < count($menuElements); $i++) {
+        $VOCI_MENU.=creaElementoMenuMobile($i, $activeIndex);
     }
 
     $MENU_MOBILE = str_replace("[#VOCI-MENU]", $VOCI_MENU, $MENU_MOBILE);

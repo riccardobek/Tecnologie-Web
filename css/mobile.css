@@ -100,12 +100,17 @@ div#menu-mobile{
 
 div#menu-mobile ul{
     clear:both;
-    padding: 0 0.5em;
+    padding: 0;
     list-style-type: none;
 }
 
 div#menu-mobile ul li{
-    width: 100%;
+    float: left;
+    width: 50%;
+    text-align: center;
+    padding: 0;
+    border-bottom: 1px solid rgba(255, 255, 255,0.1);
+    /*width: 100%;
     padding: 0.45em 0;
     margin: 0 0 0.55em 0;
     text-transform: uppercase;
@@ -116,27 +121,36 @@ div#menu-mobile ul li{
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
     transition-property: background, color, padding, border-radius;
-    box-shadow: 0.1em -0.1em 0 0.1em rgba(0, 0, 0, .2), inset 0 0 0 0.15em rgba(0, 0, 0, .4), -0.1em 0.1em 0 0.1em rgba(0, 0, 0, .2);
+    box-shadow: 0.1em -0.1em 0 0.1em rgba(0, 0, 0, .2), inset 0 0 0 0.15em rgba(0, 0, 0, .4), -0.1em 0.1em 0 0.1em rgba(0, 0, 0, .2);*/
 }
 
-div#menu-mobile ul > li:hover {
+#menu-mobile ul > li:hover  {
     background-color: #0088ff;
 }
 
-div#menu-mobile ul > li:hover > a {
-    color: #fff;
-}
 
-div#menu-mobile ul > li > a {
-    color: #333;
+#menu-mobile ul > li > * {
+    color: #fff;
+    padding: 20%;
     text-decoration: none;
     font-size: 1.4em;
+    display: block;
     transition: color 0.3s ease-in-out;
 }
 
+#menu-mobile > ul > li>a:nth-child(odd) {
+    border-right: 1px solid rgba(255, 255, 255,0.1);
+}
+.icona-menu{
+    max-width: 4em;
+    display: block;
+    margin: auto;
+    margin-bottom: 0.5em;
+}
+
+
 div#menu-mobile ul > li.active{
     background-color: #0088ff;
-    font-size: 1.4em;
 }
 /*MENU VERSIONE MOBILE ---> fine*/
 
