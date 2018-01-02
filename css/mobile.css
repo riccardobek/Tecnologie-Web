@@ -90,23 +90,21 @@ div.form{
 
 
 /*MENU VERSIONE MOBILE ---> inizio*/
-#footer{
 
-}
 
-div#footer.even{
+div#menu-mobile.even{
     display: list-item;
     padding-top: 0;
     padding-bottom: 0;
 }
 
-div#footer.even ul{
+div#menu-mobile.even ul{
     clear:both;
     padding: 0 0.5em;
     list-style-type: none;
 }
 
-div#footer.even ul li{
+div#menu-mobile.even ul li{
     width: 100%;
     padding: 0.45em 0;
     margin: 0 0 0.55em 0;
@@ -121,22 +119,22 @@ div#footer.even ul li{
     box-shadow: 0.1em -0.1em 0 0.1em rgba(0, 0, 0, .2), inset 0 0 0 0.15em rgba(0, 0, 0, .4), -0.1em 0.1em 0 0.1em rgba(0, 0, 0, .2);
 }
 
-div#footer ul > li:hover {
+div#menu-mobile ul > li:hover {
     background-color: #0088ff;
 }
 
-div#footer ul > li:hover > a {
+div#menu-mobile ul > li:hover > a {
     color: #fff;
 }
 
-div#footer ul > li > a {
+div#menu-mobile ul > li > a {
     color: #333;
     text-decoration: none;
     font-size: 1.4em;
     transition: color 0.3s ease-in-out;
 }
 
-div#footer ul > li.active{
+div#menu-mobile ul > li.active{
     background-color: #0088ff;
     font-size: 1.4em;
 }

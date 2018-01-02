@@ -136,7 +136,7 @@ function footer($activeIndex)
     global $menuElements;
     $FOOTER = "";
     $FOOTER.= <<<FOOTER
-<div id="footer" class="even">
+<div id="menu-mobile" class="even">
     <a href="#header" id="icona-wrapper"><img src="images/icone/icona_chiudi_menu.png" alt="chiudi menu"></a>
     <ul>\n
 FOOTER;

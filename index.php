@@ -23,6 +23,8 @@ foreach($listaMacroAttivita as $macroAttivita) {
     $HTML_MACROATTIVITA = str_replace("[#DESCRIZIONE_MACROATTIVITA]",$macroAttivita["Descrizione"],$HTML_MACROATTIVITA);
     $HTML_MACROATTIVITA = str_replace("[#ANCORA_MACROATTIVITA]",$macroAttivita["Ancora"],$HTML_MACROATTIVITA);
 }
+
+
 $HTML = str_replace("[#COLONNE_ATTIVITA]",$HTML_MACROATTIVITA,$HTML);
 
 /********** FOOTER **************/

@@ -72,6 +72,8 @@ div#menu-wrapper {
 
 #contatti-header span {
     display: block;
+
+
     font-size: 1em;
     text-align: right;
 }
@@ -86,4 +88,4 @@ div#menu-wrapper {
     display: none;
 }
 
-div#footer.even{display: none;}
+div#menu-mobile.even{display: none;}
