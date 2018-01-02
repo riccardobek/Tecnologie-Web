@@ -147,6 +147,7 @@ div.even , div.odd{
 
 }*/
 
+
 .box_SP{
     margin: 4em 4em 4em 0;
 }
@@ -156,7 +157,13 @@ div.even , div.odd{
     float: left;
     padding-right: 1em;
 }
+.price-tag{
+    margin-left: 4em;
+}
 
+span.primary-btn.inline-btn{
+    text-align: left;
+}
 #dialog-content {
     text-align: left;
 }

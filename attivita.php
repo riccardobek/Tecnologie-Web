@@ -55,7 +55,7 @@ function stampaAttivita() {
             }
             else {
                 $sottoattivita = str_replace("[#A-LOGGATO]","span",$sottoattivita);
-                $sottoattivita = str_replace("[#TESTO-PULSANTE]","Effettua il login o registrati per prenotare",$sottoattivita);
+                $sottoattivita = str_replace("[#TESTO-PULSANTE]","Effettua il login o registrati per poter prenotare",$sottoattivita);
             }
         }
 
