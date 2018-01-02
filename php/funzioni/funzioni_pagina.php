@@ -120,6 +120,18 @@ function intestazione($activeIndex) {
 function creaElementoMenuMobile($index, $activeIndex, $odd){
     global $menuElements;
     $class = ($odd) ? "odd" : "even";
+    $element ="";
+    if($menuElements[$index]["LoginDipendente"] && !$menuElements[$index]["VisibileGuest"] && !isUtenteLoggato()) {
+        //Se l'elemento del menu può essere visualizzato solo dagli utenti loggati, e l'utente non è loggato allora non
+        //lo visualizzo
+        return $element;
+    }
+
+    else if($menuElements[$index]["LoginDipendente"] && $menuElements[$index]["VisibileGuest"] && isUtenteLoggato()) {
+        //Se l'elemento del menu può essere visualizzato solo dagli utenti non loggati (ad esempio link alla pagina
+        //"login") e l'utente corrente è loggato, allora non lo visualizzo
+        return $element;
+    }
     $element = ($index == $activeIndex) ?
 <<<ELEMENTO
     <li class="active {$class}">{$menuElements[$index]["Nome"]}</li>\n
@@ -134,7 +146,7 @@ ELEMENTO;
 
 
 
-function menu_mobile($activeIndex)
+function menuMobile($activeIndex)
 {
     global $menuElements;
     $MENU_MOBILE = file_get_contents("template/menu/menu_mobile.html");

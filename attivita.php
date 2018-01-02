@@ -17,7 +17,7 @@ $HTML = str_replace("[#INTESTAZIONE]",$HTML_INTESTAZIONE, $HTML);
 $HTML = str_replace( "[#ATTIVITA]",stampaAttivita(), $HTML);
 
 /*Footer*/
-$HTML = str_replace("[#MENU-MOBILE]",menu_mobile($activeIndex),$HTML);
+$HTML = str_replace("[#MENU-MOBILE]",menuMobile($activeIndex),$HTML);
 
 echo $HTML;
 
@@ -55,7 +55,7 @@ function stampaAttivita() {
             }
             else {
                 $sottoattivita = str_replace("[#A-LOGGATO]","span",$sottoattivita);
-                $sottoattivita = str_replace("[#TESTO-PULSANTE]","Effettua il login o registrati per poter prenotare",$sottoattivita);
+                $sottoattivita = str_replace("[#TESTO-PULSANTE]","Effettua il <a href = 'login.php'>login</a> o <a href='registrazione.php'>registrati</a>  per poter prenotare",$sottoattivita);
             }
         }
 

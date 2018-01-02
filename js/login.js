@@ -34,7 +34,7 @@ $(document).ready(function() {
                 $("div.alert.successo").show();
                 setTimeout(function() {
                     location.href = redirectURL;
-                },2500);
+                },1500);
             }
             else {
                 $("div.alert.errore").show();
