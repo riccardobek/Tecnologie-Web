@@ -92,19 +92,19 @@ div.form{
 /*MENU VERSIONE MOBILE ---> inizio*/
 
 
-div#menu-mobile.even{
+div#menu-mobile{
     display: list-item;
     padding-top: 0;
     padding-bottom: 0;
 }
 
-div#menu-mobile.even ul{
+div#menu-mobile ul{
     clear:both;
     padding: 0 0.5em;
     list-style-type: none;
 }
 
-div#menu-mobile.even ul li{
+div#menu-mobile ul li{
     width: 100%;
     padding: 0.45em 0;
     margin: 0 0 0.55em 0;
@@ -139,10 +139,6 @@ div#menu-mobile ul > li.active{
     font-size: 1.4em;
 }
 /*MENU VERSIONE MOBILE ---> fine*/
-
-#icona-wrapper{
-
-}
 
 #icona-wrapper img{
     margin-top:1em;

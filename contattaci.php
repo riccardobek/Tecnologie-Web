@@ -12,7 +12,7 @@ $HTML = file_get_contents("template/contattaci.html");
 $HTML = str_replace("[#INTESTAZIONE]",$HTML_INTESTAZIONE, $HTML);
 
 /*Footer*/
-$HTML = str_replace("[#FOOTER]",footer($activeIndex),$HTML);
+$HTML = str_replace("[#MENU-MOBILE]",menu_mobile($activeIndex),$HTML);
 echo $HTML;
 
 

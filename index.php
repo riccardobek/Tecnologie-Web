@@ -25,10 +25,11 @@ foreach($listaMacroAttivita as $macroAttivita) {
 }
 
 
+
 $HTML = str_replace("[#COLONNE_ATTIVITA]",$HTML_MACROATTIVITA,$HTML);
 
 /********** FOOTER **************/
-$HTML = str_replace("[#FOOTER]",footer($activeIndex),$HTML);
+$HTML = str_replace("[#MENU-MOBILE]",menu_mobile($activeIndex),$HTML);
 
 echo $HTML;
 ?>

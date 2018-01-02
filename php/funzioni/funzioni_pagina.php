@@ -114,7 +114,10 @@ function intestazione($activeIndex) {
 }
 
 
-function creaElementoMenuFooter($index, $activeIndex, $odd){
+
+/*Genera in modo dinamico l'elenco delle voci del menu */
+
+function creaElementoMenuMobile($index, $activeIndex, $odd){
     global $menuElements;
     $class = ($odd) ? "odd" : "even";
     $element = ($index == $activeIndex) ?
@@ -131,27 +134,17 @@ ELEMENTO;
 
 
 
-function footer($activeIndex)
+function menu_mobile($activeIndex)
 {
     global $menuElements;
-    $FOOTER = "";
-    $FOOTER.= <<<FOOTER
-<div id="menu-mobile" class="even">
-    <a href="#header" id="icona-wrapper"><img src="images/icone/icona_chiudi_menu.png" alt="chiudi menu"></a>
-    <ul>\n
-FOOTER;
-
+    $MENU_MOBILE = file_get_contents("template/menu/menu_mobile.html");
+    $VOCI_MENU = "";
     for ($i = 0, $odd = true; $i < count($menuElements); $i++,$odd=!$odd) {
-        $FOOTER.=creaElementoMenuFooter($i, $activeIndex, $odd);
+        $VOCI_MENU.=creaElementoMenuMobile($i, $activeIndex, $odd);
     }
-$FOOTER.= <<<FOOTER
-</ul>
-</div>
 
-<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="js/global.js"></script>
-FOOTER;
+    $MENU_MOBILE = str_replace("[#VOCI-MENU]", $VOCI_MENU, $MENU_MOBILE);
 
-    return $FOOTER;
+    return $MENU_MOBILE;
 
 }

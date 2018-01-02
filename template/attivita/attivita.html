@@ -9,45 +9,17 @@
     <link rel="stylesheet" type="text/css" href="css/asDatepicker.css"/>
     <link rel="stylesheet" type="text/css" href="css/default.css"/>
     <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="handheld, screen and (max-width:768px), only screen and (max-device-width:768px)"/>
-    <!-- JS per la finestra di dialogo -->
+    <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="handheld, screen and (max-width:768px), only screen and (max-device-width:768px)"/>
 </head>
 <body>
 
 [#INTESTAZIONE]
 
     <div id="content">
-        <div id="overlay">
-            <div id="dialog-box" class="length-wrapper">
-                <div id="dialog-header">
-                    <img src="images/icone/icona_chiudi_menu_nero.png" alt="chiudi menu">
-                    <h1>Prenotazione</h1>
-                </div>
-                <div id="dialog-content">
-                    <h2>[#NOME-ATTIVITA]</h2>
-                    <form onsubmit="return false">
-                        <div class="field-container error">
-                            <label for="data">Data (formato dd/mm/yyyy):</label>
-                            <input type="text" id="data" placeholder="Data (formato dd/mm/yyyy)">
-                        </div>
-
-                        <div class="field-container">
-                            <label for="posti">Posti: </label>
-                            <input type="number" id="posti" min="1" value="1">
-                        </div>
-
-                        <div class="field-container">
-                            <label for="totale">Importo totale: </label>
-                            <input type="text" id="totale" readonly>
-                        </div>
-
-                        <input type="submit" value="Prenota">
-
-                        <input type="hidden" id="puAttivita"><!--Prezzo unitario dell'attività selezionata-->
-                        <input type="hidden" id="attivitaSelezionata">
-                    </form>
-                </div>
-            </div>
-        </div>
+            <form onsubmit="return false">
+                <input type="hidden" id="puAttivita"><!--Prezzo unitario dell'attività selezionata-->
+                <input type="hidden" id="attivitaSelezionata">
+            </form>
         <div class="odd">
             <div class="length-wrapper">
                 <h1>Attivit&agrave; offerte</h1>
@@ -63,7 +35,7 @@
         </div>
         [#ATTIVITA]
     </div>
-    [#FOOTER]
+    [#MENU-MOBILE]
     <script type="text/javascript" src="js/jquery-asDatepicker.js"></script>
     <script type="text/javascript" src="js/global.js"></script>
     <script type="text/javascript" src="js/attivita.js"></script>

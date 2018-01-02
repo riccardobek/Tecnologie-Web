@@ -77,52 +77,7 @@ div.even , div.odd{
 .clearfix{
     clear:both;
 }
-/*Finestra di dialogo prenotazioni in attivita*/
-#overlay{
-    position: fixed;
-    display: none;
-    min-height: 100%;
-    width: 100%;
-    z-index: 100;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    overflow-y: auto;
-    background-color:rgba(0,0,0,0.8);
 
-}
-
-#dialog-box{
-    position: relative;
-    padding-left: 1em;
-    padding-right: 1em;
-    margin: auto;
-    z-index: 1000;
-    background-color: white;
-}
-
-#dialog-box h1{
-    padding-top:0.1em;
-    /*vertical-align: baseline;*/
-    color: #1C1C1C;
-}
-
-#dialog-header{
-    text-align: center;
-}
-
-#dialog-header img{
-    padding-top:0.5em;
-    float:right;
-    max-width: 2em;
-    cursor: pointer;
-}
-
-#dialog-content{
-    color:#1C1C1C;
-}
-/***************/
 .responsive-banner{
     display: none;
 }

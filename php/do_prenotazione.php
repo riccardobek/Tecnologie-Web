@@ -5,7 +5,7 @@ require_once "database.php";
 /*
  * Bisogna prendere i dati in input dal form di registrazione e controllare la loro correttezza.
  * In caso positivo si procede all'inserimento del DB
- * In caso negativo si rigetta con una classe JSON
+ * In caso negativo si rigetta ritornando una oggetto JSON
  */
 
 $data = $_POST["data"];

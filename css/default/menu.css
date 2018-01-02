@@ -88,4 +88,6 @@ div#menu-wrapper {
     display: none;
 }
 
-div#menu-mobile.even{display: none;}
+#menu-mobile{
+    display: none;
+}

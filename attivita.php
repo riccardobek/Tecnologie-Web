@@ -17,7 +17,7 @@ $HTML = str_replace("[#INTESTAZIONE]",$HTML_INTESTAZIONE, $HTML);
 $HTML = str_replace( "[#ATTIVITA]",stampaAttivita(), $HTML);
 
 /*Footer*/
-$HTML = str_replace("[#FOOTER]",footer($activeIndex),$HTML);
+$HTML = str_replace("[#MENU-MOBILE]",menu_mobile($activeIndex),$HTML);
 
 echo $HTML;
 
@@ -45,13 +45,17 @@ function stampaAttivita() {
             $sottoattivita  = str_replace("[#CODICE-SOTTOATTIVITA]", $attivita["Codice"], $sottoattivita );
             $sottoattivita  = str_replace("[#PREZZO-SOTTOATTIVITA]", $attivita["Prezzo"], $sottoattivita );
 
+            /**
+             * Viene visualizzato il pulsante "Prenota" se si è loggati, altrimenti viene visualizzato uno span con
+             * un messaggio. Un utente non registrato e/o non loggato non può effettuare prenotazioni
+             */
             if(isUtenteLoggato()) {
                 $sottoattivita = str_replace("[#A-LOGGATO]","a",$sottoattivita);
                 $sottoattivita = str_replace("[#TESTO-PULSANTE]","Prenota",$sottoattivita);
             }
             else {
                 $sottoattivita = str_replace("[#A-LOGGATO]","span",$sottoattivita);
-                $sottoattivita = str_replace("[#TESTO-PULSANTE]","Per prenotare devi essere loggato",$sottoattivita);
+                $sottoattivita = str_replace("[#TESTO-PULSANTE]","Effettua il login o registrati per prenotare",$sottoattivita);
             }
         }
 

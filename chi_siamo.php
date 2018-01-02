@@ -58,6 +58,6 @@ $activeIndex = 2;
 
     </div>
 </div>
-<?php footer($activeIndex);?>
+[#MENU-MOBILE]
 </body>
 </html>
