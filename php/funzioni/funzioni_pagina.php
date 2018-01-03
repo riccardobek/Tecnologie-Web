@@ -6,30 +6,35 @@ $menuElements = array(
     array(
         "Nome" => "Home",
         "URL" => "index.php",
+        "Icona"=> "images/icone/icona_home.png",
         "Pulsante"=>false,
         "LoginDipendente"=>false
     ),
     array(
         "Nome" => "Attivit&agrave;",
         "URL" => "attivita.php",
+        "Icona"=> "images/icone/icona_attivita.png",
         "Pulsante"=>false,
         "LoginDipendente"=>false
     ),
     array(
         "Nome" => "Chi siamo",
         "URL" => "chi_siamo.php",
+        "Icona"=> "images/icone/icona_home.png",
         "Pulsante"=>false,
         "LoginDipendente"=>false
     ),
     array(
         "Nome" => "Contattaci",
         "URL" => "contattaci.php",
+        "Icona"=> "images/icone/icona_home.png",
         "Pulsante"=>false,
         "LoginDipendente"=>false
     ),
     array(
         "Nome" => "Registrazione",
         "URL" => "registrazione.php",
+        "Icona"=> "images/icone/icona_home.png",
         "Pulsante"=>true,
         "LoginDipendente"=>true,
         "VisibileGuest"=>true
@@ -37,6 +42,7 @@ $menuElements = array(
     array(
         "Nome" => "Login",
         "URL" => "login.php",
+        "Icona"=> "images/icone/icona_home.png",
         "Pulsante"=>true,
         "LoginDipendente"=>true,
         "VisibileGuest"=>true
@@ -45,6 +51,7 @@ $menuElements = array(
     array(
         "Nome" => "Logout",
         "URL" => "php/do_logout.php",
+        "Icona"=> "images/icone/icona_home.png",
         "Pulsante"=>true,
         "LoginDipendente"=>true,
         "VisibileGuest"=>false
@@ -134,11 +141,11 @@ function creaElementoMenuMobile($index, $activeIndex){
     }
     $element = ($index == $activeIndex) ?
 <<<ELEMENTO
-    <li class="active"><span><img class="icona-menu" src='images/icone/icona_rafting.png'>{$menuElements[$index]["Nome"]}</span></li>\n
+    <li class="active"><span><img class="icona-menu" src='{$menuElements[$index]["Icona"]}'>{$menuElements[$index]["Nome"]}</span></li>\n
 ELEMENTO
             :
 <<<ELEMENTO
-    <li><a href="{$menuElements[$index]["URL"]}"><img  class="icona-menu" src='images/icone/icona_rafting.png'>{$menuElements[$index]["Nome"]}</a></li>\n
+    <li><a href="{$menuElements[$index]["URL"]}"><img class="icona-menu" src='{$menuElements[$index]["Icona"]}'>{$menuElements[$index]["Nome"]}</a></li>\n
 ELEMENTO;
 
     return $element;
