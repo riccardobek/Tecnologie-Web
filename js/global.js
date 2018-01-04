@@ -4,7 +4,12 @@ $("document").ready(function() {
         if(url != undefined && url != null && location.href != url)
             location.href = url;
     });
+    $("body").on("touchstart", function(){ /* ontouchstart fixa il comportamento degli eventi touch su Safari per iOS */
+
+    });
 });
+
+
 
 /**
  * Funzione che notifica un errore in un campo del form.
