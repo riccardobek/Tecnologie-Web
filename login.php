@@ -1,6 +1,6 @@
 <?php
 require_once "php/funzioni/funzioni_pagina.php";
-$activeIndex=5;
+$activeIndex=4;
 
 $HTML_INTESTAZIONE = intestazione($activeIndex);
 

@@ -18,13 +18,6 @@ $menuElements = array(
         "LoginDipendente"=>false
     ),
     array(
-        "Nome" => "Chi siamo",
-        "URL" => "chi_siamo.php",
-        "Icona"=> "images/icone/icona_home.png",
-        "Pulsante"=>false,
-        "LoginDipendente"=>false
-    ),
-    array(
         "Nome" => "Contattaci",
         "URL" => "contattaci.php",
         "Icona"=> "images/icone/icona_home.png",

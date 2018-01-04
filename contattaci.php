@@ -1,6 +1,6 @@
 <?php
 require_once "php/funzioni/funzioni_pagina.php";
-$activeIndex = 3;
+$activeIndex = 2;
 
 /*Intestazione: indica la pagina attualmente attiva --> contattaci */
 $HTML_INTESTAZIONE = intestazione($activeIndex);
