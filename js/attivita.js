@@ -1,16 +1,38 @@
 $(function () {
     $(".attivita > a").on("click",function(event) {
+
+        var form = $(event.target).parent().children(".form-prenotazione-container");
+
         if(!$(event.target).data("espanso")) {
-            $(event.target).parent().children(".form-prenotazione-container").slideToggle();
+            form.slideToggle();
             $(event.target).data("espanso",true);
         }
-        else
-            $.post("php/do_prenotazione.php",$(event.target).parent().find("form").serialize(), function(r) {
-                console.log(r);
+        else {
+            var inputData = form.find("input.data");
+            var inputPosti = form.find("input.posti");
+
+            pulisciErrore(inputData.parent()[0].parentNode);
+            pulisciErrore(inputPosti[0].parentNode);
+
+            console.log("Data da validare: "+inputData.val());
+
+            if(!validaData(inputData.val())) {
+                notificaErrore(inputData.parent()[0].parentNode, "Inserire una data valida");
+                return;
+            }
+
+            if(inputPosti.val().length == 0 || isNaN(inputPosti.val()) || parseInt(inputPosti.val())  <= 0) {
+                notificaErrore(inputPosti[0].parentNode, "Inserire un numero di posti valido (maggiore o uguale a uno)");
+                return;
+            }
+
+            $.post("php/do_prenotazione.php", form.serialize(), function (r) {
+                alert("Risposta dalla pagina di inserimento della prenotazione: "+r);
             });
+        }
     });
 
-    $("input.quantita").on("input",function(event){
+    $("input.posti").on("input",function(event){
         var totale = parseInt($(event.target).val()) * parseInt($(event.target).parent().parent().children(".prezzo-unitario").val());
 
         if(isNaN(totale)) totale=""; //Se il totale non è un mumero (ad esempio il valore del campo "quantita" è vuoto allora mostro un valore vuoto
@@ -37,10 +59,11 @@ function validaData(d) {
         // La data non è nel formato corretto
         return false;
     }
+    match = d.split("/");
 
-    var giorno   = parseInt(match[3], 10);
-    var mese = parseInt(match[2], 10) - 1; // i mesi sono nell'intervallo 0-11, non 1-12
-    var anno  = parseInt(match[3], 10);
+    var giorno   = parseInt(match[0], 10);
+    var mese = parseInt(match[1], 10) - 1; // i mesi sono nell'intervallo 0-11, non 1-12
+    var anno  = parseInt(match[2], 10);
     var date  = new Date(anno, mese, giorno);
 
     /* La funzione Date accetta qualsiasi parametro come anno, mese, giorno e lo converte
