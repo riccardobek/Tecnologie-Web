@@ -73,13 +73,6 @@ div.attivita span.primary-btn.inline-btn:active {
     border-bottom: 1px solid red;
 }
 
-span.price-tag{
-
-    float: right;
-    margin-top: 2em;
-    font-weight: bolder;
-}
-
 /*** VISUALIZZAZIONE DEGLI ERRORI NEL FORM ******/
 div.field-container.error > span{
     display: block;

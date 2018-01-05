@@ -166,9 +166,3 @@ div#menu-mobile ul > li.active{
     float: none;
     clear: both;
 }
-
-span.price-tag{
-    float:none;
-    margin-left:0;
-    display: block;
-}

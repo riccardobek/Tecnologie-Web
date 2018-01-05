@@ -157,8 +157,20 @@ div.even , div.odd{
     float: left;
     padding-right: 1em;
 }
-.price-tag{
-    margin-left: 4em;
+
+div.macroattivita.odd,
+div.macroattivita.even {
+    color: #F3F3F3;
+}
+
+span.price-tag{
+    float:none;
+    display: block;
+    color: white;
+    font-size: 1.2em;
+
+    font-weight: bolder;
+    margin-top: 1em;
 }
 
 span.primary-btn.inline-btn{
