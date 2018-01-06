@@ -8,7 +8,13 @@ require_once "database.php";
  * In caso negativo si rigetta ritornando una oggetto JSON
  */
 
-$data = $_POST["data"];
+//La data passata è nel formato DD/MM/YYYY, mentre la devo convertire nel formato YYYY/MM/DD
+$data = convertiData(filter_var($_POST["data"],FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+if(!$data) {
+    errorePrenotazione("Data non valida");
+    return;
+}
+
 $nPosti = $_POST["posti"];
 $utente = $_SESSION["Utente"]["ID"];
 $attivita = $_POST["attivita"];
@@ -32,7 +38,7 @@ $PostiPrenotati->execute(array($attivita, $data));
 $PostiDisponibiliEffettivi = intval($PostiDisponibiliGiornata) - intval($PostiPrenotati->fetch()["PostiOccupati"]);
 
 if($nPosti > $PostiDisponibiliEffettivi){
-    prenotazioneFailure();
+    errorePrenotazione();
     return;
 }
 //allora i posti disponibili sono stati modificati ed eseguo il controllo
@@ -41,26 +47,42 @@ else{
     $insertStatement = $db->prepare("INSERT INTO Prenotazioni VALUES(?,?,?,?)");
     if($insertStatement->execute(array($attivita,$utente,$data,$nPosti))) {
         $db->commit();
-        prenotazioneSuccess();
+        successoPrenotazione();
     }
     else{
         $db->rollBack();
         print_r($insertStatement->errorInfo());
-        prenotazioneFailure();
+        errorePrenotazione("Errore nell'inserimento della prenotazione nel database.");
     }
 }
 
-function prenotazioneFailure() {
+function convertiData($dataDaConvertire) {
+    //Se l'input non è coinforme a quello che mi aspetto ritorno false
+    if(!preg_match("/^(\d{2})\/(\d{2})\/(\d{4})$/",$dataDaConvertire))
+        return false;
+
+    $matches = explode("/",$dataDaConvertire);
+    $dataCalcolata = new DateTime(intval($matches[2])."-".intval($matches[1])."-".intval($matches[0]));
+
+    //Se la data è nel formato corretto ma non è valida (ad esempio 31/02/2018) ritorno false
+    if($dataCalcolata->format("d/m/Y") != $dataDaConvertire)
+        return false;
+
+    //Converto la data dal formato dd/mm/yyyy al formato yyyy-mm-dd (accettato da mysql)
+    return $dataCalcolata->format("Y-m-d");
+}
+
+function errorePrenotazione($messaggio = "Numero posti inserti maggiore del numero posti disponibili") {
     $jsonArray = array();
-    $jsonArray["state"] = 0;
-    $jsonArray["message"] = "Numero posti inserti maggiore del numero posti disponibili";
+    $jsonArray["stato"] = 0;
+    $jsonArray["messaggio"] = $messaggio;
     echo json_encode($jsonArray);
 }
 
-function prenotazioneSuccess(){
+function successoPrenotazione(){
     $jsonArray = array();
-    $jsonArray["state"] = 1;
-    $jsonArray["message"] = "Prenotazione inserita";
+    $jsonArray["stato"] = 1;
+    $jsonArray["messaggio"] = "Prenotazione inserita";
     echo json_encode($jsonArray);
 }
 ?>

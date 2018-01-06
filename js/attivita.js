@@ -26,8 +26,20 @@ $(function () {
                 return;
             }
 
-            $.post("php/do_prenotazione.php", form.serialize(), function (r) {
-                alert("Risposta dalla pagina di inserimento della prenotazione: "+r);
+            console.log("Invio i seguenti dati:");
+
+            $.post("php/do_prenotazione.php", {
+                attivita: form.find("input[name='attivita']").val(),
+                data: form.find(".data").val(),
+                posti: form.find(".posti").val()
+            }, function (r) {
+                risposta = JSON.parse(r);
+                if(risposta.stato === 1) {
+                    alert("Prenotazione inserita con successo");
+                } else {
+                    alert("Errore nell'inserimento della prenotazione: \n\n"+risposta.messaggio)
+                }
+                console.log("Risposta dalla pagina di inserimento della prenotazione: "+r);
             });
         }
     });
