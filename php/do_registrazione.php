@@ -60,7 +60,6 @@ if($insertStatement->execute(array(
 
 else {
     $db->rollBack();
-    //print_r($insertStatement->errorInfo());
     erroreJSON("Errore nell'inserimento dell'utente.");
     return;
 }

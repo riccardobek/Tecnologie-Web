@@ -20,14 +20,14 @@ $menuElements = array(
     array(
         "Nome" => "Contattaci",
         "URL" => "contattaci.php",
-        "Icona"=> "images/icone/icona_home.png",
+        "Icona"=> "images/icone/icona_contattaci.png",
         "Pulsante"=>false,
         "LoginDipendente"=>false
     ),
     array(
         "Nome" => "Registrazione",
         "URL" => "registrazione.php",
-        "Icona"=> "images/icone/icona_home.png",
+        "Icona"=> "images/icone/icona_registrazione.png",
         "Pulsante"=>true,
         "LoginDipendente"=>true,
         "VisibileGuest"=>true
@@ -35,7 +35,7 @@ $menuElements = array(
     array(
         "Nome" => "Login",
         "URL" => "login.php",
-        "Icona"=> "images/icone/icona_home.png",
+        "Icona"=> "images/icone/icona_login.png",
         "Pulsante"=>true,
         "LoginDipendente"=>true,
         "VisibileGuest"=>true
@@ -44,7 +44,7 @@ $menuElements = array(
     array(
         "Nome" => "Logout",
         "URL" => "php/do_logout.php",
-        "Icona"=> "images/icone/icona_home.png",
+        "Icona"=> "images/icone/icona_logout.png",
         "Pulsante"=>true,
         "LoginDipendente"=>true,
         "VisibileGuest"=>false
