@@ -1,13 +1,10 @@
-asdasdasd
 <?php
 require_once "database.php";
 require_once "funzioni/funzioni_sicurezza.php";
+require_once "funzioni/funzioni_json.php";
+
 
 $campiRichiesti = array("nome","cognome","username","password","password2");
-
-if(!isset($_POST["registrazione"])) {
-    die("Parametri non validi");
-}
 
 $nome = filter_var($_POST["nome"],FILTER_SANITIZE_STRING);
 $cognome = filter_var($_POST["cognome"],FILTER_SANITIZE_STRING);
@@ -25,20 +22,24 @@ $CAP = filter_var($_POST["CAP"],FILTER_SANITIZE_NUMBER_INT);
 
 foreach($campiRichiesti as $campo) {
     if(!(validaCampo($$campo))) {
-        die("Campo richiesto non compilato");
+        erroreJSON("Campo richiesto non compilato");
+        return;
     }
 }
 
 if(($errore = esisteUtente($username,$email)) > 0) {
-    $errore === 1 ? die("Username gi&agrave; in uso. Riprova.") : die("Email gi&agrave; in uso. Riprova.");
+    $errore === 1 ? erroreJSON("Username già in uso. Riprova.") : erroreJSON("Email già in uso. Riprova.");
+    return;
 }
 
 if($password != $password2) {
-    die("Le due password non combaciano");
+    erroreJSON("Le due password non combaciano");
+    return;
 }
 
 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    die("Email inserita non valida");
+    erroreJSON("Email inserita non valida");
+    return;
 }
 
 $db->beginTransaction();
@@ -59,12 +60,11 @@ if($insertStatement->execute(array(
 
 else {
     $db->rollBack();
-    print_r($insertStatement->errorInfo());
-    die("Errore nell'inserimento dell'utente.");
+    //print_r($insertStatement->errorInfo());
+    erroreJSON("Errore nell'inserimento dell'utente.");
+    return;
 }
-
-echo "<p>Utente inserito con successo!</p>";
-echo "<a href='../login.php'>Vai al login</a>";
+successoJSON("Utente inserito con successo");
 
 /**
  * Funzione che controlla se il parametro passato è settato e non vuoto

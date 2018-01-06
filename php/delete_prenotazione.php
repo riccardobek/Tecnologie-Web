@@ -9,7 +9,7 @@ $db->beginTransaction();
 $idutente  = $_SESSION["utente"]["ID"];
 
 
-$deleteStatement = $db->prepare("DELETE FROM Prenotazioni WHERE IDAttivita = ?, IDUtente = ?, Giorno = ?");
+$deleteStatement = $db->prepare("DELETE FROM Prenotazioni WHERE IDAttivita = ? AND IDUtente = ? AND Giorno = ?");
 
 if($deleteStatement->execute($idattivita, $idutente, $data))
     $db->commit();

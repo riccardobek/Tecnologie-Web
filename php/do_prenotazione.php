@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once "database.php";
+require_once "funzioni/funzioni_json.php";
 
 /*
  * Bisogna prendere i dati in input dal form di registrazione e controllare la loro correttezza.
@@ -11,7 +12,7 @@ require_once "database.php";
 //La data passata è nel formato DD/MM/YYYY, mentre la devo convertire nel formato YYYY/MM/DD
 $data = convertiData(filter_var($_POST["data"],FILTER_SANITIZE_FULL_SPECIAL_CHARS));
 if(!$data) {
-    errorePrenotazione("Data non valida");
+    erroreJSON("Data non valida");
     return;
 }
 
@@ -38,7 +39,7 @@ $PostiPrenotati->execute(array($attivita, $data));
 $PostiDisponibiliEffettivi = intval($PostiDisponibiliGiornata) - intval($PostiPrenotati->fetch()["PostiOccupati"]);
 
 if($nPosti > $PostiDisponibiliEffettivi){
-    errorePrenotazione();
+    erroreJSON("Numero posti inserti maggiore del numero posti disponibili");
     return;
 }
 //allora i posti disponibili sono stati modificati ed eseguo il controllo
@@ -47,12 +48,12 @@ else{
     $insertStatement = $db->prepare("INSERT INTO Prenotazioni VALUES(?,?,?,?)");
     if($insertStatement->execute(array($attivita,$utente,$data,$nPosti))) {
         $db->commit();
-        successoPrenotazione();
+        successoJSON("Prenotazione inserita");
     }
     else{
         $db->rollBack();
         print_r($insertStatement->errorInfo());
-        errorePrenotazione("Errore nell'inserimento della prenotazione nel database.");
+        erroreJSON("Errore nell'inserimento della prenotazione nel database.");
     }
 }
 
@@ -70,20 +71,6 @@ function convertiData($dataDaConvertire) {
 
     //Converto la data dal formato dd/mm/yyyy al formato yyyy-mm-dd (accettato da mysql)
     return $dataCalcolata->format("Y-m-d");
-}
-
-function errorePrenotazione($messaggio = "Numero posti inserti maggiore del numero posti disponibili") {
-    $jsonArray = array();
-    $jsonArray["stato"] = 0;
-    $jsonArray["messaggio"] = $messaggio;
-    echo json_encode($jsonArray);
-}
-
-function successoPrenotazione(){
-    $jsonArray = array();
-    $jsonArray["stato"] = 1;
-    $jsonArray["messaggio"] = "Prenotazione inserita";
-    echo json_encode($jsonArray);
 }
 ?>
 

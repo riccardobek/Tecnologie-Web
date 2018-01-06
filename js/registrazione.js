@@ -2,6 +2,26 @@
  * Funzione che valida il form di registrazione ed, eventualmente (con return false) ne interrompe il submit
  * @returns {boolean}
  */
+$(document).ready(function() {
+    $("form").on("submit",function(event){
+        event.preventDefault();
+
+        $(".alert").hide();
+
+        if(validaForm()) {
+            $.post($("form").attr("action"),$("form").serialize(),function(r) {
+                rispostaJSON = JSON.parse(r);
+                if(rispostaJSON.stato === 1)
+                    $(".alert.successo").show();
+                else {
+                    $(".alert.errore").text(rispostaJSON.messaggio).show();
+                }
+            });
+        }
+    });
+});
+
+
 function validaForm() {
     pulisciErrori();
 
