@@ -4,7 +4,7 @@ require_once "php/funzioni/funzioni_pagina.php";
 require_once "php/funzioni/funzioni_attivita.php";
 $activeIndex = 0;
 ?>
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
     <head>
         <meta charset="UTF-8">
@@ -15,7 +15,7 @@ $activeIndex = 0;
         <link rel="stylesheet" type="text/css" href="css/default.css"/>
         <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="handheld, screen and (max-width:768px), only screen and (max-device-width:768px)"/>
     </head>
-    <body ontouchstart> <!-- ontouchstart fixa il comportamento degli eventi touch su Safari per iOS -->
+    <body> <!-- ontouchstart fixa il comportamento degli eventi touch su Safari per iOS -->
         <?php intestazione($activeIndex);?>
         <div id="content">
             
