@@ -18,6 +18,5 @@ if(!$utente) {
 
 $_SESSION["Utente"] = array();
 $_SESSION["Utente"] = $utente;
-$_SESSION["logged"] = 1;
 
 echo "1";

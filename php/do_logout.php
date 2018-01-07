@@ -5,5 +5,7 @@ setcookie(session_name(), '', 100);
 session_unset();
 session_destroy();
 $_SESSION = array();
-$_SESSION["logged"] = 0;
-echo "Logout completato. <a href='../index.php'>Torna al sito</a>";
+
+//Reindirizzo l'utente alla home del sito
+header("Location: ../index.php");
+

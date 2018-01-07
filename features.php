@@ -2,7 +2,7 @@
 /*
  *
  * TEST DELLA FUNZIONE DI CONVALIDA DELLA DATA
- */
+*/
 $dataDaConvertire = "31/11/2017";
 
 if(!preg_match("/^(\d{2})\/(\d{2})\/(\d{4})$/",$dataDaConvertire))
