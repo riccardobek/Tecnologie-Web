@@ -1,0 +1,47 @@
+/*formato A4 standard*/
+@page {
+    size: 210mm 297mm;
+    margin: 30mm;
+}
+
+
+
+div#content > img{
+    display: none;
+}
+
+
+#menu-wrapper{
+    display: none;
+}
+
+div.odd{
+    color: black;
+}
+
+div.even{
+    color: black;
+}
+
+div.column{
+    width: 100%;
+
+}
+
+div.title-wrapper > h1{
+    text-align: left;
+    color: black;
+    font-weight: 100;
+}
+
+div.button-holder{
+    display: none;
+}
+
+div.img-wrapper{
+    display: none;
+}
+
+div.box_SP > img{
+    display: none;
+}
