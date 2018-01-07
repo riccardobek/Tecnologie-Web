@@ -4,27 +4,34 @@
     margin: 30mm;
 }
 
-
-
 div#content > img{
     display: none;
 }
-
+div#content{
+    margin-bottom: 0em;
+    margin-top: 0em;
+}
 
 #menu-wrapper{
     display: none;
 }
 
-div.odd{
+div.odd,div.even{
     color: black;
+    padding-top: 0em;
+    padding-bot: 0em;
+}
+#content .odd > .length-wrapper, #content .even > .length-wrapper{
+
+    padding-top: 0em;
+    padding-bottom: 0em;
+
 }
 
-div.even{
-    color: black;
-}
 
 div.column{
     width: 100%;
+    page-break-inside: avoid;
 
 }
 
@@ -44,4 +51,9 @@ div.img-wrapper{
 
 div.box_SP > img{
     display: none;
+}
+
+div.box_SP{
+    margin: 0em;
+
 }
