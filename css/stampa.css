@@ -1,7 +1,9 @@
 /*formato A4 standard*/
 @page {
     size: 210mm 297mm;
-    margin: 30mm;
+    margin-top: 5mm;
+    margin-right: 30mm;
+    margin-left: 30mm;
 }
 
 div#content > img{
@@ -19,7 +21,7 @@ div#content{
 div.odd,div.even{
     color: black;
     padding-top: 0em;
-    padding-bot: 0em;
+    padding-bottom: 0em;
 }
 #content .odd > .length-wrapper, #content .even > .length-wrapper{
 
@@ -27,9 +29,33 @@ div.odd,div.even{
     padding-bottom: 0em;
 
 }
+span.primary-btn.inline-btn {
+    display: none;
+
+}
+a.primary-btn.inline-btn {
+    display: none;
+}
+.attivita {
+    border-left: none;
+    padding-left: 0;
+}
+
+.content-wrapper {
+    color: black;
+}
+
+.attivita  {
+    color: black;
+    page-break-inside: avoid;
+}
+span.price-tag {
+    font-weight: 200;
+    color: black;
+}
 
 
-div.column{
+div.column {
     width: 100%;
     page-break-inside: avoid;
 
