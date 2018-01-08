@@ -23,11 +23,22 @@ input:not([type=submit]):not([type=button]):focus {
     margin-top: 0;
 }
 
-.primary-btn {
+.btn {
+    border: 1px solid white;
+    color: white;
+    text-decoration: underline;
+    padding: 0.3em;
+    margin-left: 1em;
+}
 
+.btn:hover {
+    background: #312783;
+    color: white;
+}
+
+.primary-btn {
     display: block;
     height: 2.5em;
-    width: 7em;
     margin:0 auto;
     background: #019FE3;
     color: white;

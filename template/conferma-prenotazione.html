@@ -15,7 +15,7 @@
 
 <div id="content">
     <div class="even">
-        <div class="length-wrapper">
+        <form action="php/do_prenotazione.php" method="POST" class="length-wrapper">
             <h1>Conferma prenotazione</h1>
             <h2>Informazioni generali</h2>
             <ul class="conferma-prenotazione">
@@ -29,11 +29,21 @@
                 <li><span>Persone: </span>300</li>
                 <li id="totale"><span>Totale: </span>&euro; 300</li>
             </ul>
-        </div>
+
+            <input type="hidden" name="attivita" value="[#ATTIVITA-PRENOTAZIONE]">
+            <input type="hidden" name="data" value="[#DATA-PRENOTAZIONE]">
+            <input type="hidden" name="persone" value="[#POSTI-PRENOTAZIONE]">
+
+            <div id="pulsanti-container">
+                <input type="submit" class="primary-btn inline-btn" value="Conferma prenotazione">
+                <a href="attivita.php" class="btn">Torna indietro</a>
+            </div>
+        </form>
     </div>
 </div>
 
 [#MENU-MOBILE]
+<script src="js/conferma-prenotazione.js"></script>
 
 </body>
 </html>

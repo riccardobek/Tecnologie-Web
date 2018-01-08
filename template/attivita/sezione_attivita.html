@@ -6,7 +6,7 @@
     </p>
 
     <div class="form-prenotazione-container">
-        <form action="php/do-prenotazione.php">
+        <form action="conferma-prenotazione.php" method="POST">
             <input type="hidden" name="attivita" value="[#CODICE-SOTTOATTIVITA]">
             <input type="hidden" name="prezzo" class="prezzo-unitario" value="[#PREZZO-SOTTOATTIVITA]">
 
@@ -25,5 +25,5 @@
         </form>
     </div>
 
-    <[#A-LOGGATO] class="primary-btn inline-btn" data-espanso="false">[#TESTO-PULSANTE]</[#A-LOGGATO]>
+    <[#BTN-LOGGATO] class="primary-btn inline-btn" data-espanso="false">[#TESTO-PULSANTE]</[#BTN-LOGGATO]>
 </div>

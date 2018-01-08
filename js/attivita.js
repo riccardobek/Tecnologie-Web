@@ -1,15 +1,16 @@
 $(function () {
-    $(".attivita > a").on("click",function(event) {
 
-        var form = $(event.target).parent().children(".form-prenotazione-container");
+    $(".attivita > button").on("click",function(event) {
+
+        var formContainer = $(event.target).parent().children(".form-prenotazione-container");
 
         if(!$(event.target).data("espanso")) {
-            form.slideToggle();
+            formContainer.slideToggle();
             $(event.target).data("espanso",true);
         }
         else {
-            var inputData = form.find("input.data");
-            var inputPosti = form.find("input.posti");
+            var inputData = formContainer.find("input.data");
+            var inputPosti = formContainer.find("input.posti");
 
             pulisciErrore(inputData.parent()[0].parentNode);
             pulisciErrore(inputPosti[0].parentNode);
@@ -27,11 +28,13 @@ $(function () {
             }
 
             console.log("Invio i seguenti dati:");
+            formContainer.find("form").submit();
 
+            /*
             $.post("php/do_prenotazione.php", {
                 attivita: form.find("input[name='attivita']").val(),
-                data: form.find(".data").val(),
-                posti: form.find(".posti").val()
+                data: formContainer.find(".data").val(),
+                posti: formContainer.find(".posti").val()
             }, function (r) {
                 risposta = JSON.parse(r);
                 if(risposta.stato === 1) {
@@ -40,7 +43,7 @@ $(function () {
                     alert("Errore nell'inserimento della prenotazione: \n\n"+risposta.messaggio)
                 }
                 console.log("Risposta dalla pagina di inserimento della prenotazione: "+r);
-            });
+            });*/
         }
     });
 

@@ -50,11 +50,11 @@ function stampaAttivita() {
              * un messaggio. Un utente non registrato e/o non loggato non può effettuare prenotazioni
              */
             if(isUtenteLoggato()) {
-                $sottoattivita = str_replace("[#A-LOGGATO]","a",$sottoattivita);
+                $sottoattivita = str_replace("[#BTN-LOGGATO]","button",$sottoattivita);
                 $sottoattivita = str_replace("[#TESTO-PULSANTE]","Prenota",$sottoattivita);
             }
             else {
-                $sottoattivita = str_replace("[#A-LOGGATO]","span",$sottoattivita);
+                $sottoattivita = str_replace("[#BTN-LOGGATO]","span",$sottoattivita);
                 $sottoattivita = str_replace("[#TESTO-PULSANTE]","Effettua il <a href = 'login.php'>login</a> o <a href='registrazione.php'>registrati</a>  per poter prenotare",$sottoattivita);
             }
         }

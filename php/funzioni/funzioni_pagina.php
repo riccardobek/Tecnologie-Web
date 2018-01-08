@@ -158,5 +158,23 @@ function menuMobile($activeIndex)
     $MENU_MOBILE = str_replace("[#VOCI-MENU]", $VOCI_MENU, $MENU_MOBILE);
 
     return $MENU_MOBILE;
+}
 
+
+function paginaErrore($messaggio="Si è verificato un errore. Riprova più tardi.",$href="index.php",$testoLink="Torna alla home") {
+    $HTML_INTESTAZIONE = intestazione(INF);
+
+    /*Richiamo pagina contatti*/
+    $HTML = file_get_contents("template/errore.html");
+
+    $HTML = str_replace("[#MESAGGIO-ERRORE]", $messaggio, $HTML);
+    $HTML = str_replace("[#HREF-LINK]", $href, $HTML);
+    $HTML = str_replace("[#TESTO-LINK]", $testoLink, $HTML);
+
+    /*Rimpiazza il segnaposto con il menù*/
+    $HTML = str_replace("[#INTESTAZIONE]",$HTML_INTESTAZIONE, $HTML);
+
+    /*Footer*/
+    $HTML = str_replace("[#MENU-MOBILE]",menuMobile(INF),$HTML);
+    echo $HTML;
 }

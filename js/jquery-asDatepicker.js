@@ -361,7 +361,7 @@
 
             for (var i = 0; i < 7; i++) {
                 var pos = this.options.firstDayOfWeek + i > 6 ? this.options.firstDayOfWeek + i - 7 : this.options.firstDayOfWeek + i;
-                html += '<span>' + LABEL[this.options.lang].daysShort[pos] + '</span>';
+                html += '<span title="' + LABEL[this.options.lang].daysShort[pos] +' giorno prova ' + LABEL[this.options.lang].daysShort[pos] +' ">' + LABEL[this.options.lang].daysShort[pos] + '</span>';
             }
 
             html += '</div><div class="' + this.namespace + '-body"><div class="' + this.namespace + '-row">';

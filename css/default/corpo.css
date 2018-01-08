@@ -212,3 +212,15 @@ ul.conferma-prenotazione li span {
 ul.conferma-prenotazione li#totale {
     margin-top: 1em;
 }
+
+
+/******************************
+ * PAGINA DI ERRORE GENERICO
+ */
+div.errore-container {
+    text-align: center;
+}
+
+div.errore-container > img {
+    max-width: 40%;
+}
