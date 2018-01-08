@@ -73,9 +73,10 @@ input:not([type=submit]):not([type=button]):focus {
     display: block;
 }
 
-div.attivita span.primary-btn.inline-btn,
-div.attivita span.primary-btn.inline-btn:hover,
-div.attivita span.primary-btn.inline-btn:active {
+div.attivita span.btn.btn-primary,
+div.attivita span.btn.btn-primary:hover,
+div.attivita span.btn.btn-primary:active {
+    display: block;
     cursor: default;
     background: transparent;
     color: white;
