@@ -20,7 +20,7 @@ else {
     $HTML_INTESTAZIONE = intestazione($activeIndex);
 
     $codiceAttivita = filter_var($_POST["attivita"],FILTER_SANITIZE_NUMBER_INT);
-    $posti = filter_var($_POST["posti"],FILTER_SANITIZE_NUMBER_INT);
+    $posti = intval(filter_var($_POST["posti"],FILTER_SANITIZE_NUMBER_INT));
     $data = filter_var($_POST["data"],FILTER_SANITIZE_STRING);
 
     $attivita = getAttivitaByCodice($codiceAttivita);

@@ -166,3 +166,8 @@ div#menu-mobile ul > li.active{
     float: none;
     clear: both;
 }
+
+.btn {
+    display: block;
+    margin: 1em 0em;
+}
