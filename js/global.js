@@ -66,3 +66,8 @@ function pulisciErrore(targetElement) {
         }
     }
 }
+
+
+function creaAlertErrore(messaggio) {
+
+}

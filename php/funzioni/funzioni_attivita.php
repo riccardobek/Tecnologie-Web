@@ -20,3 +20,12 @@ function getAttivita($codiceMacro) {
     $listaAttivita = $query->fetchAll();
     return $listaAttivita;
 }
+
+function getAttivitaByCodice($codiceAttivita) {
+    global $db;
+    $query = $db->prepare("SELECT * FROM Attivita WHERE Codice = ?");
+    $query->execute(array($codiceAttivita));
+
+    $attivita = $query->fetch();
+    return $attivita;
+}

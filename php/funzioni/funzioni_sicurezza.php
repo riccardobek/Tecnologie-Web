@@ -6,3 +6,7 @@ function criptaPassword($password) {
 function isUtenteLoggato() {
     return isset($_SESSION["Utente"]) && isset($_SESSION["Utente"]["ID"]);
 }
+
+function validaData($dataDaValidare) {
+
+}

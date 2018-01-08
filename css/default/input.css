@@ -23,55 +23,54 @@ input:not([type=submit]):not([type=button]):focus {
     margin-top: 0;
 }
 
+/*************************
+* INIZIO STILE BOTTONI   *
+*************************/
+
 .btn {
-    border: 1px solid white;
-    color: white;
-    text-decoration: underline;
-    padding: 0.3em;
-    margin-left: 1em;
+    outline: none;
+    border: none;
+    margin: 0;
+
+    line-height: 100%;
+
+    text-decoration: none;
+    font-weight: bolder;
+
+    padding: 0.8em 1em;
+
+    color: black;
+
+    background: white;
+    border-bottom: 0.2em solid #808080;
+
+    text-transform: uppercase;
 }
 
 .btn:hover {
-    background: #312783;
-    color: white;
+    background: #808080;
 }
 
-.primary-btn {
+.btn:active {
+    border: 0.2em solid rgba(255,255,255,.3);
+}
+
+.btn.btn-primary {
+    color: white;
+    background-color: #16BFFF;
+    border-bottom-color: #008BC6;
+}
+
+.btn.btn-primary:hover {
+    background-color: #008BC6;
+}
+
+.btn.btn-primary:active {
+    border: 0.2em solid rgba(255,255,255,.3)
+}
+
+.btn.btn-block {
     display: block;
-    height: 2.5em;
-    margin:0 auto;
-    background: #019FE3;
-    color: white;
-    border: 1px solid silver;
-
-    cursor: pointer; /* Per far comparire la manina */
-    outline: none;
-}
-.primary-btn.index-btn {
-    padding:0.3em;
-    height:1.5em;
-    font-size: 1.1em;
-}
-.primary-btn.inline-btn {
-    display:inline;
-}
-
-.primary-btn:hover {
-    background: #312783;
-}
-
-.primary-btn:active {
-    border: 2px solid silver;
-}
-
-span.primary-btn:hover {
-    border-color: #019FE3;
-}
-
-a.primary-btn.inline-btn{
-    padding-left: 0.25em;
-    padding-right: 0.25em;
-    border-color: #019FE3;
 }
 
 div.attivita span.primary-btn.inline-btn,
