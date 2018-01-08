@@ -46,15 +46,20 @@ FOREIGN KEY (Utente) REFERENCES Utenti(ID)
 );
 
 
-CREATE TABLE Prenotazioni(
-Attivita VARCHAR(20),
-Utente VARCHAR(50),
-Giorno DATE,
-PostiPrenotati INTEGER NOT NULL,
-PRIMARY KEY(Attivita,Utente,Giorno),
-FOREIGN KEY (Attivita) REFERENCES Attivita(Codice),
-FOREIGN KEY (Utente) REFERENCES Utenti(ID) 
-);
+CREATE TABLE `Prenotazioni` (
+  Codice int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `IDAttivita` int(11) NOT NULL,
+  `IDUtente` int(11) NOT NULL,
+  `Giorno` date NOT NULL,
+  `PostiPrenotati` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+--
+-- Limiti per la tabella `Prenotazioni`
+--
+ALTER TABLE `Prenotazioni`
+  ADD CONSTRAINT `Prenotazioni_ibfk_1` FOREIGN KEY (`IDAttivita`) REFERENCES `Attivita` (`Codice`),
+  ADD CONSTRAINT `Prenotazioni_ibfk_2` FOREIGN KEY (`IDUtente`) REFERENCES `Utenti` (`ID`);
+
 
 
 CREATE TABLE Disponibilita(

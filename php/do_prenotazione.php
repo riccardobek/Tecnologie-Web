@@ -38,21 +38,20 @@ $PostiPrenotati->execute(array($attivita, $data));
 
 $PostiDisponibiliEffettivi = intval($PostiDisponibiliGiornata) - intval($PostiPrenotati->fetch()["PostiOccupati"]);
 
-if($nPosti > $PostiDisponibiliEffettivi){
+if ($nPosti > $PostiDisponibiliEffettivi) {
     erroreJSON("Numero posti inserti maggiore del numero posti disponibili");
     return;
 }
-//allora i posti disponibili sono stati modificati ed eseguo il controllo
-else{
+
+else {
     $db->beginTransaction();
-    $insertStatement = $db->prepare("INSERT INTO Prenotazioni VALUES(?,?,?,?)");
+    $insertStatement = $db->prepare("INSERT INTO Prenotazioni VALUES(NULL,?,?,?,?)");
     if($insertStatement->execute(array($attivita,$utente,$data,$nPosti))) {
+        $messaggio = successoJSON("Prenotazione inserita",array("CodicePrenotazione"=>$db->lastInsertId()));
         $db->commit();
-        successoJSON("Prenotazione inserita");
     }
     else{
         $db->rollBack();
-        print_r($insertStatement->errorInfo());
         erroreJSON("Errore nell'inserimento della prenotazione nel database.");
     }
 }
