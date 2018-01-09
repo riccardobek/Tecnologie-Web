@@ -1,4 +1,4 @@
-function openCity(evento, sezione) {
+function openSection(evento, sezione) {
     var i, tabcontent, tablinks;
 
     tabcontent = document.getElementsByClassName("tabcontent");
