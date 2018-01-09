@@ -1,24 +1,18 @@
 <?php
-require_once "php/database.php";
 require_once "php/funzioni/funzioni_pagina.php";
-require_once "php/funzioni/funzioni_attivita.php";
 $activeIndex = 0;
+
+/*Intestazione: indica la pagina attualmente attiva --> contattaci */
+$HTML_INTESTAZIONE = intestazione($activeIndex);
+
+/*Richiamo pagina contatti*/
+$HTML = file_get_contents("template/utente/pagina_utente.html");
+
+/*Rimpiazza il segnaposto con il menù*/
+$HTML = str_replace("[#INTESTAZIONE]",$HTML_INTESTAZIONE, $HTML);
+
+/*Footer*/
+$HTML = str_replace("[#MENU-MOBILE]",menuMobile($activeIndex),$HTML);
+echo $HTML;
+
 ?>
-<!DOCTYPE html>
-<html lang="it">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="images/favicon.ico"/>
-        <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" rel="stylesheet">
-        <title>Onda Selvaggia - Home</title>
-        <link rel="stylesheet" type="text/css" href="css/default.css"/>
-        <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="handheld, screen and (max-width:768px), only screen and (max-device-width:768px)"/>
-    </head>
-    <body> <!-- ontouchstart fixa il comportamento degli eventi touch su Safari per iOS -->
-        <?php intestazione($activeIndex);?>
-        <div id="content">
-            
-        </div>
-    </body>
-</html>
