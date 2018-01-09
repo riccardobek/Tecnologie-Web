@@ -15,32 +15,29 @@ if(!isset($_POST["attivita"]) || !isset($_POST["posti"]) || !isset($_POST["data"
     return;
 }
 
-else {
-    /*Intestazione: indica la pagina attualmente attiva --> contattaci */
-    $HTML_INTESTAZIONE = intestazione($activeIndex);
+/*Intestazione: indica la pagina attualmente attiva --> contattaci */
+$HTML_INTESTAZIONE = intestazione($activeIndex);
 
-    $codiceAttivita = filter_var($_POST["attivita"],FILTER_SANITIZE_NUMBER_INT);
-    $posti = intval(filter_var($_POST["posti"],FILTER_SANITIZE_NUMBER_INT));
-    $data = filter_var($_POST["data"],FILTER_SANITIZE_STRING);
+$codiceAttivita = filter_var($_POST["attivita"],FILTER_SANITIZE_NUMBER_INT);
+$posti = intval(filter_var($_POST["posti"],FILTER_SANITIZE_NUMBER_INT));
+$data = filter_var($_POST["data"],FILTER_SANITIZE_STRING);
 
-    $attivita = getAttivitaByCodice($codiceAttivita);
+$attivita = getAttivitaByCodice($codiceAttivita);
 
-    $totale = doubleval($attivita["Prezzo"]) * intval($posti);
+$totale = doubleval($attivita["Prezzo"]) * intval($posti);
 
-    /*Richiamo pagina contatti*/
-    $HTML = file_get_contents("template/conferma_prenotazione.html");
+/*Richiamo pagina contatti*/
+$HTML = file_get_contents("template/conferma_prenotazione.html");
 
-    $HTML = str_replace("[#NOME-ATTIVITA]",$attivita["Nome"], $HTML);
-    $HTML = str_replace("[#DATA-PRENOTAZIONE]",$data, $HTML);
+$HTML = str_replace("[#NOME-ATTIVITA]",$attivita["Nome"], $HTML);
+$HTML = str_replace("[#DATA-PRENOTAZIONE]",$data, $HTML);
 
-    $HTML = str_replace("[#PREZZO-ATTIVITA]",$attivita["Prezzo"], $HTML);
-    $HTML = str_replace("[#POSTI-PRENOTAZIONE]",$posti, $HTML);
-    $HTML = str_replace("[#TOTALE-PRENOTAZIONE]",number_format($totale,2), $HTML);
+$HTML = str_replace("[#PREZZO-ATTIVITA]",$attivita["Prezzo"], $HTML);
+$HTML = str_replace("[#POSTI-PRENOTAZIONE]",$posti, $HTML);
+$HTML = str_replace("[#TOTALE-PRENOTAZIONE]",number_format($totale,2), $HTML);
 
-    $HTML = str_replace("[#ATTIVITA-PRENOTAZIONE]",$attivita["Codice"], $HTML);
+$HTML = str_replace("[#ATTIVITA-PRENOTAZIONE]",$attivita["Codice"], $HTML);
 
-
-}
 
 /*Rimpiazza il segnaposto con il menù*/
 $HTML = str_replace("[#INTESTAZIONE]",$HTML_INTESTAZIONE, $HTML);
