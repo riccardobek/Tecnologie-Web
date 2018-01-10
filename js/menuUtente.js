@@ -1,4 +1,4 @@
-function openSection(evento, sezione) {
+/*function openSection(evento, sezione) {
     var i, tabcontent, tablinks;
 
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -13,4 +13,13 @@ function openSection(evento, sezione) {
 
     document.getElementById(sezione).style.display = "block";
     evento.currentTarget.className += " active";
-}
+}*/
+
+$(document).ready(function(){
+    $("#prenotazioni").show();
+    $(".tablinks").on("click",function (e) {
+       var tabTarget = $(this).attr("data-target");
+       $(".tabcontent").hide();
+       $('#'+tabTarget).show();
+    });
+});

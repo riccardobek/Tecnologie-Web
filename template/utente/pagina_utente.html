@@ -9,8 +9,8 @@
     <link rel="stylesheet" type="text/css" href="css/default.css"/>
     <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="screen and (max-width:768px)"/><!-- , only screen and (max-device-width:768px) -->
     <link rel="stylesheet" type="text/css" href="css/stampa.css" media="print">
-    <link rel="stylesheet" type="text/css" href="css/Users.css">
-    <script type="text/javascript" src="js/menuUtente.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/users.css">
+
 </head>
 <body>
 
@@ -20,17 +20,17 @@
     <div id="odd">
         <div class="length-wrapper">
             <div class="tab">
-                <button class="tablinks" onclick="openSection(event, 'Prenotazioni')"><b>Prenotazioni</b></button>
-                <button class="tablinks" onclick="openSection(event, 'Account')"><b>Account</b></button>
+                <button class="tablinks" data-target="prenotazioni"><b>Prenotazioni</b></button>
+                <button class="tablinks" data-target="account"><b>Account</b></button>
             </div>
 
 
-            <div id="Prenotazioni" class="tabcontent">
+            <div id="prenotazioni" class="tabcontent">
                 <h3>Prenotazioni</h3>
                 [#PRENOTAZIONI]
             </div>
 
-            <div id="Account" class="tabcontent">
+            <div id="account" class="tabcontent">
                 <h3>Account</h3>
                 [#ACCOUNT]
             </div>
@@ -43,6 +43,6 @@
 
 
 [#MENU-MOBILE]
-
+<script type="text/javascript" src="js/menuUtente.js"></script>
 </body>
 </html>
