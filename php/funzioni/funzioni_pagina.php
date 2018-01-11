@@ -197,9 +197,16 @@ function paginaErrore($messaggio="Si è verificato un errore. Riprova più tardi
     echo $HTML;
 }
 
-function userReservations($idUtente) {
-    $infoUtente = $db->prepare("SELECT  Nome Giorno PostiPrenotati FROM Prenotazioni, Attivita WHERE IDUtente = ? AND IDAttivita = Prenotazioni.Codice");
-    $infoUtente->execute(array($idUtente));
+function prenotazioniUtente() {
+    global $db;
+    $infoPrenotazioni = $db->prepare("SELECT  Nome Giorno PostiPrenotati FROM Prenotazioni, Attivita WHERE IDUtente = ? AND IDAttivita = Prenotazioni.Codice");
+    $infoPrenotazioni->execute(array($_SESSION["Utente"]["ID"]));
+    $riga2 = "";
+    while($riga = $infoPrenotazioni->fetch()){
 
-
+    $riga2 .= <<<RIGA
+<tr><td>{$infoPrenotazioni["Nome"]}</td><td>{$infoPrenotazioni["Giorno"]}</td><td>{$infoPrenotazioni["PostiPrenotati"]}</td></tr>
+RIGA;
+    }
+    return $riga2;
 }
