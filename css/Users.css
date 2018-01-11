@@ -10,12 +10,15 @@
 .tab button {
     background-color: inherit;
     float: left;
-    border: none;
+    /*border: none;*/
     outline: none;
     cursor: pointer;
     padding: 14px 16px;
     transition: 0.3s;
     font-size: 17px;
+}
+.tablinks{
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 /* Change background color of buttons on hover */

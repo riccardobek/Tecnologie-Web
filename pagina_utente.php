@@ -1,5 +1,6 @@
 <?php
 require_once "php/funzioni/funzioni_pagina.php";
+
 $activeIndex = 0;
 
 /*Intestazione: indica la pagina attualmente attiva --> contattaci */

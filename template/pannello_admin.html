@@ -6,7 +6,7 @@
     <title>Pannello admin</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/default.css"/>
-    <link rel="stylesheet" type="text/css" href="css/pannello_admin.css" >
+    <link rel="stylesheet" type="text/css" href="css/users.css">
     <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="screen and (max-width:768px), only screen and (max-device-width:768px)"/>
     <link rel="icon" href="images/favicon.ico">
 
@@ -15,31 +15,29 @@
     [#INTESTAZIONE]
 
     <div id="content">
-
-        <div class="odd">
-            <div class="even">
-                <h1>Pannello di amministrazione</h1>
-                <ul>
-                    <li><button class="btn btn-primary"><img class="icona_pannello" src="images/icone/icona_home.png"> Utenti registrati</button></li>
-                    <li><button class="btn btn-primary"><img class="icona_pannello" src="images/icone/icona_home.png"> Reset password</button></li>
-                    <li><button class="btn btn-primary"><img class="icona_pannello" src="images/icone/icona_home.png">Gestisci Attività</button></li>
-                    <li><button class="btn btn-primary"><img class="icona_pannello" src="images/icone/icona_home.png">Gestisci prenotazioni</button></li>
-                </ul>
-
-
+            <div class="odd">
+                <div class="length-wrapper">
+                    <div class="tab">
+                        <button class="tablinks" data-target="usr-manager"><b>Gestisci Utenti</b></button>
+                        <button class="tablinks" data-target="act-manager"><b>Gestisci Attività</b></button>
+                        <button class="tablinks" data-target="res-manager"><b>Gestisci Prenotazioni</b></button>
+                    </div>
+                    <div id="usr-manager" class="tabcontent">
+                        <h3>Prenotazioni</h3>
+                        [#PRENOTAZIONI]
+                    </div>
+                    <div id="act-manager" class="tabcontent">
+                        <h3>Gestisci Attività</h3>
+                        [#ACCOUNT]
+                    </div>
+                    <div id="res-manager" class="tabcontent">
+                        <h3>Gestisci Prenotazioni</h3>
+                        [#ACCOUNT]
+                    </div>
+                </div>
             </div>
-
-
         </div>
-
-
-
-    </div>
-
-
-
-
     [#MENU-MOBILE]
-
+    <script type="text/javascript" src="js/menuUtente.js"></script>
 </body>
 </html>

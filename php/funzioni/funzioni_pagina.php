@@ -2,6 +2,7 @@
 session_start();
 require_once "funzioni_sicurezza.php";
 
+
 $menuElements = array(
     array(
         "Nome" => "Home",
@@ -52,6 +53,14 @@ $menuElements = array(
     array(
         "Nome" => "Pannello utente",
         "URL" => "pagina_utente.php",
+        "Icona"=> "images/icone/icona_logout.png",
+        "Pulsante"=>true,
+        "LoginDipendente"=>true,
+        "VisibileGuest"=>false
+    ),
+    array(
+        "Nome" => "Pannello amministrazione",
+        "URL" => "pannello_admin.php",
         "Icona"=> "images/icone/icona_logout.png",
         "Pulsante"=>true,
         "LoginDipendente"=>true,
@@ -186,4 +195,11 @@ function paginaErrore($messaggio="Si è verificato un errore. Riprova più tardi
     /*Footer*/
     $HTML = str_replace("[#MENU-MOBILE]",menuMobile(INF),$HTML);
     echo $HTML;
+}
+
+function userReservations($idUtente) {
+    $infoUtente = $db->prepare("SELECT  Nome Giorno PostiPrenotati FROM Prenotazioni, Attivita WHERE IDUtente = ? AND IDAttivita = Prenotazioni.Codice");
+    $infoUtente->execute(array($idUtente));
+
+
 }
