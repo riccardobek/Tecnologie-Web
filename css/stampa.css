@@ -6,6 +6,12 @@
     margin-left: 30mm;
 }
 
+
+div.attivita span.btn.btn-primary, div.attivita span.btn.btn-primary:hover, div.attivita span.btn.btn-primary:active {
+    display: none;
+}
+
+
 div#content > img{
     display: none;
 }
@@ -30,6 +36,10 @@ div.odd,div.even{
 
 }
 span.primary-btn.inline-btn {
+    display: none;
+
+}
+.btn.btn-primary{
     display: none;
 
 }
