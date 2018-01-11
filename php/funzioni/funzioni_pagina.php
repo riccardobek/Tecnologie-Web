@@ -48,6 +48,14 @@ $menuElements = array(
         "Pulsante"=>true,
         "LoginDipendente"=>true,
         "VisibileGuest"=>false
+    ),
+    array(
+        "Nome" => "Pannello utente",
+        "URL" => "pagina_utente.php",
+        "Icona"=> "images/icone/icona_logout.png",
+        "Pulsante"=>true,
+        "LoginDipendente"=>true,
+        "VisibileGuest"=>false
     )
 );
 /**
@@ -94,6 +102,7 @@ function creaElementoMenu($index, $activeIndex) {
 
 function intestazione($activeIndex) {
     global $menuElements;
+//    print_r($menuElements);
 
     $INTESTAZIONE = file_get_contents("template/intestazione.html");
 

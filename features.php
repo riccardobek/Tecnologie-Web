@@ -1,7 +1,8 @@
 <?php
 require_once "php/database.php";
 require_once "php/funzioni/funzioni_attivita.php";
-
+phpinfo();
+die();
 ?>
 <!DOCTYPE html>
 <html>
