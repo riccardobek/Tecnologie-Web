@@ -1,9 +1,12 @@
 <?php
 require_once "php/database.php";
-require_once "php/funzioni/funzioni_attivita.php";
-phpinfo();
+require_once "php/funzioni/funzioni_pagina.php";
+if(false)
+    echo "O";
+else
+    paginaSuccesso("Login effettuato con successo","index.php","Prosegui la navigazione");
 die();
-?>
+?><!--
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,3 +33,4 @@ die();
 </body>
 </html>
 
+-->

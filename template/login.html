@@ -16,7 +16,7 @@
     [#INTESTAZIONE]
 
     <div class="form">
-        <form method="POST">
+        <form method="POST" action="php/do_login.php">
             <h1>Accedi</h1>
 
             <div class="alert errore" aria-live="assertive" role="alert">Si è verificato un errore: username o password non corretti</div>
@@ -33,7 +33,7 @@
             <div class="button-holder"><input type="submit" value="Login" class="btn btn-primary" ></div>
 
             <input type="hidden" id="HTTP_REFERER" name="HTTP_REFERER" value="[#HTTP_REFERER]">
-
+            <input type="hidden" id="JSAbilitato" name="JSAbilitato" value="0">
             <p>Non sei ancora registrato? <a href="registrazione.php">Registrati</a></p>
         </form>
     </div>

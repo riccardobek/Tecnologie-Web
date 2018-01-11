@@ -196,3 +196,21 @@ function paginaErrore($messaggio="Si è verificato un errore. Riprova più tardi
     $HTML = str_replace("[#MENU-MOBILE]",menuMobile(INF),$HTML);
     echo $HTML;
 }
+
+function paginaSuccesso($messaggio,$href,$testoLink) {
+    $HTML_INTESTAZIONE = intestazione(INF);
+
+    /*Richiamo pagina contatti*/
+    $HTML = file_get_contents("template/successo.html");
+
+    $HTML = str_replace("[#MESAGGIO-SUCCESSO]", $messaggio, $HTML);
+    $HTML = str_replace("[#HREF-LINK]", $href, $HTML);
+    $HTML = str_replace("[#TESTO-LINK]", $testoLink, $HTML);
+
+    /*Rimpiazza il segnaposto con il menù*/
+    $HTML = str_replace("[#INTESTAZIONE]",$HTML_INTESTAZIONE, $HTML);
+
+    /*Footer*/
+    $HTML = str_replace("[#MENU-MOBILE]",menuMobile(INF),$HTML);
+    echo $HTML;
+}

@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    $("#JSAbilitato").val("1");
+
     $("form").on("submit",function(event) {
         event.preventDefault();
         event.stopPropagation();
