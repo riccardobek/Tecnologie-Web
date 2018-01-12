@@ -1,6 +1,8 @@
 <?php
+define("PERCORSO_RELATIVO","");
 require_once "php/database.php";
 require_once "php/funzioni/funzioni_pagina.php";
+require_once "php/funzioni/funzioni_sicurezza.php";
 require_once "php/funzioni/funzioni_attivita.php";
 
 $activeIndex = INF;
@@ -21,6 +23,11 @@ $HTML_INTESTAZIONE = intestazione($activeIndex);
 $codiceAttivita = filter_var($_POST["attivita"],FILTER_SANITIZE_NUMBER_INT);
 $posti = intval(filter_var($_POST["posti"],FILTER_SANITIZE_NUMBER_INT));
 $data = filter_var($_POST["data"],FILTER_SANITIZE_STRING);
+
+if(!dataFutura(implode("-",array_reverse(explode("/",$data))))) {
+    paginaErrore("Le prenotazioni per tale data sono chiuse. Selezionare una data futura.","attivita.php","Torna indietro");
+    return;
+}
 
 $attivita = getAttivitaByCodice($codiceAttivita);
 

@@ -2,6 +2,8 @@
 session_start();
 require_once "database.php";
 require_once "funzioni/funzioni_json.php";
+require_once "funzioni/funzioni_sicurezza.php";
+
 
 /*
  * Bisogna prendere i dati in input dal form di registrazione e controllare la loro correttezza.
@@ -13,6 +15,11 @@ require_once "funzioni/funzioni_json.php";
 $data = convertiData(filter_var($_POST["data"],FILTER_SANITIZE_FULL_SPECIAL_CHARS));
 if(!$data) {
     erroreJSON("Data non valida");
+    return;
+}
+
+if(!dataFutura($data)) {
+    erroreJSON("Impossibile prenotare un'attività per tale data.");
     return;
 }
 

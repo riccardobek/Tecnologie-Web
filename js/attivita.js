@@ -17,8 +17,13 @@ $(function () {
 
             console.log("Data da validare: "+inputData.val());
 
-            if(!validaData(inputData.val())) {
-                notificaErrore(inputData.parent()[0].parentNode, "Inserire una data valida");
+            var data = validaData(inputData.val());
+            if(!data) {
+                notificaErrore(inputData.parent()[0].parentNode, "Inserire una data nel formato corretto.");
+                return;
+            }
+            if(data.getTime() < (new Date()).getTime()) {
+                notificaErrore(inputData.parent()[0].parentNode, "Impossibile prenotare per tale data. Inserire una data futura.");
                 return;
             }
 
@@ -84,5 +89,7 @@ function validaData(d) {
     /* La funzione Date accetta qualsiasi parametro come anno, mese, giorno e lo converte
     * in una data valida. Quindi basta confrontare i valori del giorno, mese, anno in input
     * con quelli generati dall'oggetto date */
-    return date.getDate() == giorno && date.getMonth() == mese && date.getFullYear() == anno;
+    if(date.getDate() == giorno && date.getMonth() == mese && date.getFullYear() == anno)
+        return date;
+    return false;
 }
