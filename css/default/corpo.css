@@ -224,3 +224,22 @@ div.errore-container {
 div.errore-container > img {
     max-width: 40%;
 }
+
+table{
+    color:white;
+    border-collapse: collapse;
+}
+th,td {
+    padding: 0.5em;
+}
+table th{
+    font-weight: bold;
+
+}
+
+.intestazione-tabella {
+    color:#1C1C1C;
+    background-color: #F3F3F3;
+
+
+}

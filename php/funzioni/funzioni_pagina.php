@@ -221,3 +221,7 @@ function paginaSuccesso($messaggio,$href,$testoLink) {
     $HTML = str_replace("[#MENU-MOBILE]",menuMobile(INF),$HTML);
     echo $HTML;
 }
+
+function convertiDataToOutput($dataDaConvertire){
+    return (new DateTime($dataDaConvertire))->format('d/m/Y');
+}

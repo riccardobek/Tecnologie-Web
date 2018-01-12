@@ -29,3 +29,4 @@ function getAttivitaByCodice($codiceAttivita) {
     $attivita = $query->fetch();
     return $attivita;
 }
+

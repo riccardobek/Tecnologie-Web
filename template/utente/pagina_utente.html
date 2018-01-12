@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="images/favicon.ico"/>
+
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" rel="stylesheet">
     <title>Onda Selvaggia - Home</title>
     <link rel="stylesheet" type="text/css" href="css/default.css"/>
     <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="screen and (max-width:768px)"/><!-- , only screen and (max-device-width:768px) -->
     <link rel="stylesheet" type="text/css" href="css/stampa.css" media="print">
     <link rel="stylesheet" type="text/css" href="css/users.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
 
 </head>
 <body>
@@ -26,20 +27,83 @@
 
 
             <div id="prenotazioni" class="tabcontent">
-                <h3>Prenotazioni</h3>
+                <h2>Prenotazioni Attive</h2>
                 <table>
+                    <tr class="intestazione-tabella">
+                        <th>Nome attività</th>
+                        <th>Giorno prenotato</th>
+                        <th>Posti prenotati</th>
+                        <th>Pagamento</th>
+                    </tr>
                     [#PRENOTAZIONI]
                 </table>
-
+                <!-- Forse da fare lo slideDown con js -->
+                <h3>Storico Prenotazioni</h3>
+                <table>
+                    <tr class="intestazione-tabella">
+                        <th>Nome attività</th>
+                        <th>Giorno prenotato</th>
+                        <th>Posti prenotati</th>
+                        <th>Stato</th>
+                    </tr>
+                    [#STORICO-PRENOTAZIONI]
+                </table>
             </div>
 
             <div id="account" class="tabcontent">
-                <h3>Account</h3>
-                [#ACCOUNT]
+                <div class="form" id="container_form">
+                    <h2>Riepilogo dati account <span id="modifica">Modifica</span></h2>
+
+                    <form action="" method="POST">
+                        <h3>Dati personali</h3>
+                        <div class="field-container">
+                            <label for="nome">Nome: </label>
+                            <input type="text" id="nome" name="nome" value="[#NOME]">
+                        </div>
+                        <div class="field-container">
+                            <label for="cognome">Cognome: </label>
+                            <input type="text" id="cognome" name="cognome" value="[#COGNOME]">
+                        </div>
+                        <div class="field-container" id="indirizzo-container">
+                            <label for="indirizzo">Indirizzo: </label>
+                            <input type="text" id="indirizzo" name="indirizzo" value="[#INDIRIZZO]">
+                        </div>
+                        <div class="field-container" id="civico-container">
+                            <label for="civico">Civico: </label>
+                            <input type="text"  size="4" id="civico" name="civico" value="[#CIVICO]">
+                        </div>
+                        <div class="field-container" id="citta-container">
+                            <label for="citta">Citt&agrave;: </label>
+                            <input type="text" id="citta" name="citta" value="[#CITTA]">
+                        </div>
+                        <div class="field-container" id="cap-container">
+                            <label for="CAP">CAP: </label>
+                            <input type="text"  size="4" id="CAP" name="CAP" value="[#CAP]">
+                        </div>
+                        <h3>Dati account</h3>
+                            <div class="field-container">
+                                <label for="username">Nome utente: </label>
+                                <input type="text" id="username" name="username" value="[#NOME]">
+                            </div>
+                            <div class="field-container">
+                                <label for="email">Email: </label>
+                                <input type="text" id="email" name="email" value="[#MAIL]">
+                            </div>
+                            <div class="field-container mostra-modifica">
+                                <label for="password">Password: </label>
+                                <input type="password" id="password" name="password" value="Password...">
+                            </div>
+                            <div class="field-container mostra-modifica">
+                                <label for="password2">Ripeti password: </label>
+                                <input type="password" id="password2" name="password2" value="Ripeti password..">
+                            </div>
+                        <div class="button-holder mostra-modifica">
+                            <input type="submit" value="Modifica" name="modifica" class="btn btn-primary">
+                            <span class="btn" id="annulla">Annulla</span>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-
-
         </div>
     </div>
 </div>
