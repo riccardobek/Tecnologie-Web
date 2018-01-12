@@ -1,5 +1,5 @@
 <?php
-$relativePath = "../";
+define("PERCORSO_RELATIVO","../");
 
 require_once "database.php";
 

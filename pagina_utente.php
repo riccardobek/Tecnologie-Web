@@ -2,6 +2,8 @@
 ini_set('display_errors', "On");
 error_reporting(E_ALL);
 
+define("PERCORSO_RELATIVO","");
+
 require_once "php/database.php";
 require_once "php/funzioni/funzioni_pagina.php";
 

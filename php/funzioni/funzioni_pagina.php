@@ -92,7 +92,7 @@ function creaElementoMenu($index, $activeIndex) {
 
     if($menuElements[$index]["Pulsante"]) {
         //L'elemento che devo creare è un pulsante, quindi un "a" o uno "span" (in base al fatto che sia active o no)
-        $element = ($index == $activeIndex) ? file_get_contents("template/menu/pulsante_attivo.html")
+        $element = ($index == $activeIndex) ? file_get_contents(PERCORSO_RELATIVO."template/menu/pulsante_attivo.html")
             : file_get_contents("template/menu/pulsante.html");
     }
 
@@ -113,7 +113,7 @@ function intestazione($activeIndex) {
     global $menuElements;
 //    print_r($menuElements);
 
-    $INTESTAZIONE = file_get_contents("template/intestazione.html");
+    $INTESTAZIONE = file_get_contents(PERCORSO_RELATIVO."template/intestazione.html");
 
     $PULSANTI = "";
     $VOCI_MENU="";
@@ -167,7 +167,7 @@ ELEMENTO;
 function menuMobile($activeIndex)
 {
     global $menuElements;
-    $MENU_MOBILE = file_get_contents("template/menu/menu_mobile.html");
+    $MENU_MOBILE = file_get_contents(PERCORSO_RELATIVO."template/menu/menu_mobile.html");
     $VOCI_MENU = "";
     for ($i = 0; $i < count($menuElements); $i++) {
         $VOCI_MENU.=creaElementoMenuMobile($i, $activeIndex);
@@ -183,7 +183,7 @@ function paginaErrore($messaggio="Si è verificato un errore. Riprova più tardi
     $HTML_INTESTAZIONE = intestazione(INF);
 
     /*Richiamo pagina contatti*/
-    $HTML = file_get_contents("template/errore.html");
+    $HTML = file_get_contents(PERCORSO_RELATIVO."template/errore.html");
 
     $HTML = str_replace("[#MESAGGIO-ERRORE]", $messaggio, $HTML);
     $HTML = str_replace("[#HREF-LINK]", $href, $HTML);
@@ -201,7 +201,7 @@ function paginaSuccesso($messaggio,$href,$testoLink) {
     $HTML_INTESTAZIONE = intestazione(INF);
 
     /*Richiamo pagina contatti*/
-    $HTML = file_get_contents("template/successo.html");
+    $HTML = file_get_contents(PERCORSO_RELATIVO."template/successo.html");
 
     $HTML = str_replace("[#MESAGGIO-SUCCESSO]", $messaggio, $HTML);
     $HTML = str_replace("[#HREF-LINK]", $href, $HTML);

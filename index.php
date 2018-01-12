@@ -1,4 +1,6 @@
 <?php
+define("PERCORSO_RELATIVO","");
+
 require_once "php/database.php";
 require_once "php/funzioni/funzioni_pagina.php";
 require_once "php/funzioni/funzioni_attivita.php";

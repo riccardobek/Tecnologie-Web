@@ -1,4 +1,6 @@
 <?php
+define("PERCORSO_RELATIVO","../");
+
 require_once "database.php";
 require_once "funzioni/funzioni_sicurezza.php";
 require_once "funzioni/funzioni_json.php";
