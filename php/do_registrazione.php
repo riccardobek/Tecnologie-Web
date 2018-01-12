@@ -22,6 +22,7 @@ $civico = filter_var($_POST["civico"],FILTER_SANITIZE_STRING);
 $citta = filter_var($_POST["citta"],FILTER_SANITIZE_STRING);
 $CAP = filter_var($_POST["CAP"],FILTER_SANITIZE_NUMBER_INT);
 
+//Variabile (passata dalla pagina) che mi dice se la richiesta arriva da ajax o no
 $jsAbilitato = boolval(filter_var($_POST["JSAbilitato"],FILTER_SANITIZE_NUMBER_INT));
 
 define("LINK_PAGINA_ERRORE","../registrazione.php");
@@ -78,7 +79,10 @@ else {
 $messaggio = "Utente inserito con successo";
 $jsAbilitato ? successoJSON($messaggio) : paginaSuccesso($messaggio,"../login.php","Vai al login");
 
-
+/**
+ * Funzione che, in base al fatto che javascript sia abilitato, stampa un errore o come pagina o come JSON
+ * @param $messaggio il messaggio di errore da stampare
+ */
 function errore($messaggio) {
     global $jsAbilitato;
 
