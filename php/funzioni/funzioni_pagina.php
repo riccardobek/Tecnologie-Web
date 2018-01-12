@@ -7,28 +7,28 @@ $menuElements = array(
     array(
         "Nome" => "Home",
         "URL" => "index.php",
-        "Icona"=> "images/icone/icona_home.png",
+        "Icona"=> PERCORSO_RELATIVO."images/icone/icona_home.png",
         "Pulsante"=>false,
         "LoginDipendente"=>false
     ),
     array(
         "Nome" => "Attivit&agrave;",
         "URL" => "attivita.php",
-        "Icona"=> "images/icone/icona_attivita.png",
+        "Icona"=> PERCORSO_RELATIVO."images/icone/icona_attivita.png",
         "Pulsante"=>false,
         "LoginDipendente"=>false
     ),
     array(
         "Nome" => "Contattaci",
         "URL" => "contattaci.php",
-        "Icona"=> "images/icone/icona_contattaci.png",
+        "Icona"=> PERCORSO_RELATIVO."images/icone/icona_contattaci.png",
         "Pulsante"=>false,
         "LoginDipendente"=>false
     ),
     array(
         "Nome" => "Registrazione",
         "URL" => "registrazione.php",
-        "Icona"=> "images/icone/icona_registrazione.png",
+        "Icona"=> PERCORSO_RELATIVO."images/icone/icona_registrazione.png",
         "Pulsante"=>true,
         "LoginDipendente"=>true,
         "VisibileGuest"=>true
@@ -36,7 +36,7 @@ $menuElements = array(
     array(
         "Nome" => "Login",
         "URL" => "login.php",
-        "Icona"=> "images/icone/icona_login.png",
+        "Icona"=> PERCORSO_RELATIVO."images/icone/icona_login.png",
         "Pulsante"=>true,
         "LoginDipendente"=>true,
         "VisibileGuest"=>true
@@ -45,7 +45,7 @@ $menuElements = array(
     array(
         "Nome" => "Logout",
         "URL" => "php/do_logout.php",
-        "Icona"=> "images/icone/icona_logout.png",
+        "Icona"=> PERCORSO_RELATIVO."images/icone/icona_logout.png",
         "Pulsante"=>true,
         "LoginDipendente"=>true,
         "VisibileGuest"=>false
@@ -53,7 +53,7 @@ $menuElements = array(
     array(
         "Nome" => "Pannello utente",
         "URL" => "pagina_utente.php",
-        "Icona"=> "images/icone/icona_logout.png",
+        "Icona"=> PERCORSO_RELATIVO."images/icone/icona_logout.png",
         "Pulsante"=>true,
         "LoginDipendente"=>true,
         "VisibileGuest"=>false
@@ -61,7 +61,7 @@ $menuElements = array(
     array(
         "Nome" => "Pannello amministrazione",
         "URL" => "pannello_admin.php",
-        "Icona"=> "images/icone/icona_logout.png",
+        "Icona"=> PERCORSO_RELATIVO."images/icone/icona_logout.png",
         "Pulsante"=>true,
         "LoginDipendente"=>true,
         "VisibileGuest"=>false
@@ -93,13 +93,13 @@ function creaElementoMenu($index, $activeIndex) {
     if($menuElements[$index]["Pulsante"]) {
         //L'elemento che devo creare è un pulsante, quindi un "a" o uno "span" (in base al fatto che sia active o no)
         $element = ($index == $activeIndex) ? file_get_contents(PERCORSO_RELATIVO."template/menu/pulsante_attivo.html")
-            : file_get_contents("template/menu/pulsante.html");
+            : file_get_contents(PERCORSO_RELATIVO."template/menu/pulsante.html");
     }
 
     else {
         //L'elemento che devo creare è un "li" che contiene o no un link (in base al fatto che sia o no active)
-        $element = ($index == $activeIndex) ? file_get_contents("template/menu/voce_attiva.html")
-            : file_get_contents("template/menu/voce.html");
+        $element = ($index == $activeIndex) ? file_get_contents(PERCORSO_RELATIVO."template/menu/voce_attiva.html")
+            : file_get_contents(PERCORSO_RELATIVO."template/menu/voce.html");
     }
 
     $element = str_replace("[#NOME_ELEMENTO]",$menuElements[$index]["Nome"],$element);
@@ -114,6 +114,7 @@ function intestazione($activeIndex) {
 //    print_r($menuElements);
 
     $INTESTAZIONE = file_get_contents(PERCORSO_RELATIVO."template/intestazione.html");
+    $INTESTAZIONE = str_replace("[#PERCORSO_RELATIVO]", PERCORSO_RELATIVO, $INTESTAZIONE);
 
     $PULSANTI = "";
     $VOCI_MENU="";
@@ -168,6 +169,8 @@ function menuMobile($activeIndex)
 {
     global $menuElements;
     $MENU_MOBILE = file_get_contents(PERCORSO_RELATIVO."template/menu/menu_mobile.html");
+    $MENU_MOBILE = str_replace("[#PERCORSO_RELATIVO]", PERCORSO_RELATIVO, $MENU_MOBILE);
+
     $VOCI_MENU = "";
     for ($i = 0; $i < count($menuElements); $i++) {
         $VOCI_MENU.=creaElementoMenuMobile($i, $activeIndex);
@@ -184,6 +187,8 @@ function paginaErrore($messaggio="Si è verificato un errore. Riprova più tardi
 
     /*Richiamo pagina contatti*/
     $HTML = file_get_contents(PERCORSO_RELATIVO."template/errore.html");
+
+    $HTML = str_replace("[#PERCORSO_RELATIVO]", PERCORSO_RELATIVO, $HTML);
 
     $HTML = str_replace("[#MESAGGIO-ERRORE]", $messaggio, $HTML);
     $HTML = str_replace("[#HREF-LINK]", $href, $HTML);
@@ -202,6 +207,8 @@ function paginaSuccesso($messaggio,$href,$testoLink) {
 
     /*Richiamo pagina contatti*/
     $HTML = file_get_contents(PERCORSO_RELATIVO."template/successo.html");
+
+    $HTML = str_replace("[#PERCORSO_RELATIVO]", PERCORSO_RELATIVO, $HTML);
 
     $HTML = str_replace("[#MESAGGIO-SUCCESSO]", $messaggio, $HTML);
     $HTML = str_replace("[#HREF-LINK]", $href, $HTML);

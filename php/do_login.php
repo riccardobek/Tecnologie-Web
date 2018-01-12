@@ -25,4 +25,4 @@ if(!$utente) {
 $_SESSION["Utente"] = array();
 $_SESSION["Utente"] = $utente;
 
-($jsAbilitato) ? print("1") : paginaSuccesso("Login effettuato con successo","index.php","Prosegui la navigazione");
+($jsAbilitato) ? print("1") : paginaSuccesso("Login effettuato con successo","../index.php","Prosegui la navigazione");
