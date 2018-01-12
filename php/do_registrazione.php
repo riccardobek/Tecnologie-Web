@@ -3,8 +3,8 @@ define("PERCORSO_RELATIVO","../");
 
 require_once "database.php";
 require_once "funzioni/funzioni_sicurezza.php";
+require_once "funzioni/funzioni_pagina.php";
 require_once "funzioni/funzioni_json.php";
-
 
 $campiRichiesti = array("nome","cognome","username","password","password2");
 
@@ -22,25 +22,34 @@ $civico = filter_var($_POST["civico"],FILTER_SANITIZE_STRING);
 $citta = filter_var($_POST["citta"],FILTER_SANITIZE_STRING);
 $CAP = filter_var($_POST["CAP"],FILTER_SANITIZE_NUMBER_INT);
 
+$jsAbilitato = boolval(filter_var($_POST["JSAbilitato"],FILTER_SANITIZE_NUMBER_INT));
+
+define("LINK_PAGINA_ERRORE","../registrazione.php");
+define("TESTO_LINK_PAGINA_ERRORE", "Torna alla registrazione");
+
 foreach($campiRichiesti as $campo) {
     if(!(validaCampo($$campo))) {
-        erroreJSON("Campo richiesto non compilato");
+        $messaggio = "Campo richiesto non compilato";
+        errore($messaggio);
         return;
     }
 }
 
 if(($errore = esisteUtente($username,$email)) > 0) {
-    $errore === 1 ? erroreJSON("Username già in uso. Riprova.") : erroreJSON("Email già in uso. Riprova.");
+    $messaggio = $errore === 1 ? "Username già in uso. Riprova." : "Email già in uso. Riprova.";
+    errore($messaggio);
     return;
 }
 
 if($password != $password2) {
-    erroreJSON("Le due password non combaciano");
+    $messaggio = "Le due password non combaciano";
+    errore($messaggio);
     return;
 }
 
 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    erroreJSON("Email inserita non valida");
+    $messaggio = "Email inserita non valida";
+    errore($messaggio);
     return;
 }
 
@@ -62,10 +71,19 @@ if($insertStatement->execute(array(
 
 else {
     $db->rollBack();
-    erroreJSON("Errore nell'inserimento dell'utente.");
+    $messaggio = "Errore nell'inserimento dell'utente.";
+    errore($messaggio);
     return;
 }
-successoJSON("Utente inserito con successo");
+$messaggio = "Utente inserito con successo";
+$jsAbilitato ? successoJSON($messaggio) : paginaSuccesso($messaggio,"../login.php","Vai al login");
+
+
+function errore($messaggio) {
+    global $jsAbilitato;
+
+    $jsAbilitato ? erroreJSON($messaggio) : paginaErrore($messaggio,LINK_PAGINA_ERRORE,TESTO_LINK_PAGINA_ERRORE);
+}
 
 /**
  * Funzione che controlla se il parametro passato è settato e non vuoto
