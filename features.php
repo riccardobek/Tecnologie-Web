@@ -1,4 +1,6 @@
 <?php
+phpinfo();
+/*
 require_once "php/database.php";
 require_once "php/funzioni/funzioni_pagina.php";
 if(false)
