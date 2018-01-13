@@ -19,28 +19,20 @@
 [#INTESTAZIONE]
 
 <div id="content">
-    <div class="odd">
-        <div class="length-wrapper">
-            <div class="tab">
-                <button class="tablinks" data-target="prenotazioni"><b>Prenotazioni</b></button>
-                <button class="tablinks" data-target="account"><b>Account</b></button>
-            </div>
-
-
+    <div class="length-wrapper" id="intestazione-per-mobile">
+        <div class="tab">
+            <button class="tablinks" data-target="prenotazioni"><b>Prenotazioni</b></button>
+            <button class="tablinks" data-target="account"><b>Account</b></button>
+        </div>
+    </div>
+    <div class="length-wrapper" id="tab-content-mobile">
             <div id="prenotazioni" class="tabcontent">
-                <h2>Prenotazioni Attive</h2>
-                <table>
-                    <tr class="intestazione-tabella">
-                        <th>Nome attività</th>
-                        <th>Giorno prenotato</th>
-                        <th>Posti prenotati</th>
-                        <th>Pagamento</th>
-                    </tr>
-                    [#PRENOTAZIONI]
-                </table>
+                <h1>Prenotazioni Attive</h1>
+                    [#SCHEDE]
                 <!-- Forse da fare lo slideDown con js -->
+                <div class="clearfix"></div>
                 <h3>Storico Prenotazioni</h3>
-                <table>
+                <table id="storico">
                     <tr class="intestazione-tabella">
                         <th>Nome attività</th>
                         <th>Giorno prenotato</th>
@@ -53,8 +45,7 @@
 
             <div id="account" class="tabcontent">
                 <div class="form" id="container_form">
-                    <h2>Riepilogo dati account <span id="modifica">Modifica</span></h2>
-
+                    <h2>Riepilogo dati account <span id="modifica" class="btn-testo">Modifica</span></h2>
                     <form action="" method="POST">
                         <h3>Dati personali</h3>
                         <div class="field-container">
@@ -82,32 +73,32 @@
                             <input type="text"  size="4" id="CAP" name="CAP" value="[#CAP]">
                         </div>
                         <h3>Dati account</h3>
-                            <div class="field-container">
-                                <label for="username">Nome utente: </label>
-                                <input type="text" id="username" name="username" value="[#NOME]">
-                            </div>
-                            <div class="field-container">
-                                <label for="email">Email: </label>
-                                <input type="text" id="email" name="email" value="[#MAIL]">
-                            </div>
-                            <div class="field-container mostra-modifica">
-                                <label for="password">Password: </label>
-                                <input type="password" id="password" name="password" value="Password...">
-                            </div>
-                            <div class="field-container mostra-modifica">
-                                <label for="password2">Ripeti password: </label>
-                                <input type="password" id="password2" name="password2" value="Ripeti password..">
-                            </div>
-                        <div class="button-holder mostra-modifica">
+                        <div class="field-container">
+                            <label for="username">Nome utente: </label>
+                            <input type="text" id="username" name="username" value="[#NOME]">
+                        </div>
+                        <div class="field-container">
+                            <label for="email">Email: </label>
+                            <input type="text" id="email" name="email" value="[#MAIL]">
+                        </div>
+                        <div class="field-container mostra-modifica">
+                            <label for="password">Password: </label>
+                            <input type="password" id="password" name="password" value="Password...">
+                        </div>
+                        <div class="field-container mostra-modifica">
+                            <label for="password2">Ripeti password: </label>
+                            <input type="password" id="password2" name="password2" value="Ripeti password..">
+                        </div>
+                        <div class="button-holder mostra-modifica" >
                             <input type="submit" value="Modifica" name="modifica" class="btn btn-primary">
-                            <span class="btn" id="annulla">Annulla</span>
+                            <span class="btn" id="annulla" class="btn-testo">Annulla</span>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
 </div>
+
 
 
 [#MENU-MOBILE]

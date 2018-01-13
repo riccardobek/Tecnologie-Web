@@ -13,8 +13,8 @@ $(document).ready(function(){
 
 
     $(":text").attr('disabled','disabled');
+
     $(".mostra-modifica").hide();
-    $(".button-holder").hide();
     $("#modifica").on("click",function () {
         $(".mostra-modifica").slideDown(200);
         $(":text").not('#username').removeAttr('disabled');

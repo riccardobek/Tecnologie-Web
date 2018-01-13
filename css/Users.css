@@ -47,3 +47,27 @@
     text-decoration: underline;
     cursor:pointer;
 }
+
+.schede{
+    background-color: #F3F3F3;
+    color: #1C1C1C;
+    width: 45%;
+
+    float:left;
+    margin-right: 1.1em;
+    margin-top: 1em;
+}
+.contenuto-schede{
+    padding:1em;
+}
+.schede h2{
+    font-weight: 700;
+}
+
+.schede ul{
+    list-style-type:none;
+}
+.schede li{
+    padding-top:0.8em;
+    font-weight: bold;
+}
