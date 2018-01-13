@@ -9,6 +9,7 @@ $(document).ready(function(){
        $('#'+tabTarget).show();
     });
 
+    stileCellaPagamento();
     $datiForm = salvaDatiInizialiForm();
 
 
@@ -44,4 +45,13 @@ function ripristinaDatiInizialiForm(oggettoDatiForm){
     $(inputs).each(function () {
         $(this).val(oggettoDatiForm[$(this).attr("id")]);
     });
+}
+
+function stileCellaPagamento(){
+    $(".pagamento").each(function () {
+        if( $(this).text() === "Non pagato")
+            $(this).css("color","#B80000");
+        else
+            $(this).css("color","#34ba49");
+  });
 }

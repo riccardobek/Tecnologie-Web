@@ -66,6 +66,9 @@
 .contenuto-schede {
     padding:1em;
 }
+h1,h2, h3{
+    font-weight: 400;
+}
 .schede h2 {
     font-weight: 700;
 }
@@ -78,11 +81,15 @@
     font-weight: bold;
 }
 
+.pagamento {
+    font-weight: bold;
+}
+
 .btn-cancella {
 
     margin: auto;
     margin-top: 2em;
-    
+
     display: block;
     font-weight: 600;
     color:#B80000;
@@ -92,4 +99,8 @@
 
 .btn-cancella:hover {
     border-bottom-color:#B80000;
+}
+
+#storico {
+    margin:auto;
 }
