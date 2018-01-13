@@ -18,16 +18,33 @@ $(document).ready(function(){
         var data = validaData($('#'+target).find(".giorno").text());
         var timeDiff = data - (new Date());
         var giorniDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-        if(giorniDiff<2){
+        if(giorniDiff<2) {
             alert("NON puoi cancellare");
+        }
+        else {
+           $.post("php/delete_prenotazione.php",{
+               idPrenotazione: target
+           },function (risposta) {
+               risposta = JSON.parse(risposta);
+               alert(risposta.messaggio);
+               if(risposta.stato == 1) {
+                   //successo
+                   var pari = $('#'+target).parent().nextAll(".pari");
+                   var dispari = $('#'+target).parent().nextAll(".dispari");
 
+                   $('#'+target).parent().slideUp('Slow', function(){
+                       $(this).remove();
+                   });
+
+                   dispari.removeClass("dispari").addClass("pari");
+                   pari.removeClass("pari").addClass("dispari");
+               }
+               else {
+
+               }
+           });
         }
-        else{
-            alert("Puoi cancellare");
-        }
-        /*$.ajax({
-            url:"../php/delete_prenotazione.php";
-        })*/
+
 
     });
 
@@ -76,23 +93,3 @@ function stileCellaPagamento(){
   });
 }
 
-function validaData(d) {
-    var match = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(d);
-    if (!match) {
-        // La data non è nel formato corretto
-        return false;
-    }
-    match = d.split("/");
-
-    var giorno   = parseInt(match[0], 10);
-    var mese = parseInt(match[1], 10) - 1; // i mesi sono nell'intervallo 0-11, non 1-12
-    var anno  = parseInt(match[2], 10);
-    var date  = new Date(anno, mese, giorno);
-
-    /* La funzione Date accetta qualsiasi parametro come anno, mese, giorno e lo converte
-    * in una data valida. Quindi basta confrontare i valori del giorno, mese, anno in input
-    * con quelli generati dall'oggetto date */
-    if(date.getDate() == giorno && date.getMonth() == mese && date.getFullYear() == anno)
-        return date;
-    return false;
-}
