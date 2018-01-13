@@ -2,15 +2,11 @@
 define("PERCORSO_RELATIVO","");
 require_once "php/database.php";
 require_once "php/funzioni/funzioni_pagina.php";
-require_once "php/funzioni/funzioni_sicurezza.php";
 require_once "php/funzioni/funzioni_attivita.php";
 
-$activeIndex = INF;
+loginRichiesto();
 
-if(!isUtenteLoggato()) {
-    paginaErrore("Per poter visualizzare questa pagina devi prima effettuare il login","login.php","Vai al login");
-    return;
-}
+$activeIndex = INF;
 
 if(!isset($_POST["attivita"]) || !isset($_POST["posti"]) || !isset($_POST["data"])) {
     paginaErrore("Parametri non validi", "attivita.php","Torna alla lista di attività");
