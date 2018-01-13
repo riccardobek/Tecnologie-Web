@@ -9,9 +9,30 @@ $(document).ready(function(){
        $('#'+tabTarget).show();
     });
 
-    stileCellaPagamento();
-    $datiForm = salvaDatiInizialiForm();
 
+    //Scheda Prenotazioni
+    stileCellaPagamento();
+    //richiesta AJAX per la cancellazione di una prenotazione
+    $(".btn-cancella").on("click", function () {
+        var target = $(this).attr("data-target");
+        var data = validaData($('#'+target).find(".giorno").text());
+        var timeDiff = data - (new Date());
+        var giorniDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        if(giorniDiff<2){
+            alert("NON puoi cancellare");
+
+        }
+        else{
+            alert("Puoi cancellare");
+        }
+        /*$.ajax({
+            url:"../php/delete_prenotazione.php";
+        })*/
+
+    });
+
+    //Scheda Account
+    $datiForm = salvaDatiForm();
 
     $(":text").attr('disabled','disabled');
 
@@ -31,7 +52,7 @@ $(document).ready(function(){
 
 });
 
-function salvaDatiInizialiForm(){
+function salvaDatiForm(){
     var inputs = $('input').not(':input[type=submit]');
      var datiForm = {};
     $(inputs).each(function () {
@@ -54,4 +75,25 @@ function stileCellaPagamento(){
         else
             $(this).css("color","#34ba49");
   });
+}
+
+function validaData(d) {
+    var match = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(d);
+    if (!match) {
+        // La data non è nel formato corretto
+        return false;
+    }
+    match = d.split("/");
+
+    var giorno   = parseInt(match[0], 10);
+    var mese = parseInt(match[1], 10) - 1; // i mesi sono nell'intervallo 0-11, non 1-12
+    var anno  = parseInt(match[2], 10);
+    var date  = new Date(anno, mese, giorno);
+
+    /* La funzione Date accetta qualsiasi parametro come anno, mese, giorno e lo converte
+    * in una data valida. Quindi basta confrontare i valori del giorno, mese, anno in input
+    * con quelli generati dall'oggetto date */
+    if(date.getDate() == giorno && date.getMonth() == mese && date.getFullYear() == anno)
+        return date;
+    return false;
 }

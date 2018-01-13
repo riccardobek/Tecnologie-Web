@@ -40,7 +40,7 @@ echo $HTML;
 function prenotazioniAttive() {
     global $db;
 
-    $infoPrenotazioni = $db->prepare("SELECT  Attivita.Nome AS Nome, Prenotazioni.Giorno AS Giorno, Prenotazioni.PostiPrenotati AS Posti, Pagamento FROM Prenotazioni, Attivita WHERE Prenotazioni.IDUtente = ? AND Prenotazioni.IDAttivita = Attivita.Codice AND Prenotazioni.Stato = 'Sospesa' AND Prenotazioni.Giorno >= (SELECT CURDATE() )ORDER BY Giorno ");
+    $infoPrenotazioni = $db->prepare("SELECT  Prenotazioni.Codice AS Codice, Attivita.Nome AS Nome, Prenotazioni.Giorno AS Giorno, Prenotazioni.PostiPrenotati AS Posti, Pagamento FROM Prenotazioni, Attivita WHERE Prenotazioni.IDUtente = ? AND Prenotazioni.IDAttivita = Attivita.Codice AND Prenotazioni.Stato = 'Sospesa' AND Prenotazioni.Giorno >= (SELECT CURDATE() )ORDER BY Giorno ");
     $infoPrenotazioni->execute(array($_SESSION["Utente"]["ID"]));
     $prenotazioni = $infoPrenotazioni->fetchAll();
 
@@ -69,6 +69,7 @@ function stampaSchedePrenotazioniAttive(){
         $output = str_replace("[#POSTI]", $prenotazione["Posti"], $output );
         $output = str_replace("[#PAGAMENTO]", $prenotazione["Pagamento"], $output );
         $output = str_replace("[#CLASSE-SCHEDA]", $class[intval($i)], $output );
+        $output = str_replace("[#ID-PRENOTAZIONE]", $prenotazione["Codice"], $output );
         $i = !$i;
     }
     return $output;
