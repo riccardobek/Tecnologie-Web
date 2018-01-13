@@ -171,8 +171,6 @@ div#menu-mobile ul > li.active{
     display: block;
     margin: 1em 0em;
 }
-
-
 #intestazione-per-mobile{
     width: 100%;
     padding: 0;
@@ -181,15 +179,15 @@ div#menu-mobile ul > li.active{
     padding-left: 0.5em;
     padding-right: 0.5em;
 }
-.schede{
-    width: 100%;
-    margin:0;
-    margin-top:1em;
-    padding:0;
+.scheda-wrapper{
+    clear:both;
+    width:100%;
 }
-.contenuto-schede{
 
+.scheda-wrapper.pari .schede{
+    margin-right: 0;
 }
+
 .tabcontent {
     border: none;
     padding: 0em;

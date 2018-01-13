@@ -57,7 +57,8 @@ function stampaSchedePrenotazioniAttive(){
     $listaPrenotazioniAttive = prenotazioniAttive();
 
     $output = "";
-
+    $i = false;
+    $class = array('pari','dispari');
     foreach ($listaPrenotazioniAttive as $prenotazione){
         $data = convertiDataToOutput($prenotazione["Giorno"]);
         $output .= file_get_contents("template/utente/schede_prenotazioni.html");
@@ -65,6 +66,8 @@ function stampaSchedePrenotazioniAttive(){
         $output = str_replace("[#GIORNO]", $data, $output );
         $output = str_replace("[#POSTI]", $prenotazione["Posti"], $output );
         $output = str_replace("[#PAGAMENTO]", $prenotazione["Pagamento"], $output );
+        $output = str_replace("[#CLASSE-SCHEDA]", $class[intval($i)], $output );
+        $i = !$i;
     }
     return $output;
 }

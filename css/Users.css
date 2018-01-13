@@ -17,7 +17,7 @@
     transition: 0.3s;
     font-size: 17px;
 }
-.tablinks{
+.tablinks {
     border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 
@@ -39,7 +39,7 @@
     border-top: none;
 }
 
-#modifica{
+#modifica {
     font-size: 0.6em;
     font-weight: bold;
     padding-left:1.5em;
@@ -47,27 +47,49 @@
     text-decoration: underline;
     cursor:pointer;
 }
+.scheda-wrapper {
+    float:left;
+    width: 50%;
+}
 
-.schede{
+.scheda-wrapper.pari .schede {
+    margin-right: 1em;
+
+}
+.schede {
     background-color: #F3F3F3;
     color: #1C1C1C;
-    width: 45%;
-
-    float:left;
-    margin-right: 1.1em;
-    margin-top: 1em;
+    /*width: 45%;*/
+    margin-top: 1.1em;
+    padding: 1em;
 }
-.contenuto-schede{
+.contenuto-schede {
     padding:1em;
 }
-.schede h2{
+.schede h2 {
     font-weight: 700;
 }
 
-.schede ul{
+.schede ul {
     list-style-type:none;
 }
-.schede li{
+.schede li {
     padding-top:0.8em;
     font-weight: bold;
+}
+
+.btn-cancella {
+
+    margin: auto;
+    margin-top: 2em;
+    
+    display: block;
+    font-weight: 600;
+    color:#B80000;
+
+    border-bottom: 2px solid transparent;
+}
+
+.btn-cancella:hover {
+    border-bottom-color:#B80000;
 }
