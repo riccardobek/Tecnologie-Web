@@ -7,6 +7,8 @@ define("PERCORSO_RELATIVO","");
 require_once "php/database.php";
 require_once "php/funzioni/funzioni_pagina.php";
 
+loginRichiesto();
+
 $activeIndex = 0;
 
 //Intestazione: indica la pagina attualmente attiva  contattaci

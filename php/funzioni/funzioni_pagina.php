@@ -222,6 +222,14 @@ function paginaSuccesso($messaggio,$href,$testoLink) {
     echo $HTML;
 }
 
+function loginRichiesto() {
+    if(!isUtenteLoggato()) {
+        paginaErrore("Per visualizzare questa pagina effettua prima il login", PERCORSO_RELATIVO."login.php","Vai al login");
+        die();
+    }
+}
+
 function convertiDataToOutput($dataDaConvertire){
     return (new DateTime($dataDaConvertire))->format('d/m/Y');
 }
+
