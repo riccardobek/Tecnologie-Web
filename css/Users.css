@@ -104,3 +104,12 @@ h1,h2, h3{
 #storico {
     margin:auto;
 }
+
+.btn-reimposta{
+    text-decoration: underline;
+    cursor:pointer;
+}
+
+.titolo-macro{
+    font-weight: 600;
+}
