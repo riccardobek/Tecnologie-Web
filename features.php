@@ -1,10 +1,8 @@
 <?php
-phpinfo();
-/*
 require_once "php/database.php";
 require_once "php/funzioni/funzioni_pagina.php";
-if(false)
-    echo "O";
+if(true)
+    echo "JS";
 else
     paginaSuccesso("Login effettuato con successo","index.php","Prosegui la navigazione");
 die();
