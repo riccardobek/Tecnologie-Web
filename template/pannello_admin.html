@@ -23,16 +23,25 @@
                         <button class="tablinks" data-target="res-manager"><b>Gestisci Prenotazioni</b></button>
                     </div>
                     <div id="usr-manager" class="tabcontent">
-                        <h3>Prenotazioni</h3>
-                        [#PRENOTAZIONI]
+                        <h3>Gestione utenti</h3>
+                        <table class="tabella">
+                            <tr class="intestazione-tabella">
+                                <th>Nome</th>
+                                <th>Cognome</th>
+                                <th>Indirizzo</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                            </tr>
+                        [#UTENTI]
+                        </table>
                     </div>
                     <div id="act-manager" class="tabcontent">
-                        <h3>Gestisci Attività</h3>
-                        [#ACCOUNT]
+                        <h3>Gestione attività</h3>
+                        [#ATTIVITA]
                     </div>
                     <div id="res-manager" class="tabcontent">
-                        <h3>Gestisci Prenotazioni</h3>
-                        [#ACCOUNT]
+                        <h3>Gestione prenotazioni</h3>
+                        [#PRENOTAZIONI]
                     </div>
                 </div>
             </div>

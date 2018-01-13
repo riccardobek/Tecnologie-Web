@@ -225,13 +225,16 @@ div.errore-container > img {
     max-width: 40%;
 }
 
-table{
+
+.tabella{
     color:white;
     border-collapse: collapse;
 }
+
 th,td {
     padding: 0.5em;
 }
+
 table th{
     font-weight: bold;
 
@@ -240,6 +243,5 @@ table th{
 .intestazione-tabella {
     color:#1C1C1C;
     background-color: #F3F3F3;
-
-
 }
+
