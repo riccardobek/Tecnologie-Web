@@ -227,8 +227,11 @@ div.errore-container > img {
 
 
 .tabella{
-    color:white;
+    color: white;
     border-collapse: collapse;
+    border: solid 1px #F3F3F3;
+    margin: auto;
+    margin-bottom: 20px;
 }
 
 th,td {
@@ -237,7 +240,6 @@ th,td {
 
 table th{
     font-weight: bold;
-
 }
 
 .intestazione-tabella {
