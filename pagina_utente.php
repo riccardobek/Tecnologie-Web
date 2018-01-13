@@ -95,9 +95,7 @@ RIGA;
 }
 
 
-function stampaDatiAccout{
 
-}
 
 
 ?>
