@@ -1,4 +1,6 @@
 <?php
+define("PERCORSO_RELATIVO","");
+
 require_once "php/funzioni/funzioni_pagina.php";
 $activeIndex=4;
 
