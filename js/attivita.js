@@ -15,8 +15,6 @@ $(function () {
             pulisciErrore(inputData.parent()[0].parentNode);
             pulisciErrore(inputPosti[0].parentNode);
 
-            console.log("Data da validare: "+inputData.val());
-
             var data = validaData(inputData.val());
             if(!data) {
                 notificaErrore(inputData.parent()[0].parentNode, "Inserire una data nel formato corretto.");
@@ -32,7 +30,6 @@ $(function () {
                 return;
             }
 
-            console.log("Invio i seguenti dati:");
             formContainer.find("form").submit();
 
             /*
