@@ -19,7 +19,7 @@ if(!$queryControllo->fetch()) {
 
 $deleteStatement = $db->prepare("DELETE FROM Prenotazioni WHERE IDAttivita = ?");
 if($deleteStatement->execute(array($idattivita))){
-    $db->commit();
+    //$db->commit();
     successoJSON("Prenotazione eliminata con successo.");
     return;
 }

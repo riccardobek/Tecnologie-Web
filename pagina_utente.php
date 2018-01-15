@@ -28,9 +28,16 @@ $HTML = str_replace("[#INTESTAZIONE]",$HTML_INTESTAZIONE, $HTML);
 //Scheda prenotazioni
 $HTML = str_replace("[#SCHEDE]",stampaSchedePrenotazioniAttive(), $HTML);
 
-$HTML = str_replace("[#STORICO-PRENOTAZIONI]",storicoPrenotazioni(), $HTML);
-
 //Scheda Account
+$HTML = str_replace("[#STORICO-PRENOTAZIONI]",storicoPrenotazioni(), $HTML);
+$HTML = str_replace("[#NOME]",$_SESSION["Utente"]["Nome"], $HTML);
+$HTML = str_replace("[#COGNOME]",$_SESSION["Utente"]["Cognome"], $HTML);
+$HTML = str_replace("[#INDIRIZZO]",$_SESSION["Utente"]["Indirizzo"], $HTML);
+$HTML = str_replace("[#CIVICO]",$_SESSION["Utente"]["Civico"], $HTML);
+$HTML = str_replace("[#CITTA]",$_SESSION["Utente"]["Citta"], $HTML);
+$HTML = str_replace("[#CAP]",$_SESSION["Utente"]["CAP"], $HTML);
+$HTML = str_replace("[#USERNAME]",$_SESSION["Utente"]["Username"], $HTML);
+$HTML = str_replace("[#EMAIL]",$_SESSION["Utente"]["Email"], $HTML);
 
 //Footer
 $HTML = str_replace("[#MENU-MOBILE]",menuMobile($activeIndex),$HTML);

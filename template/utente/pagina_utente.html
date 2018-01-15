@@ -12,6 +12,8 @@
     <link rel="stylesheet" type="text/css" href="css/users.css">
     <link rel="stylesheet" type="text/css" href="css/login.css">
     <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="screen and (max-width:768px), only screen and (max-device-width:768px)"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+
 
 </head>
 <body>
@@ -52,7 +54,7 @@
             </div>
 
             <div id="account" class="tabcontent">
-                <div class="form" id="container_form">
+                <div action="php/modifica_dati_utente.php" class="form" id="container_form">
                     <h1>Riepilogo dati account <span id="modifica" class="btn-testo">Modifica</span></h1>
                     <form action="" method="POST">
                         <h3>Dati personali</h3>
@@ -83,11 +85,11 @@
                         <h3>Dati account</h3>
                         <div class="field-container">
                             <label for="username">Nome utente: </label>
-                            <input type="text" id="username" name="username" value="[#NOME]">
+                            <input type="text" id="username" name="username" value="[#USERNAME]">
                         </div>
                         <div class="field-container">
                             <label for="email">Email: </label>
-                            <input type="text" id="email" name="email" value="[#MAIL]">
+                            <input type="text" id="email" name="email" value="[#EMAIL]">
                         </div>
                         <div class="field-container mostra-modifica">
                             <label for="password">Password: </label>
@@ -111,6 +113,8 @@
 
 [#MENU-MOBILE]
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
 <script type="text/javascript" src="js/menuUtente.js"></script>
+
 </body>
 </html>
