@@ -30,7 +30,7 @@ $attivita = getAttivitaByCodice($codiceAttivita);
 $totale = doubleval($attivita["Prezzo"]) * intval($posti);
 
 /*Richiamo pagina contatti*/
-$HTML = file_get_contents("template/conferma_prenotazione.html");
+$HTML = file_get_contents("template/attivita/conferma_prenotazione.html");
 
 $HTML = str_replace("[#NOME-ATTIVITA]",$attivita["Nome"], $HTML);
 $HTML = str_replace("[#DATA-PRENOTAZIONE]",$data, $HTML);

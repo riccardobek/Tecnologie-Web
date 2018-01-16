@@ -9,7 +9,7 @@ $(document).ready(function() {
     $("form").on("submit",function(event){
         $(".alert").hide();
         event.preventDefault();
-        if(validaForm()) {
+        if(validaFormUtente()) {
             $.post($("form").attr("action"),$("form").serialize(),function(r) {
                 rispostaJSON = JSON.parse(r);
                 if(rispostaJSON.stato === 1)
@@ -23,7 +23,7 @@ $(document).ready(function() {
 });
 
 
-function validaForm() {
+function validaFormUtente() {
     pulisciErrori();
 
     var formValido = true;

@@ -92,14 +92,14 @@ function creaElementoMenu($index, $activeIndex) {
 
     if($menuElements[$index]["Pulsante"]) {
         //L'elemento che devo creare è un pulsante, quindi un "a" o uno "span" (in base al fatto che sia active o no)
-        $element = ($index == $activeIndex) ? file_get_contents(PERCORSO_RELATIVO."template/menu/pulsante_attivo.html")
-            : file_get_contents(PERCORSO_RELATIVO."template/menu/pulsante.html");
+        $element = ($index == $activeIndex) ? file_get_contents(PERCORSO_RELATIVO."template/pagina/menu/pulsante_attivo.html")
+            : file_get_contents(PERCORSO_RELATIVO."template/pagina/menu/pulsante.html");
     }
 
     else {
         //L'elemento che devo creare è un "li" che contiene o no un link (in base al fatto che sia o no active)
-        $element = ($index == $activeIndex) ? file_get_contents(PERCORSO_RELATIVO."template/menu/voce_attiva.html")
-            : file_get_contents(PERCORSO_RELATIVO."template/menu/voce.html");
+        $element = ($index == $activeIndex) ? file_get_contents(PERCORSO_RELATIVO."template/pagina/menu/voce_attiva.html")
+            : file_get_contents(PERCORSO_RELATIVO."template/pagina/menu/voce.html");
     }
 
     $element = str_replace("[#NOME_ELEMENTO]",$menuElements[$index]["Nome"],$element);
@@ -113,7 +113,7 @@ function intestazione($activeIndex) {
     global $menuElements;
 //    print_r($menuElements);
 
-    $INTESTAZIONE = file_get_contents(PERCORSO_RELATIVO."template/intestazione.html");
+    $INTESTAZIONE = file_get_contents(PERCORSO_RELATIVO."template/pagina/intestazione.html");
     $INTESTAZIONE = str_replace("[#PERCORSO_RELATIVO]", PERCORSO_RELATIVO, $INTESTAZIONE);
 
     $PULSANTI = "";
@@ -168,7 +168,7 @@ ELEMENTO;
 function menuMobile($activeIndex)
 {
     global $menuElements;
-    $MENU_MOBILE = file_get_contents(PERCORSO_RELATIVO."template/menu/menu_mobile.html");
+    $MENU_MOBILE = file_get_contents(PERCORSO_RELATIVO."template/pagina/menu_mobile.html");
     $MENU_MOBILE = str_replace("[#PERCORSO_RELATIVO]", PERCORSO_RELATIVO, $MENU_MOBILE);
 
     $VOCI_MENU = "";
@@ -186,7 +186,7 @@ function paginaErrore($messaggio="Si è verificato un errore. Riprova più tardi
     $HTML_INTESTAZIONE = intestazione(INF);
 
     /*Richiamo pagina contatti*/
-    $HTML = file_get_contents(PERCORSO_RELATIVO."template/errore.html");
+    $HTML = file_get_contents(PERCORSO_RELATIVO."template/pagina/errore.html");
 
     $HTML = str_replace("[#PERCORSO_RELATIVO]", PERCORSO_RELATIVO, $HTML);
 
@@ -206,7 +206,7 @@ function paginaSuccesso($messaggio,$href,$testoLink) {
     $HTML_INTESTAZIONE = intestazione(INF);
 
     /*Richiamo pagina contatti*/
-    $HTML = file_get_contents(PERCORSO_RELATIVO."template/successo.html");
+    $HTML = file_get_contents(PERCORSO_RELATIVO."template/pagina/successo.html");
 
     $HTML = str_replace("[#PERCORSO_RELATIVO]", PERCORSO_RELATIVO, $HTML);
 

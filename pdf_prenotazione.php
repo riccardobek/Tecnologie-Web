@@ -12,7 +12,7 @@ $codicePrenotazione = $_GET["codice"];
 
 $prenotazione = getDettagliPrenotazione($codicePrenotazione);
 
-$HTML = file_get_contents("template/conferma_prenotazione_pdf.html");
+$HTML = file_get_contents("template/attivita/conferma_prenotazione_pdf.html");
 $HTML = str_replace("[#NOME]",$prenotazione["Nome"]." ".$prenotazione["Cognome"],$HTML);
 $HTML = str_replace("[#DATA]",(new DateTime($prenotazione["Data"]))->format("d/m/Y"),$HTML);
 $HTML = str_replace("[#ATTIVITA]",$prenotazione["NomeAttivita"],$HTML);
