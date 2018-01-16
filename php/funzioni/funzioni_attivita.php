@@ -7,7 +7,6 @@ function getMacroattivita() {
     $listaMacro = $query->fetchAll();
     for($i=0; $i<count($listaMacro);$i++) {
         $listaMacro[$i]["Attivita"] = getAttivita($listaMacro[$i]["Codice"]);
-        //$listaMacro[$i]["Attivita"]["Descrizione"] =
     }
 
     return $listaMacro;
