@@ -10,6 +10,12 @@ $(document).ready(function(){
     });
 
 
+
+    $(window).on("resize",function() {
+
+    });
+
+
     //Scheda Prenotazioni
     stileCellaPagamento();
     //richiesta AJAX per la cancellazione di una prenotazione
@@ -23,7 +29,7 @@ $(document).ready(function(){
         }
         else {
             $.confirm({
-                boxWidth: '50%',
+                boxWidth: calcolaDimensioneDialog(),
                 useBootstrap: false,
                 type: 'blue',
                 title: 'Conferma',
@@ -192,4 +198,10 @@ function pulisciErrore(targetElement) {
             }
         }
     }
+}
+
+
+function calcolaDimensioneDialog() {
+    var larghezzaSchermo = $( window ).width();
+    return (larghezzaSchermo <= 768) ? "80%" : "20em";
 }
