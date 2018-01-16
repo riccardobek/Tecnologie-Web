@@ -7,6 +7,13 @@ $("document").ready(function() {
     $("body").on("touchstart", function(){ /* ontouchstart fixa il comportamento degli eventi touch su Safari per iOS */
 
     });
+
+    $("#content > img.banner").on("load",function(){
+        $(this).css("visibility","visible");
+        $(this).fadeIn(3000);
+    }).each(function() {
+        if(this.complete) $(this).load();
+    });
 });
 
 

@@ -9,6 +9,8 @@
 }
 #content img.banner {
     width: 100%;
+    display: none;
+    visibility: hidden;
 }
 
 div.even , div.odd{
