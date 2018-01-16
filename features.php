@@ -1,6 +1,10 @@
 <?php
 require_once "php/database.php";
 require_once "php/funzioni/funzioni_pagina.php";
+
+phpinfo();
+die();
+
 if(true)
     echo "JS";
 else

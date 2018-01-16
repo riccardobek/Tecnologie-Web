@@ -1,5 +1,6 @@
 <?php
 define("PERCORSO_RELATIVO","");
+ini_set("default_charset","UTF-8");
 
 require_once "php/database.php";
 require_once "php/funzioni/funzioni_pagina.php";
