@@ -19,7 +19,7 @@ $HTML_INTESTAZIONE = intestazione($activeIndex);
 
 
 //Richiamo pagina contatti
-$HTML = file_get_contents("template/utente/pagina_utente.html");
+$HTML = file_get_contents("template/utente/pannello_utente.html");
 
 //Rimpiazza il segnaposto con il menù
 $HTML = str_replace("[#INTESTAZIONE]",$HTML_INTESTAZIONE, $HTML);

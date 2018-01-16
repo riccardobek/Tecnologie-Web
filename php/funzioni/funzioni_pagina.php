@@ -52,7 +52,7 @@ $menuElements = array(
     ),
     array(
         "Nome" => "Pannello utente",
-        "URL" => "pagina_utente.php",
+        "URL" => "pannello_utente.php",
         "Icona"=> PERCORSO_RELATIVO."images/icone/icona_logout.png",
         "Pulsante"=>true,
         "LoginDipendente"=>true,
