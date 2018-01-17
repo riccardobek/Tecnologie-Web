@@ -109,20 +109,35 @@ RIGA;
 
 
 
+
+
+
+
+//controlla il voto e in cas crea il pulsante per la valutazione
 function controlloVoto($cella,$stato){
 
     if($cella== NULL&&$stato=="Confermata"){
-        return "VALUTA";
+
+      return <<<RIGA
+<a class="btn btn-primary">Valuta</a>
+RIGA;
+        
+    
+    
     }
     else {
         if($cella== NULL&&($stato=="Cancellata"||$stato="Sospesa")){
 
-            return "non puoi valutare";
+            return "- -";
         }
 
         return $cella;
     }
 }
+
+
+
+
 
 
 
