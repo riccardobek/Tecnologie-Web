@@ -4,7 +4,7 @@ $(document).ready(function(){
     $(".tablinks").on("click",function (e) {
        var tabTarget = $(this).attr("data-target");
        $(".tablinks").removeClass("active");
-        $(this).addClass("active");
+       $(this).addClass("active");
        $(".tabcontent").hide();
        $('#'+tabTarget).show();
     });
@@ -18,7 +18,13 @@ $(document).ready(function(){
         var timeDiff = data - (new Date());
         var giorniDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
         if(giorniDiff<2) {
-            alert("NON puoi cancellare");
+            $.alert ({
+                boxWidth: calcolaDimensioneDialog(),
+                useBootstrap: false,
+                type: 'red',
+                title: 'Errore',
+                content: "Non puoi cancellare la prenotazione con 2 giorni di anticipo."
+            });
         }
         else {
             $.confirm({
@@ -35,7 +41,6 @@ $(document).ready(function(){
                                 idPrenotazione: target
                             },function (risposta) {
                                 risposta = JSON.parse(risposta);
-                                alert(risposta.messaggio);
                                 if(risposta.stato == 1) {
                                     //successo
                                     var pari = $('#'+target).parent().nextAll(".pari");
@@ -47,6 +52,15 @@ $(document).ready(function(){
 
                                     dispari.removeClass("dispari").addClass("pari");
                                     pari.removeClass("pari").addClass("dispari");
+                                }
+                                else{
+                                    $.alert ({
+                                        boxWidth: calcolaDimensioneDialog(),
+                                        useBootstrap: false,
+                                        type: 'red',
+                                        title: 'Errore',
+                                        content: risposta.messaggio
+                                    });
                                 }
                             });
                         }

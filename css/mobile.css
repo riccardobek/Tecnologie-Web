@@ -192,3 +192,6 @@ div#menu-mobile ul > li.active{
     border: none;
     padding: 0em;
 }
+.overflow-tabella{
+    overflow-x: auto;
+}
