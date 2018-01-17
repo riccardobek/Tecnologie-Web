@@ -6,6 +6,8 @@ require_once "php/funzioni/funzioni_pagina.php";
 require_once  "php/funzioni/funzioni_attivita.php";
 $activeIndex = INF;
 
+loginRichiesto();
+
 //Intestazione: indica la pagina attualmente attiva
 $HTML_INTESTAZIONE = intestazione($activeIndex);
 
@@ -45,12 +47,8 @@ SCRIVI;
     return $riga;
 }
 
-function schedeAttivita($macroattivita){
-    global $db;
-    $listaAttivita = $db->prepare("SELECT Attivita.Nome as Nome, Attivita.Descrizione as Descrizione, Attivita.Prezzo as Prezzo FROM Attivita WHERE Attivita.macro=?");
-    $listaAttivita->execute(array($macroattivita));
-
-    $risultato = $listaAttivita->fetchAll();
+function schedeAttivita($macroattivita) {
+    $risultato = getAttivita($macroattivita);
 
     $output = "";
     $i = false;
@@ -67,14 +65,16 @@ function schedeAttivita($macroattivita){
 }
 
 function stampaSchedeAttivita(){
-    global $db;
     $elencoMacro = getMacroattivita();
     $output="";
 
     foreach($elencoMacro as $attivita){
         $listaSchede = schedeAttivita($attivita["Codice"]);
+        //Creare template per contenere macroattività che ha pulsanti titolo ecc.
         $output .= <<<SCRIVI
-<h2 class="titolo-macro">{$attivita["Nome"]} </h2><div>{$listaSchede}</div><div class="clearfix"></div>
+        <!-- &nbsp; = spazio 
+             &x270E = matita -->
+<h2 class="titolo-macro">{$attivita["Nome"]}&nbsp; &#x270E;</h2><div>{$listaSchede}</div><div class="clearfix"></div>
 SCRIVI;
     }
     return $output;
