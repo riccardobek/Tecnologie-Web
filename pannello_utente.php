@@ -44,6 +44,7 @@ $HTML = str_replace("[#MENU-MOBILE]",menuMobile($activeIndex),$HTML);
 echo $HTML;
 
 
+
 function prenotazioniAttive() {
     global $db;
 
@@ -87,22 +88,41 @@ function stampaSchedePrenotazioniAttive(){
 function storicoPrenotazioni() {
     global $db;
 
-    $infoPrenotazioni = $db->prepare("SELECT  Attivita.Nome AS Nome, Prenotazioni.Giorno AS Giorno, Prenotazioni.PostiPrenotati AS Posti, Prenotazioni.Stato AS Stato  FROM Prenotazioni, Attivita WHERE Prenotazioni.IDUtente = ? AND Prenotazioni.IDAttivita = Attivita.Codice AND (Prenotazioni.Stato='Confermata' OR Prenotazioni.Stato='Cancellata' OR (Prenotazioni.Stato='Sospesa' AND Prenotazioni.Giorno < (SELECT CURDATE()) ) ) ");
+    $infoPrenotazioni = $db->prepare("SELECT Attivita.Nome AS Nome, Prenotazioni.Giorno AS Giorno, Prenotazioni.PostiPrenotati AS Posti, Prenotazioni.Stato AS Stato, Valutazioni.Voto as Voto 
+FROM  Attivita, Prenotazioni LEFT JOIN Valutazioni ON Valutazioni.IDPrenotazione=Prenotazioni.Codice AND Prenotazioni.IDUtente=Valutazioni.IDUtente
+WHERE Prenotazioni.IDUtente = ? AND Prenotazioni.IDAttivita = Attivita.Codice AND (Prenotazioni.Stato='Confermata' OR Prenotazioni.Stato='Cancellata' OR (Prenotazioni.Stato='Sospesa' AND Prenotazioni.Giorno < (SELECT CURDATE()) ) ) ");
     $infoPrenotazioni->execute(array($_SESSION["Utente"]["ID"]));
     $prenotazioni = $infoPrenotazioni->fetchAll();
 
     $riga2="";
 
     foreach($prenotazioni as $prenotazione) {
+        $voto=controlloVoto($prenotazione["Voto"],$prenotazione["Stato"]);
         $data = convertiDataToOutput($prenotazione["Giorno"]);
         $riga2 .= <<<RIGA
-<tr><td>{$prenotazione["Nome"]}</td><td>{$data}</td><td>{$prenotazione["Posti"]}</td><td>{$prenotazione["Stato"]}</td></tr>
+<tr><td>{$prenotazione["Nome"]}</td><td>{$data}</td><td>{$prenotazione["Posti"]}</td><td>{$prenotazione["Stato"]}</td><td>$voto</td></tr>
 RIGA;
     }
     return $riga2;
 }
 
 
+
+
+function controlloVoto($cella,$stato){
+
+    if($cella== NULL&&$stato=="Confermata"){
+        return "VALUTA";
+    }
+    else {
+        if($cella== NULL&&($stato=="Cancellata"||$stato="Sospesa")){
+
+            return "non puoi valutare";
+        }
+
+        return $cella;
+    }
+}
 
 
 
