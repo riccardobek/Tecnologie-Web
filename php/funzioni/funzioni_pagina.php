@@ -59,7 +59,7 @@ $menuElements = array(
         "VisibileGuest"=>false
     ),
     array(
-        "Nome" => "Pannello amministrazione",
+        "Nome" => "Pannello admin",
         "URL" => "pannello_admin.php",
         "Icona"=> PERCORSO_RELATIVO."images/icone/icona_logout.png",
         "Pulsante"=>true,

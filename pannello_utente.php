@@ -88,9 +88,8 @@ function stampaSchedePrenotazioniAttive(){
 function storicoPrenotazioni() {
     global $db;
 
-    $infoPrenotazioni = $db->prepare("SELECT Attivita.Nome AS Nome, Prenotazioni.Giorno AS Giorno, Prenotazioni.PostiPrenotati AS Posti, Prenotazioni.Stato AS Stato, Valutazioni.Voto as Voto 
-FROM  Attivita, Prenotazioni LEFT JOIN Valutazioni ON Valutazioni.IDPrenotazione=Prenotazioni.Codice AND Prenotazioni.IDUtente=Valutazioni.IDUtente
-WHERE Prenotazioni.IDUtente = ? AND Prenotazioni.IDAttivita = Attivita.Codice AND (Prenotazioni.Stato='Confermata' OR Prenotazioni.Stato='Cancellata' OR (Prenotazioni.Stato='Sospesa' AND Prenotazioni.Giorno < (SELECT CURDATE()) ) ) ");
+    $infoPrenotazioni = $db->prepare("SELECT Attivita.Nome AS Nome, Prenotazioni.Giorno AS Giorno, Prenotazioni.PostiPrenotati AS Posti, Prenotazioni.Stato AS Stato, Prenotazioni.Valutazione as Voto 
+FROM  Attivita, Prenotazioni WHERE Prenotazioni.IDUtente = ? AND Prenotazioni.IDAttivita = Attivita.Codice AND (Prenotazioni.Stato='Confermata' OR Prenotazioni.Stato='Cancellata' OR (Prenotazioni.Stato='Sospesa' AND Prenotazioni.Giorno < (SELECT CURDATE()) ) ) ");
     $infoPrenotazioni->execute(array($_SESSION["Utente"]["ID"]));
     $prenotazioni = $infoPrenotazioni->fetchAll();
 
@@ -108,18 +107,14 @@ RIGA;
 
 
 
-
-
-
-
-
-//controlla il voto e in cas crea il pulsante per la valutazione
+//controlla il voto e in caso crea il pulsante per la valutazione
 function controlloVoto($cella,$stato){
 
     if($cella== NULL&&$stato=="Confermata"){
 
       return <<<RIGA
-<a class="btn btn-primary">Valuta</a>
+<!--<a class="btn btn-primary">Valuta</a>-->
+<select><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
 RIGA;
         
     
