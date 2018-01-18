@@ -9,6 +9,7 @@ $(document).ready(function(){
        $('#'+tabTarget).show();
     });
     toggleMostra();
+    assegnaVoto();
     //Scheda Prenotazioni
     stileCellaPagamento();
     //richiesta AJAX per la cancellazione di una prenotazione
@@ -150,4 +151,14 @@ function toggleMostra() {
         $(this).parent().hide();
         $(this).parent().prev().show();
     });
+}
+
+function assegnaVoto(){
+    $(".accept").click(function(){
+        var output=$(this).prev().find("option:selected").text();
+
+
+    })
+
+
 }

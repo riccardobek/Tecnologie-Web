@@ -88,7 +88,7 @@ function stampaSchedePrenotazioniAttive(){
 function storicoPrenotazioni() {
     global $db;
 
-    $infoPrenotazioni = $db->prepare("SELECT Attivita.Nome AS Nome, Prenotazioni.Giorno AS Giorno, Prenotazioni.PostiPrenotati AS Posti, Prenotazioni.Stato AS Stato, Prenotazioni.Valutazione as Voto 
+    $infoPrenotazioni = $db->prepare("SELECT Attivita.Nome AS Nome, Prenotazioni.Giorno AS Giorno, Prenotazioni.PostiPrenotati AS Posti, Prenotazioni.Stato AS Stato, Prenotazioni.Valutazione as Voto, Prenotazioni.Codice as Codice 
 FROM  Attivita, Prenotazioni WHERE Prenotazioni.IDUtente = ? AND Prenotazioni.IDAttivita = Attivita.Codice AND (Prenotazioni.Stato='Confermata' OR Prenotazioni.Stato='Cancellata' OR (Prenotazioni.Stato='Sospesa' AND Prenotazioni.Giorno < (SELECT CURDATE()) ) ) ");
     $infoPrenotazioni->execute(array($_SESSION["Utente"]["ID"]));
     $prenotazioni = $infoPrenotazioni->fetchAll();
@@ -96,7 +96,7 @@ FROM  Attivita, Prenotazioni WHERE Prenotazioni.IDUtente = ? AND Prenotazioni.ID
     $riga2="";
 
     foreach($prenotazioni as $prenotazione) {
-        $voto=controlloVoto($prenotazione["Voto"],$prenotazione["Stato"]);
+        $voto=controlloVoto($prenotazione["Voto"],$prenotazione["Stato"],$prenotazione["Codice"]);
         $data = convertiDataToOutput($prenotazione["Giorno"]);
         $riga2 .= <<<RIGA
 <tr><td>{$prenotazione["Nome"]}</td><td>{$data}</td><td>{$prenotazione["Posti"]}</td><td>{$prenotazione["Stato"]}</td><td>$voto</td></tr>
@@ -108,23 +108,36 @@ RIGA;
 
 
 //controlla il voto e in caso crea il pulsante per la valutazione
-function controlloVoto($cella,$stato){
-
-    if($cella== NULL&&$stato=="Confermata"){
-
-    return file_get_contents("template/utente/colonna_valutazioni.html");
+function controlloVoto($voto,$stato,$codice){
+    if($voto== NULL&&$stato=="Confermata"){
+        $output = file_get_contents("template/utente/colonna_valutazioni.html");
+        $output = str_replace("[#ID-PRENOTAZIONE]", $codice , $output );
+        return $output;
     }
-    else {
-        if($cella== NULL&&($stato=="Cancellata"||$stato="Sospesa")){
+    if($voto== NULL&&($stato=="Cancellata"||$stato="Sospesa"))
+        return "- -";
 
-            return "- -";
-        }
-
-        return $cella;
-    }
+    return $voto;
 }
 
 
+
+function inserisciVoto($voto,$idPrenotazione){
+    global $db;
+    if($voto<=0||$voto>5)
+        return erroreJSON("Voto non valido.");
+
+    $queryControllo=$db->prepare("SELECT * FROM Prenotazione WHERE IDUtente=? AND Codice=?");
+    $queryControllo->execute(array($_SESSION["Utente"]["ID"],$idPrenotazione));
+
+    if(!$queryControllo->fetch()){
+        erroreJSON("Non è stato possibile inviare la valutazione",$queryControllo->errorInfo());
+        return;
+    }
+
+    $query=$db->prepare("UPDATE Prenotazioni SET Valutazione=? WHERE Codice=?");
+    $query->execute(array($voto,$idPrenotazione));
+}
 
 
 
