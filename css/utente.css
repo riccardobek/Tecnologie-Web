@@ -136,5 +136,11 @@ div#show.rate-wrapper{
     padding: 0em 0.7em;
     background-color: #1C1C1C;
 }
+<<<<<<< HEAD
 
+=======
+.show{
+    display: none;
+}
+>>>>>>> 95723709cb315ca7034a183cad6ed722e9c17358
 

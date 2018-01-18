@@ -8,11 +8,11 @@ $(document).ready(function(){
        $(".tabcontent").hide();
        $('#'+tabTarget).show();
     });
-
+    toggleMostra();
     //Scheda Prenotazioni
     stileCellaPagamento();
     //richiesta AJAX per la cancellazione di una prenotazione
-    $(".btn-cancella").on("click", function () {
+    $(".button-holder > .btn-cancella").on("click", function () {
         var target = $(this).attr("data-target");
         var data = validaData($('#'+target).find(".giorno").text());
         var timeDiff = data - (new Date());
@@ -141,13 +141,13 @@ function calcolaDimensioneDialog() {
     return (larghezzaSchermo <= 768) ? "80%" : "20em";
 }
 
-$(document).ready(function(){
-    $("#hide").click(function(){
-        $("#hide").hide();
-        $("#show").show();
+function toggleMostra() {
+    $(".hide").click(function(){
+        $(this).hide();
+        $(this).next(".show").show();
     });
-    $("#cancel").click(function(){
-        $("#show").hide();
-        $("#hide").show();
+    $(".cancel").click(function(){
+        $(this).parent().hide();
+        $(this).parent().prev().show();
     });
-});
+}

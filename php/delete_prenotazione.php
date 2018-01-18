@@ -7,19 +7,19 @@ require_once "funzioni/funzioni_json.php";
 $db->beginTransaction();
 
 $idutente  = $_SESSION["Utente"]["ID"];
-$idattivita = filter_var($_POST["idPrenotazione"],FILTER_SANITIZE_NUMBER_INT);
+$idPrenotazione = filter_var($_POST["idPrenotazione"],FILTER_SANITIZE_NUMBER_INT);
 
 $queryControllo = $db->prepare("SELECT Codice FROM Prenotazioni WHERE Codice = ? AND IDUtente = ?");
-$queryControllo->execute(array($idattivita, $idutente));
+$queryControllo->execute(array($idPrenotazione, $idutente));
 
 if(!$queryControllo->fetch()) {
     erroreJSON("Prenotazione non trovata.",$queryControllo->errorInfo());
     return;
 }
 
-$deleteStatement = $db->prepare("DELETE FROM Prenotazioni WHERE IDAttivita = ?");
-if($deleteStatement->execute(array($idattivita))){
-    //$db->commit();
+$deleteStatement = $db->prepare("UPDATE Prenotazioni SET Stato = 'Cancellata' WHERE Codice = ?");
+if($deleteStatement->execute(array($idPrenotazione))){
+    $db->commit();
     successoJSON("Prenotazione eliminata con successo.");
     return;
 }

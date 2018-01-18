@@ -113,13 +113,28 @@ function controlloVoto($cella,$stato){
     if($cella== NULL&&$stato=="Confermata"){
 
       return <<<RIGA
-<div class="rate-wrapper " id="hide">      
-<a class="btn btn-primary">Valuta</a>
+<div class="rate-wrapper hide">      
+    <a class="btn btn-primary">Valuta</a>
 </div>
+<<<<<<< HEAD
 <div class="rate-wrapper" id="show">
 <select><option selected>--</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
 <input type="submit" value="Conferma" class="btn btn-primary ">
 <button class="btn-cancella" id="cancel">Annulla</button>
+=======
+<div class="rate-wrapper show">
+    <select>
+        <option>--</option>
+        <option>0</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+    </select>
+    <a href="#" class="btn btn-primary ">Conferma</a>
+    <button class="btn-cancella cancel">Annulla</button>
+>>>>>>> 95723709cb315ca7034a183cad6ed722e9c17358
 </div>
 RIGA;
         
