@@ -113,11 +113,8 @@ h1,h2, h3{
 .titolo-macro{
     font-weight: 600;
 }
-td > a.btn.btn-primary{
-    width: 50%;
-    font-size: 73%;
-    padding: 0.5em 0.8em;
-    margin-bottom:0.3em;
+div#show.rate-wrapper{
+    display: none;
 }
 
 .rate-wrapper a.btn-primary{
@@ -127,14 +124,17 @@ td > a.btn.btn-primary{
     margin-bottom:0.3em;
 }
 
+.rate-wrapper input.btn-primary{
+    font-size: 73%;
+    padding: 0.5em 0.7em;
+}
+
 .rate-wrapper button{
-    margin-top: 0.6em;
+    margin-top: 0.3em;
     margin-left: 2.375em;
     margin-right: 0em;
     padding: 0em 0.7em;
     background-color: #1C1C1C;
 }
-div#show.rate-wrapper{
-    display: none;
-}
+
 
