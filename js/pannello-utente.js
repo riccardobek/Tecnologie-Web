@@ -142,9 +142,9 @@ function calcolaDimensioneDialog() {
 }
 
 function toggleMostra() {
-    $(".hide").click(function(){
+    $(".rate-button").click(function(){
         $(this).hide();
-        $(this).next(".show").show();
+        $(this).next(".submit-rate").show();
     });
     $(".cancel").click(function(){
         $(this).parent().hide();

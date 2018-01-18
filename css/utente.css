@@ -113,9 +113,7 @@ h1,h2, h3{
 .titolo-macro{
     font-weight: 600;
 }
-div#show.rate-wrapper{
-    display: none;
-}
+
 
 .rate-wrapper a.btn-primary{
     font-size: 73%;
@@ -136,11 +134,8 @@ div#show.rate-wrapper{
     padding: 0em 0.7em;
     background-color: #1C1C1C;
 }
-<<<<<<< HEAD
-
-=======
-.show{
+.submit-rate{
     display: none;
 }
->>>>>>> 95723709cb315ca7034a183cad6ed722e9c17358
+
 
