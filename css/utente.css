@@ -134,7 +134,7 @@ td > a.btn.btn-primary{
     padding: 0em 0.7em;
     background-color: #1C1C1C;
 }
-div#show.rate-wrapper{
+.show{
     display: none;
 }
 
