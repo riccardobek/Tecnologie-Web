@@ -8,10 +8,15 @@ define("PERCORSO_RELATIVO","");
 
 require_once "php/database.php";
 require_once "php/funzioni/funzioni_pagina.php";
-
+require_once "php/funzioni/funzioni_json.php";
 loginRichiesto();
 
 $activeIndex = 0;
+
+if(isset($_POST["funzione"])){
+    inserisciVoto($_POST["voto"],$_POST["codicePren"]);
+    return;
+}
 
 //Intestazione: indica la pagina attualmente attiva  contattaci
 $HTML_INTESTAZIONE = intestazione($activeIndex);
@@ -124,23 +129,31 @@ function controlloVoto($voto,$stato,$codice){
 
 function inserisciVoto($voto,$idPrenotazione){
     global $db;
-    if($voto<=0||$voto>5)
-        return erroreJSON("Voto non valido.");
 
-    $queryControllo=$db->prepare("SELECT * FROM Prenotazione WHERE IDUtente=? AND Codice=?");
-    $queryControllo->execute(array($_SESSION["Utente"]["ID"],$idPrenotazione));
-
-    if(!$queryControllo->fetch()){
-        erroreJSON("Non è stato possibile inviare la valutazione",$queryControllo->errorInfo());
+    if($voto<=0||$voto>5){
+        erroreJSON("Voto non valido.");
         return;
     }
 
-    $query=$db->prepare("UPDATE Prenotazioni SET Valutazione=? WHERE Codice=?");
-    $query->execute(array($voto,$idPrenotazione));
+    $db->beginTransaction();
+
+    $queryControllo=$db->prepare("SELECT Codice FROM Prenotazioni WHERE IDUtente=? AND Codice=?");
+    $queryControllo->execute(array($_SESSION["Utente"]["ID"],$idPrenotazione));
+
+    if(!$queryControllo->fetch()){
+        erroreJSON("Attività non trovata.",$queryControllo->errorInfo());
+        return;
+    }
+
+    $query = $db->prepare("UPDATE Prenotazioni SET Valutazione=? WHERE Codice=?");
+
+    if($query->execute(array($voto,$idPrenotazione))){
+        $db->commit();
+        successoJSON("Valutazione inserita con successo.");
+        return;
+    }
+
+    $db->rollBack();
+    erroreJSON("Non è stato possibile inviare la valutazione",$queryControllo->errorInfo());
 }
-
-
-
-
-
 ?>

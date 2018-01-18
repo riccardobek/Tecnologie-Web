@@ -156,9 +156,27 @@ function toggleMostra() {
 function assegnaVoto(){
     $(".accept").click(function(){
         var output=$(this).prev().find("option:selected").text();
-
-
-    })
-
-
+        var idPrenotazione = $(this).attr("id");
+        $.post("pannello_utente.php", {voto: output, codicePren: idPrenotazione, funzione: 1}, function (risposta) {
+            risposta = JSON.parse(risposta);
+            if(risposta.stato == 1) {
+                $.alert({
+                    boxWidth: calcolaDimensioneDialog(),
+                    useBootstrap: false,
+                    type: 'green',
+                    title: 'Valutazione effettuata',
+                    content: risposta.messaggio
+                });
+            }
+            else{
+                $.alert ({
+                    boxWidth: calcolaDimensioneDialog(),
+                    useBootstrap: false,
+                    type: 'red',
+                    title: 'Errore',
+                    content: risposta.messaggio
+                });
+            }
+        });
+    });
 }
