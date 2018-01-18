@@ -140,3 +140,14 @@ function calcolaDimensioneDialog() {
     var larghezzaSchermo = $( window ).width();
     return (larghezzaSchermo <= 768) ? "80%" : "20em";
 }
+
+$(document).ready(function(){
+    $("#hide").click(function(){
+        $("#hide").hide();
+        $("#show").show();
+    });
+    $("#cancel").click(function(){
+        $("#show").hide();
+        $("#hide").show();
+    });
+});

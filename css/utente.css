@@ -119,3 +119,22 @@ td > a.btn.btn-primary{
     padding: 0.5em 0.8em;
     margin-bottom:0.3em;
 }
+
+.rate-wrapper a.btn-primary{
+    font-size: 73%;
+    width: 50%;
+    padding: 0.5em 0.7em;
+    margin-bottom:0.3em;
+}
+
+.rate-wrapper button{
+    margin-top: 0.6em;
+    margin-left: 2.375em;
+    margin-right: 0em;
+    padding: 0em 0.7em;
+    background-color: #1C1C1C;
+}
+div#show.rate-wrapper{
+    display: none;
+}
+
