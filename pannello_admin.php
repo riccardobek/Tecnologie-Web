@@ -23,6 +23,11 @@ $HTML = str_replace("[#UTENTI]",listaUtenti(), $HTML);
 //Rimpiazza segna posto [#ATTIVITA]
 $HTML = str_replace("[#ATTIVITA]",stampaSchedeAttivita(), $HTML);
 
+
+//tabelle statistiche(rimpiazza i segnaposto [#TABELLA])
+$HTML = str_replace("[#ATTIVITA-PIU-PRENOTATE]",AttivitaPiuPrenotate(),$HTML);
+
+
 //Footer
 $HTML = str_replace("[#MENU-MOBILE]",menuMobile($activeIndex),$HTML);
 echo $HTML;
@@ -79,5 +84,31 @@ SCRIVI;
     }
     return $output;
 }
+
+
+
+
+
+function AttivitaPiuPrenotate(){
+global $db;
+
+$query=$db->prepare("SELECT Attivita.Codice ,Attivita.Nome AS NomeAttivita,COUNT(Prenotazioni.Codice)AS NumeroPrenotazioni FROM Attivita,Prenotazioni WHERE Attivita.Codice=Prenotazioni.IDAttivita GROUP BY Attivita.Codice ORDER BY NumeroPrenotazioni DESC");
+$query->execute();
+$array=$query->fetchAll();
+
+    $row="";
+    $counter = 1;
+    foreach($array as $item) {
+
+        $row .= <<<RIGA
+        <tr><td>{$counter}</td><td>{$item["NomeAttivita"]}</td><td>{$item["NumeroPrenotazioni"]}</td></tr>
+RIGA;
+    $counter = $counter + 1;
+}
+    return $row;
+
+}
+
+
 
 ?>
