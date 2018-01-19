@@ -40,13 +40,13 @@ function listaUtenti(){
     $risultato = $listaUtenti->fetchAll();
 
     $riga="";
-    $i=false;
-    $class = array("even","odd");
+
+
     foreach ($risultato as $r){
         $riga .= <<<SCRIVI
-<tr class="{$class[intval($i)]}"><td>{$r["Nome"]}</td><td>{$r["Cognome"]}</td><td>{$r["Indirizzo"]}</td><td>{$r["Username"]}</td><td>{$r["Email"]}</td><td><span class="btn-reimposta">Reimposta password</span></td></tr>
+<tr><td>{$r["Nome"]}</td><td>{$r["Cognome"]}</td><td>{$r["Indirizzo"]}</td><td>{$r["Username"]}</td><td>{$r["Email"]}</td><td><span class="btn-reimposta">Reimposta password</span></td></tr>
 SCRIVI;
-        $i = !$i;
+        
     }
 
     return $riga;
