@@ -8,15 +8,6 @@ $("document").ready(function() {
 
     });
 
-    $("#content > img.banner").on("load",function(){
-        $(this).animate({
-            opacity: 1
-        }, 2500, function() {
-           //Callback: viene invocato quando l'animazione è terminata
-        });
-    }).each(function() {
-        if(this.complete) $(this).load();
-    });
 });
 
 
