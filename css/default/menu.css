@@ -7,6 +7,7 @@ div#menu-wrapper {
 }
 
 #menu ul {
+    float: left;
     list-style-type: none;
     margin-top: 0.6em;
 }
@@ -28,13 +29,10 @@ div#menu-wrapper {
 
 #menu a.button{
     border: 2px solid #1C1C1C;
-
-}
-#menu .button  {
     float: right;
     font-style: normal;
+    margin-top: 0.3em;
     margin-left: 1em;
-    margin-top: -0.3em;
     color:#008bc6;
     padding: 0.4em;
 }
