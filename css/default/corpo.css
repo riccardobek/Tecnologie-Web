@@ -225,6 +225,9 @@ div.errore-container > img {
     max-width: 40%;
 }
 
+.wrapper-tabella {
+    margin-top: 3em;
+}
 
 .tabella{
     color:#1C1C1C;
@@ -234,18 +237,30 @@ div.errore-container > img {
     background-color: #F3F3F3;
     padding-right: 0.5em;
 }
+.tabella caption{
+    color: white;
+}
+
+.tabella thead {
+    border-bottom: 3px solid #d0d0d0;
+}
 
 .tabella tr {
     border-bottom: 1px solid #d0d0d0;
 }
 
+
+
 th,td {
     padding: 1em;
-
 }
 
 table th{
     font-weight: bold;
+}
+
+.tabella tr:hover {
+    background-color: #d6d6d6;
 }
 
 

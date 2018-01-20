@@ -41,17 +41,22 @@
 
                 <!-- Forse da fare lo slideDown con js -->
 
-                <h2>Storico Prenotazioni</h2>
-                <div class="overflow-tabella">
+
+                <div class="wrapper-tabella">
                     <table class="tabella">
-                        <tr class="intestazione-tabella">
+                       <caption><h2>Storico Prenotazioni</h2></caption>
+                        <thead>
+                        <tr>
                             <th>Nome attività</th>
                             <th>Giorno prenotato</th>
                             <th>Posti prenotati</th>
                             <th>Stato</th>
                             <th>Valutazione</th>
                         </tr>
-                        [#STORICO-PRENOTAZIONI]
+                        </thead>
+                        <tbody>
+                            [#STORICO-PRENOTAZIONI]
+                        </tbody>
                     </table>
                 </div>
 
