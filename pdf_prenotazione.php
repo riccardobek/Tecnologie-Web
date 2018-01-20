@@ -3,12 +3,30 @@ require_once "php/database.php";
 require_once "php/funzioni/funzioni_pagina.php";
 require_once "php/tcpdf/tcpdf_import.php";
 
+define("PDF_PATH",getcwd().DIRECTORY_SEPARATOR."pdf".DIRECTORY_SEPARATOR);
+
 if(!isset($_GET["codice"])) {
     paginaErrore("Parametri non validi");
     return;
 }
 
-$codicePrenotazione = $_GET["codice"];
+
+$codicePrenotazione = filter_var($_GET["codice"],FILTER_SANITIZE_NUMBER_INT);
+
+$nomePDF = "prenotazione_".$codicePrenotazione.".pdf";
+$nomePDFCompleto = PDF_PATH.$nomePDF;
+
+if(file_exists($nomePDFCompleto)) {
+    header('Content-Type: application/pdf');
+    header('Cache-Control: public, must-revalidate, max-age=0');
+    header('Pragma: public');
+    header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
+    header('Last-Modified: ' + gmdate('D, d M Y H:i:s') + ' GMT');
+    header('Content-Length: ' + filesize($nomePDFCompleto));
+    header('Content-Disposition: inline; filename="'.$nomePDF.'";');
+    echo file_get_contents($nomePDFCompleto);
+    die();
+}
 
 $prenotazione = getDettagliPrenotazione($codicePrenotazione);
 
@@ -48,7 +66,9 @@ $pdf->write2DBarcode($contenutoQR, 'QRCODE,H', 160, 10, 50, 50, $QRStyle, 'N');
 // reset pointer to the last page
 $pdf->lastPage();
 
-$pdf->Output('example_021.pdf', 'I');
+$pdf->Output(PDF_PATH."prenotazione_{$codicePrenotazione}.pdf", 'FI');
+
+
 
 function getDettagliPrenotazione($codicePrenotazione) {
     global $db;

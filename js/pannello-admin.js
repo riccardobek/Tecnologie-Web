@@ -13,6 +13,6 @@ $(function() {
         labels: etichette,
         series: valoriGrafico
     };
-    
+
     new Chartist.Pie('.ct-chart', data);
 });
