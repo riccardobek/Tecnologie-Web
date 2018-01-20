@@ -1,17 +1,9 @@
-$(document).ready(function(){
-    $(".tabcontent").first().show();
-    $(".tablinks").first().addClass("active");
-    $(".tablinks").on("click",function (e) {
-       var tabTarget = $(this).attr("data-target");
-       $(".tablinks").removeClass("active");
-       $(this).addClass("active");
-       $(".tabcontent").hide();
-       $('#'+tabTarget).show();
-    });
-    toggleMostra();
-    assegnaVoto();
+$(function() {
     //Scheda Prenotazioni
     stileCellaPagamento();
+
+    assegnaVoto();
+
     //richiesta AJAX per la cancellazione di una prenotazione
     $(".button-holder > .btn-cancella").on("click", function () {
         var target = $(this).attr("data-target");
@@ -92,14 +84,12 @@ $(document).ready(function(){
         //prima di fare il submit controllo la validità dei dati modificati
         if(validaFormUtente()) {
             alert("ok");
-
         }
         else{
             alert("nope");
             e.preventDefault();
             e.stopPropagation();
         }
-
     });
 
     $("#annulla").on("click",function () {
@@ -109,6 +99,7 @@ $(document).ready(function(){
             $(this).hide();
         });
     });
+
 });
 
 function salvaDatiForm(){
@@ -140,17 +131,6 @@ function stileCellaPagamento(){
 function calcolaDimensioneDialog() {
     var larghezzaSchermo = $( window ).width();
     return (larghezzaSchermo <= 768) ? "80%" : "20em";
-}
-
-function toggleMostra() {
-    $(".rate-button").click(function(){
-        $(this).hide();
-        $(this).next(".submit-rate").show();
-    });
-    $(".cancel").click(function(){
-        $(this).parent().hide();
-        $(this).parent().prev().show();
-    });
 }
 
 function assegnaVoto(){

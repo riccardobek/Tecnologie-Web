@@ -263,5 +263,9 @@ table th{
     background-color: #d6d6d6;
 }
 
-
+/**** STILE PIE CHART ******/
+#stat-manager .ct-label {
+    color: white;
+    fill: white;
+}
 

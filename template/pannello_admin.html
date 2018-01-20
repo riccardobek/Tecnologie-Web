@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="css/utente.css">
     <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="screen and (max-width:768px), only screen and (max-device-width:768px)"/>
     <link rel="icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
 
 </head>
 <body>
@@ -18,10 +19,26 @@
         <div class="odd">
             <div class="length-wrapper">
                 <div class="tab">
+                    <button class="tablinks" data-target="stat-manager"><b>Statistiche</b></button>
                     <button class="tablinks" data-target="usr-manager"><b>Gestisci Utenti</b></button>
                     <button class="tablinks" data-target="act-manager"><b>Gestisci Attività</b></button>
                     <button class="tablinks" data-target="res-manager"><b>Gestisci Prenotazioni</b></button>
-                    <button class="tablinks" data-target="stat-manager"><b>Statistiche</b></button>
+                </div>
+                <div id="stat-manager" class="tabcontent">
+                    <h3>Attività più prenotate</h3>
+                    <div class="ct-chart"></div>
+                    <div class="wrapper-tabella">
+                        <table class="tabella">
+                            <tbody>
+                            <tr class="intestazione-tabella">
+                                <th>Posizione</th>
+                                <th>Nome Attività</th>
+                                <th>Numero Prenotazioni</th>
+                            </tr>
+                            [#ATTIVITA-PIU-PRENOTATE]
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div id="usr-manager" class="tabcontent wrapper-tabella">
                     <table class="tabella">
@@ -49,24 +66,11 @@
                     <h3>Gestione prenotazioni</h3>
                     [#PRENOTAZIONI]
                 </div>
-                <div id="stat-manager" class="tabcontent">
-                    <h3>Attività più prenotate</h3>
-                    <div class="wrapper-tabella">
-                        <table class="tabella">
-                            <tbody>
-                            <tr class="intestazione-tabella">
-                                <th>Posizione</th>
-                                <th>Nome Attività</th>
-                                <th>Numero Prenotazioni</th>
-                            </tr>
-                            [#ATTIVITA-PIU-PRENOTATE]
-                            </tbody>
-                        </table>
-                </div>
-            </div>
             </div>
         </div>
     [#MENU-MOBILE]
-    <script type="text/javascript" src="js/pannello-utente.js"></script>
+        <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+        <script type="text/javascript" src="js/pannello.js"></script>
+        <script type="text/javascript" src="js/pannello-admin.js"></script>
 </body>
 </html>
