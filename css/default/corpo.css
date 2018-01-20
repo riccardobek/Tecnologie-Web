@@ -227,23 +227,26 @@ div.errore-container > img {
 
 
 .tabella{
-    color: white;
+    color:#1C1C1C;
     border-collapse: collapse;
-    border: solid 1px #F3F3F3;
     margin: auto;
     margin-bottom: 20px;
+    background-color: #F3F3F3;
+    padding-right: 0.5em;
+}
+
+.tabella tr {
+    border-bottom: 1px solid #d0d0d0;
 }
 
 th,td {
-    padding: 0.5em;
+    padding: 1em;
+
 }
 
 table th{
     font-weight: bold;
 }
 
-.intestazione-tabella {
-    color:#1C1C1C;
-    background-color: #F3F3F3;
-}
+
 
