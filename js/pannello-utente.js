@@ -73,12 +73,28 @@ $(function() {
 
     $(":text").attr('disabled','disabled');
 
-    $(".mostra-modifica").hide();
-    $("#modifica").on("click",function () {
-        $(".mostra-modifica").slideDown(200);
-        $(":text").not('#username').removeAttr('disabled');
+    $(".mostra-modifica, .mostra-modifica-account").hide();
 
+    $(".modifica").on("click",function () {
+        $(".mostra-modifica").slideDown(200);
+        if($(this).parent().parent().attr('id')=="sez-dati-personali") {
+            //sti giri nel DOM non mi fanno impazzire
+            $(this).parent().siblings().children(":text").removeAttr('disabled');
+        }
+        else{
+           $(this).parent().siblings().children().not("#username").removeAttr('disabled');
+           $(".mostra-modifica-account").slideDown(200);
+        }
     });
+
+    $("#annulla").on("click",function () {
+        $(":text").attr('disabled','disabled');
+        ripristinaDatiInizialiForm($datiForm);
+        $(".mostra-modifica, .mostra-modifica-account").slideUp(200, function () {
+            $(this).hide();
+        });
+    });
+
     //Modifica dati account
     $("form").on("submit", function (e) {
         //prima di fare il submit controllo la validità dei dati modificati
@@ -91,19 +107,13 @@ $(function() {
             e.stopPropagation();
         }
     });
-
-    $("#annulla").on("click",function () {
-        $(":text").attr('disabled','disabled');
-        ripristinaDatiInizialiForm($datiForm);
-        $(".mostra-modifica").slideUp(200, function () {
-            $(this).hide();
-        });
-    });
-
 });
 
+
+/****** FUNZIONI *******/
+
 function salvaDatiForm(){
-    var inputs = $('input').not(':input[type=submit]');
+    var inputs = $('input').not(":input[type=submit], :input[type=password]");
      var datiForm = {};
     $(inputs).each(function () {
         datiForm[$(this).attr("id")] = $(this).val();
@@ -111,8 +121,9 @@ function salvaDatiForm(){
     return datiForm;
 }
 
-function ripristinaDatiInizialiForm(oggettoDatiForm){
-    var inputs = $('input').not(':input[type=submit]');
+function ripristinaDatiInizialiForm(oggettoDatiForm ){
+    var inputs = $('input').not(":input[type=submit], :input[type=password]");
+    $("input[type=password]").val('');
     $(inputs).each(function () {
         $(this).val(oggettoDatiForm[$(this).attr("id")]);
     });
@@ -159,4 +170,12 @@ function assegnaVoto(){
             }
         });
     });
+}
+
+function validaFormModifica() {
+    //valida i campi in comune con il form di registrazione
+    var formValido = validaFormUtente();
+    if(formValido) {
+
+    }
 }

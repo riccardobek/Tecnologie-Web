@@ -62,49 +62,57 @@
 
             <div id="account" class="tabcontent">
                 <div action="php/modifica_dati_utente.php" class="form" id="container_form">
-                    <h1>Riepilogo dati account <span id="modifica" class="btn-testo">Modifica</span></h1>
+                    <h1>Riepilogo dati account </h1>
                     <form action="" method="POST">
-                        <h3>Dati personali</h3>
-                        <div class="field-container">
-                            <label for="nome">Nome: </label>
-                            <input type="text" id="nome" name="nome" value="[#NOME]">
+                        <div id="sez-dati-personali">
+                            <h3>Dati personali <span class="btn-testo modifica">Modifica</span></h3>
+                            <div class="field-container">
+                                <label for="nome">Nome: </label>
+                                <input type="text" id="nome" name="nome" value="[#NOME]">
+                            </div>
+                            <div class="field-container">
+                                <label for="cognome">Cognome: </label>
+                                <input type="text" id="cognome" name="cognome" value="[#COGNOME]">
+                            </div>
+                            <div class="field-container" id="indirizzo-container">
+                                <label for="indirizzo">Indirizzo: </label>
+                                <input type="text" id="indirizzo" name="indirizzo" value="[#INDIRIZZO]">
+                            </div>
+                            <div class="field-container" id="civico-container">
+                                <label for="civico">Civico: </label>
+                                <input type="text"  size="4" id="civico" name="civico" value="[#CIVICO]">
+                            </div>
+                            <div class="field-container" id="citta-container">
+                                <label for="citta">Citt&agrave;: </label>
+                                <input type="text" id="citta" name="citta" value="[#CITTA]">
+                            </div>
+                            <div class="field-container" id="cap-container">
+                                <label for="CAP">CAP: </label>
+                                <input type="text"  size="4" id="CAP" name="CAP" value="[#CAP]">
+                            </div>
                         </div>
-                        <div class="field-container">
-                            <label for="cognome">Cognome: </label>
-                            <input type="text" id="cognome" name="cognome" value="[#COGNOME]">
-                        </div>
-                        <div class="field-container" id="indirizzo-container">
-                            <label for="indirizzo">Indirizzo: </label>
-                            <input type="text" id="indirizzo" name="indirizzo" value="[#INDIRIZZO]">
-                        </div>
-                        <div class="field-container" id="civico-container">
-                            <label for="civico">Civico: </label>
-                            <input type="text"  size="4" id="civico" name="civico" value="[#CIVICO]">
-                        </div>
-                        <div class="field-container" id="citta-container">
-                            <label for="citta">Citt&agrave;: </label>
-                            <input type="text" id="citta" name="citta" value="[#CITTA]">
-                        </div>
-                        <div class="field-container" id="cap-container">
-                            <label for="CAP">CAP: </label>
-                            <input type="text"  size="4" id="CAP" name="CAP" value="[#CAP]">
-                        </div>
-                        <h3>Dati account</h3>
-                        <div class="field-container">
-                            <label for="username">Nome utente: </label>
-                            <input type="text" id="username" name="username" value="[#USERNAME]">
-                        </div>
-                        <div class="field-container">
-                            <label for="email">Email: </label>
-                            <input type="text" id="email" name="email" value="[#EMAIL]">
-                        </div>
-                        <div class="field-container mostra-modifica">
-                            <label for="password">Password: </label>
-                            <input type="password" id="password" name="password" value="Password...">
-                        </div>
-                        <div class="field-container mostra-modifica">
-                            <label for="password2">Ripeti password: </label>
-                            <input type="password" id="password2" name="password2" value="Ripeti password..">
+                        <div id="sez-dati-account">
+                            <h3>Dati account <span class="btn-testo modifica">Modifica</span></h3>
+                            <div class="field-container">
+                                <label for="username">Nome utente: </label>
+                                <input type="text" id="username" name="username" value="[#USERNAME]">
+                            </div>
+                            <div class="field-container">
+                                <label for="email">Email: </label>
+                                <input type="text" id="email" name="email" value="[#EMAIL]">
+                            </div>
+                            <div class="field-container mostra-modifica-account">
+                                <label for="vecchia-password">Vecchia password: </label>
+                                <input type="password" id="vecchia-password" name="vecchia-password" >
+                            </div>
+                            <div class="field-container mostra-modifica-account">
+                                <label for="password">Password: </label>
+                                <input type="password" id="password" name="password">
+                            </div>
+                            <div class="field-container mostra-modifica-account">
+                                <label for="password2">Ripeti password: </label>
+                                <input type="password" id="password2" name="password2">
+                            </div>
                         </div>
                         <div class="button-holder mostra-modifica" >
                             <input type="submit" value="Modifica" name="modifica" class="btn btn-primary">
