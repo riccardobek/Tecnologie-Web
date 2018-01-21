@@ -99,12 +99,14 @@ $(function() {
 
     //Modifica dati account
     $("form").on("submit", function (e) {
+        e.preventDefault();
         //prima di fare il submit controllo la validità dei dati modificati
-        if(validaFormUtente()) {
-            alert("ok");
+        if(validaFormModifica()) {
+            //Chiedo conferma della modifica
+            console.log( $( "form" ).serialize() );
+           // $.post($("form").attr("action"),)
         }
-        else{
-            alert("nope");
+        else {
             e.preventDefault();
             e.stopPropagation();
         }
@@ -174,6 +176,7 @@ function assegnaVoto(){
     });
 }
 
+//Ho usato javascript puro per esercizio
 function validaFormModifica() {
     //valida i campi in comune con il form di registrazione
     var formValido = true;
@@ -186,11 +189,12 @@ function validaFormModifica() {
         formValido = false;
     }
 
-    var vecchiaPassword = document.getElementsById("vecchia-password");
+    var vecchiaPassword = document.getElementById("vecchia-password");
     var password = document.getElementById("password");
     var password2 = document.getElementById("password2");
 
-    if(vecchiaPassword.value.trim() != 0) {
+    if(vecchiaPassword.value.trim().length != 0) {
+
         if (password.value.trim().length == 0) {
             notificaErrore(password.parentNode, "Inserire una password valida");
             formValido = false;
@@ -206,8 +210,9 @@ function validaFormModifica() {
     }
     else {
         //pulisco i campi di modifica della password
-        $(password, password2).val('');
+        password2.value = '';
+        password2.value = '';
     }
-
+    return formValido;
 
 }
