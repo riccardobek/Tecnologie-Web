@@ -2,7 +2,8 @@
 session_start();
 
 require_once "database.php";
-require_once "do_registrazione.php";
+require_once "funzioni/funzioni_json.php";
+require_once "funzioni/funzioni_sicurezza.php";
 
 $db->beginTransaction();
 
