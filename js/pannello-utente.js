@@ -71,7 +71,8 @@ $(function() {
     //Scheda Account
     $datiForm = salvaDatiForm();
 
-    $(":text").attr('disabled','disabled');
+    $(":text, :password").attr('disabled','disabled');
+
 
     $(".mostra-modifica, .mostra-modifica-account").hide();
 
@@ -81,8 +82,9 @@ $(function() {
             //sti giri nel DOM non mi fanno impazzire
             $(this).parent().siblings().children(":text").removeAttr('disabled');
         }
-        else{
-           $(this).parent().siblings().children().not("#username").removeAttr('disabled');
+       else{
+           $(this).parent().siblings().children().not('#username').removeAttr('disabled');
+           $("input[type=password]").val('');
            $(".mostra-modifica-account").slideDown(200);
         }
     });
@@ -174,8 +176,38 @@ function assegnaVoto(){
 
 function validaFormModifica() {
     //valida i campi in comune con il form di registrazione
-    var formValido = validaFormUtente();
-    if(formValido) {
+    var formValido = true;
 
+    var email = document.getElementById("email");
+    //espressione regolare che valida un'email a grandi linee. Presa da
+    //https://stackoverflow.com/questions/46155/how-to-validate-email-address-in-javascript quarta risposta
+    if (/[^\s@]+@[^\s@]+\.[^\s@]+/.test(email.value.trim()) == false) {
+        notificaErrore(email.parentNode, "Inserire un'email valida");
+        formValido = false;
     }
+
+    var vecchiaPassword = document.getElementsById("vecchia-password");
+    var password = document.getElementById("password");
+    var password2 = document.getElementById("password2");
+
+    if(vecchiaPassword.value.trim() != 0) {
+        if (password.value.trim().length == 0) {
+            notificaErrore(password.parentNode, "Inserire una password valida");
+            formValido = false;
+        }
+        else if (password2.value.trim().length == 0) {
+            notificaErrore(password2.parentNode, "Si prega di ripetere la password");
+            formValido = false;
+        }
+        else if (password.value != password2.value) {
+            notificaErrore(password2.parentNode, "Le password non combaciano");
+            formValido = false;
+        }
+    }
+    else {
+        //pulisco i campi di modifica della password
+        $(password, password2).val('');
+    }
+
+
 }
