@@ -40,6 +40,7 @@
                         </table>
                     </div>
                 </div>
+
                 <div id="usr-manager" class="tabcontent wrapper-tabella">
                     <table class="tabella">
                         <caption><h3>Gestione utenti</h3></caption>
@@ -58,24 +59,34 @@
                         </tbody>
                     </table>
                 </div>
+
                 <div id="act-manager" class="tabcontent">
                     <h1>Gestione attività</h1>
                     [#ATTIVITA]
                 </div>
-                <div id="res-manager" class="tabcontent">
-                    <h3>Gestione prenotazioni</h3>
-                    <table>
-                        <th>Nome</th>
-                        <th>Attività</th>
-                        <th>Posti</th>
-                        <th>Giorno prenotato</th>
-                        <th>Stato</th>
-                        <th></th>
+
+                <div id="res-manager" class="tabcontent wrapper-tabella">
+                    <table class="tabella">
+                        <caption><h3>Gestione prenotazioni</h3></caption>
+                        <thead>
+                            <tr class="intestazione-tabella">
+                                <th>Utente</th>
+                                <th>Attività</th>
+                                <th>Posti</th>
+                                <th>Giorno prenotato</th>
+                                <th>Stato</th>
+                                <th>Pagamento</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
                         [#PRENOTAZIONI]
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
+    </div>
     [#MENU-MOBILE]
         <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
         <script type="text/javascript" src="js/pannello.js"></script>

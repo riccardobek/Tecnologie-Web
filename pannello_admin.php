@@ -28,7 +28,6 @@ $HTML = str_replace("[#ATTIVITA-PIU-PRENOTATE]",getAttivitaPiuPrenotate(),$HTML)
 
 //Rimpiazza segna posto [#PRENOTAZIONI]
 $HTML = str_replace("[#PRENOTAZIONI]",prenotazioniAttive(),$HTML);
-echo $HTML;
 
 //Footer
 $HTML = str_replace("[#MENU-MOBILE]",menuMobile($activeIndex),$HTML);
@@ -118,7 +117,7 @@ function prenotazioniAttive(){
     $prenotazioni_attive->execute();
     $array=$prenotazioni_attive->fetchAll();
     $row="";
-    foreach ($prenotazioni_attive as $pa){
+    foreach ($array as $pa){
         $row .= <<<RIGA
         <tr><td>{$pa["Utente"]}</td><td>{$pa["Attivita"]}</td><td>{$pa["Posti"]}</td><td>{$pa["Giorno"]}</td><td>{$pa["Stato"]}</td><td>{$pa["Pagato"]}</td><td><span>Cancella prenotazione</span></td></tr>
 RIGA;
