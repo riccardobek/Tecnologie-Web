@@ -5,6 +5,13 @@ require_once "funzioni_sicurezza.php";
 
 $menuElements = array(
     array(
+        "Nome" => "Salta intestazione",
+        "URL" => "#content",
+        "Icona" => "",
+        "Pulsante" => false,
+        "LoginDipendente" => false
+    ),
+    array(
         "Nome" => "Home",
         "URL" => "index.php",
         "Icona"=> PERCORSO_RELATIVO."images/icone/icona_home.png",
@@ -75,6 +82,8 @@ $menuElements = array(
  * collegamento ma solo un elemento statico
  */
 function creaElementoMenu($index, $activeIndex) {
+    $activeIndex++;
+
     global $menuElements;
     $element = "";
 
@@ -137,6 +146,7 @@ function intestazione($activeIndex) {
 /*Genera in modo dinamico l'elenco delle voci del menu */
 
 function creaElementoMenuMobile($index, $activeIndex){
+    $activeIndex++;
     global $menuElements;
 
     $element ="";
@@ -153,11 +163,11 @@ function creaElementoMenuMobile($index, $activeIndex){
     }
     $element = ($index == $activeIndex) ?
 <<<ELEMENTO
-    <li class="active"><span><img class="icona-menu" src='{$menuElements[$index]["Icona"]}'>{$menuElements[$index]["Nome"]}</span></li>\n
+    <li class="active"><span><img class="icona-menu" src='{$menuElements[$index]["Icona"]}' alt="{$menuElements[$index]["Nome"]} - icona">{$menuElements[$index]["Nome"]}</span></li>\n
 ELEMENTO
             :
 <<<ELEMENTO
-    <li><a href="{$menuElements[$index]["URL"]}"><img class="icona-menu" src='{$menuElements[$index]["Icona"]}'>{$menuElements[$index]["Nome"]}</a></li>\n
+    <li><a href="{$menuElements[$index]["URL"]}"><img class="icona-menu" src='{$menuElements[$index]["Icona"]}' alt="{$menuElements[$index]["Nome"]} - icona">{$menuElements[$index]["Nome"]}</a></li>\n
 ELEMENTO;
 
     return $element;
