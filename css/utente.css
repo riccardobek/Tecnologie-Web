@@ -138,4 +138,22 @@ h1,h2,h3{
     display: none;
 }
 
+.label-riepilogo {
+    float:left;
+    margin-top: 0.5em;
+    font-weight: bold;
+    width: 15%;
+    padding-bottom: 0em;
+}
 
+.input-container {
+    margin-left:16%;
+    width: 70%;
+}
+.form-input {
+    border: 0;
+}
+
+.field-container {
+    margin-top:1em;
+}
