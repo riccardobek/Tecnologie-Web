@@ -42,7 +42,6 @@ $(function() {
                                     $('#'+target).parent().slideUp('Slow', function(){
                                         $(this).remove();
                                     });
-
                                     dispari.removeClass("dispari").addClass("pari");
                                     pari.removeClass("pari").addClass("dispari");
                                 }
@@ -63,36 +62,28 @@ $(function() {
                     }
                 }
             });
-
         }
-
     });
 
     //Scheda Account
     $datiForm = salvaDatiForm();
 
-    $(":text, :password").attr('disabled','disabled');
+    $("input[type=text], input[type=password]").attr('disabled','disabled');
+
+    $(".mostra-modifica, .mostra-modifica-password").hide();
 
 
-    $(".mostra-modifica, .mostra-modifica-account").hide();
-
-    $(".modifica").on("click",function () {
+    $(".modifica").on("click", function () {
         $(".mostra-modifica").slideDown(200);
-        if($(this).parent().parent().attr('id')=="sez-dati-personali") {
-            //sti giri nel DOM non mi fanno impazzire
-            $(this).parent().siblings().children(":text").removeAttr('disabled');
-        }
-       else{
-           $(this).parent().siblings().children().not('#username').removeAttr('disabled');
-           $("input[type=password]").val('');
-           $(".mostra-modifica-account").slideDown(200);
-        }
+        $(":text, :password").not('#username').removeAttr('disabled');
+        $("input[type=password]").val('');
     });
 
+    $("#modifica-password")
     $("#annulla").on("click",function () {
         $(":text").attr('disabled','disabled');
         ripristinaDatiInizialiForm($datiForm);
-        $(".mostra-modifica, .mostra-modifica-account").slideUp(200, function () {
+        $(".mostra-modifica").slideUp(200, function () {
             $(this).hide();
         });
     });
@@ -210,9 +201,8 @@ function validaFormModifica() {
     }
     else {
         //pulisco i campi di modifica della password
-        password2.value = '';
+        password.value = '';
         password2.value = '';
     }
     return formValido;
-
 }
