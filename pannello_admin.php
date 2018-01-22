@@ -23,10 +23,12 @@ $HTML = str_replace("[#UTENTI]",listaUtenti(), $HTML);
 //Rimpiazza segna posto [#ATTIVITA]
 $HTML = str_replace("[#ATTIVITA]",stampaSchedeAttivita(), $HTML);
 
-
 //tabelle statistiche(rimpiazza i segnaposto [#TABELLA])
 $HTML = str_replace("[#ATTIVITA-PIU-PRENOTATE]",getAttivitaPiuPrenotate(),$HTML);
 
+//Rimpiazza segna posto [#PRENOTAZIONI]
+$HTML = str_replace("[#PRENOTAZIONI]",prenotazioniAttive(),$HTML);
+echo $HTML;
 
 //Footer
 $HTML = str_replace("[#MENU-MOBILE]",menuMobile($activeIndex),$HTML);
@@ -107,6 +109,21 @@ RIGA;
 
     return $row;
 
+}
+
+function prenotazioniAttive(){
+    global $db;
+
+    $prenotazioni_attive=$db->prepare("SELECT Utenti.Nome  AS Utente, Attivita.Nome AS Attivita, Prenotazioni.PostiPrenotati AS Posti, Prenotazioni.Giorno AS Giorno, Prenotazioni.Stato as Stato, Prenotazioni.Pagamento AS Pagato FROM Utenti, Attivita,Prenotazioni WHERE Utenti.ID=Prenotazioni.IDUtente AND Prenotazioni.IDAttivita=Attivita.ID AND Giorno>=(SECLECT CURDATE()) ORDER BY Giorno, Attivita, Utente ASC ");
+    $prenotazioni_attive->execute();
+    $array=$prenotazioni_attive->fetchAll();
+    $row="";
+    foreach ($prenotazioni_attive as $pa){
+        $row .= <<<RIGA
+        <tr><td>{$pa["Utente"]}</td><td>{$pa["Attivita"]}</td><td>{$pa["Posti"]}</td><td>{$pa["Giorno"]}</td><td>{$pa["Stato"]}</td><td>{$pa["Pagato"]}</td><td><span>Cancella prenotazione</span></td></tr>
+RIGA;
+    }
+    return $row;
 }
 
 
