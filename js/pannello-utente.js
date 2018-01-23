@@ -53,9 +53,12 @@ $(function() {
     //cambio password
 
     $("#vecchia-password").on("focus", function () {
+        //se ho generato in precedenza lo span di successo lo elimino, se non c'è non succede nulla
+        $('#successo').remove();
         $(".mostra-modifica-password").show();
         //nascondo il tasto modifica alla fine del form per evitare confusione
         $(".mostra-modifica").hide();
+        $()
     });
 
     $("#bottone-modifica-password").on("click", function (e) {
@@ -65,13 +68,20 @@ $(function() {
         $(".mostra-modifica").show();
         if(validaCampiCambioPwd()) {
             //le password vanno bene faccio un richiesta di modifica della pwd
-            $.post("php/modifica_dati_utente.php", {VecchiaPwd: $("#vecchia-password").val(), NuovaPwd: $("#password").val() }, function (risposta) {
+            $.post("php/modifica_dati_utente.php", {VecchiaPwd: $("#vecchia-password").val(), NuovaPwd: $("#password").val()}, function (risposta) {
                 risposta = JSON.parse(risposta);
+                alert(risposta.stato);
                 if(risposta.stato == 1) {
-                    $(".button-holder.mostra-modifica-password").parent().append("<span class='successo'>"+risposta.messaggio+"</span>");
+                    $(".mostra-modifica-password").hide();
+                    //se ho generato in precedenza lo span di successo lo elimino, se non c'è non succede nulla
+                    $('#successo').remove();
+                    $("#vecchia-password").parent().append("<span id='successo'>"+risposta.messaggio+"</span>");
+
+
                 }
                 else{
-                   $("#vecchia-password").append("<span class='errore'>"+risposta.messaggio+"</span>");
+                    var vecchiaPwd = document.getElementById("vecchia-password");
+                   notificaErrore(vecchiaPwd.parentNode , risposta.messaggio);
                 }
 
             });
@@ -80,6 +90,8 @@ $(function() {
 
     $("#annulla-modifica-pwd").on("click", function () {
         $(".mostra-modifica-password").hide(function () {
+            //se ho generato in precedenza lo span di successo lo elimino, se non c'è non succede nulla
+            $('#successo').remove();
             $("input[type=password]").val('');
             $(".mostra-modifica").show();
         });

@@ -11,11 +11,11 @@ $idUtente = $_SESSION["Utente"]["ID"];
 
 if(isset($_POST["VecchiaPwd"])){
     modificaPassword();
-    return;
+
 }
 else{
     modificaDati();
-    return;
+
 }
 
 
@@ -65,23 +65,30 @@ function modificaDati() {
 function modificaPassword() {
     global $db;
 
-    $vecchiaPwd = $_POST["VecchiaPWd"];
+
+    $vecchiaPwd = $_POST["VecchiaPwd"];
     $nuovaPwd = $_POST["NuovaPwd"];
 
+
     $controlloPwdCorrente = $db->prepare("SELECT Password FROM Utenti WHERE ID = ?");
-    $controlloPwdCorrente->execute(array($idUtente));
+    $controlloPwdCorrente->execute(array($_SESSION["Utente"]["ID"]));
 
     $risQueryPwd = $controlloPwdCorrente->fetch();
 
-    if(criptaPassword($vecchiaPwd) != $risQueryPwd["Password"]) {
-        erroreJSON("Vecchia password non corretta.");
+    if(strcmp(criptaPassword($vecchiaPwd),$risQueryPwd["Password"] ) !== 0){
+        erroreJSON("Errore: Password inserita non corrisponde alla password corrente");
         return;
     }
+    if(strcmp(criptaPassword($vecchiaPwd),criptaPassword($nuovaPwd) ) === 0){
+        erroreJSON("Errore: La nuova password corrisponde a quella corrente");
+        return;
+    }
+
     //Modifico la password dell'account
     $queryModifica = $db->prepare("UPDATE Utenti SET Password = ? WHERE ID = ?");
-    if($queryModifica->execute(array(criptaPassword($nuovaPwd), $idUtente))) {
+    if($queryModifica->execute(array(criptaPassword($nuovaPwd), $_SESSION["Utente"]["ID"]))) {
         $db->commit();
-        successoJSON("Password modificata con successo");
+        successoJSON("Password modificata con successo.");
         return;
     }
     $db->rollBack();
