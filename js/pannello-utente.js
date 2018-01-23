@@ -46,7 +46,7 @@ $(function() {
 
     $(".modifica").on("click", function () {
         $(".mostra-modifica").slideDown(200);
-        $(":text, :password").not('#username').removeAttr('disabled').css("border-bottom", "1px solid silver");
+        $(":text, :password").not('#username').removeAttr('disabled');
     });
 
     //cambio password
@@ -79,10 +79,8 @@ $(function() {
                     $("#vecchia-password").parent().append("<span id='successo'>"+risposta.messaggio+"</span>");
                 }
                 else{
-                    var vecchiaPwd = document.getElementById("vecchia-password");
-                   notificaErrore(vecchiaPwd.parentNode , risposta.messaggio);
+                   notificaErrore($("#vecchia-password").parent(), risposta.messaggio);
                 }
-
             });
         }
     });
@@ -202,31 +200,31 @@ function rispostaEliminiazionePrenotazione(target) {
 function validaCampiCambioPwd(){
     var campiValidi = true;
 
-    var vecchiaPwd = document.getElementById("vecchia-password");
-    var password = document.getElementById("password");
-    var password2 = document.getElementById("password2");
+    var vecchiaPwd = $("#vecchia-password");
+    var password = $("#password");
+    var password2 = $("#password2");
 
 
-    if(vecchiaPwd.value.trim().length == 0){
-        notificaErrore(vecchiaPwd.parentNode , "Inserire la password corrente");
+    if(vecchiaPwd.val().trim().length == 0){
+        notificaErrore(vecchiaPwd.parent(), "Inserire la password corrente");
         campiValidi = false;
     }
-    else if (password.value.trim().length == 0) {
-        notificaErrore(password.parentNode, "Inserire una password valida");
+    else if (password.val().trim().length == 0) {
+        notificaErrore(password.parent(), "Inserire una password valida");
         campiValidi = false;
     }
-    else if (password2.value.trim().length == 0) {
-        notificaErrore(password2.parentNode, "Si prega di ripetere la password");
+    else if (password2.val().trim().length == 0) {
+        notificaErrore(password2.parent(), "Si prega di ripetere la password");
         campiValidi = false;
     }
-    else if (password.value != password2.value) {
-        notificaErrore(password2.parentNode, "Le password non combaciano");
+    else if (password.val() != password2.val()) {
+        notificaErrore(password2.parent(), "Le password non combaciano");
         campiValidi = false;
     }
     return campiValidi;
 }
 
-validaFormModifica() {
+function validaFormModifica() {
     var campiValidi = true;
 
 }

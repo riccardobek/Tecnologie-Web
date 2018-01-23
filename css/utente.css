@@ -152,7 +152,7 @@ h1,h2,h3{
     width: 70%;
 
 }
-input[type=text], input[type=password]{
+input[type=text]:disabled, input[type=password]:disabled {
     border:0;
 }
 form .field-container:not(:first-child) label {

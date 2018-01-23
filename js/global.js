@@ -23,27 +23,23 @@ $("document").ready(function() {
  * @param testo è il testo dell'errore
  */
 function notificaErrore(targetNode,testo) {
-    var span = document.createElement("span");
+    var span = $("<span>"+testo+"</span>");
+    span.appendTo(targetNode);
 
-    var testoSpan = document.createTextNode(testo);
-    span.appendChild(testoSpan);
+    targetNode.addClass("error");
 
-    targetNode.className += " error";
-    targetNode.appendChild(span);
-
-    targetNode.getElementsByTagName("input")[0].addEventListener("focus",function() {
+    targetNode.children("input").on("focus",function() {
         pulisciErrore(targetNode);
-    })
+    });
 }
 
 /**
  * Funzione che elimina tutti i messaggi di errore dai vari campi del form
  */
 function pulisciErrori() {
-    var elementi = document.getElementsByClassName("field-container");
-    for(var i=0; i<elementi.length; i++) {
-        pulisciErrore(elementi[i]);
-    }
+    $(".field-container").each(function() {
+        pulisciErrore($(this));
+    });
 }
 
 /**
@@ -51,20 +47,18 @@ function pulisciErrori() {
  * @param targetElement il div.field-container dal quale rimuovere l'eventuale messaggio di errore
  */
 function pulisciErrore(targetElement) {
-    if(targetElement.className.match("error")) {
+    if(targetElement.hasClass("error")) {
         //Se l'elemento targetNode ha un errore (quindi ha la classe error) la tolgo
-        targetElement.className = targetElement.className.replace("error", "");
+        targetElement.removeClass("error");
 
         //Prendo tutti i figli del div.field-container che sto esaminando e rimuovo lo span
-        var figli = targetElement.childNodes;
-
-        for(var i=0; i<figli.length; i++) {
+        targetElement.children().each(function() {
             //Itero sui figli del div.field-container che sto esaminando alla disperata ricerca dello span da rimuovere
-            if(figli[i].nodeName.toLowerCase() == "span") {
+            if($(this).is("span")) {
                 //quando l'ho trovato lo rimuovo
-                targetElement.removeChild(figli[i]);
+                $(this).remove();
             }
-        }
+        });
     }
 }
 
@@ -94,33 +88,33 @@ function validaFormUtente() {
 
     var formValido = true;
 
-    var email = document.getElementById("email");
+    var email = $("#email");
     //espressione regolare che valida un'email a grandi linee. Presa da
     //https://stackoverflow.com/questions/46155/how-to-validate-email-address-in-javascript quarta risposta
-    if (/[^\s@]+@[^\s@]+\.[^\s@]+/.test(email.value.trim()) == false) {
-        notificaErrore(email.parentNode, "Inserire un'email valida");
+    if (/[^\s@]+@[^\s@]+\.[^\s@]+/.test(email.val().trim()) == false) {
+        notificaErrore(email.parent(), "Inserire un'email valida");
         formValido = false;
     }
 
-    var username = document.getElementById("username");
-    if (username.value.trim().length == 0) {
-        notificaErrore(username.parentNode, "Inserire uno username valido");
+    var username = $("#username");
+    if (username.val().trim().length == 0) {
+        notificaErrore(username.parent(), "Inserire uno username valido");
         formValido = false;
     }
 
-    var password = document.getElementById("password");
-    var password2 = document.getElementById("password2");
+    var password = $("#password");
+    var password2 = $("#password2");
 
-    if (password.value.trim().length == 0) {
-        notificaErrore(password.parentNode, "Inserire una password valida");
+    if (password.val().trim().length == 0) {
+        notificaErrore(password.parent(), "Inserire una password valida");
         formValido = false;
     }
-    else if (password2.value.trim().length == 0) {
-        notificaErrore(password2.parentNode, "Si prega di ripetere la password");
+    else if (password2.val().trim().length == 0) {
+        notificaErrore(password2.parent(), "Si prega di ripetere la password");
         formValido = false;
     }
-    else if (password.value != password2.value) {
-        notificaErrore(password2.parentNode, "Le password non combaciano");
+    else if (password.val() != password2.val()) {
+        notificaErrore(password2.parent(), "Le password non combaciano");
         formValido = false;
     }
 

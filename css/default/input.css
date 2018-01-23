@@ -85,13 +85,13 @@ div.attivita span.btn.btn-primary:active {
 }
 
 /*** VISUALIZZAZIONE DEGLI ERRORI NEL FORM ******/
-div.field-container.error > span{
+div.error > span{
     display: block;
     width: 100%;
     padding: 0.3em;
     color: red;
 }
 
-div.field-container.error > input{
+div.error input{
     border-bottom-color: red;
 }
