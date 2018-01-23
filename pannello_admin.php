@@ -113,13 +113,13 @@ RIGA;
 function prenotazioniAttive(){
     global $db;
 
-    $prenotazioni=$db->prepare("SELECT Utenti.Nome  AS Utente, Attivita.Nome AS Attivita, Prenotazioni.PostiPrenotati AS Posti, Prenotazioni.Giorno AS Giorno, Prenotazioni.Stato as Stato, Prenotazioni.Pagamento AS Pagato FROM Utenti, Attivita,Prenotazioni WHERE Utenti.ID=Prenotazioni.IDUtente AND Prenotazioni.IDAttivita=Attivita.Codice AND Giorno>=(SELECT CURDATE()) ORDER BY Giorno, Attivita, Utente ASC ");
+    $prenotazioni=$db->prepare("SELECT Prenotazione.Codice AS CodicePrenotazione, Utenti.Nome  AS Utente, Attivita.Nome AS Attivita, Prenotazioni.PostiPrenotati AS Posti, Prenotazioni.Giorno AS Giorno, Prenotazioni.Stato as Stato, Prenotazioni.Pagamento AS Pagato FROM Utenti, Attivita,Prenotazioni WHERE Utenti.ID=Prenotazioni.IDUtente AND Prenotazioni.IDAttivita=Attivita.Codice AND Giorno>=(SELECT CURDATE()) ORDER BY Giorno, Attivita, Utente ASC ");
     $prenotazioni->execute();
     $arrayPrenotazioni=$prenotazioni->fetchAll();
     $row="";
     foreach ($arrayPrenotazioni as $riga){
         $row .= <<<RIGA
-        <tr><td>{$riga["Utente"]}</td><td>{$riga["Attivita"]}</td><td>{$riga["Posti"]}</td><td>{$riga["Giorno"]}</td><td>{$riga["Stato"]}</td><td>{$riga["Pagato"]}</td><td><span>Cancella prenotazione</span></td></tr>
+        <tr><td>{$riga["Utente"]}</td><td>{$riga["Attivita"]}</td><td>{$riga["Posti"]}</td><td>{$riga["Giorno"]}</td><td>{$riga["Stato"]}</td><td>{$riga["Pagato"]}</td><td><button id="{$riga["CodicePrenotazione"]}" class="btn-cancella">CANCELLA PRENOTAZIONE</button></td></tr>
 RIGA;
     }
     return $row;
