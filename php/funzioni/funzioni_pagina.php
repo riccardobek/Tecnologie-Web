@@ -7,9 +7,10 @@ $menuElements = array(
     array(
         "Nome" => "Salta intestazione",
         "URL" => "#content",
-        "Icona" => "",
+        "Icona" => PERCORSO_RELATIVO."images/icone/icona_home.png",
         "Pulsante" => false,
-        "LoginDipendente" => false
+        "LoginDipendente" => false,
+        "Mobile"=>false
     ),
     array(
         "Nome" => "Home",
@@ -161,6 +162,12 @@ function creaElementoMenuMobile($index, $activeIndex){
         //"login") e l'utente corrente è loggato, allora non lo visualizzo
         return $element;
     }
+
+    else if(isset($menuElements[$index]["Mobile"]) && !$menuElements[$index]["Mobile"]) {
+        return $element;
+    }
+
+
     $element = ($index == $activeIndex) ?
 <<<ELEMENTO
     <li class="active"><span><img class="icona-menu" src='{$menuElements[$index]["Icona"]}' alt="{$menuElements[$index]["Nome"]} - icona">{$menuElements[$index]["Nome"]}</span></li>\n
