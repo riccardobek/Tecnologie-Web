@@ -25,9 +25,7 @@ function toggleMostra() {
 
 function eliminaPrenotazione(codicePrenotazione) {
     var successo = false;
-    $.post("php/delete_prenotazione.php",{
-        idPrenotazione: codicePrenotazione
-    },function (risposta) {
+    $.post("php/delete_prenotazione.php", {idPrenotazione: codicePrenotazione}, function (risposta) {
         risposta = JSON.parse(risposta);
         if(risposta.stato == 1) {
             //successo

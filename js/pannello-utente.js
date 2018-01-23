@@ -51,20 +51,37 @@ $(function() {
 
     });
     //cambio password
+
     $("#vecchia-password").on("focus", function () {
         $(".mostra-modifica-password").show();
+        //nascondo il tasto modifica alla fine del form per evitare confusione
+        $(".mostra-modifica").hide();
     });
 
-    $("#bottone-modifica-password").on("click", function () {
+    $("#bottone-modifica-password").on("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
         //controllo se le password combaciano
+        $(".mostra-modifica").show();
         if(validaCampiCambioPwd()) {
             //le password vanno bene faccio un richiesta di modifica della pwd
+            $.post("php/modifica_dati_utente.php", {VecchiaPwd: $("#vecchia-password").val(), NuovaPwd: $("#password").val() }, function (risposta) {
+                risposta = JSON.parse(risposta);
+                if(risposta.stato == 1) {
+                    $(".button-holder.mostra-modifica-password").parent().append("<span class='successo'>"+risposta.messaggio+"</span>");
+                }
+                else{
+                   $("#vecchia-password").append("<span class='errore'>"+risposta.messaggio+"</span>");
+                }
+
+            });
         }
-    })
+    });
 
     $("#annulla-modifica-pwd").on("click", function () {
         $(".mostra-modifica-password").hide(function () {
             $("input[type=password]").val('');
+            $(".mostra-modifica").show();
         });
     });
 
@@ -179,7 +196,7 @@ function validaCampiCambioPwd(){
     var password2 = document.getElementById("password2");
 
 
-    if(password.value.trim().length == 0){
+    if(vecchiaPwd.value.trim().length == 0){
         notificaErrore(vecchiaPwd.parentNode , "Inserire la password corrente");
         campiValidi = false;
     }
