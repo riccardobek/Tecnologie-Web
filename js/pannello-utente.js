@@ -44,21 +44,22 @@ $(function() {
 
     $(".mostra-modifica, .mostra-modifica-password").hide();
 
-
     $(".modifica").on("click", function () {
         $(".mostra-modifica").slideDown(200);
         $(":text, :password").not('#username').removeAttr('disabled').css("border-bottom", "1px solid silver");
-
     });
+
     //cambio password
+    var labelPassword = $("label[for='vecchia-password']");
+    var testoModificaPwd = "Modifica password:";
 
     $("#vecchia-password").on("focus", function () {
+        $(labelPassword).text("Password corrente: ");
         //se ho generato in precedenza lo span di successo lo elimino, se non c'è non succede nulla
         $('#successo').remove();
         $(".mostra-modifica-password").show();
         //nascondo il tasto modifica alla fine del form per evitare confusione
         $(".mostra-modifica").hide();
-        $()
     });
 
     $("#bottone-modifica-password").on("click", function (e) {
@@ -70,14 +71,12 @@ $(function() {
             //le password vanno bene faccio un richiesta di modifica della pwd
             $.post("php/modifica_dati_utente.php", {VecchiaPwd: $("#vecchia-password").val(), NuovaPwd: $("#password").val()}, function (risposta) {
                 risposta = JSON.parse(risposta);
-                alert(risposta.stato);
                 if(risposta.stato == 1) {
+                    $(labelPassword).text(testoModificaPwd);
                     $(".mostra-modifica-password").hide();
                     //se ho generato in precedenza lo span di successo lo elimino, se non c'è non succede nulla
                     $('#successo').remove();
                     $("#vecchia-password").parent().append("<span id='successo'>"+risposta.messaggio+"</span>");
-
-
                 }
                 else{
                     var vecchiaPwd = document.getElementById("vecchia-password");
@@ -92,12 +91,11 @@ $(function() {
         $(".mostra-modifica-password").hide(function () {
             //se ho generato in precedenza lo span di successo lo elimino, se non c'è non succede nulla
             $('#successo').remove();
+            $(labelPassword).text(testoModificaPwd);
             $("input[type=password]").val('');
             $(".mostra-modifica").show();
         });
     });
-
-
 
     //annulla inserimento dati form
     $("#annulla").on("click",function () {
@@ -109,19 +107,20 @@ $(function() {
     });
 
     //Modifica dati account
-    /*$("form").on("submit", function (e) {
+    $("form").on("submit", function (e) {
         e.preventDefault();
+        e.stopPropagation();
         //prima di fare il submit controllo la validità dei dati modificati
-        if(validaFormModifica()) {
+        if(validaForm) {
+
             //Chiedo conferma della modifica
             console.log( $( "form" ).serialize() );
            // $.post($("form").attr("action"),)
         }
         else {
-            e.preventDefault();
-            e.stopPropagation();
+            alert()
         }
-    });*/
+    });
 });
 
 
@@ -225,4 +224,9 @@ function validaCampiCambioPwd(){
         campiValidi = false;
     }
     return campiValidi;
+}
+
+validaFormModifica() {
+    var campiValidi = true;
+
 }
