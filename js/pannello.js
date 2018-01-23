@@ -21,3 +21,30 @@ function toggleMostra() {
         $(this).parent().prev().show();
     });
 }
+
+
+function eliminaPrenotazione(codicePrenotazione) {
+    var successo = false;
+    $.post("php/delete_prenotazione.php",{
+        idPrenotazione: codicePrenotazione
+    },function (risposta) {
+        risposta = JSON.parse(risposta);
+        if(risposta.stato == 1) {
+            //successo
+            rispostaEliminiazionePrenotazione(codicePrenotazione);
+            successo = true;
+        }
+        else{
+            $.alert ({
+                boxWidth: calcolaDimensioneDialog(),
+                useBootstrap: false,
+                type: 'red',
+                title: 'Errore',
+                content: risposta.messaggio,
+            });
+            successo = false;
+        }
+        return successo;
+    });
+
+}

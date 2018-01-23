@@ -29,37 +29,9 @@ $(function() {
                 buttons: {
                     Procedi:{
                         btnClass: 'btn-blue',
-                        action: function () {
-                            $.post("php/delete_prenotazione.php",{
-                                idPrenotazione: target
-                            },function (risposta) {
-                                risposta = JSON.parse(risposta);
-                                if(risposta.stato == 1) {
-                                    //successo
-                                    var pari = $('#'+target).parent().nextAll(".pari");
-                                    var dispari = $('#'+target).parent().nextAll(".dispari");
-
-                                    $('#'+target).parent().slideUp('Slow', function(){
-                                        $(this).remove();
-                                    });
-                                    dispari.removeClass("dispari").addClass("pari");
-                                    pari.removeClass("pari").addClass("dispari");
-                                }
-                                else{
-                                    $.alert ({
-                                        boxWidth: calcolaDimensioneDialog(),
-                                        useBootstrap: false,
-                                        type: 'red',
-                                        title: 'Errore',
-                                        content: risposta.messaggio
-                                    });
-                                }
-                            });
-                        }
+                        action: eliminaPrenotazione(target)
                     },
-                    Annulla:  {
-                       
-                    }
+                    Annulla:  {}
                 }
             });
         }
@@ -205,4 +177,15 @@ function validaFormModifica() {
         password2.value = '';
     }
     return formValido;
+}
+
+function rispostaEliminiazionePrenotazione(target) {
+    var pari = $('#'+target).parent().nextAll(".pari");
+    var dispari = $('#'+target).parent().nextAll(".dispari");
+
+    $('#'+target).parent().slideUp('Slow', function(){
+        $(this).remove();
+    });
+    dispari.removeClass("dispari").addClass("pari");
+    pari.removeClass("pari").addClass("dispari");
 }
