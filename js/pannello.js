@@ -46,5 +46,4 @@ function eliminaPrenotazione(codicePrenotazione) {
         }
         return successo;
     });
-
 }

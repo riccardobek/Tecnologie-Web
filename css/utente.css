@@ -142,18 +142,26 @@ h1,h2,h3{
     float:left;
     margin-top: 0.5em;
     font-weight: bold;
-    width: 15%;
+    width: 25%;
     padding-bottom: 0em;
+    text-align: right;
 }
 
 .input-container {
-    margin-left:16%;
+    margin-left:27%;
     width: 70%;
-}
-.form-input {
-    border: 0;
-}
 
+}
+input[type=text], input[type=password]{
+    border:0;
+}
+form .field-container:not(:first-child) label {
+    margin-top:0.4em;
+}
 .field-container {
     margin-top:1em;
+}
+
+.mostra-bordo{
+    border-bottom: 1px solid silver;
 }

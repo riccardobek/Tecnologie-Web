@@ -11,8 +11,9 @@
     <link rel="stylesheet" type="text/css" href="css/stampa.css" media="print">
 
     <link rel="stylesheet" type="text/css" href="css/login.css">
-    <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="screen and (max-width:768px), only screen and (max-device-width:768px)"/>
+
     <link rel="stylesheet" type="text/css" href="css/utente.css">
+    <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="screen and (max-width:768px), only screen and (max-device-width:768px)"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
 </head>
 <body>
@@ -33,14 +34,8 @@
     <div class="length-wrapper" id="tab-content-mobile">
             <div id="prenotazioni" class="tabcontent">
                 <h1>Prenotazioni Attive</h1>
-
-                    [#SCHEDE]
-                    <div class="clearfix"></div>
-
-
-                <!-- Forse da fare lo slideDown con js -->
-
-
+                [#SCHEDE]
+                <div class="clearfix"></div>
                 <div class="wrapper-tabella">
                     <table class="tabella">
                        <caption><h2>Storico Prenotazioni</h2></caption>
@@ -58,13 +53,46 @@
                         </tbody>
                     </table>
                 </div>
-
             </div>
 
             <div id="account" class="tabcontent">
                 <div action="php/modifica_dati_utente.php" class="form" id="container_form">
                     <h1>Riepilogo dati accounti<span class="btn-testo modifica">Modifica</span> </h1>
                     <form action="" method="POST">
+                        <div class="field-container">
+                            <label for="username" class="label-riepilogo">Nome utente: </label>
+                            <div class="input-container">
+                                <input type="text" id="username" name="username" value="[#USERNAME]">
+                            </div>
+                        </div>
+                        <div class="field-container">
+                            <label for="email" class="label-riepilogo">Email: </label>
+                            <div class="input-container">
+                                <input type="text" id="email" name="email" value="[#EMAIL]">
+                            </div>
+                        </div>
+                        <div class="field-container">
+                            <label for="vecchia-password" class="label-riepilogo">Modifica password: </label>
+                            <div class="input-container">
+                                <input type="password" id="vecchia-password" name="vecchia-password" placeholder="Password corrente">
+                            </div>
+                        </div>
+                        <div class="field-container mostra-modifica-password">
+                            <label for="password" class="label-riepilogo">Nuova password: </label>
+                            <div class="input-container">
+                                <input type="password" id="password" name="password" placeholder="Inserisci la nuova password">
+                            </div>
+                        </div>
+                        <div class="field-container mostra-modifica-password">
+                            <label for="password2" class="label-riepilogo" value="Inserisci la nuova password">Ripeti nuova password: </label>
+                            <div class="input-container">
+                                <input type="password" id="password2" name="password2" placeholder="Ripeti la nuova password">
+                            </div>
+                        </div>
+                        <div class="button-holder mostra-modifica-password" >
+                            <button id="bottone-modifica-password" name="modifica" class="btn btn-primary">Modifica password</button>
+                            <span class="btn" id="annulla-modifica-pwd" class="btn-testo">Annulla</span>
+                        </div>
                         <div class="field-container">
                             <label for="nome" class="label-riepilogo">Nome: </label>
                             <div class="input-container">
@@ -101,37 +129,7 @@
                                 <input type="text"  size="4" id="CAP" name="CAP" value="[#CAP]">
                             </div>
                         </div>
-                        <div class="field-container">
-                            <label for="username" class="label-riepilogo">Nome utente: </label>
-                            <div class="input-container">
-                                <input type="text" id="username" name="username" value="[#USERNAME]">
-                            </div>
-                        </div>
-                        <div class="field-container">
-                            <label for="email" class="label-riepilogo">Email: </label>
-                            <div class="input-container">
-                                <input type="text" id="email" name="email" value="[#EMAIL]">
-                            </div>
-                        </div>
-                        <h2><span class="btn-testo mostra-modifica" id="modifica-password" aria-describedby="descrizione-modifica-password">Modifica password</span></h2>
-                        <div class="field-container mostra-modifica-password">
-                            <label for="vecchia-password" class="label-riepilogo">Vecchia password: </label>
-                            <div class="input-container">
-                                <input type="password" id="vecchia-password" name="vecchia-password" >
-                            </div>
-                        </div>
-                        <div class="field-container mostra-modifica-password">
-                            <label for="password" class="label-riepilogo">Password: </label>
-                            <div class="input-container">
-                                <input type="password" id="password" name="password">
-                            </div>
-                        </div>
-                        <div class="field-container mostra-modifica-password">
-                            <label for="password2" class="label-riepilogo">Ripeti password: </label>
-                            <div class="input-container">
-                                <input type="password" id="password2" name="password2">
-                            </div>
-                        </div>
+
 
                         <div class="button-holder mostra-modifica" >
                             <input type="submit" value="Modifica" name="modifica" class="btn btn-primary">

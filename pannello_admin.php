@@ -86,10 +86,6 @@ SCRIVI;
     return $output;
 }
 
-
-
-
-
 function getAttivitaPiuPrenotate() {
     global $db;
 
@@ -124,7 +120,4 @@ RIGA;
     }
     return $row;
 }
-
-
-
 ?>

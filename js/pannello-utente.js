@@ -47,13 +47,32 @@ $(function() {
 
     $(".modifica").on("click", function () {
         $(".mostra-modifica").slideDown(200);
-        $(":text, :password").not('#username').removeAttr('disabled');
-        $("input[type=password]").val('');
+        $(":text, :password").not('#username').removeAttr('disabled').css("border-bottom", "1px solid silver");
+
+    });
+    //cambio password
+    $("#vecchia-password").on("focus", function () {
+        $(".mostra-modifica-password").show();
     });
 
-    $("#modifica-password")
+    $("#bottone-modifica-password").on("click", function () {
+        //controllo se le password combaciano
+        if(validaCampiCambioPwd()) {
+            //le password vanno bene faccio un richiesta di modifica della pwd
+        }
+    })
+
+    $("#annulla-modifica-pwd").on("click", function () {
+        $(".mostra-modifica-password").hide(function () {
+            $("input[type=password]").val('');
+        });
+    });
+
+
+
+    //annulla inserimento dati form
     $("#annulla").on("click",function () {
-        $(":text").attr('disabled','disabled');
+        $(":text, :password").attr('disabled','disabled').css("border-bottom", "0");
         ripristinaDatiInizialiForm($datiForm);
         $(".mostra-modifica").slideUp(200, function () {
             $(this).hide();
@@ -61,7 +80,7 @@ $(function() {
     });
 
     //Modifica dati account
-    $("form").on("submit", function (e) {
+    /*$("form").on("submit", function (e) {
         e.preventDefault();
         //prima di fare il submit controllo la validità dei dati modificati
         if(validaFormModifica()) {
@@ -73,7 +92,7 @@ $(function() {
             e.preventDefault();
             e.stopPropagation();
         }
-    });
+    });*/
 });
 
 
@@ -139,45 +158,6 @@ function assegnaVoto(){
     });
 }
 
-//Ho usato javascript puro per esercizio
-function validaFormModifica() {
-    //valida i campi in comune con il form di registrazione
-    var formValido = true;
-
-    var email = document.getElementById("email");
-    //espressione regolare che valida un'email a grandi linee. Presa da
-    //https://stackoverflow.com/questions/46155/how-to-validate-email-address-in-javascript quarta risposta
-    if (/[^\s@]+@[^\s@]+\.[^\s@]+/.test(email.value.trim()) == false) {
-        notificaErrore(email.parentNode, "Inserire un'email valida");
-        formValido = false;
-    }
-
-    var vecchiaPassword = document.getElementById("vecchia-password");
-    var password = document.getElementById("password");
-    var password2 = document.getElementById("password2");
-
-    if(vecchiaPassword.value.trim().length != 0) {
-
-        if (password.value.trim().length == 0) {
-            notificaErrore(password.parentNode, "Inserire una password valida");
-            formValido = false;
-        }
-        else if (password2.value.trim().length == 0) {
-            notificaErrore(password2.parentNode, "Si prega di ripetere la password");
-            formValido = false;
-        }
-        else if (password.value != password2.value) {
-            notificaErrore(password2.parentNode, "Le password non combaciano");
-            formValido = false;
-        }
-    }
-    else {
-        //pulisco i campi di modifica della password
-        password.value = '';
-        password2.value = '';
-    }
-    return formValido;
-}
 
 function rispostaEliminiazionePrenotazione(target) {
     var pari = $('#'+target).parent().nextAll(".pari");
@@ -188,4 +168,32 @@ function rispostaEliminiazionePrenotazione(target) {
     });
     dispari.removeClass("dispari").addClass("pari");
     pari.removeClass("pari").addClass("dispari");
+}
+
+
+function validaCampiCambioPwd(){
+    var campiValidi = true;
+
+    var vecchiaPwd = document.getElementById("vecchia-password");
+    var password = document.getElementById("password");
+    var password2 = document.getElementById("password2");
+
+
+    if(password.value.trim().length == 0){
+        notificaErrore(vecchiaPwd.parentNode , "Inserire la password corrente");
+        campiValidi = false;
+    }
+    else if (password.value.trim().length == 0) {
+        notificaErrore(password.parentNode, "Inserire una password valida");
+        campiValidi = false;
+    }
+    else if (password2.value.trim().length == 0) {
+        notificaErrore(password2.parentNode, "Si prega di ripetere la password");
+        campiValidi = false;
+    }
+    else if (password.value != password2.value) {
+        notificaErrore(password2.parentNode, "Le password non combaciano");
+        campiValidi = false;
+    }
+    return campiValidi;
 }

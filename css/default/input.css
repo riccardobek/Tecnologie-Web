@@ -1,4 +1,4 @@
-input:not([type=submit]):not([type=button]) {
+input[type=text], input[type=password] {
     width: 100%;
     height: 25pt;
     background-color: white;
