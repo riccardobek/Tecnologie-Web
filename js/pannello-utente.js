@@ -205,26 +205,13 @@ function validaCampiCambioPwd(){
     var password2 = $("#password2");
 
 
-    if(vecchiaPwd.val().trim().length == 0){
+    if(vecchiaPwd.val().trim().length == 0) {
         notificaErrore(vecchiaPwd.parent(), "Inserire la password corrente");
         campiValidi = false;
     }
-    else if (password.val().trim().length == 0) {
-        notificaErrore(password.parent(), "Inserire una password valida");
+
+    if(!validaPassword(password,password2))
         campiValidi = false;
-    }
-    else if (password2.val().trim().length == 0) {
-        notificaErrore(password2.parent(), "Si prega di ripetere la password");
-        campiValidi = false;
-    }
-    else if (password.val() != password2.val()) {
-        notificaErrore(password2.parent(), "Le password non combaciano");
-        campiValidi = false;
-    }
+
     return campiValidi;
-}
-
-function validaFormModifica() {
-    var campiValidi = true;
-
 }

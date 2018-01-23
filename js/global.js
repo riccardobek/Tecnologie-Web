@@ -83,10 +83,19 @@ function validaData(d) {
     return false;
 }
 
-function validaFormUtente() {
+function validaFormUtente(validazionePassword) {
     pulisciErrori();
 
     var formValido = true;
+
+    var anagrafica = $("#nome, #cognome");
+    anagrafica.each(function() {
+        if($(this).val().trim().length == 0) {
+            notificaErrore($(this).parent(),"Campo obbligatorio");
+            formValido = false;
+        }
+
+    });
 
     var email = $("#email");
     //espressione regolare che valida un'email a grandi linee. Presa da
@@ -102,21 +111,34 @@ function validaFormUtente() {
         formValido = false;
     }
 
-    var password = $("#password");
-    var password2 = $("#password2");
+    if(validazionePassword) {
 
-    if (password.val().trim().length == 0) {
-        notificaErrore(password.parent(), "Inserire una password valida");
-        formValido = false;
-    }
-    else if (password2.val().trim().length == 0) {
-        notificaErrore(password2.parent(), "Si prega di ripetere la password");
-        formValido = false;
-    }
-    else if (password.val() != password2.val()) {
-        notificaErrore(password2.parent(), "Le password non combaciano");
-        formValido = false;
+        var password = $("#password");
+        var password2 = $("#password2");
+
+        if (!validaPassword(password, password2))
+            formValido = false;
     }
 
     return formValido;
+}
+
+function validaPassword(password, password2) {
+
+    passwordValide = true;
+
+    if (password.val().trim().length == 0) {
+        notificaErrore(password.parent(), "Inserire una password valida");
+        passwordValide = false;
+    }
+    else if (password2.val().trim().length == 0) {
+        notificaErrore(password2.parent(), "Si prega di ripetere la password");
+        passwordValide = false;
+    }
+    else if (password.val() != password2.val()) {
+        notificaErrore(password2.parent(), "Le password non combaciano");
+        passwordValide = false;
+    }
+
+    return passwordValide;
 }
