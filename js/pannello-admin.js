@@ -1,4 +1,4 @@
-$(function() {
+/*$(function() {
 
     var etichette = [];
     var valoriGrafico = [];
@@ -15,4 +15,4 @@ $(function() {
     };
 
     new Chartist.Pie('.ct-chart', data);
-});
+});*/

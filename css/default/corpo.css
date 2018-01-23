@@ -233,9 +233,11 @@ div.errore-container > img {
     color:#1C1C1C;
     border-collapse: collapse;
     margin: auto;
-    margin-bottom: 20px;
+    margin-bottom: 2em;
+    margin-top:3em;
     background-color: #F3F3F3;
     padding-right: 0.5em;
+    padding-left: 0.5em;
 }
 .tabella caption{
     color: white;
