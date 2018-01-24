@@ -195,3 +195,18 @@ div#menu-mobile ul > li.active{
 .wrapper-tabella{
     overflow-x: auto;
 }
+form label {
+    display: block;
+    padding-bottom: 0.3em;
+    text-align: left;
+    width: 100%;
+}
+.input-container {
+    margin-left:0;
+    width: 100%;
+
+}
+
+#bottone-modifica-password, .mostra-modifica >.btn.btn-primary{
+    width:100%;
+}
