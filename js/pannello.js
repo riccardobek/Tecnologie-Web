@@ -33,13 +33,22 @@ function eliminaPrenotazione(codicePrenotazione) {
             successo = true;
         }
         else{
-            $.alert ({
-                boxWidth: calcolaDimensioneDialog(),
-                useBootstrap: false,
-                type: 'red',
-                title: 'Errore',
-                content: risposta.messaggio
-            });
+            generaAlert('red','Errore',risposta.messaggio);
+            successo = false;
+        }
+        return successo;
+    });
+}
+
+function eliminaAccount(idUtente = 0) {
+    var successo = false;
+    $.post("php/delete_account.php",{IDUtente:idUtente}, function(risposta) {
+        risposta = JSON.parse(risposta);
+        if(risposta.stato == 1) {
+            //successo
+            successo = true;
+        }
+        else{
             successo = false;
         }
         return successo;

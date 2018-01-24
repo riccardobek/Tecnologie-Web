@@ -17,7 +17,7 @@ $queryLogin->execute(array($username,criptaPassword($password)));
 
 $utente = $queryLogin->fetch();
 
-if(!$utente) {
+if(!$utente || $utente["Stato"]== 0) {
     ($jsAbilitato) ? print("0") : paginaErrore("Username o password non corretti","../login.php","Torna al login");
     return;
 }

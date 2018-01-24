@@ -194,3 +194,8 @@ form .field-container:not(:first-child) label {
 .mostra-bordo{
     border-bottom: 1px solid silver;
 }
+
+#elimina-account {
+    background-color: #B80000;
+    border-color: #770101;
+}

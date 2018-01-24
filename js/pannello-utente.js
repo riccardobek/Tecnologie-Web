@@ -128,6 +128,41 @@ $(function() {
     });
 });
 
+//Eliminazione account
+$("#elimina-account").on("click", function () {
+    $.confirm({
+        boxWidth: calcolaDimensioneDialog(),
+        useBootstrap: false,
+        title: 'Conferma',
+        content: "Procedere con l'eliminazione dell'account? ",
+        buttons: {
+            Procedi:{
+                btnClass: 'btn-red',
+                action: function(){
+                    $.confirm({
+                        boxWidth: calcolaDimensioneDialog(),
+                        useBootstrap: false,
+                        title: 'Conferma',
+                        content: "Dopo l'eliminazione verrà automaticamente effettuato il logout e il tuo account sarà eliminato. Confermi di voler di eliminare l'account?",
+                        buttons: {
+                            eliminaAccount: {
+                                text: 'Elimina Account',
+                                btnClass: 'btn-red',
+                                action: function () {
+                                    //Doppia conferma, si procede all'eliminazione
+                                    eliminaAccount();
+                                }
+                            },
+                            Annulla: {}
+
+                        }
+                    });
+                }
+            },
+            Annulla:  {}
+        }
+    });
+});
 
 /****** FUNZIONI *******/
 
