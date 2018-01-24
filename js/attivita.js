@@ -1,51 +1,44 @@
 $(function () {
+    $(".form-prenotazione-container").hide();
 
-    $(".attivita > button").on("click",function(event) {
+    $(".chiudi-form-prenotazione").on("click", function () {
+        $(this).prev().data("espanso",false);
+        $(this).prev().prev().slideUp();
+        $(this).hide();
+    });
+
+    $(".attivita > .btn.btn-primary").on("click",function(event) {
 
         var formContainer = $(event.target).parent().children(".form-prenotazione-container");
 
+
         if(!$(event.target).data("espanso")) {
-            formContainer.slideToggle();
+            formContainer.slideDown();
+            $(event.target).next().show();
             $(event.target).data("espanso",true);
         }
         else {
             var inputData = formContainer.find("input.data");
             var inputPosti = formContainer.find("input.posti");
 
-            pulisciErrore(inputData.parent()[0].parentNode);
-            pulisciErrore(inputPosti[0].parentNode);
+            pulisciErrore(inputData.parent().parent());
+            pulisciErrore(inputPosti.parent());
 
             var data = validaData(inputData.val());
             if(!data) {
-                notificaErrore(inputData.parent()[0].parentNode, "Inserire una data nel formato corretto.");
+                notificaErrore(inputData.parent().parent(), "Inserire una data nel formato corretto.");
                 return;
             }
             if(data.getTime() < (new Date()).getTime()) {
-                notificaErrore(inputData.parent()[0].parentNode, "Impossibile prenotare per tale data. Inserire una data futura.");
+                notificaErrore(inputData.parent().parent(), "Impossibile prenotare per tale data. Inserire una data futura.");
                 return;
             }
 
             if(inputPosti.val().length == 0 || isNaN(inputPosti.val()) || parseInt(inputPosti.val())  <= 0) {
-                notificaErrore(inputPosti[0].parentNode, "Inserire un numero di posti valido (maggiore o uguale a uno)");
+                notificaErrore(inputPosti.parent(), "Inserire un numero di posti valido (maggiore o uguale a uno)");
                 return;
             }
-
             formContainer.find("form").submit();
-
-            /*
-            $.post("php/do_prenotazione.php", {
-                attivita: form.find("input[name='attivita']").val(),
-                data: formContainer.find(".data").val(),
-                posti: formContainer.find(".posti").val()
-            }, function (r) {
-                risposta = JSON.parse(r);
-                if(risposta.stato === 1) {
-                    alert("Prenotazione inserita con successo");
-                } else {
-                    alert("Errore nell'inserimento della prenotazione: \n\n"+risposta.messaggio)
-                }
-                console.log("Risposta dalla pagina di inserimento della prenotazione: "+r);
-            });*/
         }
     });
 
@@ -57,12 +50,6 @@ $(function () {
     });
 
     $("input.data").asDatepicker();
-
-    /*
-    $("input.data").on("focusout",function (event) {
-        if(!validaData($(event.target).val()))
-            notificaErrore(event.target.parentNode,"Inserire una data valida");
-    });*/
 
 });
 

@@ -18,6 +18,7 @@ $(function () {
             var risposta = JSON.parse(r);
             if(risposta.stato === 1) {
                 $("div#pulsanti-container").remove();
+                $("#pulsanti-fine-prenotazione").show();
                 $(".alert.successo > a").attr("href","pdf_prenotazione.php?codice="+risposta.CodicePrenotazione);
                 $(".alert.successo").show();
             }

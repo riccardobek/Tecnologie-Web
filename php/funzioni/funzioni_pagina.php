@@ -10,7 +10,8 @@ $menuElements = array(
         "Icona" => PERCORSO_RELATIVO."images/icone/icona_home.png",
         "Pulsante" => false,
         "LoginDipendente" => false,
-        "Mobile"=>false
+        "Mobile"=>false,
+        "ID"=>"salta-intestazione"
     ),
     array(
         "Nome" => "Home",
@@ -114,6 +115,10 @@ function creaElementoMenu($index, $activeIndex) {
 
     $element = str_replace("[#NOME_ELEMENTO]",$menuElements[$index]["Nome"],$element);
     $element = str_replace("[#LINK_ELEMENTO]",$menuElements[$index]["URL"],$element);
+
+    (isset($menuElements[$index]["ID"])) ?
+        $element = str_replace("[#ID]","id='{$menuElements[$index]["ID"]}'",$element) :
+        $element = str_replace("[#ID]","",$element);
 
     return $element;
 }

@@ -1,4 +1,4 @@
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=number] {
     width: 100%;
     height: 25pt;
     background-color: white;
@@ -67,6 +67,10 @@ input:not([type=submit]):not([type=button]):focus {
 
 .btn.btn-primary:active {
     border: 0.2em solid rgba(255,255,255,.3)
+}
+
+.btn.btn-inline {
+    display: inline;
 }
 
 .btn.btn-block {

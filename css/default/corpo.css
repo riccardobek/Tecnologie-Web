@@ -160,7 +160,6 @@ span.primary-btn.inline-btn{
 
 .form-prenotazione-container {
     text-align: left;
-    display: none;
     padding-bottom: 1em;
 }
 
@@ -173,7 +172,9 @@ span.primary-btn.inline-btn{
 .form-prenotazione-container div.field-container {
     padding-top: 1em;
 }
-
+.attivita .btn.chiudi-form-prenotazione{
+    display: none;
+}
 div.alert {
     padding: 0.7em 1.2em;
     display: none;
@@ -212,7 +213,9 @@ ul.conferma-prenotazione li span {
 ul.conferma-prenotazione li#totale {
     margin-top: 1em;
 }
-
+#pulsanti-fine-prenotazione {
+    display: none;
+}
 
 /******************************
  * PAGINA DI ERRORE GENERICO

@@ -94,16 +94,6 @@ $(function() {
     });
 
     //annulla inserimento dati form
-    $("#annulla").on("click",function () {
-        $(":text, :password").attr('disabled','disabled');
-        ripristinaDatiInizialiForm(datiForm);
-        $(".error").each(function () {
-            pulisciErrore($(this));
-        });
-        $(".mostra-modifica").slideUp(200, function () {
-            $(this).hide();
-        });
-    });
 
     //Modifica dati account
     $("form").on("submit", function (e) {
@@ -126,43 +116,53 @@ $(function() {
             });
         }
     });
-});
 
-//Eliminazione account
-$("#elimina-account").on("click", function () {
-    $.confirm({
-        boxWidth: calcolaDimensioneDialog(),
-        useBootstrap: false,
-        title: 'Conferma',
-        content: "Procedere con l'eliminazione dell'account? ",
-        buttons: {
-            Procedi:{
-                btnClass: 'btn-red',
-                action: function(){
-                    $.confirm({
-                        boxWidth: calcolaDimensioneDialog(),
-                        useBootstrap: false,
-                        title: 'Conferma',
-                        content: "Dopo l'eliminazione verrà automaticamente effettuato il logout e il tuo account sarà eliminato. Confermi di voler di eliminare l'account?",
-                        buttons: {
-                            eliminaAccount: {
-                                text: 'Elimina Account',
-                                btnClass: 'btn-red',
-                                action: function () {
-                                    //Doppia conferma, si procede all'eliminazione
-                                    eliminaAccount();
-                                }
-                            },
-                            Annulla: {}
+    $("#annulla").on("click",function () {
+        $(":text, :password").attr('disabled','disabled');
+        ripristinaDatiInizialiForm(datiForm);
+        $(".error").each(function () {
+            pulisciErrore($(this));
+        });
+        $(".mostra-modifica").slideUp(200, function () {
+            $(this).hide();
+        });
+    });
 
-                        }
-                    });
-                }
-            },
-            Annulla:  {}
-        }
+    //Eliminazione account
+    $("#elimina-account").on("click", function () {
+        $.confirm({
+            boxWidth: calcolaDimensioneDialog(),
+            useBootstrap: false,
+            title: 'Conferma',
+            content: "Procedere con l'eliminazione dell'account? ",
+            buttons: {
+                Procedi:{
+                    btnClass: 'btn-red',
+                    action: function(){
+                        $.confirm({
+                            boxWidth: calcolaDimensioneDialog(),
+                            useBootstrap: false,
+                            title: 'Conferma',
+                            content: "Dopo l'eliminazione verrà automaticamente effettuato il logout e il tuo account sarà eliminato. Confermi di voler di eliminare l'account?",
+                            buttons: {
+                                eliminaAccount: {
+                                    text: 'Elimina Account',
+                                    btnClass: 'btn-red',
+                                    action: function () {eliminaAccount();}
+                                },
+                                Annulla: {}
+                            }
+                        });
+                    }
+                },
+                Annulla: {}
+            }
+        });
     });
 });
+
+
+
 
 /****** FUNZIONI *******/
 

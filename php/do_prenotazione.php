@@ -52,7 +52,7 @@ if ($nPosti > $PostiDisponibiliEffettivi) {
 
 else {
     $db->beginTransaction();
-    $insertStatement = $db->prepare("INSERT INTO Prenotazioni VALUES(NULL,?,?,?,?)");
+    $insertStatement = $db->prepare("INSERT INTO Prenotazioni VALUES(NULL,?,?,?,?,'Sospesa','0',NULL)");
     if($insertStatement->execute(array($attivita,$utente,$data,$nPosti))) {
         $messaggio = successoJSON("Prenotazione inserita",array("CodicePrenotazione"=>$db->lastInsertId()));
         $db->commit();

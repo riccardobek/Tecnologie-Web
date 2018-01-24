@@ -45,12 +45,37 @@ function eliminaAccount(idUtente = 0) {
     $.post("php/delete_account.php",{IDUtente:idUtente}, function(risposta) {
         risposta = JSON.parse(risposta);
         if(risposta.stato == 1) {
-            //successo
             successo = true;
+
+           //richiesta di eliminazione dal pannello utente, mostro un dialog diverso e reindirizzo alla home
+            if(idUtente== 0){
+                var testo = risposta.messaggio+'. Verrai reindirizzato alla pagina principale.';
+                $.alert({
+                    boxWidth: calcolaDimensioneDialog(),
+                    useBootstrap: false,
+                    title:'Successo',
+                    type:'green',
+                    content: testo,
+                    buttons:{
+                        OK:{ action: function () {
+                                setTimeout(function() {
+                                    location.href ="php/do_logout.php";
+                                },1000);
+                            }
+                        }
+                    }
+                });
+
+            }
+            //richiesta di eliminazione dal pannello admin bisogna solo mostrare un dialog
+            else{
+                generaAlert('green','Successo',risposta.messaggio);
+            }
         }
         else{
             successo = false;
+            generaAlert('red','Errore',risposta.messaggio);
         }
-        return successo;
     });
+    return successo;
 }

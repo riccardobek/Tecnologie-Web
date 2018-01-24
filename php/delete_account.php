@@ -7,17 +7,18 @@ $db->beginTransaction();
 
 $idUtente  = $_SESSION["Utente"]["ID"];
 $tipoUtente = $_SESSION["Utente"]["Tipo"];
+$idUtenteDaEliminare = $_POST["IDUtente"];
 
-if(isset($_POST["IDUtente"])) {
-    $idUtenteDaEliminare = $_POST["IDUtente"];
-    //se è stato passato l'id dell'utente da eliminare allora è la richiesta è arrivata dalla pagina admin, in ogni caso
+
+if($idUtenteDaEliminare != 0) {
+    //se è stato passato l'id dell'utente (!= 0 ) da eliminare allora è la richiesta è arrivata dalla pagina admin, in ogni caso
     //si fa un controllo per essere sicuri che effettivamente sia effettivamente l'admin ad eliminare un account
     if($tipoUtente != 'Admin') {
         erroreJSON("Non è stato possibile eliminare l'account.");
         return;
     }
     //l'utente è l'admin quindi posso eliminare
-    $query = $db->prepare("SELECT Codice FROM Prenotazioni  AND IDUtente = ?");
+    $query = $db->prepare("SELECT Codice FROM Prenotazioni  WHERE  ID = ?");
     $query->execute(array($idUtenteDaEliminare));
 
     //se l'utente non ha prenotazioni allora il risultato della query è vuoto quindi si può eliminare l'account definitvamente
@@ -31,7 +32,7 @@ if(isset($_POST["IDUtente"])) {
 else {
     //l'utente vuole eliminare il suo account.
     //Controllo se l'utente ha prenotazioni
-    $query = $db->prepare("SELECT Codice FROM Prenotazioni  AND IDUtente = ?");
+    $query = $db->prepare("SELECT Codice FROM Prenotazioni  WHERE IDUtente = ?");
     $query->execute(array($idUtente));
     if(!$query->fetch()) {
         eliminaAccountSenzaPrenotazioni($idUtente);
@@ -42,10 +43,10 @@ else {
 
 }
 
-function eliminaAccountSenzaPrenotazioni($idUtenteDaEliminare) {
+function eliminaAccountSenzaPrenotazioni($utenteDaEliminare) {
     global $db;
-    $queryDelete = $db->prepare("DELETE FROM Utenti WHERE IDUtente = ?");
-    if ($queryDelete->execute(array($idUtenteDaEliminare))) {
+    $queryDelete = $db->prepare("DELETE FROM Utenti WHERE ID = ?");
+    if ($queryDelete->execute(array($utenteDaEliminare))) {
         $db->commit();
         successoJSON("Account eliminato con successo");
         return;
@@ -56,10 +57,10 @@ function eliminaAccountSenzaPrenotazioni($idUtenteDaEliminare) {
 }
 
 
-function eliminaAccountConPrenotazioni($idUtenteDaEliminare) {
+function eliminaAccountConPrenotazioni($utenteDaEliminare) {
     global $db;
-    $queryDelete = $db->prepare("UPDATE Utenti SET Stato = 0 WHERE IDUtente = ?");
-    if ($queryDelete->execute(array($idUtenteDaEliminare))) {
+    $queryDelete = $db->prepare("UPDATE Utenti SET Stato = 0 WHERE ID = ?");
+    if ($queryDelete->execute(array($utenteDaEliminare))) {
         $db->commit();
         successoJSON("Account eliminato con successo");
         return;
