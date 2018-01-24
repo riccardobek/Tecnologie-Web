@@ -57,7 +57,13 @@
 
             <div id="account" class="tabcontent">
                 <div class="form" id="container_form">
-                    <h1>Riepilogo dati accounti<span class="btn-testo modifica">Modifica</span> </h1>
+                    <div id="titolo-form">
+                        <h1 id="titolo">Riepilogo dati accounti </h1>
+                        <h2 id="btn-wrapper" ><span id="modifica" class="button">Modifica dati</span></h2>
+                        <div class="clearfix"></div>
+                    </div>
+
+
                     <form action="php/modifica_dati_utente.php" method="POST">
                         <div class="field-container">
                             <label for="username" >Nome utente: </label>

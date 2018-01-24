@@ -146,7 +146,36 @@ form label {
     padding-bottom: 0em;
     text-align: right;
 }
+#titolo-form {
+    width:100%;
+}
 
+
+
+#titolo {
+    float:left;
+}
+#btn-wrapper {
+    float:right;
+    margin-top: 1em;
+}
+#modifica {
+    color:#F3F3F3;
+    background-color: #16BFFF;
+    border:2px solid #1C1C1C;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    padding-left:0.5em;
+    padding-right:0.5em;
+    cursor:pointer;
+}
+#modifica:hover {
+    background-color: #008BC6;
+
+}
+#modifica:active {
+    border:2px solid rgba(0,0,0,0.2 );
+}
 .input-container {
     margin-left:27%;
     width: 70%;

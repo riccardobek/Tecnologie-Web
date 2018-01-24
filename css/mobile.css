@@ -206,7 +206,9 @@ form label {
     width: 100%;
 
 }
-
+#btn-wrapper, #titolo{
+    float:none;
+}
 #bottone-modifica-password, .mostra-modifica >.btn.btn-primary{
     width:100%;
 }

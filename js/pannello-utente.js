@@ -34,13 +34,13 @@ $(function() {
     });
 
     //Scheda Account
-    $datiForm = salvaDatiForm();
+    var datiForm = salvaDatiForm();
 
     $("input[type=text], input[type=password]").attr('disabled','disabled');
 
     $(".mostra-modifica, .mostra-modifica-password").hide();
 
-    $(".modifica").on("click", function () {
+    $("#modifica").on("click", function () {
         $(".mostra-modifica").slideDown(200);
         $(":text, :password").not('#username').removeAttr('disabled');
     });
@@ -50,6 +50,7 @@ $(function() {
     var testoModificaPwd = "Modifica password:";
 
     $("#vecchia-password").on("focus", function () {
+        $("#modifica").hide();
         $(labelPassword).text("Password corrente: ");
         //se ho generato in precedenza lo span di successo lo elimino, se non c'è non succede nulla
         $('#successo').remove();
@@ -84,6 +85,7 @@ $(function() {
     $("#annulla-modifica-pwd").on("click", function () {
         $(".mostra-modifica-password").hide(function () {
             //se ho generato in precedenza lo span di successo lo elimino, se non c'è non succede nulla
+            $("#modifica").show();
             $('#successo').remove();
             $(labelPassword).text(testoModificaPwd);
             $("input[type=password]").val('');
@@ -94,7 +96,7 @@ $(function() {
     //annulla inserimento dati form
     $("#annulla").on("click",function () {
         $(":text, :password").attr('disabled','disabled');
-        ripristinaDatiInizialiForm($datiForm);
+        ripristinaDatiInizialiForm(datiForm);
         $(".error").each(function () {
             pulisciErrore($(this));
         });
@@ -116,6 +118,7 @@ $(function() {
                 risposta = JSON.parse(risposta);
                 if(risposta.stato == 1){
                     generaAlert('green','Successo',risposta.messaggio);
+                    datiForm = salvaDatiForm();
                 }
                 else{
                     notificaErrore($("#email").parent(),risposta.messaggio);
