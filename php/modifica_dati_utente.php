@@ -7,7 +7,7 @@ require_once "funzioni/funzioni_sicurezza.php";
 
 $db->beginTransaction();
 
-$idUtente = $_SESSION["Utente"]["ID"];
+
 
 if(isset($_POST["VecchiaPwd"])){
     modificaPassword();
@@ -19,18 +19,17 @@ else{
 }
 
 
-
-
 function modificaDati() {
     global $db;
 
-    $nome = $_POST["Nome"];
-    $cognome = $_POST["Cognome"];
-    $indirizzo = $_POST["Indirizzo"];
-    $civico = $_POST["Civico"];
-    $citta = $_POST["Citta"];
+    $idUtente = $_SESSION["Utente"]["ID"];
+    $nome = $_POST["nome"];
+    $cognome = $_POST["cognome"];
+    $indirizzo = $_POST["indirizzo"];
+    $civico = $_POST["civico"];
+    $citta = $_POST["citta"];
     $CAP = $_POST["CAP"];
-    $email = $_POST["Email"];
+    $email = $_POST["email"];
     $queryUtente = $db->prepare("SELECT * FROM Utenti WHERE ID = ?");
     $queryUtente->execute(array($idUtente));
 

@@ -56,9 +56,9 @@
             </div>
 
             <div id="account" class="tabcontent">
-                <div action="" class="form" id="container_form">
+                <div class="form" id="container_form">
                     <h1>Riepilogo dati accounti<span class="btn-testo modifica">Modifica</span> </h1>
-                    <form action="" method="POST">
+                    <form action="php/modifica_dati_utente.php" method="POST">
                         <div class="field-container">
                             <label for="username" class="label-riepilogo">Nome utente: </label>
                             <div class="input-container">
@@ -92,7 +92,7 @@
 
                         <div class="button-holder mostra-modifica-password" >
                             <button id="bottone-modifica-password" name="modifica" class="btn btn-primary">Modifica password</button>
-                            <span class="btn" id="annulla-modifica-pwd" class="btn-testo">Annulla</span>
+                            <span class="btn" id="annulla-modifica-pwd" class="btn btn-testo">Annulla</span>
                         </div>
                         <div class="field-container">
                             <label for="nome" class="label-riepilogo">Nome: </label>
@@ -134,7 +134,7 @@
 
                         <div class="button-holder mostra-modifica" >
                             <input type="submit" value="Modifica" name="modifica" class="btn btn-primary">
-                            <span class="btn" id="annulla" class="btn-testo">Annulla</span>
+                            <span class="btn" id="annulla" >Annulla</span>
                         </div>
                     </form>
                 </div>

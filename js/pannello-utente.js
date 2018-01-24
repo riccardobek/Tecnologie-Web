@@ -11,13 +11,7 @@ $(function() {
         var timeDiff = data - (new Date());
         var giorniDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
         if(giorniDiff<2) {
-            $.alert ({
-                boxWidth: calcolaDimensioneDialog(),
-                useBootstrap: false,
-                type: 'red',
-                title: 'Errore',
-                content: "Non puoi cancellare la prenotazione con 2 giorni di anticipo."
-            });
+           generaAlert('red','Eroore',"Non puoi cancellare la prenotazione con 2 giorni di anticipo.");
         }
         else {
             $.confirm({
@@ -29,7 +23,9 @@ $(function() {
                 buttons: {
                     Procedi:{
                         btnClass: 'btn-blue',
-                        action: eliminaPrenotazione(target)
+                        action: function(){
+                            eliminaPrenotazione(target);
+                        }
                     },
                     Annulla:  {}
                 }
@@ -69,14 +65,14 @@ $(function() {
         $(".mostra-modifica").show();
         if(validaCampiCambioPwd()) {
             //le password vanno bene faccio un richiesta di modifica della pwd
-            $.post("php/modifica_dati_utente.php", {VecchiaPwd: $("#vecchia-password").val(), NuovaPwd: $("#password").val()}, function (risposta) {
+            $.post($("form").attr("action"), {VecchiaPwd: $("#vecchia-password").val(), NuovaPwd: $("#password").val()}, function (risposta) {
                 risposta = JSON.parse(risposta);
                 if(risposta.stato == 1) {
                     $(labelPassword).text(testoModificaPwd);
                     $(".mostra-modifica-password").hide();
                     //se ho generato in precedenza lo span di successo lo elimino, se non c'è non succede nulla
                     $('#successo').remove();
-                    $("#vecchia-password").parent().append("<span id='successo'>"+risposta.messaggio+"</span>");
+                    $("#vecchia-password").parent().append("<span class='successo'>"+risposta.messaggio+"</span>");
                 }
                 else{
                    notificaErrore($("#vecchia-password").parent(), risposta.messaggio);
@@ -97,8 +93,11 @@ $(function() {
 
     //annulla inserimento dati form
     $("#annulla").on("click",function () {
-        $(":text, :password").attr('disabled','disabled').css("border-bottom", "0");
+        $(":text, :password").attr('disabled','disabled');
         ripristinaDatiInizialiForm($datiForm);
+        $(".error").each(function () {
+            pulisciErrore($(this));
+        });
         $(".mostra-modifica").slideUp(200, function () {
             $(this).hide();
         });
@@ -108,15 +107,21 @@ $(function() {
     $("form").on("submit", function (e) {
         e.preventDefault();
         e.stopPropagation();
-        //prima di fare il submit controllo la validità dei dati modificati
-        if(validaForm) {
+        $(".error").each(function () {
+           pulisciErrore($(this));
+        });
 
-            //Chiedo conferma della modifica
-            console.log( $( "form" ).serialize() );
-           // $.post($("form").attr("action"),)
-        }
-        else {
-            alert()
+        if(validaFormUtente(false)) {
+           $.post($("form").attr("action"),$("form").serialize(),function(risposta) {
+                risposta = JSON.parse(risposta);
+                if(risposta.stato == 1){
+                    generaAlert('green','Successo',risposta.messaggio);
+                }
+                else{
+                    notificaErrore($("#email").parent(),risposta.messaggio);
+                }
+
+            });
         }
     });
 });
@@ -163,22 +168,10 @@ function assegnaVoto(){
         $.post("pannello_utente.php", {voto: output, codicePren: idPrenotazione, funzione: 1}, function (risposta) {
             risposta = JSON.parse(risposta);
             if(risposta.stato == 1) {
-                $.alert({
-                    boxWidth: calcolaDimensioneDialog(),
-                    useBootstrap: false,
-                    type: 'green',
-                    title: 'Valutazione effettuata',
-                    content: risposta.messaggio
-                });
+                generaAlert('green','Valutazione effettuata',risposta.messaggio);
             }
             else{
-                $.alert ({
-                    boxWidth: calcolaDimensioneDialog(),
-                    useBootstrap: false,
-                    type: 'red',
-                    title: 'Errore',
-                    content: risposta.messaggio
-                });
+                generaAlert('red','Errore',risposta.messaggio);
             }
         });
     });
@@ -215,3 +208,7 @@ function validaCampiCambioPwd(){
 
     return campiValidi;
 }
+
+
+
+

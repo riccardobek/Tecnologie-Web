@@ -38,7 +38,7 @@ function eliminaPrenotazione(codicePrenotazione) {
                 useBootstrap: false,
                 type: 'red',
                 title: 'Errore',
-                content: risposta.messaggio,
+                content: risposta.messaggio
             });
             successo = false;
         }

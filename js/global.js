@@ -142,3 +142,13 @@ function validaPassword(password, password2) {
 
     return passwordValide;
 }
+
+function generaAlert(colore,titolo,testo) {
+    $.alert({
+        boxWidth: calcolaDimensioneDialog(),
+        useBootstrap: false,
+        title: titolo,
+        type:colore,
+        content: testo
+    });
+}
