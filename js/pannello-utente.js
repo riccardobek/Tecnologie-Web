@@ -11,7 +11,7 @@ $(function() {
         var timeDiff = data - (new Date());
         var giorniDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
         if(giorniDiff<2) {
-           generaAlert('red','Eroore',"Non puoi cancellare la prenotazione con 2 giorni di anticipo.");
+           generaAlert('red','Eroore',"Non puoi cancellare la prenotazione con due giorni di anticipo.");
         }
         else {
             $.confirm({
@@ -123,7 +123,6 @@ $(function() {
                 else{
                     notificaErrore($("#email").parent(),risposta.messaggio);
                 }
-
             });
         }
     });
@@ -158,7 +157,6 @@ function stileCellaPagamento(){
   });
 }
 
-
 function calcolaDimensioneDialog() {
     var larghezzaSchermo = $( window ).width();
     return (larghezzaSchermo <= 768) ? "80%" : "20em";
@@ -180,7 +178,6 @@ function assegnaVoto(){
     });
 }
 
-
 function rispostaEliminiazionePrenotazione(target) {
     var pari = $('#'+target).parent().nextAll(".pari");
     var dispari = $('#'+target).parent().nextAll(".dispari");
@@ -192,14 +189,12 @@ function rispostaEliminiazionePrenotazione(target) {
     pari.removeClass("pari").addClass("dispari");
 }
 
-
 function validaCampiCambioPwd(){
     var campiValidi = true;
 
     var vecchiaPwd = $("#vecchia-password");
     var password = $("#password");
     var password2 = $("#password2");
-
 
     if(vecchiaPwd.val().trim().length == 0) {
         notificaErrore(vecchiaPwd.parent(), "Inserire la password corrente");
