@@ -55,7 +55,7 @@ if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 $db->beginTransaction();
-$insertStatement = $db->prepare("INSERT INTO Utenti VALUES (NULL,?,?,?,?,?,?,?,?,?,'Utente')");
+$insertStatement = $db->prepare("INSERT INTO Utenti VALUES (NULL,?,?,?,?,?,?,?,?,?,'Utente',1)");
 if($insertStatement->execute(array(
     $nome,
     $cognome,
