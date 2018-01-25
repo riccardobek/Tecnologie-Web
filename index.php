@@ -9,7 +9,7 @@ $activeIndex = 0;
 
 $HTML_INTESTAZIONE = intestazione($activeIndex);
 
-$HTML = file_get_contents("template/index/main.html");
+$HTML = file_get_contents("template/index/index.html");
 $HTML = str_replace("[#INTESTAZIONE]",$HTML_INTESTAZIONE, $HTML);
 
 /****** COLONNE ATTIVITA *****/
