@@ -55,6 +55,11 @@ div#menu-wrapper {
     font-size: 0.8em;
 }
 
+#salta-intestazione {
+    position: absolute;
+    top: -60em;
+}
+
 #header {
     margin-top: 2.5em;
     background: white;
