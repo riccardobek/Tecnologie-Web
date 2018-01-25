@@ -24,7 +24,7 @@ $(document).ready(function() {
                  * impostato a "login.php" (perché la pagina in cui ero prima è sempre login). Ecco che, se non faccio
                  * dei controlli, rischio di incorrere in un loop di reindirizzamento.
                  */
-                if(window.location == redirectURL || redirectURL.endsWith("registrazione.php")) {
+                if(!redirectURL.length || window.location == redirectURL || redirectURL.endsWith("registrazione.php")) {
                     /**
                      * Se sono in login e ho aggiornato la pagina (perdendo così l'HTTP_REFERRER) torno alla home
                      * per evitare il loop di reindirizzamento.
