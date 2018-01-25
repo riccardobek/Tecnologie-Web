@@ -25,18 +25,17 @@
                     <button class="tablinks" data-target="res-manager"><b>Gestisci Prenotazioni</b></button>
                 </div>
                 <div id="stat-manager" class="tabcontent">
-                    <h3>Attività più prenotate</h3>
+
                     <div class="ct-chart"></div>
                     <div class="wrapper-tabella">
                         <table class="tabella">
-                            <tbody>
+                            <caption><h3>Attività più prenotate</h3></caption>
                             <tr class="intestazione-tabella">
                                 <th>Posizione</th>
                                 <th>Nome Attività</th>
                                 <th>Numero Prenotazioni</th>
                             </tr>
                             [#ATTIVITA-PIU-PRENOTATE]
-                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -44,7 +43,6 @@
                 <div id="usr-manager" class="tabcontent">
                     <table class="tabella">
                         <caption><h3>Gestione utenti</h3></caption>
-                        <thead>
                         <tr class="intestazione-tabella">
                             <th>Nome</th>
                             <th>Cognome</th>
@@ -53,10 +51,7 @@
                             <th>Email</th>
                             <th></th>
                         </tr>
-                        </thead>
-                        <tbody>
-                            [#UTENTI]
-                        </tbody>
+                        [#UTENTI]
                     </table>
                 </div>
 
@@ -66,22 +61,32 @@
                 </div>
 
                 <div id="res-manager" class="tabcontent">
+                    <h1>Gestione prenotazioni</h1>
                     <table class="tabella">
-                        <caption><h3>Gestione prenotazioni</h3></caption>
-                        <thead>
-                            <tr class="intestazione-tabella">
-                                <th>Utente</th>
-                                <th>Attività</th>
-                                <th>Posti</th>
-                                <th>Giorno prenotato</th>
-                                <th>Stato</th>
-                                <th>Pagamento</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        [#PRENOTAZIONI]
-                        </tbody>
+                        <caption><h3>Prenotazioni attive</h3></caption>
+                        <tr class="intestazione-tabella">
+                            <th>Utente</th>
+                            <th>Attività</th>
+                            <th>Posti</th>
+                            <th>Giorno prenotato</th>
+                            <th>Stato</th>
+                            <th>Pagamento</th>
+                            <th>Modifica</th>
+                            <th>Cancella</th>
+                        </tr>
+                        [#PRENOTAZIONI-ATTIVE]
+                    </table>
+                    <table class="tabella">
+                        <caption><h3>Storico prenotazioni</h3></caption>
+                        <tr class="intestazione-tabella">
+                            <th>Utente</th>
+                            <th>Attività</th>
+                            <th>Posti</th>
+                            <th>Giorno prenotato</th>
+                            <th>Stato</th>
+                            <th>Pagamento</th>
+                        </tr>
+                        [#PRENOTAZIONI-PASSATE]
                     </table>
                 </div>
             </div>
