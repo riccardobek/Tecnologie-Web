@@ -18,7 +18,7 @@ if($idUtenteDaEliminare != 0) {
         return;
     }
     //l'utente è l'admin quindi posso eliminare
-    $query = $db->prepare("SELECT Codice FROM Prenotazioni  WHERE  ID = ?");
+    $query = $db->prepare("SELECT Codice FROM Prenotazioni  WHERE  IDUtente = ?");
     $query->execute(array($idUtenteDaEliminare));
 
     //se l'utente non ha prenotazioni allora il risultato della query è vuoto quindi si può eliminare l'account definitvamente
@@ -66,6 +66,6 @@ function eliminaAccountConPrenotazioni($utenteDaEliminare) {
         return;
     }
     $db->rollBack();
-    erroreJSON("Errore nel processo di eliminazione dell'account.");
+    erroreJSON("Errore durante il processo di eliminazione dell'account.");
     return;
 }

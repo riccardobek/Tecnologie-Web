@@ -47,7 +47,15 @@ function listaUtenti(){
 
     foreach ($risultato as $r){
         $riga .= <<<SCRIVI
-<tr><td>{$r["Nome"]}</td><td>{$r["Cognome"]}</td><td>{$r["Indirizzo"]}</td><td>{$r["Username"]}</td><td>{$r["Email"]}</td><td><span class="btn-reimposta">Reimposta password</span></td><td><button id="{$r["ID"]}" class="btn-cancella">&#x1F5D1;</button></td></tr>
+<tr id="{$r["ID"]}">    
+    <td>{$r["Nome"]}</td>
+    <td>{$r["Cognome"]}</td>
+    <td>{$r["Indirizzo"]}</td>
+    <td>{$r["Username"]}</td>
+    <td>{$r["Email"]}</td>
+    <td><span class="btn-reimposta">Reimposta password</span></td>
+    <td><button data-target="{$r["ID"]}" class="btn-cancella">&#x1F5D1;</button></td>
+ </tr>
 SCRIVI;
         
     }

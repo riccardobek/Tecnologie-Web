@@ -181,6 +181,9 @@ div#menu-mobile ul > li.active{
     width: 100%;
     padding: 0;
 }
+.tab{
+    margin-top:0;
+}
 #tab-content-mobile{
     padding-left: 0.5em;
     padding-right: 0.5em;

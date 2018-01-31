@@ -24,31 +24,24 @@ function toggleMostra() {
 
 
 function eliminaPrenotazione(codicePrenotazione) {
-    var successo = false;
     $.post("php/delete_prenotazione.php", {idPrenotazione: codicePrenotazione}, function (risposta) {
         risposta = JSON.parse(risposta);
         if(risposta.stato == 1) {
             //successo
             rispostaEliminiazionePrenotazione(codicePrenotazione);
-            successo = true;
         }
         else{
             generaAlert('red','Errore',risposta.messaggio);
-            successo = false;
         }
-        return successo;
     });
 }
 
 function eliminaAccount(idUtente = 0) {
-    var successo = false;
     $.post("php/delete_account.php",{IDUtente:idUtente}, function(risposta) {
         risposta = JSON.parse(risposta);
         if(risposta.stato == 1) {
-            successo = true;
-
            //richiesta di eliminazione dal pannello utente, mostro un dialog diverso e reindirizzo alla home
-            if(idUtente== 0){
+            if(idUtente == 0){
                 var testo = risposta.messaggio+'. Verrai reindirizzato alla pagina principale.';
                 $.alert({
                     boxWidth: calcolaDimensioneDialog(),
@@ -65,17 +58,18 @@ function eliminaAccount(idUtente = 0) {
                         }
                     }
                 });
-
             }
             //richiesta di eliminazione dal pannello admin bisogna solo mostrare un dialog
             else{
+                eliminaRigaTabella(idUtente);
                 generaAlert('green','Successo',risposta.messaggio);
             }
+            return true;
         }
         else{
-            successo = false;
             generaAlert('red','Errore',risposta.messaggio);
+            return false;
         }
     });
-    return successo;
+
 }

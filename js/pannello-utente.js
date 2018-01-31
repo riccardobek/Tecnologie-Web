@@ -11,7 +11,7 @@ $(function() {
         var timeDiff = data - (new Date());
         var giorniDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
         if(giorniDiff<2) {
-           generaAlert('red','Eroore',"Non puoi cancellare la prenotazione con due giorni di anticipo.");
+           generaAlert('red','Errore',"Non puoi cancellare la prenotazione con due giorni di anticipo.");
         }
         else {
             $.confirm({
@@ -82,7 +82,9 @@ $(function() {
         }
     });
 
-    $("#annulla-modifica-pwd").on("click", function () {
+    $("#annulla-modifica-pwd").on("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
         $(".mostra-modifica-password").hide(function () {
             //se ho generato in precedenza lo span di successo lo elimino, se non c'è non succede nulla
             $("#modifica").show();
@@ -93,10 +95,10 @@ $(function() {
         });
     });
 
-    //annulla inserimento dati form
+
 
     //Modifica dati account
-    $("form").on("submit", function (e) {
+    $("#invio-dati").on("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
         $(".error").each(function () {
@@ -104,7 +106,7 @@ $(function() {
         });
 
         if(validaFormUtente(false)) {
-           $.post($("form").attr("action"),$("form").serialize(),function(risposta) {
+           $.post("php/modifica_dati_utente.php",$("form").serialize(),function(risposta) {
                 risposta = JSON.parse(risposta);
                 if(risposta.stato == 1){
                     generaAlert('green','Successo',risposta.messaggio);
@@ -117,7 +119,9 @@ $(function() {
         }
     });
 
-    $("#annulla").on("click",function () {
+    $("#annulla").on("click",function (e) {
+        e.preventDefault();
+        e.stopPropagation();
         $(":text, :password").attr('disabled','disabled');
         ripristinaDatiInizialiForm(datiForm);
         $(".error").each(function () {
@@ -161,9 +165,6 @@ $(function() {
     });
 });
 
-
-
-
 /****** FUNZIONI *******/
 
 function salvaDatiForm(){
@@ -190,11 +191,6 @@ function stileCellaPagamento(){
         else
             $(this).css("color","#34ba49");
   });
-}
-
-function calcolaDimensioneDialog() {
-    var larghezzaSchermo = $( window ).width();
-    return (larghezzaSchermo <= 768) ? "80%" : "20em";
 }
 
 function assegnaVoto(){

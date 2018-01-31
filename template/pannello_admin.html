@@ -10,11 +10,11 @@
     <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="screen and (max-width:768px), only screen and (max-device-width:768px)"/>
     <link rel="icon" href="images/favicon.ico">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
 
 </head>
 <body>
     [#INTESTAZIONE]
-
     <div id="content">
         <div class="odd">
             <div class="length-wrapper">
@@ -25,7 +25,6 @@
                     <button class="tablinks" data-target="res-manager"><b>Gestisci Prenotazioni</b></button>
                 </div>
                 <div id="stat-manager" class="tabcontent">
-
                     <div class="ct-chart"></div>
                     <div class="wrapper-tabella">
                         <table class="tabella">
@@ -41,18 +40,20 @@
                 </div>
 
                 <div id="usr-manager" class="tabcontent">
-                    <table class="tabella">
-                        <caption><h3>Gestione utenti</h3></caption>
-                        <tr class="intestazione-tabella">
-                            <th>Nome</th>
-                            <th>Cognome</th>
-                            <th>Indirizzo</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th></th>
-                        </tr>
-                        [#UTENTI]
-                    </table>
+                    <div class="wrapper-tabella">
+                        <table class="tabella">
+                            <caption><h3>Gestione utenti</h3></caption>
+                            <tr class="intestazione-tabella">
+                                <th>Nome</th>
+                                <th>Cognome</th>
+                                <th>Indirizzo</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th></th>
+                            </tr>
+                            [#UTENTI]
+                        </table>
+                    </div>
                 </div>
 
                 <div id="act-manager" class="tabcontent">
@@ -62,38 +63,42 @@
 
                 <div id="res-manager" class="tabcontent">
                     <h1>Gestione prenotazioni</h1>
-                    <table class="tabella">
-                        <caption><h3>Prenotazioni attive</h3></caption>
-                        <tr class="intestazione-tabella">
-                            <th>Utente</th>
-                            <th>Attività</th>
-                            <th>Posti</th>
-                            <th>Giorno prenotato</th>
-                            <th>Stato</th>
-                            <th>Pagamento</th>
-                            <th>Modifica</th>
-                            <th>Cancella</th>
-                        </tr>
-                        [#PRENOTAZIONI-ATTIVE]
-                    </table>
-                    <table class="tabella">
-                        <caption><h3>Storico prenotazioni</h3></caption>
-                        <tr class="intestazione-tabella">
-                            <th>Utente</th>
-                            <th>Attività</th>
-                            <th>Posti</th>
-                            <th>Giorno prenotato</th>
-                            <th>Stato</th>
-                            <th>Pagamento</th>
-                        </tr>
-                        [#PRENOTAZIONI-PASSATE]
-                    </table>
+                    <div class="wrapper-tabella">
+                        <table class="tabella">
+                            <caption><h3>Prenotazioni attive</h3></caption>
+                            <tr class="intestazione-tabella">
+                                <th>Utente</th>
+                                <th>Attività</th>
+                                <th>Posti</th>
+                                <th>Giorno prenotato</th>
+                                <th>Stato</th>
+                                <th>Pagamento</th>
+                                <th>Modifica</th>
+                                <th>Cancella</th>
+                            </tr>
+                            [#PRENOTAZIONI-ATTIVE]
+                        </table>
+                    </div>
+                    <div class="wrapper-tabella">
+                        <table class="tabella">
+                            <caption><h3>Storico prenotazioni</h3></caption>
+                            <tr class="intestazione-tabella">
+                                <th>Utente</th>
+                                <th>Attività</th>
+                                <th>Posti</th>
+                                <th>Giorno prenotato</th>
+                                <th>Stato</th>
+                                <th>Pagamento</th>
+                            </tr>
+                            [#PRENOTAZIONI-PASSATE]
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     [#MENU-MOBILE]
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
     <script type="text/javascript" src="js/pannello.js"></script>
     <script type="text/javascript" src="js/pannello-admin.js"></script>
 </body>

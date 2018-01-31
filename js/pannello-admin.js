@@ -1,5 +1,28 @@
-/*$(function() {
+$(function() {
 
+    //Eliminazione di un account
+    $("#usr-manager .btn-cancella").on("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var target = $(this).attr('data-target');
+        $.confirm({
+            boxWidth: calcolaDimensioneDialog(),
+            useBootstrap: false,
+            title: 'Conferma',
+            content: "Procedere con l'eliminazione dell'account? ",
+            buttons: {
+                Procedi: {
+                    btnClass: 'btn-red',
+                    action: function () {
+                        eliminaAccount(target);
+                    }
+                },
+                Annulla:{}
+            }
+        });
+    });
+
+    /*
     var etichette = [];
     var valoriGrafico = [];
 
@@ -15,4 +38,11 @@
     };
 
     new Chartist.Pie('.ct-chart', data);
-});*/
+    */
+});
+
+function eliminaRigaTabella(idUtente) {
+    $('#'+idUtente).slideUp('Slow', function () {
+        $('#'+idUtente).remove();
+    });
+}

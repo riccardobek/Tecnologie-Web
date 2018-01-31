@@ -143,6 +143,11 @@ function validaPassword(password, password2) {
     return passwordValide;
 }
 
+function calcolaDimensioneDialog() {
+    var larghezzaSchermo = $( window ).width();
+    return (larghezzaSchermo <= 768) ? "80%" : "20em";
+}
+
 function generaAlert(colore,titolo,testo) {
     $.alert({
         boxWidth: calcolaDimensioneDialog(),
