@@ -8,7 +8,7 @@ function isUtenteLoggato() {
 }
 
 function isAdmin() {
-    return isset($_SESSION["Utente"]["Tipo"]) == 'Admin';
+    return isset($_SESSION["Utente"]["Tipo"]) && $_SESSION["Utente"]["Tipo"] == 'Admin';
 }
 /**
  * Verifica se la data passata come parametro è una data nel futuro o no
