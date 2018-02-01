@@ -53,18 +53,12 @@ echo $HTML;
 function prenotazioniAttive() {
     global $db;
 
-    $infoPrenotazioni = $db->prepare("SELECT  Prenotazioni.Codice AS Codice, Attivita.Nome AS Nome, Prenotazioni.Giorno AS Giorno, Prenotazioni.PostiPrenotati AS Posti, Pagamento FROM Prenotazioni, Attivita WHERE Prenotazioni.IDUtente = ? AND Prenotazioni.IDAttivita = Attivita.Codice AND Prenotazioni.Stato = 'Sospesa' AND Prenotazioni.Giorno >= (SELECT CURDATE() )ORDER BY Giorno ");
+    $infoPrenotazioni = $db->prepare("SELECT  Prenotazioni.Codice AS Codice, Attivita.Nome AS Nome, Prenotazioni.Giorno AS Giorno, Prenotazioni.PostiPrenotati AS Posti, Prenotazioni.Pagamento AS Pagato
+FROM Prenotazioni, Attivita WHERE Prenotazioni.IDUtente = ? AND Prenotazioni.IDAttivita = Attivita.Codice AND Prenotazioni.Stato = 'Sospesa' AND Prenotazioni.Giorno >= (SELECT CURDATE() )ORDER BY Giorno ");
     $infoPrenotazioni->execute(array($_SESSION["Utente"]["ID"]));
     $prenotazioni = $infoPrenotazioni->fetchAll();
 
-    foreach($prenotazioni as &$prenotazione) {
-        if($prenotazione["Pagamento"]==0){
-            $prenotazione["Pagamento"] = 'Non pagato';
-        }
-        else{
-            $prenotazione["Pagamento"] = 'Pagato';
-        }
-    }
+    impostaTestoPagamento($prenotazioni);
     return $prenotazioni;
 }
 
@@ -80,7 +74,7 @@ function stampaSchedePrenotazioniAttive(){
         $output = str_replace("[#NOME-ATTIVITA]", $prenotazione["Nome"], $output );
         $output = str_replace("[#GIORNO]", $data, $output );
         $output = str_replace("[#POSTI]", $prenotazione["Posti"], $output );
-        $output = str_replace("[#PAGAMENTO]", $prenotazione["Pagamento"], $output );
+        $output = str_replace("[#PAGAMENTO]", $prenotazione["Pagato"], $output );
         $output = str_replace("[#CLASSE-SCHEDA]", $class[intval($i)], $output );
         $output = str_replace("[#ID-PRENOTAZIONE]", $prenotazione["Codice"], $output );
         $i = !$i;
@@ -104,7 +98,12 @@ FROM  Attivita, Prenotazioni WHERE Prenotazioni.IDUtente = ? AND Prenotazioni.ID
         $voto=controlloVoto($prenotazione["Voto"],$prenotazione["Stato"],$prenotazione["Codice"]);
         $data = convertiDataToOutput($prenotazione["Giorno"]);
         $riga2 .= <<<RIGA
-<tr><td>{$prenotazione["Nome"]}</td><td>{$data}</td><td>{$prenotazione["Posti"]}</td><td>{$prenotazione["Stato"]}</td><td>$voto</td></tr>
+<tr>
+    <td>{$prenotazione["Nome"]}</td>
+    <td>{$data}</td><td>{$prenotazione["Posti"]}</td>
+    <td>{$prenotazione["Stato"]}</td>
+    <td>$voto</td>
+</tr>
 RIGA;
     }
     return $riga2;

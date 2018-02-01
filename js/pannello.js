@@ -22,6 +22,14 @@ function toggleMostra() {
     });
 }
 
+function stileCellaPagamento(){
+    $(".pagamento").each(function () {
+        if( $(this).text() === "Non pagato")
+            $(this).css("color","#B80000");
+        else
+            $(this).css("color","#34ba49");
+    });
+}
 
 function eliminaPrenotazione(codicePrenotazione) {
     $.post("php/delete_prenotazione.php", {idPrenotazione: codicePrenotazione}, function (risposta) {
@@ -71,5 +79,4 @@ function eliminaAccount(idUtente = 0) {
             return false;
         }
     });
-
 }

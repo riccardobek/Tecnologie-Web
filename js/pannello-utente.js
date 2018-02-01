@@ -184,14 +184,7 @@ function ripristinaDatiInizialiForm(oggettoDatiForm ){
     });
 }
 
-function stileCellaPagamento(){
-    $(".pagamento").each(function () {
-        if( $(this).text() === "Non pagato")
-            $(this).css("color","#B80000");
-        else
-            $(this).css("color","#34ba49");
-  });
-}
+
 
 function assegnaVoto(){
     $(".accept").click(function(){
