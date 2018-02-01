@@ -277,3 +277,10 @@ table th{
     margin-bottom: 0.5em;
     margin-left: 65em;
 }
+
+textarea{
+    width:100%;
+    margin:0;
+    padding:0;
+    resize:vertical;
+}
