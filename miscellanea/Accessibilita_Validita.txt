@@ -47,6 +47,9 @@ CSS valido --> 2 avvisi (stessi di index)
 //I pdf generati possono riportare Bollino di conformità per la tua pagina Web (DA PRENDERE SU WEB ACCESSIBILITY CHECKER)
 //Eliminando i problemi potenziali anche le altre pagine possono riportare bollino sopra
 
+//inserire gli span con lang="en" dove viene usato l'inglese per gli screen reader
+//creare una barra con il percorso effettuato da home ?
+//introdurre gli shortcut per i link più importanti 
 
 
 
