@@ -51,9 +51,9 @@ function listaUtenti(){
     <td>{$r["Nome"]}</td>
     <td>{$r["Cognome"]}</td>
     <td>{$r["Indirizzo"]}</td>
-    <td>{$r["Username"]}</td>
+    <td class="username">{$r["Username"]}</td>
     <td>{$r["Email"]}</td>
-    <td><span class="btn-reimposta">Reimposta password</span></td>
+    <td><button data-target="{$r["ID"]}"  class="btn btn-testo btn-reimposta">Reimposta password</button></td>
     <td><button data-target="{$r["ID"]}" class="btn-cancella">&#x1F5D1;</button></td>
  </tr>
 SCRIVI;

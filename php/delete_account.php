@@ -2,18 +2,21 @@
 session_start();
 require_once "database.php";
 require_once "funzioni/funzioni_json.php";
+require_once "funzioni/funzioni_sicurezza.php";
+
+
 
 $db->beginTransaction();
 
 $idUtente  = $_SESSION["Utente"]["ID"];
-$tipoUtente = $_SESSION["Utente"]["Tipo"];
+
 $idUtenteDaEliminare = $_POST["IDUtente"];
 
 
 if($idUtenteDaEliminare != 0) {
     //se è stato passato l'id dell'utente (!= 0 ) da eliminare allora è la richiesta è arrivata dalla pagina admin, in ogni caso
     //si fa un controllo per essere sicuri che effettivamente sia effettivamente l'admin ad eliminare un account
-    if($tipoUtente != 'Admin') {
+    if(!(isAdmin())) {
         erroreJSON("Non è stato possibile eliminare l'account.");
         return;
     }

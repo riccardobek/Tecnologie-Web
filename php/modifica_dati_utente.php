@@ -8,14 +8,26 @@ require_once "funzioni/funzioni_sicurezza.php";
 $db->beginTransaction();
 
 
-
+//Se nel post è stato settatto IDUtente significa che è arrivata una richiesta dal pannello admin di resettare la password dell'account di ID= IDUtente
+if(isset($_POST["IDUtente"])){
+    //per maggiore sicurezza si controlla che chi ha fatto la richiesta di reset sia effettivamente l'admin altrimenti viene generato un errore JSON
+    if(isAdmin()){
+        resetPassword($_POST["IDUtente"]);
+    }
+    else{
+        erroreJSON("Non è stato possibile resettare la password");
+    }
+    return;
+}
+//Se non è stato settato IDUtente allora le richieste vengono dal pannello utente. Per cui si controlla se si vuole modificare la password oppure i dati dell'account
 if(isset($_POST["VecchiaPwd"])){
-    modificaPassword();
+    $vecchiaPwd = $_POST["VecchiaPwd"];
+    $nuovaPwd = $_POST["NuovaPwd"];
+    modificaPassword($vecchiaPwd, $nuovaPwd);
 
 }
 else{
     modificaDati();
-
 }
 
 
@@ -59,15 +71,8 @@ function modificaDati() {
 
 
 
-
-
-function modificaPassword() {
+function modificaPassword($vecchiaPwd, $nuovaPwd) {
     global $db;
-
-
-    $vecchiaPwd = $_POST["VecchiaPwd"];
-    $nuovaPwd = $_POST["NuovaPwd"];
-
 
     $controlloPwdCorrente = $db->prepare("SELECT Password FROM Utenti WHERE ID = ?");
     $controlloPwdCorrente->execute(array($_SESSION["Utente"]["ID"]));
@@ -94,5 +99,18 @@ function modificaPassword() {
     return;
 }
 
+function resetPassword($idUtente) {
+    global $db;
+    $queryModifica = $db->prepare("UPDATE Utenti SET Password = ? WHERE ID = ?");
+    if($queryModifica->execute(array(criptaPassword("password"), $idUtente))) {
+        $db->commit();
+        successoJSON("Password resettata con successo.");
+        return;
+    }
+    $db->rollBack();
+    erroreJSON("Errore nel reset della password");
+
+    return;
+}
 
 
