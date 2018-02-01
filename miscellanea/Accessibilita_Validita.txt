@@ -1,0 +1,52 @@
+INDEX
+W3C Validator: 1 warning dovuto al type su script che su html5 non è necessario sul 4.1 richiesto
+IDI Web Accessibility Checker: AAA
+153 potential problem
+CSS valido --> 2 avvisi
+
+ATTIVITA
+W3C Validator: 4 warning uguale a sopra
+IDI Web Accessibility Checker: AAA
+332 potential problem
+CSS valido --> 5 avvisi (2 uguali ad index)
+
+
+CONTATTACI
+W3C Validator: 1 warning uguale a sopra
+IDI Web Accessibility Checker: AAA
+106 potential problem
+CSS valido --> 2 avvisi (stessi di index)
+
+LOGIN
+W3C Validator: 2 warning uguale a sopra
+IDI Web Accessibility Checker: AAA
+127 potential problem
+CSS valido --> 2 avvisi (stessi di index)
+
+REGISTAZIONE
+W3C Validator: 2 warning uguale a sopra
+IDI Web Accessibility Checker: AAA
+159 potential problem
+CSS valido --> 2 avvisi (stessi di index)
+
+PANNELLO UTENTE
+W3C Validator: 1 warning uguale a sopra
+IDI Web Accessibility Checker: AAA
+113 potential problem
+CSS valido --> 2 avvisi (stessi di index)
+
+PANNELLO ADMIN
+W3C Validator: 1 warning uguale a sopra
+IDI Web Accessibility Checker: AAA
+113 potential problem
+CSS valido --> 2 avvisi (stessi di index)
+
+
+//possiamo inserire le immagini di validazione W3C CSS a fine di ogni pagina
+
+//I pdf generati possono riportare Bollino di conformità per la tua pagina Web (DA PRENDERE SU WEB ACCESSIBILITY CHECKER)
+//Eliminando i problemi potenziali anche le altre pagine possono riportare bollino sopra
+
+
+
+
