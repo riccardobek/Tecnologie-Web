@@ -221,3 +221,6 @@ form label {
 #bottone-modifica-password, .mostra-modifica >.btn.btn-primary{
     width:100%;
 }
+#footer_logo{
+    display: none;
+}
