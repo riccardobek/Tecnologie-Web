@@ -21,9 +21,7 @@ if(isset($_POST["funzione"])){
 //Intestazione: indica la pagina attualmente attiva  contattaci
 $HTML_INTESTAZIONE = intestazione($activeIndex);
 
-
-
-//Richiamo pagina contatti
+//Richiamo pagina pannello_utente
 $HTML = file_get_contents("template/utente/pannello_utente.html");
 
 //Rimpiazza il segnaposto con il menù

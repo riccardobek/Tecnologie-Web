@@ -133,7 +133,7 @@ FROM Utenti, Attivita,Prenotazioni WHERE Utenti.ID=Prenotazioni.IDUtente AND Pre
     $row="";
     foreach ($arrayPrenotazioni as $riga){
         $row .= <<<RIGA
-<tr>
+<tr id="{$riga["CodicePrenotazione"]}">
      <td>{$riga["Utente"]}</td>
      <td>{$riga["Attivita"]}</td>
      <td>{$riga["Posti"]}</td>
@@ -141,7 +141,7 @@ FROM Utenti, Attivita,Prenotazioni WHERE Utenti.ID=Prenotazioni.IDUtente AND Pre
      <td>{$riga["Stato"]}</td>
      <td>{$riga["Pagato"]}</td>
      <td>&#x270E;</td>
-     <td><button id="{$riga["CodicePrenotazione"]}" class="btn-cancella">&#x1F5D1;</button></td>
+     <td><button data-target="{$riga["CodicePrenotazione"]}" class="btn-cancella">&#x1F5D1;</button></td>
 </tr>
 RIGA;
     }

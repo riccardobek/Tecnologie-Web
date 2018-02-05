@@ -53,6 +53,28 @@ $(function() {
             }
         });
     });
+
+    //Cancella prenotazione
+    $("#res-manager .btn-cancella").on("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var target = $(this).attr('data-target');
+        $.confirm({
+            boxWidth: calcolaDimensioneDialog(),
+            useBootstrap: false,
+            title: 'Conferma',
+            content: "Procedere con l'eliminazione della prenotazione ? ",
+            buttons: {
+                Procedi: {
+                    btnClass: 'btn-red',
+                    action: function () {
+                        eliminaPrenotazioneAdmin(target);
+                    }
+                },
+                Annulla:{}
+            }
+        });
+    });
     /*
     var etichette = [];
     var valoriGrafico = [];
