@@ -209,3 +209,17 @@ form .field-container:not(:first-child) label {
     background-color: #B80000;
     border-color: #770101;
 }
+#stampa{
+    width: 15%;
+    padding-left: 2em;
+    padding-right: 2em;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    float: right;
+
+}
+#icona_stampa{
+
+    width: 20%;
+
+}

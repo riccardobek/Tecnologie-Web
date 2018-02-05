@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="css/utente.css">
     <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="screen and (max-width:768px)"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+
 </head>
 <body>
 
@@ -37,7 +38,7 @@
                 [#SCHEDE]
                 <div class="clearfix"></div>
                 <div class="wrapper-tabella">
-                    <table class="tabella">
+                    <table class="tabella" id="storico">
                        <caption><h2>Storico Prenotazioni</h2></caption>
                         <thead>
                         <tr>
@@ -52,6 +53,7 @@
                             [#STORICO-PRENOTAZIONI]
                         </tbody>
                     </table>
+                    <button class="btn btn-primary" id="stampa"><img src="images/icone/icona_stampa.png" id="icona_stampa"/>Stampa storico</button>
                 </div>
             </div>
 
@@ -154,8 +156,7 @@
 [#MENU-MOBILE]
 <span id="descrizione-modifica-password">Clicca per modificare la password</span>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
-<script type="text/javascript" src="js/pannello.js"></script>
-<script type="text/javascript" src="js/pannello-utente.js"></script>
+<script type="text/javascript" src="js/jquery.jPrintArea.js"></script>
 
 </body>
 </html>
