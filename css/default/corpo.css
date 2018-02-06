@@ -285,6 +285,10 @@ textarea{
     resize:vertical;
 }
 
-.btn-cancella {
+.form .btn-cancella {
     display: none;
+}
+
+.salva-dati {
+    display:none;
 }

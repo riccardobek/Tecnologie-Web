@@ -95,7 +95,7 @@ h1,h2,h3{
 .btn-cancella {
     margin: auto;
     margin-top: 2em;
-    display: none;
+    display: block;
     font-weight: 600;
     background-color: transparent;
     color:#B80000;

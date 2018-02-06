@@ -1,16 +1,22 @@
 $(function() {
+
+
+    //------SEZIONE GESTISCI ATTIVITA'--------
     //Disabilito gli input dei vari form delle schede attività
     $("input[type=text], textarea").attr('disabled','disabled');
 
     //array associativo per il vari campi dati delle varie schede
-    var campiDati = [];
+    var campiDati = {};
     //Quando si preme il tasto modifica i campi di testo vengono abilitati e si mostra il bottone di annulamento delle modifiche
     $(".schede a").on("click", function(e) {
         e.preventDefault();
         e.stopPropagation();
 
+        $(this).hide();
+        $(this).prev().show();
         //mostro il pulsante annulla modifiche
         $(this).next().show();
+
 
         //seleziono l'id del div del pulsante premuto
         var target = $(this).attr('data-target');
@@ -18,10 +24,49 @@ $(function() {
 
         //salvo i dati dei vari campi
         campiDati[target] = salvaDati(target);
-        console.log(campiDati);
-
     });
 
+    //listener per tasto cancella modifiche ad una attività
+    $(".schede .btn-cancella").on("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        $(this).hide();
+        $(this).prevAll(".salva-dati").hide();
+        $(this).prev().show();
+
+        //ripristino dati
+        var target = $(this).attr('data-target');
+        console.log("#nome-"+target);
+        $("#nome-"+target).val(campiDati[target]["nome-attivita"]);
+        $("#descrizione-"+target).val(campiDati[target]["descrizione"]);
+        $("#prezzo-"+target).val(campiDati[target]["prezzo"]);
+
+        //disabilito i campi di testo
+        $("#"+target).find("textarea,input[type=text]").attr('disabled','disabled');
+    });
+
+    $(".salva-dati").on("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var target = $(this).attr('data-target');
+        //var datiForm = ;
+
+        $.post("php/modifica_attivita.php",$("#"+target).find("form").serialize()+"&"+"idAttivita="+target, function(risposta) {
+           risposta = JSON.parse(risposta);
+            if(risposta.stato == 1){
+                campiDati[target] = salvaDati(target);
+                generaAlert('green',"Successo",risposta.messaggio);
+            }
+            else{
+                generaAlert('red',"Errore",risposta.messaggio);
+            }
+        });
+    });
+
+
+    //--------SEZIONE GESTISCI UTENTI---------
     //Eliminazione di un account
     $("#usr-manager .btn-cancella").on("click", function (e) {
         e.preventDefault();
@@ -75,6 +120,8 @@ $(function() {
         });
     });
 
+
+    //----SEZIONE GESTISCI PRENOTAZIONI----
     //Cancella prenotazione
     $("#res-manager .btn-cancella").on("click", function (e) {
         e.preventDefault();
@@ -128,10 +175,11 @@ function rispostaEliminiazionePrenotazione(target) {
 //funzione che permette di salvare i dati dei form delle varie schede attività
 //
 function salvaDati(target) {
- var valoriInput = $("#"+target).find("input[type=text], textarea");
- var datiSalvati = {};
- $(valoriInput).each(function () {
-     datiSalvati[$(this).attr("class")] = $(this).val();
- });
- return datiSalvati;
+     var campiDati = $("#"+target).find("input[type=text], textarea");
+     var datiSalvati = {};
+     $(campiDati).each(function () {
+         datiSalvati[$(this).attr("class")] = $(this).val();
+     });
+     return datiSalvati;
 }
+
