@@ -75,6 +75,7 @@ function schedeAttivita($macroattivita) {
         $output = str_replace("[#DESCRIZIONE]", $r["Descrizione"], $output );
         $output = str_replace("[#PREZZO]", $r["Prezzo"], $output );
         $output = str_replace("[#CLASSE-SCHEDA]", $class[intval($i)], $output );
+        $output = str_replace("[#CODICE-ATTIVITA]", $r["Codice"], $output );
         $i = !$i;
     }
     return $output;

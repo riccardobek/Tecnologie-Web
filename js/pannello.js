@@ -82,3 +82,13 @@ function eliminaAccount(idUtente) {
         }
     });
 }
+
+//salva i dati dei form
+function salvaDatiForm(target){
+    var inputs = $("#"+target+' '+"input,textarea").not(":input[type=submit], :input[type=password]");
+    var datiForm = {};
+    $(inputs).each(function () {
+        datiForm[$(this).attr("id")] = $(this).val();
+    });
+    return datiForm;
+}

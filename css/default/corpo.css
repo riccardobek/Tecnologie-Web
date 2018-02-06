@@ -284,3 +284,7 @@ textarea{
     padding:0;
     resize:vertical;
 }
+
+.btn-cancella {
+    display: none;
+}

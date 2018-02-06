@@ -167,22 +167,7 @@ $(function() {
 
 /****** FUNZIONI *******/
 
-function salvaDatiForm(){
-    var inputs = $('input').not(":input[type=submit], :input[type=password]");
-     var datiForm = {};
-    $(inputs).each(function () {
-        datiForm[$(this).attr("id")] = $(this).val();
-    });
-    return datiForm;
-}
 
-function ripristinaDatiInizialiForm(oggettoDatiForm ){
-    var inputs = $('input').not(":input[type=submit], :input[type=password]");
-    $("input[type=password]").val('');
-    $(inputs).each(function () {
-        $(this).val(oggettoDatiForm[$(this).attr("id")]);
-    });
-}
 
 
 
@@ -231,6 +216,21 @@ function validaCampiCambioPwd(){
     return campiValidi;
 }
 
+function salvaDatiForm(){
+    var inputs = $("input").not(":input[type=submit], :input[type=password]");
+    var datiForm = {};
+    $(inputs).each(function () {
+        datiForm[$(this).attr("id")] = $(this).val();
+    });
+    return datiForm;
+}
 
+function ripristinaDatiInizialiForm(oggettoDatiForm ){
+    var inputs = $('input').not(":input[type=submit], :input[type=password]");
+    $("input[type=password]").val('');
+    $(inputs).each(function () {
+        $(this).val(oggettoDatiForm[$(this).attr("id")]);
+    });
+}
 
 
