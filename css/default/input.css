@@ -1,10 +1,10 @@
 input[type=text], input[type=password], input[type=number] {
     width: 100%;
     height: 25pt;
-    background-color: white;
+    background-color: transparent;
 
     border: 0;
-    border-bottom: 1px solid silver;
+    border-bottom: 2px solid silver;
 
     outline: none; /* Rimuove il bordino azzurrino che il browser mette di default quando l'input è focused */
 }
@@ -42,6 +42,7 @@ input:not([type=submit]):not([type=button]):focus {
     color: black;
 
     background: white;
+    border:0.2em solid transparent;
     border-bottom: 0.2em solid #808080;
 
     text-transform: uppercase;
@@ -58,6 +59,7 @@ input:not([type=submit]):not([type=button]):focus {
 .btn.btn-primary {
     color: white;
     background-color: #16BFFF;
+
     border-bottom-color: #008BC6;
 }
 
@@ -87,6 +89,20 @@ div.attivita span.btn.btn-primary:active {
     border: none;
     border-bottom: 1px solid red;
 }
+
+.btn-cancella {
+    margin: auto;
+    display: block;
+    font-weight: 600;
+    background-color: transparent;
+    color:#B80000;
+    border-bottom: 2px solid transparent;
+}
+
+.btn-cancella:hover {
+    border-bottom-color:#B80000;
+}
+
 
 /*** VISUALIZZAZIONE DEGLI ERRORI NEL FORM ******/
 div.error > span{

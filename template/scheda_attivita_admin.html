@@ -10,7 +10,7 @@
             <div class="field-container">
                 <label for="descrizione-attivita-[#CODICE-ATTIVITA]" >Descrizione: </label>
                 <div class="input-container">
-                    <textarea id="descrizione-attivita-[#CODICE-ATTIVITA]" class="descrizione" name="descrizione"> [#DESCRIZIONE]</textarea>
+                    <textarea  rows="7" id="descrizione-attivita-[#CODICE-ATTIVITA]" class="descrizione" name="descrizione">[#DESCRIZIONE]</textarea>
                 </div>
             </div>
             <div class="field-container">
@@ -20,9 +20,9 @@
                 </div>
             </div>
             <div class="button-holder">
-                <a href="#" class="btn btn-primary salva-dati" data-target="attivita-[#CODICE-ATTIVITA]">Salva dati</a>
-                <a href="#" class="btn btn-primary " data-target="attivita-[#CODICE-ATTIVITA]">Modifica</a>
-                <button class="btn-cancella" data-target="attivita-[#CODICE-ATTIVITA]">CANCELLA</button>
+                <input type="submit" value="Salva dati" name="salva dati" class="btn btn-primary salva-dati" data-target="attivita-[#CODICE-ATTIVITA]">
+                <button class="btn btn-primary modifica" data-target="attivita-[#CODICE-ATTIVITA]">Modifica</button>
+                <button class="btn bottone-annulla" data-target="attivita-[#CODICE-ATTIVITA]">ANNULLA</button>
             </div>
         </form>
     </div>

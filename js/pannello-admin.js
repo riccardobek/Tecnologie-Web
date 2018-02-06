@@ -8,7 +8,7 @@ $(function() {
     //array associativo per il vari campi dati delle varie schede
     var campiDati = {};
     //Quando si preme il tasto modifica i campi di testo vengono abilitati e si mostra il bottone di annulamento delle modifiche
-    $(".schede a").on("click", function(e) {
+    $(".schede .modifica").on("click", function(e) {
         e.preventDefault();
         e.stopPropagation();
 
@@ -27,7 +27,7 @@ $(function() {
     });
 
     //listener per tasto cancella modifiche ad una attività
-    $(".schede .btn-cancella").on("click", function (e) {
+    $(".schede .bottone-annulla").on("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
 
