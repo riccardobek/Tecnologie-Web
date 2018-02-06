@@ -155,7 +155,7 @@ function prenotazioniPassate(){
 FROM Utenti, Attivita,Prenotazioni WHERE Utenti.ID=Prenotazioni.IDUtente AND Prenotazioni.IDAttivita=Attivita.Codice AND Giorno<(SELECT CURDATE()) ORDER BY Giorno, Attivita, Utente ASC ");
     $prenotazioni->execute();
     $arrayPrenotazioni=$prenotazioni->fetchAll();
-    impostaTestoPagamento($prenotazioni);
+    impostaTestoPagamento($arrayPrenotazioni);
     $row="";
     foreach ($arrayPrenotazioni as $riga){
         $row .= <<<RIGA
