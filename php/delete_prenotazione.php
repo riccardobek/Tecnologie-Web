@@ -24,7 +24,7 @@ if($tipoUtente != 'Admin') {
 $deleteStatement = $db->prepare("UPDATE Prenotazioni SET Stato = 'Cancellata' WHERE Codice = ?");
 
 if($deleteStatement->execute(array($idPrenotazione))){
-    //$db->commit();
+    $db->commit();
     successoJSON("Prenotazione eliminata con successo.");
     return;
 }

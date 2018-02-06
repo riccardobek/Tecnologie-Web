@@ -68,7 +68,7 @@ $(function() {
                 Procedi: {
                     btnClass: 'btn-red',
                     action: function () {
-                        eliminaPrenotazioneAdmin(target);
+                        eliminaPrenotazione(target);
                     }
                 },
                 Annulla:{}
@@ -94,8 +94,12 @@ $(function() {
     */
 });
 
-function eliminaRigaTabella(idUtente) {
-    $('#'+idUtente).slideUp('Slow', function () {
-        $('#'+idUtente).remove();
+function eliminaRigaTabella(target) {
+    $('#'+target).slideUp('Slow', function () {
+        $('#'+target).remove();
     });
+}
+
+function rispostaEliminiazionePrenotazione(target) {
+    eliminaRigaTabella(target);
 }

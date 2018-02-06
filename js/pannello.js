@@ -44,19 +44,7 @@ function eliminaPrenotazione(codicePrenotazione) {
     });
 }
 
-function eliminaPrenotazioneAdmin(codicePrenotazione) {
-    $.post("php/delete_prenotazione.php", {idPrenotazione: codicePrenotazione}, function (risposta) {
-        risposta = JSON.parse(risposta);
-        if(risposta.stato == 1) {
-            //successo
-            eliminaRigaTabella(codicePrenotazione);
-            generaAlert('green','Successo',risposta.messaggio);
-        }
-        else{
-            generaAlert('red','Errore',risposta.messaggio);
-        }
-    });
-}
+
 
 function eliminaAccount(idUtente) {
     $.post("php/delete_account.php",{IDUtente:idUtente}, function(risposta) {
