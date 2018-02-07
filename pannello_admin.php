@@ -11,14 +11,17 @@ loginRichiesto();
 //Intestazione: indica la pagina attualmente attiva
 $HTML_INTESTAZIONE = intestazione($activeIndex);
 
+$TEMPLATE_NUOVA_ATTIVITA = file_get_contents("template/admin/nuova_scheda_attivita.html");
 //Richiamo pagina contatti
-$HTML = file_get_contents("template/pannello_admin.html");
+$HTML = file_get_contents("template/admin/pannello_admin.html");
 
 //Rimpiazza il segnaposto con il menù
 $HTML = str_replace("[#INTESTAZIONE]",$HTML_INTESTAZIONE, $HTML);
 
 //Rimpiazza segnaposto [#UTENTI]
 $HTML = str_replace("[#UTENTI]",listaUtenti(), $HTML);
+
+$HTML = str_replace("[#NUOVA-ATTIVITA]",$TEMPLATE_NUOVA_ATTIVITA, $HTML);
 
 //Rimpiazza segna posto [#ATTIVITA]
 $HTML = str_replace("[#ATTIVITA]",stampaSchedeAttivita(), $HTML);
@@ -70,7 +73,7 @@ function schedeAttivita($macroattivita) {
     $i = false;
     $class = array('pari','dispari');
     foreach ($risultato as $r){
-        $output .= file_get_contents("template/scheda_attivita_admin.html");
+        $output .= file_get_contents("template/admin/scheda_attivita_admin.html");
         $output = str_replace("[#NOME]", $r["Nome"], $output );
         $output = str_replace("[#DESCRIZIONE]", $r["Descrizione"], $output );
         $output = str_replace("[#PREZZO]", $r["Prezzo"], $output );
@@ -92,7 +95,7 @@ function stampaSchedeAttivita(){
         <!-- &nbsp; = spazio 
              &x270E = matita -->
 <h2 class="titolo-macro">{$attivita["Nome"]}&nbsp; &#x270E;</h2>
-<button class="btn btn-block" id="macro-{$attivita["Codice"]}">Nuova attività</button>
+<button class="btn btn-block btn-nuova-attivita" id="macro-{$attivita["Codice"]}" data-info="{$attivita["Nome"]}">Nuova attività</button>
 <div>{$listaSchede}</div>
 <div class="clearfix"></div>
 SCRIVI;

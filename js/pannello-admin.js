@@ -2,8 +2,25 @@ $(function() {
 
 
     //------SEZIONE GESTISCI ATTIVITA'--------
-    //Disabilito gli input dei vari form delle schede attività
-    $("input[type=text], textarea").attr('disabled','disabled');
+
+
+    //bottone nuova attivita
+    $(".btn-nuova-attivita").on("click", function () {
+        var titoloMacro = $(this).attr("data-info");
+        $("#nuova-attivita h2").prepend("<span>"+titoloMacro+" - </span>");
+       $("#overlay").show();
+    });
+
+    //Disabilito gli input dei vari form delle schede attività tranne gli input della dialog pre creare una nuova attività
+    $("input[type=text], textarea").not("#nuova-attivita input[type=text], textarea").attr('disabled','disabled');
+
+    $("#nuova-attivita button").on("click",function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $("#overlay").fadeOut('Slow', function () {
+            $("#nuova-attivita h2 span").remove();
+        });
+    });
 
     //array associativo per il vari campi dati delle varie schede
     var campiDati = {};
@@ -26,7 +43,7 @@ $(function() {
         campiDati[target] = salvaDati(target);
     });
 
-    //listener per tasto cancella modifiche ad una attività
+    //listener per tasto cancella modifiche di un' attività
     $(".schede .bottone-annulla").on("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
@@ -55,24 +72,18 @@ $(function() {
         e.stopPropagation();
 
         var target = $(this).attr('data-target');
-        if(validaFormModifica(target)){
+        if(validaFormModifica(target)) {
             $.post("php/modifica_attivita.php",$("#"+target).find("form").serialize()+"&"+"idAttivita="+target, function(risposta) {
                 risposta = JSON.parse(risposta);
-                if(risposta.stato == 1){
+                if(risposta.stato == 1) {
                     campiDati[target] = salvaDati(target);
                     generaAlert('green',"Successo",risposta.messaggio);
                 }
-                else{
+                else {
                     generaAlert('red',"Errore",risposta.messaggio);
                 }
             });
         }
-        else{
-
-        }
-
-
-
     });
 
 
@@ -196,16 +207,17 @@ function salvaDati(target) {
 //funzione che notifica gli errori nei vari campi dati del form di modifica delle attività
 function validaFormModifica(target) {
     var valido = true;
+    var messaggio = "Il campo non può essere vuoto";
     if($("#nome-"+target).val().trim().length == 0){
-        notificaErrore($("#nome-"+target).parent(),"Il campo non può essere vuoto");
+        notificaErrore($("#nome-"+target).parent(),messaggio);
         valido = false;
     }
     if($("#descrizione-"+target).val().trim().length == 0){
-        notificaErrore($("#descrizione-"+target).parent(),"Il campo non può essere vuoto");
+        notificaErrore($("#descrizione-"+target).parent(),messaggio);
         valido = false;
     }
     if($("#prezzo-"+target).val().trim().length == 0){
-        notificaErrore($("#prezzo-"+target).parent(),"Il campo non può essere vuoto");
+        notificaErrore($("#prezzo-"+target).parent(),messaggio);
         valido = false;
     }
 
