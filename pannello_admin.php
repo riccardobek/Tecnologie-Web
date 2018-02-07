@@ -96,8 +96,11 @@ function stampaSchedeAttivita(){
              &x270E = matita -->
 <h2 class="titolo-macro">{$attivita["Nome"]}&nbsp; &#x270E;</h2>
 <button class="btn btn-block btn-nuova-attivita" id="macro-{$attivita["Codice"]}" data-info="{$attivita["Nome"]}">Nuova attività</button>
-<div>{$listaSchede}</div>
-<div class="clearfix"></div>
+<div>
+    {$listaSchede}
+    <div class="clearfix"></div>
+</div>
+
 SCRIVI;
     }
     return $output;

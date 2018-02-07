@@ -12,7 +12,7 @@ $(function() {
     });
 
     //Disabilito gli input dei vari form delle schede attività tranne gli input della dialog pre creare una nuova attività
-    $("input[type=text], textarea").not("#nuova-attivita input[type=text], textarea").attr('disabled','disabled');
+    $("input[type=text], textarea").not($("#nuova-attivita").find("input[type=text],textarea")).attr('disabled','disabled');
 
     $("#nuova-attivita button").on("click",function(e) {
         e.preventDefault();
@@ -20,26 +20,41 @@ $(function() {
         $(".error").each(function () {
             pulisciErrore($(this));
         });
-        $("#overlay").fadeOut('Slow', function () {
-            $("#nuova-attivita h2 span").remove();
-            $("#macro").remove();
-        });
+        $("#nuova-attivita").find("input[type=text],textarea").val('');
+        fadeOverlay();
     });
 
     $("#nuova-attivita input[type=submit]").on("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
 
-        if(validaFormModifica("nuova-attivita")){
+        var divDaAggiornare = $(this).next("div");
+
+        if(validaFormModifica("nuova-attivita")) {
             var idMacro = $("#macro").text();
             $.post("php/modifica_attivita.php", $("#nuova-attivita form").serialize()+"&nuovaAttivita=true"+"&"+"idMacro="+idMacro, function (risposta) {
                 risposta = JSON.parse(risposta);
-                if(risposta.stato == 1){
-                    generaAlert('green',"Successo",risposta.messaggio);
+                if(risposta.stato == 1) {
+                    $.alert( {
+                        boxWidth: calcolaDimensioneDialog(),
+                        useBootstrap: false,
+                        type: 'green',
+                        title: 'Successo',
+                        content: risposta.messaggio,
+                        buttons: {
+                            Ok: {
+                                action: function () {
+                                    fadeOverlay();
+                                }
+                            }
+                        }
+                    });
                 }
                 else {
                     if(risposta.hasOwnProperty('Tipo')) {
                         notificaErrore($("#nuova-attivita #nome").parent(),risposta.messaggio);
+
+
                     }
                     else {
                         generaAlert('red',"Errore",risposta.messaggio);
@@ -241,4 +256,11 @@ function validaFormModifica(target) {
         }
     });
     return valido;
+}
+
+function fadeOverlay() {
+    $("#overlay").fadeOut('Slow', function () {
+        $("#nuova-attivita h2 span").remove();
+        $("#macro").remove();
+    });
 }
