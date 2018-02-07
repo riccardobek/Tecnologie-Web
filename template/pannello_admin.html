@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pannello admin</title>
+    <title>Pannello amministratore</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/default.css"/>
     <link rel="stylesheet" type="text/css" href="css/utente.css">
@@ -29,12 +29,12 @@
                 <div id="stat-manager" class="tabcontent">
                     <div class="ct-chart"></div>
                     <div class="wrapper-tabella">
-                        <table class="tabella">
+                        <table class="tabella" summary="La tabella presenta le attività in ordine crescente in base al numero di prenotazioni effettuate">
                             <caption><h3>Attività più prenotate</h3></caption>
                             <tr class="intestazione-tabella">
-                                <th>Posizione</th>
-                                <th>Nome Attività</th>
-                                <th>Numero Prenotazioni</th>
+                                <th scope="col">Posizione</th>
+                                <th scope="col">Nome Attività</th>
+                                <th scope="col">Numero Prenotazioni</th>
                             </tr>
                             [#ATTIVITA-PIU-PRENOTATE]
                         </table>
@@ -43,14 +43,16 @@
 
                 <div id="usr-manager" class="tabcontent">
                     <div class="wrapper-tabella">
-                        <table class="tabella">
+                        <table class="tabella" summary="La tabella fornisce un elenco di informazioni riguardanti gli utenti con
+                        la possibilità di reimpostare la password e eliminare il loro account.">
                             <caption><h3>Gestione utenti</h3></caption>
                             <tr class="intestazione-tabella">
-                                <th>Nome</th>
-                                <th>Cognome</th>
-                                <th>Indirizzo</th>
-                                <th>Username</th>
-                                <th>Email</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Cognome</th>
+                                <th scope="col">Indirizzo</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Email</th>
+                                <th></th>
                                 <th></th>
                             </tr>
                             [#UTENTI]
@@ -66,31 +68,31 @@
                 <div id="res-manager" class="tabcontent">
                     <h1>Gestione prenotazioni</h1>
                     <div class="wrapper-tabella">
-                        <table class="tabella">
+                        <table class="tabella" summary="La tabella presenta l'insieme di prenotazioni attive">
                             <caption><h3>Prenotazioni attive</h3></caption>
                             <tr class="intestazione-tabella">
-                                <th>Utente</th>
-                                <th>Attività</th>
-                                <th>Posti</th>
-                                <th>Giorno prenotato</th>
-                                <th>Stato</th>
-                                <th>Pagamento</th>
-                                <th>Modifica</th>
-                                <th>Cancella</th>
+                                <th scope="col">Utente</th>
+                                <th scope="col">Attività</th>
+                                <th scope="col">Posti</th>
+                                <th scope="col">Giorno prenotato</th>
+                                <th scope="col">Stato</th>
+                                <th scope="col">Pagamento</th>
+                                <th scope="col">Modifica</th>
+                                <th scope="col">Cancella</th>
                             </tr>
                             [#PRENOTAZIONI-ATTIVE]
                         </table>
                     </div>
                     <div class="wrapper-tabella">
-                        <table class="tabella">
+                        <table class="tabella"  summary="La tabella presenta l'insieme di prenotazioni attive">
                             <caption><h3>Storico prenotazioni</h3></caption>
                             <tr class="intestazione-tabella">
-                                <th>Utente</th>
-                                <th>Attività</th>
-                                <th>Posti</th>
-                                <th>Giorno prenotato</th>
-                                <th>Stato</th>
-                                <th>Pagamento</th>
+                                <th scope="col">Utente</th>
+                                <th scope="col">Attività</th>
+                                <th scope="col">Posti</th>
+                                <th scope="col">Giorno prenotato</th>
+                                <th scope="col">Stato</th>
+                                <th scope="col">Pagamento</th>
                             </tr>
                             [#PRENOTAZIONI-PASSATE]
                         </table>

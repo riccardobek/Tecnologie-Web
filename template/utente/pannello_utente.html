@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,13 +23,13 @@
 
 <div id="content">
     <noscript >
-        <div class="alert errore" role="alert" style="display: block">Per favore abilita javascript</div>
+        <div class="alert errore" role="alert" style="display: block">Per favore abilita <span lang="en">javascript</span></div>
     </noscript>
     <div class="length-wrapper" id="intestazione-per-mobile">
 
         <div class="tab">
-            <button class="tablinks" data-target="prenotazioni"><b>Prenotazioni</b></button>
-            <button class="tablinks" data-target="account"><b>Account</b></button>
+            <button class="tablinks" data-target="prenotazioni">Prenotazioni</button>
+            <button class="tablinks" data-target="account" lang="en">Account</button>
         </div>
     </div>
     <div class="length-wrapper" id="tab-content-mobile">
@@ -38,15 +38,16 @@
                 [#SCHEDE]
                 <div class="clearfix"></div>
                 <div class="wrapper-tabella">
-                    <table class="tabella" id="storico">
+                    <table class="tabella" id="storico" summary="La tabella riporta tutte le tue prenotazioni passate con le relative informazioni
+                    e valutazioni assegnate">
                        <caption><h2>Storico Prenotazioni</h2></caption>
                         <thead>
                         <tr>
-                            <th>Nome attività</th>
-                            <th>Giorno prenotato</th>
-                            <th>Posti prenotati</th>
-                            <th>Stato</th>
-                            <th>Valutazione</th>
+                            <th scope="col">Nome attività</th>
+                            <th scope="col">Giorno prenotato</th>
+                            <th scope="col">Posti prenotati</th>
+                            <th scope="col">Stato</th>
+                            <th scope="col">Valutazione</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -60,7 +61,7 @@
             <div id="account" class="tabcontent">
                 <div class="form" id="container_form">
                     <div id="titolo-form">
-                        <h1 id="titolo">Riepilogo dati accounti </h1>
+                        <h1 id="titolo">Riepilogo dati <span lang="en">account</span></h1>
                         <h2 id="btn-wrapper" ><span id="modifica" class="button">Modifica dati</span></h2>
                         <div class="clearfix"></div>
                     </div>
@@ -74,32 +75,32 @@
                             </div>
                         </div>
                         <div class="field-container">
-                            <label for="email" >Email: </label>
+                            <label for="email" lang="en">Email: </label>
                             <div class="input-container">
                                 <input type="text" id="email" name="email" value="[#EMAIL]">
                             </div>
                         </div>
                         <div class="field-container">
-                            <label for="vecchia-password" >Modifica password: </label>
+                            <label for="vecchia-password" >Modifica <span lang="en">password</span>: </label>
                             <div class="input-container">
                                 <input type="password" id="vecchia-password" name="vecchia-password" placeholder="Password corrente">
                             </div>
                         </div>
                         <div class="field-container mostra-modifica-password">
-                            <label for="password" >Nuova password: </label>
+                            <label for="password" >Nuova <span lang="en">password</span>: </label>
                             <div class="input-container">
                                 <input type="password" id="password" name="password" placeholder="Inserisci la nuova password">
                             </div>
                         </div>
                         <div class="field-container mostra-modifica-password">
-                            <label for="password2"  value="Inserisci la nuova password">Ripeti nuova password: </label>
+                            <label for="password2"  value="Inserisci la nuova password">Ripeti nuova <span lang="en">password</span>: </label>
                             <div class="input-container">
                                 <input type="password" id="password2" name="password2" placeholder="Ripeti la nuova password">
                             </div>
                         </div>
 
                         <div class="button-holder mostra-modifica-password" >
-                            <button id="bottone-modifica-password" name="modifica" class="btn btn-primary">Modifica password</button>
+                            <button id="bottone-modifica-password" name="modifica" class="btn btn-primary">Modifica <span xml:lang="en">password</span></button>
                             <button id="annulla-modifica-pwd" class="btn">Annulla</button>
                         </div>
                         <div class="field-container">
@@ -133,7 +134,7 @@
                             </div>
                         </div>
                         <div class="field-container">
-                            <label for="CAP" >CAP: </label>
+                            <label for="CAP"><abbr title="Codice di avviamento postale">CAP</abbr>: </label>
                             <div class="input-container">
                                 <input type="text"  size="4" id="CAP" name="CAP" value="[#CAP]">
                             </div>
@@ -146,7 +147,7 @@
                         </div>
                     </form>
                 </div>
-                <button id="elimina-account" class="btn btn-primary">Elimina account</button>
+                <button id="elimina-account" class="btn btn-primary">Elimina <span lang="en">account</span></button>
             </div>
         </div>
 </div>

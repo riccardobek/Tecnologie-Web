@@ -20,15 +20,15 @@
         <form method="POST" action="php/do_login.php">
             <h1>Accedi</h1>
 
-            <div class="alert errore" aria-live="assertive" role="alert">Si è verificato un errore: username o password non corretti</div>
-            <div class="alert successo" aria-live="assertive" role="alert">Login effettuato con successo. <br>Reindirizzamento in corso (se non funziona cliccare <a href="[#HTTP_REFERER]">qua</a>).</div>
+            <div class="alert errore" aria-live="assertive" role="alert">Si è verificato un errore: <span lang="en">username</span> o <span lang="en">password</span> non corretti</div>
+            <div class="alert successo" aria-live="assertive" role="alert"><span lang="en">Login</span> effettuato con successo. <br>Reindirizzamento in corso (se non funziona cliccare <a href="[#HTTP_REFERER]">qua</a>).</div>
 
             <div class="field-container">
                 <label for="username">Nome utente: </label>
                 <input type="text" id="username" name="username" placeholder="Nome utente..">
             </div>
             <div class="field-container">
-                <label for="password">Password: </label>
+                <label for="password" lang="en">Password: </label>
                 <input type="password" id="password" name="password" placeholder="Password..">
             </div>
             <div class="button-holder"><input type="submit" value="Login" class="btn btn-primary" ></div>
