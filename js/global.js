@@ -28,7 +28,7 @@ function notificaErrore(targetNode,testo) {
 
     targetNode.addClass("error");
 
-    targetNode.children("input").on("focus",function() {
+    targetNode.children("input,textarea").on("focus",function() {
         pulisciErrore(targetNode);
     });
 }

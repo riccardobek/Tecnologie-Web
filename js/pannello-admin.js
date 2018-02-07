@@ -34,6 +34,10 @@ $(function() {
         $(this).hide();
         $(this).prevAll(".salva-dati").hide();
         $(this).prev().show();
+        //elimino le notifiche di errore
+        $(".error").each(function () {
+            pulisciErrore($(this));
+        });
 
         //ripristino dati
         var target = $(this).attr('data-target');
@@ -51,18 +55,24 @@ $(function() {
         e.stopPropagation();
 
         var target = $(this).attr('data-target');
-        //var datiForm = ;
+        if(validaFormModifica(target)){
+            $.post("php/modifica_attivita.php",$("#"+target).find("form").serialize()+"&"+"idAttivita="+target, function(risposta) {
+                risposta = JSON.parse(risposta);
+                if(risposta.stato == 1){
+                    campiDati[target] = salvaDati(target);
+                    generaAlert('green',"Successo",risposta.messaggio);
+                }
+                else{
+                    generaAlert('red',"Errore",risposta.messaggio);
+                }
+            });
+        }
+        else{
 
-        $.post("php/modifica_attivita.php",$("#"+target).find("form").serialize()+"&"+"idAttivita="+target, function(risposta) {
-           risposta = JSON.parse(risposta);
-            if(risposta.stato == 1){
-                campiDati[target] = salvaDati(target);
-                generaAlert('green',"Successo",risposta.messaggio);
-            }
-            else{
-                generaAlert('red',"Errore",risposta.messaggio);
-            }
-        });
+        }
+
+
+
     });
 
 
@@ -183,3 +193,20 @@ function salvaDati(target) {
      return datiSalvati;
 }
 
+//funzione che notifica gli errori nei vari campi dati del form di modifica delle attività
+function validaFormModifica(target) {
+    var valido = true;
+    if($("#nome-"+target).val().trim().length == 0){
+        notificaErrore($("#nome-"+target).parent(),"Il campo non può essere vuoto");
+        valido = false;
+    }
+    if($("#descrizione-"+target).val().trim().length == 0){
+        notificaErrore($("#descrizione-"+target).parent(),"Il campo non può essere vuoto");
+        valido = false;
+    }
+    if($("#prezzo-"+target).val().trim().length == 0){
+        notificaErrore($("#prezzo-"+target).parent(),"Il campo non può essere vuoto");
+        valido = false;
+    }
+
+}
