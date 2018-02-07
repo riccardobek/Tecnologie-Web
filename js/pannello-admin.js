@@ -35,6 +35,12 @@ $(function() {
             $.post("php/modifica_attivita.php", $("#nuova-attivita form").serialize()+"&nuovaAttivita=true"+"&"+"idMacro="+idMacro, function (risposta) {
                 risposta = JSON.parse(risposta);
                 if(risposta.stato == 1) {
+                    var nSchedeModulo = ($("#gruppo-macro-"+idMacro+" .scheda-wrapper").length)%2;
+                    var classe = "";
+                    if(nSchedeModulo == 0)
+                        classe = 'pari';
+                    else
+                        classe = 'dispari';
                     $.alert( {
                         boxWidth: calcolaDimensioneDialog(),
                         useBootstrap: false,
@@ -45,6 +51,11 @@ $(function() {
                             Ok: {
                                 action: function () {
                                     fadeOverlay();
+                                    $.post("pannello_admin.php",
+                                        $("#nuova-attivita form").serialize()+"&nuovaScheda=1"+"&"+"Classe="+classe+"&"+"Codice="+risposta.CodiceAtt,
+                                        function(ris) {
+                                            $(ris).insertBefore($("#gruppo-macro-"+risposta.idMacro+" .clearfix"));
+                                    });
                                 }
                             }
                         }

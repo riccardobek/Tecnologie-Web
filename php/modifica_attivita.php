@@ -19,7 +19,7 @@ if(isAdmin()){
         $queryControllo = $db->prepare("SELECT Nome FROM Attivita WHERE Nome = ?");
         $queryControllo->execute(array($nomeAttivita));
         if($queryControllo->fetch()) {
-           erroreJSON("Nome attività già in uso",array("Tipo"=>"0"));
+           erroreJSON("Nome attività già in uso", array("Tipo"=>"0"));
            return;
         }
 
@@ -28,9 +28,14 @@ if(isAdmin()){
 
         $queryInserimento = $db->prepare("INSERT INTO Attivita VALUES (NULL,?,?,?,?)");
 
+
         if($queryInserimento->execute(array($idMacro,$nomeAttivita,$descrizione,$prezzo))) {
             $db->commit();
-            successoJSON("Nuova attività inserita con successo.");
+            $queryCodiceAttivita = $db->prepare("SELECT Codice FROM Attivita WHERE Nome = ?");
+            $queryCodiceAttivita->execute(array($nomeAttivita));
+            $codice = $queryCodiceAttivita->fetch();
+
+            successoJSON("Nuova attività inserita con successo.", array("CodiceAtt"=>$codice["Codice"],"idMacro"=>$idMacro));
         }
         else {
             $db->rollBack();
