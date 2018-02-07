@@ -320,12 +320,13 @@ textarea:focus{
 }
 
 #nuova-attivita {
-
     position: relative;
     margin: auto;
     margin-top: 10%;
     width: 50%;
     overflow: scroll;
-
+}
+#macro {
+    display:none;
 }
 

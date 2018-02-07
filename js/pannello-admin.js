@@ -2,13 +2,13 @@ $(function() {
 
 
     //------SEZIONE GESTISCI ATTIVITA'--------
-
-
     //bottone nuova attivita
     $(".btn-nuova-attivita").on("click", function () {
         var titoloMacro = $(this).attr("data-info");
+        var idMacro = $(this).attr("id");
         $("#nuova-attivita h2").prepend("<span>"+titoloMacro+" - </span>");
-       $("#overlay").show();
+        $("#nuova-attivita").append("<span id='macro'>"+idMacro+"</span>");
+        $("#overlay").show();
     });
 
     //Disabilito gli input dei vari form delle schede attività tranne gli input della dialog pre creare una nuova attività
@@ -17,9 +17,36 @@ $(function() {
     $("#nuova-attivita button").on("click",function(e) {
         e.preventDefault();
         e.stopPropagation();
+        $(".error").each(function () {
+            pulisciErrore($(this));
+        });
         $("#overlay").fadeOut('Slow', function () {
             $("#nuova-attivita h2 span").remove();
+            $("#macro").remove();
         });
+    });
+
+    $("#nuova-attivita input[type=submit]").on("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if(validaFormModifica("nuova-attivita")){
+            var idMacro = $("#macro").text();
+            $.post("php/modifica_attivita.php", $("#nuova-attivita form").serialize()+"&nuovaAttivita=true"+"&"+"idMacro="+idMacro, function (risposta) {
+                risposta = JSON.parse(risposta);
+                if(risposta.stato == 1){
+                    generaAlert('green',"Successo",risposta.messaggio);
+                }
+                else {
+                    if(risposta.hasOwnProperty('Tipo')) {
+                        notificaErrore($("#nuova-attivita #nome").parent(),risposta.messaggio);
+                    }
+                    else {
+                        generaAlert('red',"Errore",risposta.messaggio);
+                    }
+                }
+            });
+        }
     });
 
     //array associativo per il vari campi dati delle varie schede
@@ -33,7 +60,6 @@ $(function() {
         $(this).prev().show();
         //mostro il pulsante annulla modifiche
         $(this).next().show();
-
 
         //seleziono l'id del div del pulsante premuto
         var target = $(this).attr('data-target');
@@ -207,18 +233,12 @@ function salvaDati(target) {
 //funzione che notifica gli errori nei vari campi dati del form di modifica delle attività
 function validaFormModifica(target) {
     var valido = true;
-    var messaggio = "Il campo non può essere vuoto";
-    if($("#nome-"+target).val().trim().length == 0){
-        notificaErrore($("#nome-"+target).parent(),messaggio);
-        valido = false;
-    }
-    if($("#descrizione-"+target).val().trim().length == 0){
-        notificaErrore($("#descrizione-"+target).parent(),messaggio);
-        valido = false;
-    }
-    if($("#prezzo-"+target).val().trim().length == 0){
-        notificaErrore($("#prezzo-"+target).parent(),messaggio);
-        valido = false;
-    }
-
+    var inputs = $("#"+target).find("textarea,input[type=text]");
+    $(inputs).each(function () {
+        if($(this).val().trim().length == 0){
+            notificaErrore($(this).parent(),"Il campo non può essere vuoto");
+            valido = false;
+        }
+    });
+    return valido;
 }
