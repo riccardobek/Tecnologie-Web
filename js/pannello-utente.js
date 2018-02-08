@@ -4,8 +4,6 @@ $(function() {
 
     assegnaVoto();
     stampaStorico();
-    stampaSchede();
-    controlloBottone();
 
     //richiesta AJAX per la cancellazione di una prenotazione
     $(".button-holder > .btn-cancella").on("click", function () {
@@ -28,8 +26,7 @@ $(function() {
                         btnClass: 'btn-blue',
                         action: function(){
                             eliminaPrenotazione(target);
-
-                        },
+                        }
                     },
                     Annulla:  {}
                 }
@@ -170,11 +167,6 @@ $(function() {
 });
 
 /****** FUNZIONI *******/
-
-
-
-
-
 function assegnaVoto(){
     $(".accept").click(function(){
         var output=$(this).prev().find("option:selected").text();
@@ -192,17 +184,7 @@ function assegnaVoto(){
 }
 
 function rispostaEliminiazionePrenotazione(target) {
-    var pari = $('#'+target).parent().nextAll(".pari");
-    var dispari = $('#'+target).parent().nextAll(".dispari");
-
-    $('#'+target).parent().slideUp('Slow', function(){
-        $(this).remove();
-        controlloBottone();
-    });
-    dispari.removeClass("dispari").addClass("pari");
-    pari.removeClass("pari").addClass("dispari");
-
-
+    sistemaSchede(target);
 }
 
 function validaCampiCambioPwd(){
@@ -240,24 +222,16 @@ function ripristinaDatiInizialiForm(oggettoDatiForm ){
     });
 }
 
-function stampaStorico() {$("#stampa-storico").click(function(){
-
-    $(".schede-prenotazioni").hide();
-    $("#storico").show();
-    window.print();
-    $(".schede-prenotazioni").show();
-})
-
+function stampaStorico() {
+    $("#stampa-storico").on("click" ,function () {
+        $(".schede-prenotazioni").hide();
+        $("#storico").show();
+        window.print();
+        $(".schede-prenotazioni").show();
+    });
 }
-function stampaSchede() {$("#stampa-schede").click(function(){
 
-    $("#storico").hide();
-    window.print();
-    $("#storico").show();
-})
-
-}
-function controlloBottone(){
+function controlloBottone() {
     if($(".scheda-wrapper").length==0){
         $("#stampa-schede").hide();
         $("<h2>Non ci sono prenotazioni attive</h2>").insertAfter($("#prenotazioni h1"));

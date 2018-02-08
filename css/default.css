@@ -166,6 +166,15 @@ div.attivita span.btn.btn-primary:active {
     border-bottom-color:#B80000;
 }
 
+.btn-red {
+    background-color: #B80000;
+    border-color: #770101;
+    color: white;
+    padding: 0.4em 0.5em;
+}
+.elimina-attivita {
+    float: right;
+}
 
 /*** VISUALIZZAZIONE DEGLI ERRORI NEL FORM ******/
 div.error > span{
@@ -594,27 +603,6 @@ textarea:focus{
     display:none;
 }
 
-/****STILE DIALOG NUOVA ATTIVITA*****/
-#overlay {
-    position: fixed;
-    display: none;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.5);
-}
-
-#nuova-attivita {
-    position: relative;
-    margin: 10% auto auto;
-    width: 50%;
-}
-#macro {
-    display:none;
-}
 
 /*********************
 STILE LOGIN:
@@ -790,10 +778,6 @@ h1,h2,h3{
     border-bottom: 1px solid silver;
 }
 
-#elimina-account {
-    background-color: #B80000;
-    border-color: #770101;
-}
 
 #stampa{
     width: 15%;
@@ -822,3 +806,31 @@ h1,h2,h3{
     margin-bottom: 1em;
 
 }
+
+/****STILE DIALOG NUOVA ATTIVITA*****/
+.overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+}
+
+#nuova-attivita {
+    position: relative;
+    margin: 10% auto auto;
+    width: 50%;
+}
+#macro {
+    display:none;
+}
+
+.titolo-scheda-attivita {
+    float: left;
+    margin-top:0;
+}
+

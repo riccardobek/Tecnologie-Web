@@ -92,3 +92,14 @@ function salvaDatiForm(target){
     });
     return datiForm;
 }
+
+function sistemaSchede(target) {
+    var pari = $('#'+target).nextAll(".pari");
+    var dispari = $('#'+target).nextAll(".dispari");
+
+    $('#'+target).slideUp('Slow', function(){
+        $(this).remove();
+    });
+    dispari.removeClass("dispari").addClass("pari");
+    pari.removeClass("pari").addClass("dispari");
+}

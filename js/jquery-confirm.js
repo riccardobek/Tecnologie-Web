@@ -215,7 +215,7 @@ var jconfirm, Jconfirm;
 
             template.addClass(this.themeParsed);
             var ariaLabel = 'jconfirm-box' + this._id;
-            template.find('.jconfirm-box').attr('aria-labelledby', ariaLabel).attr('tabindex', -1);
+            template.find('.jconfirm').attr('aria-labelledby', ariaLabel).attr('tabindex', -1);
             template.find('.jconfirm-title').attr('id', ariaLabel);
             if (this.bgOpacity !== null)
                 template.find('.jconfirm-bg').css('opacity', this.bgOpacity);
@@ -1199,7 +1199,7 @@ var jconfirm, Jconfirm;
     jconfirm.lastFocused = false;
     jconfirm.pluginDefaults = {
         template: '' +
-        '<div class="jconfirm">' +
+        '<div class="jconfirm" role="dialog" aria-labelledby="labelled" tabindex="-1">' +
         '<div class="jconfirm-bg jconfirm-bg-h"></div>' +
         '<div class="jconfirm-scrollpane">' +
         '<div class="jconfirm-row">' +
@@ -1208,7 +1208,7 @@ var jconfirm, Jconfirm;
         '<div class="jc-bs3-container">' +
         '<div class="jc-bs3-row">' +
         '<div class="jconfirm-box-container jconfirm-animated">' +
-        '<div class="jconfirm-box" role="dialog" aria-labelledby="labelled" tabindex="-1">' +
+        '<div class="jconfirm-box" >' +
         '<div class="jconfirm-closeIcon">&times;</div>' +
         '<div class="jconfirm-title-c">' +
         '<span class="jconfirm-icon-c"></span>' +

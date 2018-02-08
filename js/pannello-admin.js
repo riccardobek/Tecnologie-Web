@@ -7,8 +7,7 @@ $(function() {
         var titoloMacro = $(this).attr("data-info");
         var idMacro = $(this).attr("id");
         $("#nuova-attivita h2").prepend("<span>"+titoloMacro+" - </span>");
-        $("#nuova-attivita").append("<span id='macro'>"+idMacro+"</span>");
-        $("#overlay").show();
+        $("#nuova-scheda-attivita").show();
         $("#nome").focus();
     });
 
@@ -22,7 +21,20 @@ $(function() {
             pulisciErrore($(this));
         });
         $("#nuova-attivita").find("input[type=text],textarea").val('');
-        fadeOverlay();
+        $(".overlay").fadeOut('Slow', function () {
+            $("#nuova-attivita h2 span").remove();
+            $("#macro").remove();
+        });
+    });
+
+    //bottone elimina attività
+    $(".elimina-attivita").on("click", function () {
+
+        //prendo l'attributo data target per sapere quale scheda eliminare
+        var idScheda = $(this).attr("data-target");
+        //finestra di dialogo con ri chiesta AJAX
+        //al successo dell'eliminazione rimuovo la scheda
+        sistemaSchede(idScheda);
     });
 
     $("#nuova-attivita input[type=submit]").on("click", function (e) {
@@ -51,7 +63,10 @@ $(function() {
                         buttons: {
                             Ok: {
                                 action: function () {
-                                    fadeOverlay();
+                                    $(".overlay").fadeOut('Slow', function () {
+                                        $("#nuova-attivita h2 span").remove();
+                                        $("#macro").remove();
+                                    });
                                     $.post("pannello_admin.php",
                                         $("#nuova-attivita form").serialize()+"&nuovaScheda=1"+"&"+"Classe="+classe+"&"+"Codice="+risposta.CodiceAtt,
                                         function(ris) {
@@ -272,9 +287,3 @@ function validaFormModifica(target) {
     return valido;
 }
 
-function fadeOverlay() {
-    $("#overlay").fadeOut('Slow', function () {
-        $("#nuova-attivita h2 span").remove();
-        $("#macro").remove();
-    });
-}
