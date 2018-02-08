@@ -820,7 +820,7 @@ h1,h2,h3{
     background-color: rgba(0,0,0,0.5);
 }
 
-#nuova-attivita {
+.nuova-scheda {
     position: relative;
     margin: 10% auto auto;
     width: 50%;

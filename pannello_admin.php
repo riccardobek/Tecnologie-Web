@@ -23,7 +23,7 @@ loginRichiesto();
 $HTML_INTESTAZIONE = intestazione($activeIndex);
 
 $TEMPLATE_NUOVA_ATTIVITA = file_get_contents("template/admin/nuova_scheda_attivita.html");
-//Richiamo pagina contatti
+$TEMPLATE_NUOVA_MACRO = file_get_contents("template/admin/nuovaMacroattivita.html");
 $HTML = file_get_contents("template/admin/pannello_admin.html");
 
 //Rimpiazza il segnaposto con il menù
@@ -32,6 +32,7 @@ $HTML = str_replace("[#INTESTAZIONE]",$HTML_INTESTAZIONE, $HTML);
 //Rimpiazza segnaposto [#UTENTI]
 $HTML = str_replace("[#UTENTI]",listaUtenti(), $HTML);
 
+$HTML = str_replace("[#NUOVA-MACROATTIVITA]",$TEMPLATE_NUOVA_MACRO, $HTML);
 $HTML = str_replace("[#NUOVA-ATTIVITA]",$TEMPLATE_NUOVA_ATTIVITA, $HTML);
 
 //Rimpiazza segna posto [#ATTIVITA]

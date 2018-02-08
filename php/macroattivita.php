@@ -8,31 +8,30 @@ require_once "funzioni/funzioni_sicurezza.php";
 $db->beginTransaction();
 
 if(isAdmin()){
-    $nomeMacroattivita = $_POST["Nome"];
-    $descrizione = $_POST["Descrizione"];
-    $img = $_POST["Immagine"];
-	$banner = $_POST["Immagine-banner"];
+    $nomeMacroattivita = $_POST["nome-macro"];
+    $descrizione = $_POST["descrizione-macro"];
+    $img = $_POST["immagine"];
+	$banner = $_POST["immagine-banner"];
 
     if(isset($_POST["nuovaMacro"])) {
         $queryControllo = $db->prepare("SELECT Nome FROM Macroattivita WHERE Nome = ?");
         $queryControllo->execute(array($nomeMacroattivita));
-        if($queryControllo->fetch()) {
-           erroreJSON("Nome macroattività già in uso", array("Tipo"=>"0"));
-           return;
+        if ($queryControllo->fetch()) {
+            erroreJSON("Nome macroattività già in uso", array("Tipo" => "0"));
+            return;
         }
 
-        $queryInserimento = $db->prepare("INSERT INTO Macroattivita(Nome,Descrizione,Immagine,Banner) VALUES (?,?,?,?)");
+        $queryInserimento = $db->prepare("INSERT INTO Macroattivita VALUES (NULL,?,?,?,?)");
 
-
-        if($queryInserimento->execute(array($nomeMacroattivita,$descrizione,$img,$banner))) {
+        if ($queryInserimento->execute(array($nomeMacroattivita, $descrizione, $img, $banner))) {
             $db->commit();
             successoJSON("Nuova macroattività inserita con successo.");
-        }
-        else {
+        } else {
             $db->rollBack();
-            erroreJSON("Errore nell'inserimetno  della nuova attività.");
+            erroreJSON("Errore nell'inserimetno  della nuova macroattività.");
         }
     }
+/*
     else{
         $idMacro = $_POST["idMacro"];
         $idMacro = str_replace("macroattivita-",'',$idMacro);
@@ -46,7 +45,7 @@ if(isAdmin()){
             erroreJSON("Errore nella modifica dellla macroattività.");
         }
     }
-
+*/
 }
 else{
     erroreJSON("Non è stato possibile modificare l'attività.");

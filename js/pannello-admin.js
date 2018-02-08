@@ -1,7 +1,32 @@
 $(function() {
 
-
     //------SEZIONE GESTISCI ATTIVITA'--------
+
+    //Macroattivita
+    $("#crea-macro").on("click", function(){
+        $("#finestra-crea-macro").show();
+    });
+
+    $("#finestra-crea-macro .btn").on("click", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        $("#finestra-crea-macro").fadeOut("Slow",function(){
+            $(this).find("input[type=text],textarea").val('');
+        });
+    });
+
+    $("#finestra-crea-macro input[type=submit]").on("click", function(){
+        $.post("php/macroattivita.php", $("#finestra-crea-macro form").serialize()+"&nuovaMacro=true",function(risposta){
+            risposta = JSON.parse(risposta);
+            if(risposta.stato == 1) {
+                generaAlert('green',"Successo",risposta.messaggio);
+            }
+            else {
+                generaAlert('red',"Errore",risposta.messaggio);
+            }
+        });
+    });
+
     //bottone nuova attivita
     $(".btn-nuova-attivita").on("click", function () {
         var titoloMacro = $(this).attr("data-info");
