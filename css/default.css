@@ -156,7 +156,7 @@ div.attivita span.btn.btn-primary:active {
     margin: auto;
     display: block;
     font-weight: 600;
-    font-size: 1.6em;
+    font-size: 1.2em;
     background-color: transparent;
     color:#B80000;
     border-bottom: 2px solid transparent;
@@ -587,7 +587,7 @@ textarea:focus{
     display: none;
 }
 .btn-a-capo{
-    padding-top:2em;
+    padding-top:1.5em;
 }
 
 .salva-dati {
