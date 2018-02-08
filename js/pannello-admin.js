@@ -12,7 +12,7 @@ $(function() {
     });
 
     //Disabilito gli input dei vari form delle schede attività tranne gli input della dialog pre creare una nuova attività
-    $("input[type=text], textarea").not($("#nuova-attivita").find("input[type=text],textarea")).attr('disabled','disabled');
+    $(".schede-attivita").find("input[type=text], textarea").attr('disabled','disabled');
 
     $("#nuova-attivita button").on("click",function(e) {
         e.preventDefault();
