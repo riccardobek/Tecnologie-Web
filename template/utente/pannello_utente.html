@@ -28,128 +28,131 @@
     <div class="length-wrapper" id="intestazione-per-mobile">
 
         <div class="tab">
-            <button class="tablinks" data-target="prenotazioni">Prenotazioni</button>
-            <button class="tablinks" data-target="account" lang="en">Account</button>
+            <button class="tablinks mobile-tab-button" data-target="prenotazioni">Prenotazioni</button>
+            <button class="tablinks mobile-tab-button" data-target="account" lang="en">Account</button>
         </div>
     </div>
     <div class="length-wrapper" id="tab-content-mobile">
-            <div id="prenotazioni" class="tabcontent">
-                <h1>Prenotazioni Attive</h1>
+        <div id="prenotazioni" class="tabcontent">
+            <h1>Prenotazioni Attive</h1>
+            <div class="schede-prenotazioni">
                 [#SCHEDE]
-                <div class="clearfix"></div>
-                <div class="wrapper-tabella">
-                    <table class="tabella" id="storico" summary="La tabella riporta tutte le tue prenotazioni passate con le relative informazioni
-                    e valutazioni assegnate">
-                       <caption><h2>Storico Prenotazioni</h2></caption>
-                        <thead>
-                        <tr>
-                            <th scope="col">Nome attività</th>
-                            <th scope="col">Giorno prenotato</th>
-                            <th scope="col">Posti prenotati</th>
-                            <th scope="col">Stato</th>
-                            <th scope="col">Valutazione</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            [#STORICO-PRENOTAZIONI]
-                        </tbody>
-                    </table>
-                    <button class="btn btn-primary" id="stampa"><img src="images/icone/icona_stampa.png" id="icona_stampa"/>Stampa storico</button>
-                </div>
             </div>
+            <button class="btn btn-primary" id="stampa-schede"><img src="images/icone/icona_stampa.png" class="icona_stampa"/>Stampa</button>
+            <div class="clearfix"></div>
+            <div class="wrapper-tabella">
+                <table class="tabella" id="storico" summary="La tabella riporta tutte le tue prenotazioni passate con le relative informazioni
+                    e valutazioni assegnate">
+                    <caption><h2>Storico Prenotazioni</h2></caption>
+                    <thead>
+                    <tr>
+                        <th scope="col">Nome attività</th>
+                        <th scope="col">Giorno prenotato</th>
+                        <th scope="col">Posti prenotati</th>
+                        <th scope="col">Stato</th>
+                        <th scope="col">Valutazione</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    [#STORICO-PRENOTAZIONI]
+                    </tbody>
+                </table>
+                <button class="btn btn-primary "id="stampa-storico"><img src="images/icone/icona_stampa.png" class="icona_stampa"/>Stampa</button>
+            </div>
+        </div>
 
-            <div id="account" class="tabcontent">
-                <div class="form" id="container_form">
-                    <div id="titolo-form">
-                        <h1 id="titolo">Riepilogo dati <span lang="en">account</span></h1>
-                        <h2 id="btn-wrapper" ><span id="modifica" class="button">Modifica dati</span></h2>
-                        <div class="clearfix"></div>
+        <div id="account" class="tabcontent">
+            <div class="form" id="container_form">
+                <div id="titolo-form">
+                    <h1 id="titolo">Riepilogo dati <span lang="en">account</span></h1>
+                    <h2 id="btn-wrapper" ><span id="modifica" class="button">Modifica dati</span></h2>
+                    <div class="clearfix"></div>
+                </div>
+
+
+                <form action="php/modifica_dati_utente.php" method="POST">
+                    <div class="field-container">
+                        <label for="username" >Nome utente: </label>
+                        <div class="input-container">
+                            <input type="text" id="username" name="username" value="[#USERNAME]">
+                        </div>
+                    </div>
+                    <div class="field-container">
+                        <label for="email" lang="en">Email: </label>
+                        <div class="input-container">
+                            <input type="text" id="email" name="email" value="[#EMAIL]">
+                        </div>
+                    </div>
+                    <div class="field-container">
+                        <label for="vecchia-password" >Modifica <span lang="en">password</span>: </label>
+                        <div class="input-container">
+                            <input type="password" id="vecchia-password" name="vecchia-password" placeholder="Password corrente">
+                        </div>
+                    </div>
+                    <div class="field-container mostra-modifica-password">
+                        <label for="password" >Nuova <span lang="en">password</span>: </label>
+                        <div class="input-container">
+                            <input type="password" id="password" name="password" placeholder="Inserisci la nuova password">
+                        </div>
+                    </div>
+                    <div class="field-container mostra-modifica-password">
+                        <label for="password2"  value="Inserisci la nuova password">Ripeti nuova <span lang="en">password</span>: </label>
+                        <div class="input-container">
+                            <input type="password" id="password2" name="password2" placeholder="Ripeti la nuova password">
+                        </div>
+                    </div>
+
+                    <div class="button-holder mostra-modifica-password" >
+                        <button id="bottone-modifica-password" name="modifica" class="btn btn-primary">Modifica <span xml:lang="en">password</span></button>
+                        <button id="annulla-modifica-pwd" class="btn">Annulla</button>
+                    </div>
+                    <div class="field-container">
+                        <label for="nome" >Nome: </label>
+                        <div class="input-container">
+                            <input type="text" class="form-input" id="nome" name="nome" value="[#NOME]">
+                        </div>
+                    </div>
+                    <div class="field-container">
+                        <label for="cognome" >Cognome: </label>
+                        <div class="input-container">
+                            <input type="text" id="cognome" name="cognome" value="[#COGNOME]">
+                        </div>
+                    </div>
+                    <div class="field-container">
+                        <label for="indirizzo" >Indirizzo: </label>
+                        <div class="input-container">
+                            <input type="text" id="indirizzo" name="indirizzo" value="[#INDIRIZZO]">
+                        </div>
+                    </div>
+                    <div class="field-container" >
+                        <label for="civico" >Civico: </label>
+                        <div class="input-container">
+                            <input type="text"  size="4" id="civico" name="civico" value="[#CIVICO]">
+                        </div>
+                    </div>
+                    <div class="field-container">
+                        <label for="citta" >Citt&agrave;: </label>
+                        <div class="input-container">
+                            <input type="text" id="citta" name="citta" value="[#CITTA]">
+                        </div>
+                    </div>
+                    <div class="field-container">
+                        <label for="CAP"><abbr title="Codice di avviamento postale">CAP</abbr>: </label>
+                        <div class="input-container">
+                            <input type="text"  size="4" id="CAP" name="CAP" value="[#CAP]">
+                        </div>
                     </div>
 
 
-                    <form action="php/modifica_dati_utente.php" method="POST">
-                        <div class="field-container">
-                            <label for="username" >Nome utente: </label>
-                            <div class="input-container">
-                                <input type="text" id="username" name="username" value="[#USERNAME]">
-                            </div>
-                        </div>
-                        <div class="field-container">
-                            <label for="email" lang="en">Email: </label>
-                            <div class="input-container">
-                                <input type="text" id="email" name="email" value="[#EMAIL]">
-                            </div>
-                        </div>
-                        <div class="field-container">
-                            <label for="vecchia-password" >Modifica <span lang="en">password</span>: </label>
-                            <div class="input-container">
-                                <input type="password" id="vecchia-password" name="vecchia-password" placeholder="Password corrente">
-                            </div>
-                        </div>
-                        <div class="field-container mostra-modifica-password">
-                            <label for="password" >Nuova <span lang="en">password</span>: </label>
-                            <div class="input-container">
-                                <input type="password" id="password" name="password" placeholder="Inserisci la nuova password">
-                            </div>
-                        </div>
-                        <div class="field-container mostra-modifica-password">
-                            <label for="password2"  value="Inserisci la nuova password">Ripeti nuova <span lang="en">password</span>: </label>
-                            <div class="input-container">
-                                <input type="password" id="password2" name="password2" placeholder="Ripeti la nuova password">
-                            </div>
-                        </div>
-
-                        <div class="button-holder mostra-modifica-password" >
-                            <button id="bottone-modifica-password" name="modifica" class="btn btn-primary">Modifica <span xml:lang="en">password</span></button>
-                            <button id="annulla-modifica-pwd" class="btn">Annulla</button>
-                        </div>
-                        <div class="field-container">
-                            <label for="nome" >Nome: </label>
-                            <div class="input-container">
-                                <input type="text" class="form-input" id="nome" name="nome" value="[#NOME]">
-                            </div>
-                        </div>
-                        <div class="field-container">
-                            <label for="cognome" >Cognome: </label>
-                            <div class="input-container">
-                                <input type="text" id="cognome" name="cognome" value="[#COGNOME]">
-                            </div>
-                        </div>
-                        <div class="field-container">
-                            <label for="indirizzo" >Indirizzo: </label>
-                            <div class="input-container">
-                                <input type="text" id="indirizzo" name="indirizzo" value="[#INDIRIZZO]">
-                            </div>
-                        </div>
-                        <div class="field-container" >
-                            <label for="civico" >Civico: </label>
-                            <div class="input-container">
-                                <input type="text"  size="4" id="civico" name="civico" value="[#CIVICO]">
-                            </div>
-                        </div>
-                        <div class="field-container">
-                            <label for="citta" >Citt&agrave;: </label>
-                            <div class="input-container">
-                                <input type="text" id="citta" name="citta" value="[#CITTA]">
-                            </div>
-                        </div>
-                        <div class="field-container">
-                            <label for="CAP"><abbr title="Codice di avviamento postale">CAP</abbr>: </label>
-                            <div class="input-container">
-                                <input type="text"  size="4" id="CAP" name="CAP" value="[#CAP]">
-                            </div>
-                        </div>
-
-
-                        <div class="button-holder mostra-modifica" >
-                            <input type="submit" value="Modifica" name="modifica" class="btn btn-primary" id="invio-dati">
-                            <button class="btn" id="annulla" >Annulla</button>
-                        </div>
-                    </form>
-                </div>
-                <button id="elimina-account" class="btn btn-primary">Elimina <span lang="en">account</span></button>
+                    <div class="button-holder mostra-modifica" >
+                        <input type="submit" value="Modifica" name="modifica" class="btn btn-primary" id="invio-dati">
+                        <button class="btn" id="annulla" >Annulla</button>
+                    </div>
+                </form>
             </div>
+            <button id="elimina-account" class="btn btn-primary">Elimina <span lang="en">account</span></button>
         </div>
+    </div>
 </div>
 [#MENU-MOBILE]
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>

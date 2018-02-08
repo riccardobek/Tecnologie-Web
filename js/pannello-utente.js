@@ -3,6 +3,9 @@ $(function() {
     stileCellaPagamento();
 
     assegnaVoto();
+    stampaStorico();
+    stampaSchede();
+    controlloBottone();
 
     //richiesta AJAX per la cancellazione di una prenotazione
     $(".button-holder > .btn-cancella").on("click", function () {
@@ -11,7 +14,7 @@ $(function() {
         var timeDiff = data - (new Date());
         var giorniDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
         if(giorniDiff<2) {
-           generaAlert('red','Errore',"Non puoi cancellare la prenotazione con due giorni di anticipo.");
+            generaAlert('red','Errore',"Non puoi cancellare la prenotazione con due giorni di anticipo.");
         }
         else {
             $.confirm({
@@ -25,7 +28,8 @@ $(function() {
                         btnClass: 'btn-blue',
                         action: function(){
                             eliminaPrenotazione(target);
-                        }
+
+                        },
                     },
                     Annulla:  {}
                 }
@@ -76,7 +80,7 @@ $(function() {
                     $("#vecchia-password").parent().append("<span class='successo'>"+risposta.messaggio+"</span>");
                 }
                 else{
-                   notificaErrore($("#vecchia-password").parent(), risposta.messaggio);
+                    notificaErrore($("#vecchia-password").parent(), risposta.messaggio);
                 }
             });
         }
@@ -102,11 +106,11 @@ $(function() {
         e.preventDefault();
         e.stopPropagation();
         $(".error").each(function () {
-           pulisciErrore($(this));
+            pulisciErrore($(this));
         });
 
         if(validaFormUtente(false)) {
-           $.post("php/modifica_dati_utente.php",$("form").serialize(),function(risposta) {
+            $.post("php/modifica_dati_utente.php",$("form").serialize(),function(risposta) {
                 risposta = JSON.parse(risposta);
                 if(risposta.stato == 1){
                     generaAlert('green','Successo',risposta.messaggio);
@@ -193,9 +197,12 @@ function rispostaEliminiazionePrenotazione(target) {
 
     $('#'+target).parent().slideUp('Slow', function(){
         $(this).remove();
+        controlloBottone();
     });
     dispari.removeClass("dispari").addClass("pari");
     pari.removeClass("pari").addClass("dispari");
+
+
 }
 
 function validaCampiCambioPwd(){
@@ -233,4 +240,27 @@ function ripristinaDatiInizialiForm(oggettoDatiForm ){
     });
 }
 
+function stampaStorico() {$("#stampa-storico").click(function(){
 
+    $(".schede-prenotazioni").hide();
+    $("#storico").show();
+    window.print();
+    $(".schede-prenotazioni").show();
+})
+
+}
+function stampaSchede() {$("#stampa-schede").click(function(){
+
+    $("#storico").hide();
+    window.print();
+    $("#storico").show();
+})
+
+}
+function controlloBottone(){
+    if($(".scheda-wrapper").length==0){
+        $("#stampa-schede").hide();
+        $("<h2>Non ci sono prenotazioni attive</h2>").insertAfter($("#prenotazioni h1"));
+    }
+
+}

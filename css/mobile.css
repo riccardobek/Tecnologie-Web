@@ -64,7 +64,7 @@ img.banner{
 }
 
 div.form{
-   width:auto;
+    width:auto;
 
 }
 
@@ -223,4 +223,30 @@ form label {
 }
 #footer_logo{
     display: none;
+}
+#stampa-schede,#stampa-storico{
+    display: none;
+}
+.wrapper-tabella{
+    margin-top: 0;
+}
+
+
+.mobile-tab-button{
+    width: 50%;
+    float: left;
+}
+caption{
+    text-align: left;
+}
+
+#stat-tab{
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+#usr-tab{
+    border-left: 1px solid rgba(0,0,0,0.2);
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+#res-tab{
+    border-left: 1px solid rgba(0,0,0,0.2);
 }
