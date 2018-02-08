@@ -35,4 +35,3 @@ $HTML = str_replace("[#COLONNE_ATTIVITA]",$HTML_MACROATTIVITA,$HTML);
 $HTML = str_replace("[#MENU-MOBILE]",menuMobile($activeIndex),$HTML);
 
 echo $HTML;
-?>

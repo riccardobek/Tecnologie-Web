@@ -18,4 +18,4 @@ $HTML = str_replace("[#MENU-MOBILE]",menuMobile($activeIndex),$HTML);
 echo $HTML;
 
 
-?>
+

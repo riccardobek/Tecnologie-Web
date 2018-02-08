@@ -11,7 +11,9 @@ if(true)
 else
     paginaSuccesso("Login effettuato con successo","index.php","Prosegui la navigazione");
 die();
-?><!--
+?>
+
+<!--
 <!DOCTYPE html>
 <html>
 <head>

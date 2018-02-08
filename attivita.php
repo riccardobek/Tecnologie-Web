@@ -68,4 +68,4 @@ function stampaAttivita() {
     return $output;
 }
 
-?>
+

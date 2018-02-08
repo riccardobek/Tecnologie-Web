@@ -153,4 +153,4 @@ function inserisciVoto($voto,$idPrenotazione){
     $db->rollBack();
     erroreJSON("Non è stato possibile inviare la valutazione",$queryControllo->errorInfo());
 }
-?>
+

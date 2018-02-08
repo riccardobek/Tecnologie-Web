@@ -189,4 +189,4 @@ RIGA;
     return $row;
 }
 
-?>
+

@@ -11,4 +11,3 @@ $HTML = str_replace("[#INTESTAZIONE]",$HTML_INTESTAZIONE, $HTML);
 $HTML = str_replace("[#MENU-MOBILE]",menuMobile($activeIndex), $HTML);
 
 echo $HTML;
-?>
