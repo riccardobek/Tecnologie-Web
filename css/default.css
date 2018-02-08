@@ -1,9 +1,2 @@
-@import url("default/reset.css");
 @import url("default/corpo.css");
-@import url("default/menu.css");
-@import url("default/input.css");
 
-.length-wrapper {
-    max-width: 1024px;
-    margin: auto;
-}
