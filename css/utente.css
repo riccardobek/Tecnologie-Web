@@ -7,19 +7,6 @@ form label {
     text-align: right;
 }
 
-#stampa-storico,#stampa-schede{
-
-    width: 12%;
-    padding-left: 1.75em;
-    padding-right: 1.75em;
-    margin-top: 0.5em;
-    margin-bottom: 1em;
-    float: right;
-}
-
-#stampa-schede {
-    margin-top: 21em;
-}
 .field-container {
     margin-top:1em;
 }

@@ -805,11 +805,25 @@ h1,h2,h3{
 
 }
 
-#icona_stampa{
+.icona_stampa{
     width: 40%;
 }
 
 .input-container {
     margin-left:27%;
     width: 70%;
+}
+#stampa-storico,#stampa-schede{
+
+    width: 12%;
+    padding-left: 1.75em;
+    padding-right: 1.75em;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    float: right;
+
+}
+
+#stampa-schede{
+    margin-top: 21em;
 }
