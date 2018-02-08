@@ -6,3 +6,16 @@ form label {
     padding-bottom: 0;
     text-align: right;
 }
+
+.field-container {
+    margin-top:1em;
+}
+
+input[type=text]:disabled, input[type=password]:disabled{
+    border:0;
+    border-bottom: 2px solid transparent;
+}
+
+form .field-container:not(:first-child) label {
+    margin-top:0.4em;
+}

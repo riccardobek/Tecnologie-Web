@@ -156,6 +156,7 @@ div.attivita span.btn.btn-primary:active {
     margin: auto;
     display: block;
     font-weight: 600;
+    font-size: 1.6em;
     background-color: transparent;
     color:#B80000;
     border-bottom: 2px solid transparent;
@@ -756,9 +757,6 @@ h1,h2,h3{
     display: none;
 }
 
-/*SU UTENTE CSS BISOGNA MODIFICARE IL FORM PERCHé
-NON INTERFERISCA CON I FORM GIà IN QUESTO FILE*/
-
 #titolo-form {
     width:100%;
 }
@@ -787,23 +785,6 @@ NON INTERFERISCA CON I FORM GIà IN QUESTO FILE*/
     border:2px solid rgba(0,0,0,0.2 );
 }
 
-.input-container {
-    margin-left:27%;
-    width: 70%;
-}
-
-input[type=text]:disabled, input[type=password]:disabled{
-    border:0;
-    border-bottom: 2px solid transparent;
-}
-
-form .field-container:not(:first-child) label {
-    margin-top:0.4em;
-}
-
-.field-container {
-    margin-top:1em;
-}
 
 .mostra-bordo{
     border-bottom: 1px solid silver;
@@ -826,4 +807,9 @@ form .field-container:not(:first-child) label {
 
 #icona_stampa{
     width: 20%;
+}
+
+.input-container {
+    margin-left:27%;
+    width: 70%;
 }
