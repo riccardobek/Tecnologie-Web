@@ -4,7 +4,7 @@ define("PERCORSO_RELATIVO","");
 require_once "php/database.php";
 require_once "php/funzioni/funzioni_pagina.php";
 require_once  "php/funzioni/funzioni_attivita.php";
-$activeIndex = INF;
+$activeIndex = 7;
 
 if(isset($_POST["nuovaScheda"])){
     $output = "";
@@ -40,7 +40,7 @@ $HTML = str_replace("[#ATTIVITA]",stampaSchedeAttivita(), $HTML);
 //tabelle statistiche(rimpiazza i segnaposto [#TABELLA])
 $HTML = str_replace("[#ATTIVITA-PIU-PRENOTATE]",getAttivitaPiuPrenotate(),$HTML);
 
-//Rimpiazza segna posto [#PRENOTAZIONI]
+//Rimpiazza segna posto [#PRENOTAZIONI-...]
 $HTML = str_replace("[#PRENOTAZIONI-ATTIVE]",prenotazioniAttive(),$HTML);
 $HTML = str_replace("[#PRENOTAZIONI-PASSATE]",prenotazioniPassate(),$HTML);
 
@@ -103,9 +103,7 @@ function stampaSchedeAttivita(){
         $listaSchede = schedeAttivita($attivita["Codice"]);
         //Creare template per contenere macroattività che ha pulsanti titolo ecc.
         $output .= <<<SCRIVI
-        <!-- &nbsp; = spazio 
-             &x270E = matita -->
-<h2 class="titolo-macro">{$attivita["Nome"]}&nbsp; &#x270E;</h2>
+<h2 class="titolo-macro">{$attivita["Nome"]}</h2>
 <button class="btn btn-block btn-nuova-attivita" id="macro-{$attivita["Codice"]}" data-info="{$attivita["Nome"]}">Nuova attività</button>
 <div id="gruppo-macro-{$attivita["Codice"]}">
     {$listaSchede}

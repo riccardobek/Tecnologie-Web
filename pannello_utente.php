@@ -11,7 +11,7 @@ require_once "php/funzioni/funzioni_pagina.php";
 require_once "php/funzioni/funzioni_json.php";
 loginRichiesto();
 
-$activeIndex = 0;
+$activeIndex = 6;
 
 if(isset($_POST["funzione"])){
     inserisciVoto($_POST["voto"],$_POST["codicePren"]);
