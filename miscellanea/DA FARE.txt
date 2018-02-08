@@ -1,0 +1,10 @@
+1 - binding eventi alle schede attività create
+2 - aggiornare in live le sezioni macroattività
+3 - modificare macroattività
+4 - cancellare attività
+5 - cancellare macroattività
+6 - capire a cosa serve il modifica prenotazioni (sennò togliere)
+
+
+7 - sistemare mobile
+8 - controllare stampa
