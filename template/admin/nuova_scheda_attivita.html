@@ -1,12 +1,14 @@
 <div class="scheda-wrapper" id="overlay">
-    <div class="length-wrapper">
-        <div class="schede form" id="nuova-attivita">
-            <h2>Nuova attività</h2>
+
+    <div class="length-wrapper" role="dialog"  aria-labelledby="label-dialog" aria-modal="true" >
+        <div tabindex="0"></div>
+        <div class="schede form" id="nuova-attivita" >
+            <h2 id="label-dialog">Nuova attività</h2>
             <form action="" method="POST">
                 <div class="field-container">
                     <label for="nome" >Nome: </label>
                     <div class="input-container">
-                        <input type="text" id="nome" class="nome-attivita" name="nome-attivita" placeholder="Nome attività">
+                        <input type="text" id="nome" class="nome-attivita" name="nome" placeholder="Nome attività">
                     </div>
                 </div>
                 <div class="field-container">

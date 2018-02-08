@@ -9,6 +9,7 @@ $(function() {
         $("#nuova-attivita h2").prepend("<span>"+titoloMacro+" - </span>");
         $("#nuova-attivita").append("<span id='macro'>"+idMacro+"</span>");
         $("#overlay").show();
+        $("#nome").focus();
     });
 
     //Disabilito gli input dei vari form delle schede attività tranne gli input della dialog pre creare una nuova attività
@@ -110,7 +111,6 @@ $(function() {
 
         //ripristino dati
         var target = $(this).attr('data-target');
-        console.log("#nome-"+target);
         $("#nome-"+target).val(campiDati[target]["nome-attivita"]);
         $("#descrizione-"+target).val(campiDati[target]["descrizione"]);
         $("#prezzo-"+target).val(campiDati[target]["prezzo"]);
@@ -260,9 +260,12 @@ function salvaDati(target) {
 function validaFormModifica(target) {
     var valido = true;
     var inputs = $("#"+target).find("textarea,input[type=text]");
+    $(".error").each(function () {
+        pulisciErrore($(this));
+    });
     $(inputs).each(function () {
         if($(this).val().trim().length == 0){
-            notificaErrore($(this).parent(),"Il campo non può essere vuoto");
+            notificaErrore($(this).parent(),"Il campo "+' '+$(this).attr("name")+' '+" non può essere vuoto");
             valido = false;
         }
     });

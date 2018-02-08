@@ -23,7 +23,7 @@ $("document").ready(function() {
  * @param testo è il testo dell'errore
  */
 function notificaErrore(targetNode,testo) {
-    var span = $("<span>"+testo+"</span>");
+    var span = $("<span role='alert'>"+testo+"</span>");
     span.appendTo(targetNode);
 
     targetNode.addClass("error");
