@@ -8,7 +8,7 @@ require_once "funzioni/funzioni_sicurezza.php";
 $db->beginTransaction();
 
 if(isAdmin()){
-    $nomeAttivita = $_POST["nome-attivita"];
+    $nomeAttivita = $_POST["nome"];
     $descrizione = $_POST["descrizione"];
     $prezzo = $_POST["prezzo"];
 
@@ -39,10 +39,10 @@ if(isAdmin()){
         }
         else {
             $db->rollBack();
-            erroreJSON("Errore nell'inserimetno  della nuova attività.");
+            erroreJSON("Errore nell'inserimento della nuova attività.");
         }
     }
-    else{
+    else {
         $idAttivita = $_POST["idAttivita"];
         $idAttivita = str_replace("attivita-",'',$idAttivita);
         $queryModifica = $db->prepare("UPDATE Attivita SET Nome = ?, Descrizione = ?, Prezzo = ? WHERE Codice = ?");
@@ -55,9 +55,7 @@ if(isAdmin()){
             erroreJSON("Errore nella modifica dell'attività.");
         }
     }
-
-
 }
-else{
+else {
     erroreJSON("Non è stato possibile modificare l'attività.");
 }

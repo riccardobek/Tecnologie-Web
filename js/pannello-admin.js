@@ -44,12 +44,11 @@ $(function() {
         var titoloMacro = $(this).attr("data-info");
         var idMacro = $(this).attr("id");
         $("#nuova-attivita h2").prepend("<span>"+titoloMacro+" - </span>");
+        $("#nuova-attivita input[type=submit]").attr("data-macro",idMacro);
         $("#nuova-scheda-attivita").show();
         $("#nome").focus();
     });
 
-    //Disabilito gli input dei vari form delle schede attività tranne gli input della dialog pre creare una nuova attività
-    $(".schede-attivita").find("input[type=text], textarea").attr('disabled','disabled');
 
     $("#nuova-attivita button").on("click",function(e) {
         e.preventDefault();
@@ -57,22 +56,12 @@ $(function() {
         $(".error").each(function () {
             pulisciErrore($(this));
         });
-        $("#nuova-attivita").find("input[type=text],textarea").val('');
-        $(".overlay").fadeOut('Slow', function () {
-            $("#nuova-attivita h2 span").remove();
-            $("#macro").remove();
-        });
+        fadeDialogoNuovaAttivita();
     });
 
-    //bottone elimina attività
-    $(".elimina-attivita").on("click", function () {
+    //aggiungo listener alle schede attività
+    aggiugngiEventiSchedeAttivita();
 
-        //prendo l'attributo data target per sapere quale scheda eliminare
-        var idScheda = $(this).attr("data-target");
-        //finestra di dialogo con ri chiesta AJAX
-        //al successo dell'eliminazione rimuovo la scheda
-        sistemaSchede(idScheda);
-    });
 
     $("#nuova-attivita input[type=submit]").on("click", function (e) {
         e.preventDefault();
@@ -81,11 +70,11 @@ $(function() {
         var divDaAggiornare = $(this).next("div");
 
         if(validaFormModifica("nuova-attivita")) {
-            var idMacro = $("#macro").text();
+            var idMacro = $(this).attr('data-macro');
             $.post("php/modifica_attivita.php", $("#nuova-attivita form").serialize()+"&nuovaAttivita=true"+"&"+"idMacro="+idMacro, function (risposta) {
                 risposta = JSON.parse(risposta);
                 if(risposta.stato == 1) {
-                    var nSchedeModulo = ($("#gruppo-macro-"+idMacro+" .scheda-wrapper").length)%2;
+                    var nSchedeModulo = ($("#gruppo-macro-"+risposta.idMacro+" .scheda-wrapper").length)%2;
                     var classe = "";
                     if(nSchedeModulo == 0)
                         classe = 'pari';
@@ -100,14 +89,13 @@ $(function() {
                         buttons: {
                             Ok: {
                                 action: function () {
-                                    $(".overlay").fadeOut('Slow', function () {
-                                        $("#nuova-attivita h2 span").remove();
-                                        $("#macro").remove();
-                                    });
                                     $.post("pannello_admin.php",
                                         $("#nuova-attivita form").serialize()+"&nuovaScheda=1"+"&"+"Classe="+classe+"&"+"Codice="+risposta.CodiceAtt,
                                         function(ris) {
-                                            $(ris).insertBefore($("#gruppo-macro-"+risposta.idMacro+" .clearfix"));
+                                            $(ris).insertBefore($("#gruppo-macro-"+risposta.idMacro+' '+".inserimento-scheda"));
+                                            togliEventiSchedeAttivita();
+                                            fadeDialogoNuovaAttivita();
+                                            aggiugngiEventiSchedeAttivita();
                                     });
                                 }
                             }
@@ -123,68 +111,6 @@ $(function() {
                     else {
                         generaAlert('red',"Errore",risposta.messaggio);
                     }
-                }
-            });
-        }
-    });
-
-    //array associativo per il vari campi dati delle varie schede
-    var campiDati = {};
-    //Quando si preme il tasto modifica i campi di testo vengono abilitati e si mostra il bottone di annulamento delle modifiche
-    $(".schede .modifica").on("click", function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        $(this).hide();
-        $(this).prev().show();
-        //mostro il pulsante annulla modifiche
-        $(this).next().show();
-
-        //seleziono l'id del div del pulsante premuto
-        var target = $(this).attr('data-target');
-        $("#"+target).find("textarea,input[type=text]").removeAttr('disabled');
-
-        //salvo i dati dei vari campi
-        campiDati[target] = salvaDati(target);
-    });
-
-    //listener per tasto cancella modifiche di un' attività
-    $(".schede .bottone-annulla").on("click", function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        $(this).hide();
-        $(this).prevAll(".salva-dati").hide();
-        $(this).prev().show();
-        //elimino le notifiche di errore
-        $(".error").each(function () {
-            pulisciErrore($(this));
-        });
-
-        //ripristino dati
-        var target = $(this).attr('data-target');
-        $("#nome-"+target).val(campiDati[target]["nome-attivita"]);
-        $("#descrizione-"+target).val(campiDati[target]["descrizione"]);
-        $("#prezzo-"+target).val(campiDati[target]["prezzo"]);
-
-        //disabilito i campi di testo
-        $("#"+target).find("textarea,input[type=text]").attr('disabled','disabled');
-    });
-
-    $(".salva-dati").on("click", function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        var target = $(this).attr('data-target');
-        if(validaFormModifica(target)) {
-            $.post("php/modifica_attivita.php",$("#"+target).find("form").serialize()+"&"+"idAttivita="+target, function(risposta) {
-                risposta = JSON.parse(risposta);
-                if(risposta.stato == 1) {
-                    campiDati[target] = salvaDati(target);
-                    generaAlert('green',"Successo",risposta.messaggio);
-                }
-                else {
-                    generaAlert('red',"Errore",risposta.messaggio);
                 }
             });
         }
@@ -324,4 +250,95 @@ function validaFormModifica(target) {
     return valido;
 }
 
-function toggleEventi() {}
+
+function aggiugngiEventiSchedeAttivita() {
+
+    //Disabilito gli input dei vari form delle schede attività tranne gli input della dialog pre creare una nuova attività
+    $(".schede-attivita").find("input[type=text], textarea").attr('disabled','disabled');
+
+    //event listener per il bottone elimina attività
+    $(".elimina-attivita").on("click", function () {
+
+        //prendo l'attributo data target per sapere quale scheda eliminare
+        var idScheda = $(this).attr("data-target");
+        //finestra di dialogo con ri chiesta AJAX
+        //al successo dell'eliminazione rimuovo la scheda
+        sistemaSchede(idScheda);
+    });
+
+    //array associativo per il vari campi dati delle varie schede
+    var campiDati = {};
+    //Quando si preme il tasto modifica i campi di testo vengono abilitati e si mostra il bottone di annulamento delle modifiche
+    $(".schede .modifica").on("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        $(this).hide();
+        $(this).prev().show();
+        //mostro il pulsante annulla modifiche
+        $(this).next().show();
+
+        //seleziono l'id del div del pulsante premuto
+        var target = $(this).attr('data-target');
+        $("#"+target).find("textarea,input[type=text]").removeAttr('disabled');
+
+        //salvo i dati dei vari campi
+        campiDati[target] = salvaDati(target);
+    });
+
+    //listener per tasto cancella modifiche di un' attività
+    $(".schede .bottone-annulla").on("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        $(this).hide();
+        $(this).prevAll(".salva-dati").hide();
+        $(this).prev().show();
+        //elimino le notifiche di errore
+        $(".error").each(function () {
+            pulisciErrore($(this));
+        });
+        //ripristino dati
+        var target = $(this).attr('data-target');
+        $("#nome-"+target).val(campiDati[target]["nome-attivita"]);
+        $("#descrizione-"+target).val(campiDati[target]["descrizione"]);
+        $("#prezzo-"+target).val(campiDati[target]["prezzo"]);
+
+        //disabilito i campi di testo
+        $("#"+target).find("textarea,input[type=text]").attr('disabled','disabled');
+    });
+
+    $(".salva-dati").on("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var target = $(this).attr('data-target');
+        if(validaFormModifica(target)) {
+            $.post("php/modifica_attivita.php",$("#"+target).find("form").serialize()+"&"+"idAttivita="+target, function(risposta) {
+                risposta = JSON.parse(risposta);
+                if(risposta.stato == 1) {
+                    campiDati[target] = salvaDati(target);
+                    generaAlert('green',"Successo",risposta.messaggio);
+                }
+                else {
+                    generaAlert('red',"Errore",risposta.messaggio);
+                }
+            });
+        }
+    });
+}
+
+
+function togliEventiSchedeAttivita() {
+    $(".elimina-attivita").off("click");
+    $(".salva-dati").off("click");
+    $(".schede .modifica").off("click");
+    $(".schede .bottone-annulla").off("click");
+}
+
+function fadeDialogoNuovaAttivita() {
+    $("#nuova-scheda-attivita").fadeOut('Slow', function () {
+        $("#nuova-attivita").find("input[type=text],textarea").val('');
+        $("#nuova-attivita h2 span").remove();
+    });
+}

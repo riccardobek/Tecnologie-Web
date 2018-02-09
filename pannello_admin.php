@@ -9,7 +9,7 @@ $activeIndex = 7;
 if(isset($_POST["nuovaScheda"])){
     $output = "";
     $output = file_get_contents("template/admin/scheda_attivita_admin.html");
-    $output = str_replace("[#NOME]", $_POST["nome-attivita"], $output );
+    $output = str_replace("[#NOME]", $_POST["nome"], $output );
     $output = str_replace("[#DESCRIZIONE]", $_POST["descrizione"], $output );
     $output = str_replace("[#PREZZO]", $_POST["prezzo"], $output );
     $output = str_replace("[#CLASSE-SCHEDA]", $_POST["Classe"], $output );
@@ -113,7 +113,7 @@ function stampaSchedeAttivita(){
 <button class="btn btn-block btn-nuova-attivita" id="macro-{$attivita["Codice"]}" data-info="{$attivita["Nome"]}">Nuova attività</button>
 <div id="gruppo-macro-{$attivita["Codice"]}">
     {$listaSchede}
-    <div class="clearfix"></div>
+    <div class="clearfix inserimento-scheda"></div>
 </div>
 
 SCRIVI;
