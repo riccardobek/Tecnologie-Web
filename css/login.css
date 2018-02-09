@@ -76,3 +76,11 @@ form .field-container:not(:first-child) label {
 	width: 330px;
 	margin-left:350px;
 }
+
+a{
+    color: #00749E;
+}
+
+a:visited{
+    color: #0020BB;
+}
