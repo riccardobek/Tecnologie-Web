@@ -31,8 +31,8 @@ loginRichiesto();
 $HTML_INTESTAZIONE = intestazione($activeIndex);
 
 $TEMPLATE_NUOVA_ATTIVITA = file_get_contents("template/admin/nuova_scheda_attivita.html");
-$TEMPLATE_NUOVA_MACRO = file_get_contents("template/admin/nuova_scheda_macroattivita.html");
-$TEMPLATE_MODIFICA_MACRO = file_get_contents("template/admin/scheda_modifica_macroattivita.html");
+$TEMPLATE_NUOVA_MACRO = file_get_contents("template/admin/scheda_macroattivita.html");
+
 $HTML = file_get_contents("template/admin/pannello_admin.html");
 
 //Rimpiazza il segnaposto con il menù
@@ -42,8 +42,8 @@ $HTML = str_replace("[#INTESTAZIONE]",$HTML_INTESTAZIONE, $HTML);
 $HTML = str_replace("[#UTENTI]",listaUtenti(), $HTML);
 
 $HTML = str_replace("[#NUOVA-ATTIVITA]",$TEMPLATE_NUOVA_ATTIVITA, $HTML);
-$HTML = str_replace("[#NUOVA-MACROATTIVITA]",$TEMPLATE_NUOVA_MACRO, $HTML);
-$HTML = str_replace("[#MODIFICA-MACROATTIVITA]",$TEMPLATE_MODIFICA_MACRO, $HTML);
+$HTML = str_replace("[#SCHEDA-MACROATTIVITA]",$TEMPLATE_NUOVA_MACRO, $HTML);
+
 
 
 //Rimpiazza segna posto [#ATTIVITA]

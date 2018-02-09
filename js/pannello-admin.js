@@ -3,11 +3,13 @@ $(function() {
     //------SEZIONE GESTISCI ATTIVITA'--------
 
     //Nuova Macroattivita
-    $("#crea-macro").on("click", function(){
-        $("#finestra-crea-macro").show();
+    $("#crea-macro").on("click", function() {
+        $("#label-dialog2").val("Nuova macroattività");
+        $("#finestra-macro").show();
+
     });
 
-    $("#finestra-crea-macro input[type=submit]").on("click", function(e){
+    $("#finestra-macro input[type=submit]").on("click", function(e){
         e.preventDefault();
         e.stopPropagation();
         if(validaFormModifica("finestra-crea-macro")) {
@@ -23,10 +25,10 @@ $(function() {
         }
     });
 
-    $("#finestra-crea-macro #annulla-macro").on("click", function(e){
+    $("#annulla-macro").on("click", function(e){
         e.preventDefault();
         e.stopPropagation();
-        $("#finestra-crea-macro").fadeOut("Slow",function(){
+        $("#finestra-macro").fadeOut("Slow",function(){
             $(this).find("input[type=text],textarea").val('');
         });
         $(".error").each(function () {
@@ -37,12 +39,7 @@ $(function() {
     //Modifica macro attivita
     aggiungiEventiMacroAttivita();
 
-    $("#annulla-modifica-macro").on("click", function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        $("#dialog-modifica-macro").fadeOut("Slow");
 
-    });
 
     //bottone nuova attivita
     $(".btn-nuova-attivita").on("click", function () {
@@ -356,12 +353,10 @@ function aggiungiEventiMacroAttivita() {
         $.post("pannello_admin.php", {RichiestaMacro: idMacro}, function(macro) {
             macro = JSON.parse(macro);
             console.log(macro);
-            $("#label-dialog3").text(macro.Nome+" - Modifica");
-            $("#modifica-nome-macro").val(macro.Nome);
-            $("#modifica-descrizione-macro").val(macro.Descrizione);
-            $("#modifica-immagine").val(macro.Immagine);
-            $("#modifica-immagine-banner").val(macro.Banner);
-            $("#dialog-modifica-macro").show();
+            $("#label-dialog2").text(macro.Nome+" - Modifica");
+            $("#nome-macro").val(macro.Nome);
+            $("#descrizione-macro").val(macro.Descrizione);
+            $("#finestra-macro").show();
         });
 
     });

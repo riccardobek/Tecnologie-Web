@@ -26,15 +26,15 @@ if(isAdmin()){
         if ($queryInserimento->execute(array($nomeMacroattivita, $descrizione, $img, $banner))) {
             $db->commit();
             successoJSON("Nuova macroattività inserita con successo.");
-        } else {
+        }
+        else {
             $db->rollBack();
             erroreJSON("Errore nell'inserimetno  della nuova macroattività.");
         }
     }
-    /*
-    else{
+    else {
         $idMacro = $_POST["idMacro"];
-        $idMacro = str_replace("macroattivita-",'',$idMacro);
+        $idMacro = str_replace("macro-",'',$idMacro);
         $queryModifica = $db->prepare("UPDATE Macroattivita SET Nome = ?, Descrizione = ?, Immagine = ? Banner = ? WHERE Codice = ?");
         if($queryModifica->execute(array($nomeMacroattivita,$descrizione,$img,$banner,$idMacro))) {
             $db->commit();
@@ -45,8 +45,7 @@ if(isAdmin()){
             erroreJSON("Errore nella modifica dellla macroattività.");
         }
     }
-*/
 }
-else{
-    erroreJSON("Non è stato possibile modificare l'attività.");
+else {
+    erroreJSON("Permesso negato.");
 }
