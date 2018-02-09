@@ -86,6 +86,7 @@ $menuElements = array(
 function creaElementoMenu($index, $activeIndex) {
     $activeIndex++;
 
+    $tabIndex = $index+1;
     global $menuElements;
     $element = "";
 
@@ -109,7 +110,7 @@ function creaElementoMenu($index, $activeIndex) {
 ELEMENTO
             :
             <<<ELEMENTO
-<a href="{$menuElements[$index]["URL"]}" class="button">{$menuElements[$index]["Nome"]}</a>
+<a href="{$menuElements[$index]["URL"]}"  tabindex="{$tabIndex}" class="button">{$menuElements[$index]["Nome"]}</a>
 ELEMENTO;
 
     }
@@ -122,7 +123,7 @@ ELEMENTO;
 ELEMENTO
             :
             <<<ELEMENTO
-<li><a href="{$menuElements[$index]["URL"]}" [#ID]>{$menuElements[$index]["Nome"]}</a></li>
+<li><a href="{$menuElements[$index]["URL"]}"  tabindex="{$tabIndex}" [#ID]>{$menuElements[$index]["Nome"]}</a></li>
 ELEMENTO;
 
     }

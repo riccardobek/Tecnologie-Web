@@ -44,11 +44,6 @@ $(function() {
 
     });
 
-
-
-
-
-
     //bottone nuova attivita
     $(".btn-nuova-attivita").on("click", function () {
         var titoloMacro = $(this).attr("data-info");
@@ -115,8 +110,6 @@ $(function() {
                 else {
                     if(risposta.hasOwnProperty('Tipo')) {
                         notificaErrore($("#nuova-attivita #nome").parent(),risposta.messaggio);
-
-
                     }
                     else {
                         generaAlert('red',"Errore",risposta.messaggio);
