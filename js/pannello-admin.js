@@ -7,24 +7,31 @@ $(function() {
         $("#finestra-crea-macro").show();
     });
 
-    $("#finestra-crea-macro .btn").on("click", function(e){
+    $("#finestra-crea-macro #annulla-macro").on("click", function(e){
         e.preventDefault();
         e.stopPropagation();
         $("#finestra-crea-macro").fadeOut("Slow",function(){
             $(this).find("input[type=text],textarea").val('');
         });
+        $(".error").each(function () {
+            pulisciErrore($(this));
+        });
     });
 
-    $("#finestra-crea-macro input[type=submit]").on("click", function(){
-        $.post("php/macroattivita.php", $("#finestra-crea-macro form").serialize()+"&nuovaMacro=true",function(risposta){
-            risposta = JSON.parse(risposta);
-            if(risposta.stato == 1) {
-                generaAlert('green',"Successo",risposta.messaggio);
-            }
-            else {
-                generaAlert('red',"Errore",risposta.messaggio);
-            }
-        });
+    $("#finestra-crea-macro input[type=submit]").on("click", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        if(validaFormModifica("finestra-crea-macro")){
+            $.post("php/macroattivita.php", $("#finestra-crea-macro form").serialize()+"&nuovaMacro=true",function(risposta){
+                risposta = JSON.parse(risposta);
+                if(risposta.stato == 1) {
+                    generaAlert('green',"Successo",risposta.messaggio);
+                }
+                else {
+                    generaAlert('red',"Errore",risposta.messaggio);
+                }
+            });
+        }
     });
 
     //bottone nuova attivita

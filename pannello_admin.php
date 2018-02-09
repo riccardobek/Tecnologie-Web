@@ -23,7 +23,7 @@ loginRichiesto();
 $HTML_INTESTAZIONE = intestazione($activeIndex);
 
 $TEMPLATE_NUOVA_ATTIVITA = file_get_contents("template/admin/nuova_scheda_attivita.html");
-$TEMPLATE_NUOVA_MACRO = file_get_contents("template/admin/nuovaMacroattivita.html");
+$TEMPLATE_NUOVA_MACRO = file_get_contents("template/admin/macroattivita.html");
 $HTML = file_get_contents("template/admin/pannello_admin.html");
 
 //Rimpiazza il segnaposto con il menù
@@ -104,7 +104,7 @@ function stampaSchedeAttivita(){
         $listaSchede = schedeAttivita($attivita["Codice"]);
         //Creare template per contenere macroattività che ha pulsanti titolo ecc.
         $output .= <<<SCRIVI
-<h2 class="titolo-macro">{$attivita["Nome"]}</h2>
+<h2 class="titolo-macro">{$attivita["Nome"]} &nbsp;&nbsp;<span id="dim-mod-canc">( <a href="">modifica</a> | <a href="">cancella</a> )</span></h2>
 <button class="btn btn-block btn-nuova-attivita" id="macro-{$attivita["Codice"]}" data-info="{$attivita["Nome"]}">Nuova attività</button>
 <div id="gruppo-macro-{$attivita["Codice"]}">
     {$listaSchede}
