@@ -192,7 +192,7 @@ SCRIVI;
 function getAttivitaPiuPrenotate() {
     global $db;
 
-    $query=$db->prepare("SELECT Attivita.Codice ,Attivita.Nome AS NomeAttivita,COUNT(Prenotazioni.Codice)AS NumeroPrenotazioni FROM Attivita,Prenotazioni WHERE Attivita.Codice=Prenotazioni.IDAttivita GROUP BY Attivita.Codice ORDER BY NumeroPrenotazioni DESC");
+    $query=$db->prepare("SELECT Attivita.Codice, Attivita.Nome AS NomeAttivita,COUNT(Prenotazioni.Codice)AS NumeroPrenotazioni FROM Attivita,Prenotazioni,Utenti WHERE Attivita.Codice=Prenotazioni.IDAttivita AND Prenotazioni.IDUtente = Utenti.ID AND Utenti.Tipo!='Admin' GROUP BY Attivita.Codice ORDER BY NumeroPrenotazioni DESC LIMIT 5");
     $query->execute();
     $array=$query->fetchAll();
 
@@ -217,7 +217,7 @@ function utentiPiuAttivi(){
 
     global $db;
 
-    $query=$db->prepare("SELECT Utenti.Nome AS Nome,Utenti.Cognome AS Cognome,COUNT(Prenotazioni.Codice)AS NumeroPrenotazioni FROM Prenotazioni,Utenti WHERE Prenotazioni.IDUtente=Utenti.ID GROUP BY Utenti.ID");
+    $query=$db->prepare("SELECT Utenti.Nome AS Nome, Utenti.Cognome AS Cognome, COUNT(Prenotazioni.Codice) AS NumeroPrenotazioni FROM Prenotazioni, Utenti WHERE Prenotazioni.IDUtente = Utenti.ID AND Utenti.Tipo!='Admin' GROUP BY Nome, Cognome ORDER BY NumeroPrenotazioni DESC LIMIT 5");
     $query->execute();
     $array=$query->fetchAll();
 
@@ -245,8 +245,7 @@ RIGA;
 function prenotazioniAttive(){
     global $db;
 
-    $prenotazioni=$db->prepare("SELECT Prenotazioni.Codice AS CodicePrenotazione, Utenti.Nome AS Utente, Attivita.Nome AS Attivita, Prenotazioni.PostiPrenotati AS Posti, Prenotazioni.Giorno AS Giorno, Prenotazioni.Stato AS Stato, Prenotazioni.Pagamento AS Pagato 
-FROM Utenti, Attivita,Prenotazioni WHERE Utenti.ID=Prenotazioni.IDUtente AND Prenotazioni.IDAttivita=Attivita.Codice AND Giorno>=(SELECT CURDATE()) AND Prenotazioni.Stato<>'Cancellata' ORDER BY Giorno, Attivita, Utente ASC");
+    $prenotazioni=$db->prepare("SELECT Prenotazioni.Codice AS CodicePrenotazione, Utenti.Username AS Username, Attivita.Nome AS Attivita, Prenotazioni.PostiPrenotati AS Posti, Prenotazioni.Giorno AS Giorno, Prenotazioni.Stato AS Stato, Prenotazioni.Pagamento AS Pagato FROM Utenti, Attivita,Prenotazioni WHERE Utenti.ID=Prenotazioni.IDUtente AND Prenotazioni.IDAttivita=Attivita.Codice AND Giorno>=(SELECT CURDATE()) AND Utenti.Tipo<>'Admin' AND Prenotazioni.Stato<>'Cancellata' ORDER BY Giorno, Attivita, Username ASC");
     $prenotazioni->execute();
     $arrayPrenotazioni=$prenotazioni->fetchAll();
     impostaTestoPagamento($arrayPrenotazioni);
@@ -254,7 +253,7 @@ FROM Utenti, Attivita,Prenotazioni WHERE Utenti.ID=Prenotazioni.IDUtente AND Pre
     foreach ($arrayPrenotazioni as $riga){
         $row .= <<<RIGA
 <tr id="{$riga["CodicePrenotazione"]}">
-     <td>{$riga["Utente"]}</td>
+     <td>{$riga["Username"]}</td>
      <td>{$riga["Attivita"]}</td>
      <td>{$riga["Posti"]}</td>
      <td>{$riga["Giorno"]}</td>
@@ -272,7 +271,7 @@ function prenotazioniPassate(){
     global $db;
 
     $prenotazioni=$db->prepare("SELECT Prenotazioni.Codice AS CodicePrenotazione, Utenti.Nome  AS Utente, Attivita.Nome AS Attivita, Prenotazioni.PostiPrenotati AS Posti, Prenotazioni.Giorno AS Giorno, Prenotazioni.Stato AS Stato, Prenotazioni.Pagamento AS Pagato 
-FROM Utenti, Attivita,Prenotazioni WHERE Utenti.ID=Prenotazioni.IDUtente AND Prenotazioni.IDAttivita=Attivita.Codice AND Giorno<(SELECT CURDATE()) ORDER BY Giorno, Attivita, Utente ASC ");
+FROM Utenti, Attivita,Prenotazioni WHERE Utenti.ID=Prenotazioni.IDUtente AND Prenotazioni.IDAttivita=Attivita.Codice AND Giorno<(SELECT CURDATE()) AND Utente.Tipo<>'Admin' ORDER BY Giorno, Attivita, Utente ASC ");
     $prenotazioni->execute();
     $arrayPrenotazioni=$prenotazioni->fetchAll();
     impostaTestoPagamento($arrayPrenotazioni);
