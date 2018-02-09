@@ -121,6 +121,9 @@ input:not([type=submit]):not([type=button]):focus {
 .btn:hover {
     background: #808080;
 }
+.btn:focus {
+    background: #808080;
+}
 
 .btn:active {
     border: 0.2em solid rgba(255,255,255,.3);
@@ -131,6 +134,10 @@ input:not([type=submit]):not([type=button]):focus {
     background-color: #0067c8;
 
     border-bottom-color: #0000c6;
+}
+
+.btn.btn-primary:focus {
+    background-color: #0000c6;
 }
 
 .btn.btn-primary:hover {
@@ -180,6 +187,15 @@ div.attivita span.btn.btn-primary:active {
     color: white;
     padding: 0.4em 0.5em;
 }
+
+.btn.btn-red:hover {
+    background-color: #770101;
+}
+
+.btn.btn-red:focus {
+    background-color: #770101;
+}
+
 .elimina-attivita {
     float: right;
 }
