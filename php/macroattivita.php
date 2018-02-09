@@ -31,7 +31,7 @@ if(isAdmin()){
             erroreJSON("Errore nell'inserimetno  della nuova macroattività.");
         }
     }
-/*
+    /*
     else{
         $idMacro = $_POST["idMacro"];
         $idMacro = str_replace("macroattivita-",'',$idMacro);

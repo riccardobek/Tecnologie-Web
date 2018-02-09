@@ -104,7 +104,7 @@ function stampaSchedeAttivita(){
         $listaSchede = schedeAttivita($attivita["Codice"]);
         //Creare template per contenere macroattività che ha pulsanti titolo ecc.
         $output .= <<<SCRIVI
-<h2 class="titolo-macro">{$attivita["Nome"]} &nbsp;&nbsp;<span id="dim-mod-canc">( <a href="">modifica</a> | <a href="">cancella</a> )</span></h2>
+<h2 class="titolo-macro">{$attivita["Nome"]} &nbsp;&nbsp;<span id="dim-mod-canc">( <a id="mod-macro">modifica</a> | <a id="canc-macro">cancella</a> )</span></h2>
 <button class="btn btn-block btn-nuova-attivita" id="macro-{$attivita["Codice"]}" data-info="{$attivita["Nome"]}">Nuova attività</button>
 <div id="gruppo-macro-{$attivita["Codice"]}">
     {$listaSchede}

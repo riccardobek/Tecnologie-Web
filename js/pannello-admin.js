@@ -34,6 +34,11 @@ $(function() {
         }
     });
 
+    $("#mod-macro").on("click", function(){
+        $("#finestra-crea-macro").show();
+    });
+
+
     //bottone nuova attivita
     $(".btn-nuova-attivita").on("click", function () {
         var titoloMacro = $(this).attr("data-info");
