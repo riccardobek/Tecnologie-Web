@@ -324,3 +324,4 @@ function validaFormModifica(target) {
     return valido;
 }
 
+function toggleEventi() {}

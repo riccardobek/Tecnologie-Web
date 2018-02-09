@@ -38,8 +38,8 @@ $HTML = str_replace("[#NUOVA-ATTIVITA]",$TEMPLATE_NUOVA_ATTIVITA, $HTML);
 //Rimpiazza segna posto [#ATTIVITA]
 $HTML = str_replace("[#ATTIVITA]",stampaSchedeAttivita(), $HTML);
 
-$HTML = str_replace("[#ENTRATE-DEL-MESE]",entrateDelMese(),$HTML);
-$HTML = str_replace("[#ENTRATE-PREVISTE]",entratePreviste(),$HTML);
+//$HTML = str_replace("[#ENTRATE-DEL-MESE]",entrateDelMese(),$HTML);
+//$HTML = str_replace("[#ENTRATE-PREVISTE]",entratePreviste(),$HTML);
 //tabelle statistiche(rimpiazza i segnaposto [#ATTIVITA-PIU-PRENOTATE])
 $HTML = str_replace("[#ATTIVITA-PIU-PRENOTATE]",getAttivitaPiuPrenotate(),$HTML);
 //rimpiazza [#UTENTI-PIU-ATTIVI]
@@ -120,9 +120,9 @@ SCRIVI;
     }
     return $output;
 }
-
+/*
 function entrateDelMese(){
-    global $db;
+   global $db;
     $first_day_of_month=date('01-m-Y');
 
     $query=$db->prepare();
@@ -139,7 +139,7 @@ function entratePreviste(){
     $query->execute();
     $array=$query->fetchAll();
 }
-
+*/
 
 
 function getAttivitaPiuPrenotate() {
