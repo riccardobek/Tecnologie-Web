@@ -14,6 +14,12 @@ if(isset($_POST["nuovaScheda"])){
     $output = str_replace("[#PREZZO]", $_POST["prezzo"], $output );
     $output = str_replace("[#CLASSE-SCHEDA]", $_POST["Classe"], $output );
     $output = str_replace("[#CODICE-ATTIVITA]", $_POST["Codice"], $output );
+    if($_POST["Classe"]=='pari') {
+        $output = str_replace("[#SEPARATORE]", "<div class=separatore></div>", $output );
+    }
+    else {
+        $output = str_replace("[#SEPARATORE]", '', $output );
+    }
     echo $output;
     return;
 }
@@ -107,6 +113,13 @@ function schedeAttivita($macroattivita) {
         $output = str_replace("[#PREZZO]", $r["Prezzo"], $output );
         $output = str_replace("[#CLASSE-SCHEDA]", $class[intval($i)], $output );
         $output = str_replace("[#CODICE-ATTIVITA]", $r["Codice"], $output );
+        if($i == true) {
+            $output = str_replace("[#SEPARATORE]", "<div class=separatore></div>", $output );
+        }
+        else {
+            $output = str_replace("[#SEPARATORE]", '', $output );
+        }
+
         $i = !$i;
     }
     return $output;
@@ -120,7 +133,7 @@ function stampaSchedeAttivita(){
         $listaSchede = schedeAttivita($attivita["Codice"]);
         //Creare template per contenere macroattività che ha pulsanti titolo ecc.
         $output .= <<<SCRIVI
-<h2 class="titolo-macro">{$attivita["Nome"]} &nbsp;&nbsp;<span class="dim-mod-canc" data-target="macro-{$attivita["Codice"]}">( <a class="mod-macro" >modifica</a> | <a class="canc-macro">cancella</a> )</span></h2>
+<h1 class="titolo-macro">{$attivita["Nome"]} &nbsp;&nbsp;<span class="dim-mod-canc" data-target="macro-{$attivita["Codice"]}">( <a class="mod-macro" >modifica</a> | <a class="canc-macro">cancella</a> )</span></h1>
 <button class="btn btn-block btn-nuova-attivita" data-target="macro-{$attivita["Codice"]}" data-info="{$attivita["Nome"]}">Nuova attività</button>
 <div id="gruppo-macro-{$attivita["Codice"]}">
     {$listaSchede}

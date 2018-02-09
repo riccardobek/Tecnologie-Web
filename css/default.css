@@ -861,3 +861,9 @@ h1,h2,h3{
 .dim-mod-canc{
     font-size: 0.6em;
 }
+
+.separatore {
+    width:100%;
+    height:1px;
+    float:left;
+}
