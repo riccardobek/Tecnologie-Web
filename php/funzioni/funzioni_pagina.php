@@ -103,18 +103,29 @@ function creaElementoMenu($index, $activeIndex) {
 
     if($menuElements[$index]["Pulsante"]) {
         //L'elemento che devo creare è un pulsante, quindi un "a" o uno "span" (in base al fatto che sia active o no)
-        $element = ($index == $activeIndex) ? file_get_contents(PERCORSO_RELATIVO."template/pagina/menu/pulsante_attivo.html")
-            : file_get_contents(PERCORSO_RELATIVO."template/pagina/menu/pulsante.html");
+        $element = ($index == $activeIndex) ?
+            <<<ELEMENTO
+<span class="button">{$menuElements[$index]["Nome"]}</span>
+ELEMENTO
+            :
+            <<<ELEMENTO
+<a href="{$menuElements[$index]["URL"]}" class="button">{$menuElements[$index]["Nome"]}</a>
+ELEMENTO;
+
     }
 
     else {
         //L'elemento che devo creare è un "li" che contiene o no un link (in base al fatto che sia o no active)
-        $element = ($index == $activeIndex) ? file_get_contents(PERCORSO_RELATIVO."template/pagina/menu/voce_attiva.html")
-            : file_get_contents(PERCORSO_RELATIVO."template/pagina/menu/voce.html");
-    }
+        $element = ($index == $activeIndex) ?
+            <<<ELEMENTO
+<li class="active">{$menuElements[$index]["Nome"]}</li>
+ELEMENTO
+            :
+            <<<ELEMENTO
+<li><a href="{$menuElements[$index]["URL"]}" [#ID]>{$menuElements[$index]["Nome"]}</a></li>
+ELEMENTO;
 
-    $element = str_replace("[#NOME_ELEMENTO]",$menuElements[$index]["Nome"],$element);
-    $element = str_replace("[#LINK_ELEMENTO]",$menuElements[$index]["URL"],$element);
+    }
 
     (isset($menuElements[$index]["ID"])) ?
         $element = str_replace("[#ID]","id='{$menuElements[$index]["ID"]}'",$element) :
