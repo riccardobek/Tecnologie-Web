@@ -1,4 +1,5 @@
 <?php
+
 function getMacroattivita() {
     global $db;
     $query = $db->prepare("SELECT Codice, Nome, Descrizione, Immagine, Banner, REPLACE(LOWER(`Nome`), ' ', '-') AS Ancora FROM Macroattivita");
@@ -30,3 +31,11 @@ function getAttivitaByCodice($codiceAttivita) {
     return $attivita;
 }
 
+function getMacroattivitaByCodice($codiceMacro) {
+    global $db;
+    $query = $db->prepare("SELECT Nome, Descrizione, Immagine, Banner, REPLACE(LOWER(`Nome`), ' ', '-') AS Ancora FROM Macroattivita WHERE Codice = ?");
+    $query->execute(array($codiceMacro));
+
+    $infoMacro = $query->fetch();
+    return $infoMacro;
+}

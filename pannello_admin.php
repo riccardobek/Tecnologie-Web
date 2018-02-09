@@ -17,13 +17,22 @@ if(isset($_POST["nuovaScheda"])){
     echo $output;
     return;
 }
+
+if(isset($_POST["RichiestaMacro"])){
+    $idMacro = $_POST["RichiestaMacro"];
+    $idMacro = str_replace("macro-",'',$idMacro);
+    $ris = getMacroattivitaByCodice($idMacro);
+    echo json_encode($ris);
+    return;
+}
 loginRichiesto();
 
 //Intestazione: indica la pagina attualmente attiva
 $HTML_INTESTAZIONE = intestazione($activeIndex);
 
 $TEMPLATE_NUOVA_ATTIVITA = file_get_contents("template/admin/nuova_scheda_attivita.html");
-$TEMPLATE_NUOVA_MACRO = file_get_contents("template/admin/macroattivita.html");
+$TEMPLATE_NUOVA_MACRO = file_get_contents("template/admin/nuova_scheda_macroattivita.html");
+$TEMPLATE_MODIFICA_MACRO = file_get_contents("template/admin/scheda_modifica_macroattivita.html");
 $HTML = file_get_contents("template/admin/pannello_admin.html");
 
 //Rimpiazza il segnaposto con il menù
@@ -32,8 +41,10 @@ $HTML = str_replace("[#INTESTAZIONE]",$HTML_INTESTAZIONE, $HTML);
 //Rimpiazza segnaposto [#UTENTI]
 $HTML = str_replace("[#UTENTI]",listaUtenti(), $HTML);
 
-$HTML = str_replace("[#NUOVA-MACROATTIVITA]",$TEMPLATE_NUOVA_MACRO, $HTML);
 $HTML = str_replace("[#NUOVA-ATTIVITA]",$TEMPLATE_NUOVA_ATTIVITA, $HTML);
+$HTML = str_replace("[#NUOVA-MACROATTIVITA]",$TEMPLATE_NUOVA_MACRO, $HTML);
+$HTML = str_replace("[#MODIFICA-MACROATTIVITA]",$TEMPLATE_MODIFICA_MACRO, $HTML);
+
 
 //Rimpiazza segna posto [#ATTIVITA]
 $HTML = str_replace("[#ATTIVITA]",stampaSchedeAttivita(), $HTML);
@@ -109,8 +120,8 @@ function stampaSchedeAttivita(){
         $listaSchede = schedeAttivita($attivita["Codice"]);
         //Creare template per contenere macroattività che ha pulsanti titolo ecc.
         $output .= <<<SCRIVI
-<h2 class="titolo-macro">{$attivita["Nome"]} &nbsp;&nbsp;<span id="dim-mod-canc">( <a id="mod-macro">modifica</a> | <a id="canc-macro">cancella</a> )</span></h2>
-<button class="btn btn-block btn-nuova-attivita" id="macro-{$attivita["Codice"]}" data-info="{$attivita["Nome"]}">Nuova attività</button>
+<h2 class="titolo-macro">{$attivita["Nome"]} &nbsp;&nbsp;<span class="dim-mod-canc" data-target="macro-{$attivita["Codice"]}">( <a class="mod-macro" >modifica</a> | <a class="canc-macro">cancella</a> )</span></h2>
+<button class="btn btn-block btn-nuova-attivita" data-target="macro-{$attivita["Codice"]}" data-info="{$attivita["Nome"]}">Nuova attività</button>
 <div id="gruppo-macro-{$attivita["Codice"]}">
     {$listaSchede}
     <div class="clearfix inserimento-scheda"></div>

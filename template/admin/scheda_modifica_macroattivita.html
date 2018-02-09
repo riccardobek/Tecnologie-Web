@@ -1,0 +1,44 @@
+<div class="scheda-wrapper overlay" id="dialog-modifica-macro">
+    <div class="length-wrapper" >
+        <div tabindex="0"></div>
+        <div  role="dialog" class="schede form nuova-scheda" aria-labelledby="label-dialog3" aria-modal="true" >
+            <h2 id="label-dialog3">-Modifica</h2>
+            <form action="" method="POST">
+
+                <div class="field-container">
+                    <label for="modifica-nome-macro" >Nome: </label>
+                    <div class="input-container">
+                        <input type="text" name="nome-macro" id="modifica-nome-macro">
+                    </div>
+                </div>
+
+                <div class="field-container">
+                    <label for="modifica-descrizione-macro" >Descrizione: </label>
+                    <div class="input-container">
+                        <textarea  rows="7" name="descrizione-macro" id="modifica-descrizione-macro"></textarea>
+                    </div>
+                </div>
+
+                <div class="field-container">
+                    <label for="modifica-immagine" >Immagine: </label>
+                    <div class="input-container">
+                        <input type="text" name="immagine" placeholder="immagine" id="modifica-immagine">
+                    </div>
+                </div>
+
+                <div class="field-container">
+                    <label for="modifica-immagine-banner" >immagine banner: </label>
+                    <div class="input-container">
+                        <input type="text" name="immagine-banner" placeholder="Immagine banner" id="modifica-immagine-banner">
+                    </div>
+                </div>
+
+                <div class="button-holder">
+                    <input type="submit" value="Salva" name="Salva" class="btn btn-primary">
+                    <button class="btn" id="annulla-modifica-macro"> ANNULLA </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

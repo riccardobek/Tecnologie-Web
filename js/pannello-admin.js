@@ -2,9 +2,25 @@ $(function() {
 
     //------SEZIONE GESTISCI ATTIVITA'--------
 
-    //Macroattivita
+    //Nuova Macroattivita
     $("#crea-macro").on("click", function(){
         $("#finestra-crea-macro").show();
+    });
+
+    $("#finestra-crea-macro input[type=submit]").on("click", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        if(validaFormModifica("finestra-crea-macro")) {
+            $.post("php/macroattivita.php", $("#finestra-crea-macro form").serialize() + "&nuovaMacro=1", function (risposta) {
+                risposta = JSON.parse(risposta);
+                if (risposta.stato == 1) {
+                    generaAlert('green', "Successo", risposta.messaggio);
+                }
+                else {
+                    generaAlert('red', "Errore", risposta.messaggio);
+                }
+            });
+        }
     });
 
     $("#finestra-crea-macro #annulla-macro").on("click", function(e){
@@ -18,31 +34,25 @@ $(function() {
         });
     });
 
-    $("#finestra-crea-macro input[type=submit]").on("click", function(e){
+    //Modifica macro attivita
+    aggiungiEventiMacroAttivita();
+
+    $("#annulla-modifica-macro").on("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
-        if(validaFormModifica("finestra-crea-macro")){
-            $.post("php/macroattivita.php", $("#finestra-crea-macro form").serialize()+"&nuovaMacro=true",function(risposta){
-                risposta = JSON.parse(risposta);
-                if(risposta.stato == 1) {
-                    generaAlert('green',"Successo",risposta.messaggio);
-                }
-                else {
-                    generaAlert('red',"Errore",risposta.messaggio);
-                }
-            });
-        }
+        $("#dialog-modifica-macro").fadeOut("Slow");
+
     });
 
-    $("#mod-macro").on("click", function(){
-        $("#finestra-crea-macro").show();
-    });
+
+
+
 
 
     //bottone nuova attivita
     $(".btn-nuova-attivita").on("click", function () {
         var titoloMacro = $(this).attr("data-info");
-        var idMacro = $(this).attr("id");
+        var idMacro = $(this).attr("data-target");
         $("#nuova-attivita h2").prepend("<span>"+titoloMacro+" - </span>");
         $("#nuova-attivita input[type=submit]").attr("data-macro",idMacro);
         $("#nuova-scheda-attivita").show();
@@ -340,5 +350,26 @@ function fadeDialogoNuovaAttivita() {
     $("#nuova-scheda-attivita").fadeOut('Slow', function () {
         $("#nuova-attivita").find("input[type=text],textarea").val('');
         $("#nuova-attivita h2 span").remove();
+    });
+}
+
+//lo scopo di questa funzione è di utilizzare la stessa finestra dialogo per la creazione e per la modifica di una macro attività
+//il parametro tipo indica quale funzione si vuole utilizzare: creazione o modifica
+function aggiungiEventiMacroAttivita() {
+    $(".mod-macro").on("click", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        var idMacro = $(this).parent().attr("data-target");
+        $.post("pannello_admin.php", {RichiestaMacro: idMacro}, function(macro) {
+            macro = JSON.parse(macro);
+            console.log(macro);
+            $("#label-dialog3").text(macro.Nome+" - Modifica");
+            $("#modifica-nome-macro").val(macro.Nome);
+            $("#modifica-descrizione-macro").val(macro.Descrizione);
+            $("#modifica-immagine").val(macro.Immagine);
+            $("#modifica-immagine-banner").val(macro.Banner);
+            $("#dialog-modifica-macro").show();
+        });
+
     });
 }

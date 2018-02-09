@@ -15,29 +15,31 @@
     <body>
 
     [#INTESTAZIONE]
+    <div id="content">
+        <div class="form">
+            <form method="POST" action="php/do_login.php">
+                <h1>Accedi</h1>
 
-    <div class="form">
-        <form method="POST" action="php/do_login.php">
-            <h1>Accedi</h1>
+                <div class="alert errore" aria-live="assertive" role="alert">Si è verificato un errore: <span lang="en">username</span> o <span lang="en">password</span> non corretti</div>
+                <div class="alert successo" aria-live="assertive" role="alert"><span lang="en">Login</span> effettuato con successo. <br>Reindirizzamento in corso (se non funziona cliccare <a href="[#HTTP_REFERER]">qua</a>).</div>
 
-            <div class="alert errore" aria-live="assertive" role="alert">Si è verificato un errore: <span lang="en">username</span> o <span lang="en">password</span> non corretti</div>
-            <div class="alert successo" aria-live="assertive" role="alert"><span lang="en">Login</span> effettuato con successo. <br>Reindirizzamento in corso (se non funziona cliccare <a href="[#HTTP_REFERER]">qua</a>).</div>
+                <div class="field-container">
+                    <label for="username">Nome utente: </label>
+                    <input type="text" id="username" name="username" placeholder="Nome utente..">
+                </div>
+                <div class="field-container">
+                    <label for="password" lang="en">Password: </label>
+                    <input type="password" id="password" name="password" placeholder="Password..">
+                </div>
+                <div class="button-holder"><input type="submit" value="Login" class="btn btn-primary" ></div>
 
-            <div class="field-container">
-                <label for="username">Nome utente: </label>
-                <input type="text" id="username" name="username" placeholder="Nome utente..">
-            </div>
-            <div class="field-container">
-                <label for="password" lang="en">Password: </label>
-                <input type="password" id="password" name="password" placeholder="Password..">
-            </div>
-            <div class="button-holder"><input type="submit" value="Login" class="btn btn-primary" ></div>
-
-            <input type="hidden" id="HTTP_REFERER" name="HTTP_REFERER" value="[#HTTP_REFERER]">
-            <input type="hidden" id="JSAbilitato" name="JSAbilitato" value="0">
-            <p>Non sei ancora registrato? <a href="registrazione.php">Registrati</a></p>
-        </form>
+                <input type="hidden" id="HTTP_REFERER" name="HTTP_REFERER" value="[#HTTP_REFERER]">
+                <input type="hidden" id="JSAbilitato" name="JSAbilitato" value="0">
+                <p>Non sei ancora registrato? <a href="registrazione.php">Registrati</a></p>
+            </form>
+        </div>
     </div>
+
 
     [#MENU-MOBILE]
     <script type="text/javascript" src="js/login.js"></script>
