@@ -38,8 +38,11 @@ $HTML = str_replace("[#NUOVA-ATTIVITA]",$TEMPLATE_NUOVA_ATTIVITA, $HTML);
 //Rimpiazza segna posto [#ATTIVITA]
 $HTML = str_replace("[#ATTIVITA]",stampaSchedeAttivita(), $HTML);
 
-//tabelle statistiche(rimpiazza i segnaposto [#TABELLA])
+//tabelle statistiche(rimpiazza i segnaposto [#ATTIVITA-PIU-PRENOTATE])
 $HTML = str_replace("[#ATTIVITA-PIU-PRENOTATE]",getAttivitaPiuPrenotate(),$HTML);
+//rimpiazza [#UTENTI-PIU-ATTIVI]
+$HTML = str_replace("[#UTENTI-PIU-ATTIVI]",utentiPiuAttivi(),$HTML);
+
 
 //Rimpiazza segna posto [#PRENOTAZIONI-...]
 $HTML = str_replace("[#PRENOTAZIONI-ATTIVE]",prenotazioniAttive(),$HTML);
@@ -139,6 +142,35 @@ RIGA;
     return $row;
 
 }
+
+function utentiPiuAttivi(){
+
+    global $db;
+
+    $query=$db->prepare("SELECT Utenti.Nome AS Nome,Utenti.Cognome AS Cognome,COUNT(Prenotazioni.Codice)AS NumeroPrenotazioni FROM Prenotazioni,Utenti WHERE Prenotazioni.IDUtente=Utenti.ID GROUP BY Utenti.ID");
+    $query->execute();
+    $array=$query->fetchAll();
+
+    $row="";
+    $counter=1;
+    foreach($array as $item) {
+        $row .= <<<RIGA
+<tr>
+    <td>{$counter}</td>
+    <td>{$item["Nome"]}</td>
+    <td>{$item["Cognome"]}</td>
+    <td class="numero-prenotazioni" data-target="{$item["NomeAttivita"]}">{$item["NumeroPrenotazioni"]}</td>
+</tr>
+RIGA;
+        $counter = $counter + 1;
+    }
+
+    return $row;
+
+
+
+}
+
 
 function prenotazioniAttive(){
     global $db;
