@@ -128,13 +128,13 @@ input:not([type=submit]):not([type=button]):focus {
 
 .btn.btn-primary {
     color: white;
-    background-color: #16BFFF;
+    background-color: #0067c8;
 
-    border-bottom-color: #008BC6;
+    border-bottom-color: #0000c6;
 }
 
 .btn.btn-primary:hover {
-    background-color: #008BC6;
+    background-color: #0000c6;
 }
 
 .btn.btn-primary:active {
@@ -219,7 +219,7 @@ MENU
 }
 
 #menu ul li.active {
-    color: #008bc6;
+    color: #0067c8;
 }
 
 
@@ -237,7 +237,7 @@ MENU
     font-style: normal;
     margin-left: 1em;
     margin-top: -0.3em;
-    color:#008bc6;
+    color: #0067c8;
     padding: 0.4em;
 }
 
@@ -245,7 +245,7 @@ MENU
 #menu a.button:hover,
 #menu a.button:visited:hover{
     color: white;
-    background-color:#008bc6;
+    background-color:#0000c6;
 }
 
 #menu .button:visited,
