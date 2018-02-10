@@ -24,7 +24,6 @@ $("document").ready(function() {
  */
 function notificaErrore(targetNode, testo, divAlert, formErr) {
     divAlert.append("<p>"+testo+"</p>");
-    divAlert.attr("role","alert");
     divAlert.show();
     targetNode.addClass("error");
     formErr.find(".error").first().focus();

@@ -66,8 +66,6 @@ $(function() {
     //Modifica macro attivita
     aggiungiEventiMacroAttivita();
 
-
-
     //bottone nuova attivita
     $(".btn-nuova-attivita").on("click", function () {
         var titoloMacro = $(this).attr("data-info");
@@ -108,6 +106,7 @@ $(function() {
                             classe = 'pari';
                         else
                             classe = 'dispari';
+                        console.log(classe);
                         $.alert({
                             boxWidth: calcolaDimensioneDialog(),
                             useBootstrap: false,
@@ -313,9 +312,8 @@ function validaFormModifica(target) {
 
 
 function aggiugngiEventiSchedeAttivita() {
-
     //Disabilito gli input dei vari form delle schede attività tranne gli input della dialog pre creare una nuova attività
-    $(".schede-attivita").find("input[type=text], textarea").attr('disabled','disabled');
+    $("[data-modifica=false]").find("input[type=text], textarea").attr('disabled','disabled');
 
     //event listener per il bottone elimina attività
     $(".elimina-attivita").on("click", function () {
@@ -340,8 +338,9 @@ function aggiugngiEventiSchedeAttivita() {
 
         //seleziono l'id del div del pulsante premuto
         var target = $(this).attr('data-target');
+        $("#"+target).attr("data-modifica","true");
         $("#"+target).find("textarea,input[type=text]").removeAttr('disabled');
-
+        $("#"+target+" .nome-attivita").focus();
         //salvo i dati dei vari campi
         campiDati[target] = salvaDati(target);
     });
@@ -361,6 +360,7 @@ function aggiugngiEventiSchedeAttivita() {
         pulisciErrori(divAlert,formPadre);
         //ripristino dati
         var target = $(this).attr('data-target');
+        $("#"+target).attr("data-modifica","false");
         $("#nome-"+target).val(campiDati[target]["nome-attivita"]);
         $("#descrizione-"+target).val(campiDati[target]["descrizione"]);
         $("#prezzo-"+target).val(campiDati[target]["prezzo"]);

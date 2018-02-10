@@ -24,7 +24,7 @@ if(isset($_POST["nuovaScheda"])){
     $output = str_replace("[#PREZZO]", $_POST["prezzo"], $output );
     $output = str_replace("[#CLASSE-SCHEDA]", $_POST["Classe"], $output );
     $output = str_replace("[#CODICE-ATTIVITA]", $_POST["Codice"], $output );
-    if($_POST["Classe"]=='pari') {
+    if($_POST["Classe"]=='dispari') {
         $output = str_replace("[#SEPARATORE]", "<div class=separatore></div>", $output );
     }
     else {
@@ -249,9 +249,6 @@ RIGA;
     }
 
     return $row;
-
-
-
 }
 
 
