@@ -71,7 +71,7 @@ a {
 }
 
 a:visited{
-    color: #008BC6;
+    color: #0000C6;
 }
 
 /**********************
@@ -244,7 +244,7 @@ MENU
 }
 
 #menu ul li.active {
-    color: #0067c8;
+    color: #0000C6;
 }
 
 
@@ -466,6 +466,7 @@ PAGINA INDEX
 PAGINA ATTIVITA
 *****************/
 .gestione.btn-testo {
+    color: #16BFFF;
     font-size: 1em;
     padding-left: 0;
 }
@@ -677,7 +678,15 @@ PANNELLO UTENTE E AMMINISTRATORE: MENU A TAB
     border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 
+.tablinks:focus {
+    background-color: #ddd;
+}
+
 .tab button:hover {
+    background-color: #ddd;
+}
+
+.tablinks.active:focus {
     background-color: #ddd;
 }
 
@@ -695,7 +704,13 @@ PANNELLO UTENTE E AMMINISTRATORE: MENU A TAB
 /*
 PANNELLO UTENTE E AMMINISTRATORE: CONTENUTO
 */
+.btn.btn-color{
+    background-color: #ccc;
+}
 
+.btn.btn-color:focus, .btn.btn-color:hover{
+    background-color: #bbb;
+}
 
 .btn-testo {
     font-size: 0.7em;
@@ -735,9 +750,9 @@ h1,h2,h3{
     text-align: center;
     width: 46%;
     background-color: #F3F3F3;
-    padding-top: 2em;
     padding-bottom: 3em;
     border-right: 1em;
+    border-radius: 5px;
 }
 
 .stat.pari {
@@ -761,9 +776,14 @@ h1,h2,h3{
     padding-left: 3em;
     padding-right: 3em;
 }
+
+
+
 .head-background{
-    color: darkgreen;
-    widht:100%;
+    background-color: #05fc3f;
+    width: 100%;
+    height: 1.5em;
+    border-radius: 5px 5px 0 0;
 }
 .stat > h1 {
     color: black;
