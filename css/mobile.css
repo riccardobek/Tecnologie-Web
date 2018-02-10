@@ -250,3 +250,12 @@ caption{
 #res-tab{
     border-left: 1px solid rgba(0,0,0,0.2);
 }
+
+h1,h2{
+    font-size: 98%;
+    font-weight: bolder;
+
+}
+p{
+    font-size: 95%;
+}
