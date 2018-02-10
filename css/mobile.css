@@ -259,3 +259,19 @@ caption{
 .p-contact{
     font-size: 95%;
 }
+.stat{
+    margin-bottom: 1em;
+
+}
+
+#finestra-macro{
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+#salva-macro,#annulla-macro {
+    margin: auto;
+}
+#annulla-macro {
+    margin-top: 0.2em;
+}
