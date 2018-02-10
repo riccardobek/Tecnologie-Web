@@ -70,17 +70,23 @@ $(function() {
         if(validaCampiCambioPwd()) {
             //le password vanno bene faccio un richiesta di modifica della pwd
             $.post("php/modifica_dati_utente.php", {VecchiaPwd: $("#vecchia-password").val(), NuovaPwd: $("#password").val()}, function (risposta) {
-                risposta = JSON.parse(risposta);
-                if(risposta.stato == 1) {
-                    $(labelPassword).text(testoModificaPwd);
-                    $(".mostra-modifica-password").hide();
-                    //se ho generato in precedenza lo span di successo lo elimino, se non c'è non succede nulla
-                    $('#successo').remove();
-                    $("#vecchia-password").parent().append("<span class='successo'>"+risposta.messaggio+"</span>");
+                try {
+                    risposta = JSON.parse(risposta);
+                    if(risposta.stato == 1) {
+                        $(labelPassword).text(testoModificaPwd);
+                        $(".mostra-modifica-password").hide();
+                        //se ho generato in precedenza lo span di successo lo elimino, se non c'è non succede nulla
+                        $('#successo').remove();
+                        $("#vecchia-password").parent().append("<span class='successo'>"+risposta.messaggio+"</span>");
+                    }
+                    else{
+                        notificaErrore($("#vecchia-password"), risposta.messaggio, $(".alert.errore"), $("form"));
+                    }
                 }
-                else{
-                    notificaErrore($("#vecchia-password"), risposta.messaggio, $(".alert.errore"), $("form"));
+                catch(e) {
+                    generaAlertErroreGenerico();
                 }
+
             });
         }
     });
@@ -109,15 +115,21 @@ $(function() {
 
         if(validaFormUtente(false)) {
             $.post("php/modifica_dati_utente.php",$("form").serialize(),function(risposta) {
-                risposta = JSON.parse(risposta);
-                if(risposta.stato == 1){
-                    generaAlert('green','Successo',risposta.messaggio);
-                    datiForm = salvaDatiForm();
-                }
-                else{
+                try{
+                    risposta = JSON.parse(risposta);
+                    if(risposta.stato == 1){
+                        generaAlert('green','Successo',risposta.messaggio);
+                        datiForm = salvaDatiForm();
+                    }
+                    else{
 
-                    notificaErrore($("#email"),risposta.messaggio);
+                        notificaErrore($("#email"),risposta.messaggio);
+                    }
                 }
+                catch(e) {
+                    generaAlertErroreGenerico();
+                }
+
             });
         }
     });
@@ -172,13 +184,19 @@ function assegnaVoto(){
         var output=$(this).prev().find("option:selected").text();
         var idPrenotazione = $(this).attr("id");
         $.post("pannello_utente.php", {voto: output, codicePren: idPrenotazione, funzione: 1}, function (risposta) {
-            risposta = JSON.parse(risposta);
-            if(risposta.stato == 1) {
-                generaAlert('green','Valutazione effettuata',risposta.messaggio);
+            try{
+                risposta = JSON.parse(risposta);
+                if(risposta.stato == 1) {
+                    generaAlert('green','Valutazione effettuata',risposta.messaggio);
+                }
+                else{
+                    generaAlert('red','Errore',risposta.messaggio);
+                }
             }
-            else{
-                generaAlert('red','Errore',risposta.messaggio);
+            catch(e) {
+                generaAlertErroreGenerico();
             }
+
         });
     });
 }

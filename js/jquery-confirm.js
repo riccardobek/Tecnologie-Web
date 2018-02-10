@@ -1233,7 +1233,7 @@ var jconfirm, Jconfirm;
         titleClass: '',
         type: 'default',
         typeAnimated: true,
-        draggable: true,
+        draggable: false,
         dragWindowGap: 15,
         dragWindowBorder: true,
         animateFromElement: true,

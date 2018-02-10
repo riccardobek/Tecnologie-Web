@@ -33,14 +33,20 @@ function stileCellaPagamento(){
 
 function eliminaPrenotazione(codicePrenotazione) {
     $.post("php/delete_prenotazione.php", {idPrenotazione: codicePrenotazione}, function (risposta) {
-        risposta = JSON.parse(risposta);
-        if(risposta.stato == 1) {
-            //successo
-            rispostaEliminiazionePrenotazione(codicePrenotazione);
+        try {
+            risposta = JSON.parse(risposta);
+            if(risposta.stato == 1) {
+                //successo
+                rispostaEliminiazionePrenotazione(codicePrenotazione);
+            }
+            else{
+                generaAlert('red','Errore',risposta.messaggio);
+            }
         }
-        else{
-            generaAlert('red','Errore',risposta.messaggio);
+        catch(e) {
+            generaAlertErroreGenerico();
         }
+
     });
 }
 
@@ -48,38 +54,44 @@ function eliminaPrenotazione(codicePrenotazione) {
 
 function eliminaAccount(idUtente) {
     $.post("php/delete_account.php",{IDUtente:idUtente}, function(risposta) {
-        risposta = JSON.parse(risposta);
-        if(risposta.stato == 1) {
-           //richiesta di eliminazione dal pannello utente, mostro un dialog diverso e reindirizzo alla home
-            if(idUtente == 0){
-                var testo = risposta.messaggio+'. Verrai reindirizzato alla pagina principale.';
-                $.alert({
-                    boxWidth: calcolaDimensioneDialog(),
-                    useBootstrap: false,
-                    title:'Successo',
-                    type:'green',
-                    content: testo,
-                    buttons:{
-                        OK:{ action: function () {
+        try{
+            risposta = JSON.parse(risposta);
+            if(risposta.stato == 1) {
+                //richiesta di eliminazione dal pannello utente, mostro un dialog diverso e reindirizzo alla home
+                if(idUtente == 0){
+                    var testo = risposta.messaggio+'. Verrai reindirizzato alla pagina principale.';
+                    $.alert({
+                        boxWidth: calcolaDimensioneDialog(),
+                        useBootstrap: false,
+                        title:'Successo',
+                        type:'green',
+                        content: testo,
+                        buttons:{
+                            OK:{ action: function () {
                                 setTimeout(function() {
                                     location.href ="php/do_logout.php";
                                 },1000);
                             }
+                            }
                         }
-                    }
-                });
+                    });
+                }
+                //richiesta di eliminazione dal pannello admin bisogna solo mostrare un dialog
+                else{
+                    eliminaRigaTabella(idUtente);
+                    generaAlert('green','Successo',risposta.messaggio);
+                }
+                return true;
             }
-            //richiesta di eliminazione dal pannello admin bisogna solo mostrare un dialog
             else{
-                eliminaRigaTabella(idUtente);
-                generaAlert('green','Successo',risposta.messaggio);
+                generaAlert('red','Errore',risposta.messaggio);
+                return false;
             }
-            return true;
         }
-        else{
-            generaAlert('red','Errore',risposta.messaggio);
-            return false;
+        catch(e) {
+            generaAlertErroreGenerico();
         }
+
     });
 }
 

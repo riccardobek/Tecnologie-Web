@@ -14,19 +14,24 @@ $(function () {
 
         $.post(form.attr("action"),form.serialize(),function(r) {
                         console.log("Risposta HTTP: "+r);
+            try{
+                var risposta = JSON.parse(r);
+                if(risposta.stato === 1) {
+                    $("div#pulsanti-container").remove();
+                    $("#pulsanti-fine-prenotazione").show();
+                    $(".alert.successo > a").attr("href","pdf_prenotazione.php?codice="+risposta.CodicePrenotazione);
+                    $(".alert.successo").show();
+                }
+                else {
+                    $(".alert.errore").text(risposta.messaggio).show();
+                    //Riabilito il click del tasto
+                    form.find("input[type='submit']").prop("disabled",false);
+                }
+            }
+            catch(e){
+                generaAlertErroreGenerico();
+            }
 
-            var risposta = JSON.parse(r);
-            if(risposta.stato === 1) {
-                $("div#pulsanti-container").remove();
-                $("#pulsanti-fine-prenotazione").show();
-                $(".alert.successo > a").attr("href","pdf_prenotazione.php?codice="+risposta.CodicePrenotazione);
-                $(".alert.successo").show();
-            }
-            else {
-                $(".alert.errore").text(risposta.messaggio).show();
-                //Riabilito il click del tasto
-                form.find("input[type='submit']").prop("disabled",false);
-            }
         })
     });
 });
