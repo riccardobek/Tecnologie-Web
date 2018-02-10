@@ -228,6 +228,25 @@ $(function() {
     */
 });
 
+$(".pay").on("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    var target =  $(this).attr("data-target");
+    $.post("pannello_admin.php", {confermaPagamento:"true", codicePrenotazione:target}, function(risposta) {
+       risposta = JSON.parse(risposta);
+       if(risposta.stato == 1) {
+           generaAlert('green', 'Successo', risposta.messaggio);
+           var rigaTabella = $(this).parent();
+           $(this).remove();
+           rigaTabella.text("Pagamento effettuato");
+       }
+       else {
+           generaAlert('red','Errore',risposta.messaggio);
+       }
+    });
+
+});
+
 function eliminaRigaTabella(target) {
     $('#'+target).slideUp('Slow', function () {
         $('#'+target).remove();
@@ -333,7 +352,7 @@ function aggiugngiEventiSchedeAttivita() {
         if(validaFormModifica(target)) {
             $.post("php/modifica_attivita.php",$("#"+target).find("form").serialize()+"&"+"idAttivita="+target, function(risposta) {
                 risposta = JSON.parse(risposta);
-                if(risposta.stato == 1) {
+                if(risposta.stato== 1) {
                     campiDati[target] = salvaDati(target);
                     generaAlert('green',"Successo",risposta.messaggio);
                 }
