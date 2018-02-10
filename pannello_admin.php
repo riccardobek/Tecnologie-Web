@@ -161,7 +161,7 @@ function entrateDelMese(){
     }
     return <<<SCRIVI
  <div class="results">
-    <h3>Entrate del mese</h3>{$result} €
+    {$result} €
  </div>
 SCRIVI;
 
@@ -181,7 +181,7 @@ function entratePreviste(){
 
     }
     return <<<SCRIVI
-<div class="results"><h3>Entrate previste</h3>
+<div class="results">
 {$result} €
 </div>
 SCRIVI;
