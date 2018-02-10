@@ -52,7 +52,7 @@ $(function() {
 
     $("#vecchia-password").on("focus", function () {
         $("#modifica").hide();
-        pulisciErrori($(".alert.errore"),$("form"));
+
         $(labelPassword).text("Password corrente: ");
         //se ho generato in precedenza lo span di successo lo elimino, se non c'è non succede nulla
         $('#successo').remove();
@@ -64,11 +64,12 @@ $(function() {
     $("#bottone-modifica-password").on("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
+        pulisciErrori($(".alert.errore"), $("form"));
         //controllo se le password combaciano
-        $(".mostra-modifica").show();
+       //$(".mostra-modifica").show();
         if(validaCampiCambioPwd()) {
             //le password vanno bene faccio un richiesta di modifica della pwd
-            $.post($("form").attr("action"), {VecchiaPwd: $("#vecchia-password").val(), NuovaPwd: $("#password").val()}, function (risposta) {
+            $.post("php/modifica_dati_utente.php", {VecchiaPwd: $("#vecchia-password").val(), NuovaPwd: $("#password").val()}, function (risposta) {
                 risposta = JSON.parse(risposta);
                 if(risposta.stato == 1) {
                     $(labelPassword).text(testoModificaPwd);
@@ -78,7 +79,7 @@ $(function() {
                     $("#vecchia-password").parent().append("<span class='successo'>"+risposta.messaggio+"</span>");
                 }
                 else{
-                    notificaErrore($("#vecchia-password"), risposta.messaggio,$(".alert.errore"),$("form"));
+                    notificaErrore($("#vecchia-password"), risposta.messaggio, $(".alert.errore"), $("form"));
                 }
             });
         }
@@ -91,7 +92,7 @@ $(function() {
             //se ho generato in precedenza lo span di successo lo elimino, se non c'è non succede nulla
             $("#modifica").show();
             $('#successo').remove();
-            pulisciErrori($(".alert.errore"),$("form"));
+            pulisciErrori($(".alert.errore"), $("form"));
             $(labelPassword).text(testoModificaPwd);
             $("input[type=password]").val('');
             $(".mostra-modifica").show();
@@ -104,7 +105,7 @@ $(function() {
     $("#invio-dati").on("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
-        pulisciErrori($(".alert.errore"),$("form"));
+        pulisciErrori($(".alert.errore"), $("form"));
 
         if(validaFormUtente(false)) {
             $.post("php/modifica_dati_utente.php",$("form").serialize(),function(risposta) {
@@ -186,15 +187,16 @@ function rispostaEliminiazionePrenotazione(target) {
     sistemaSchede(target);
 }
 
-function validaCampiCambioPwd(){
+function validaCampiCambioPwd() {
     var campiValidi = true;
 
     var vecchiaPwd = $("#vecchia-password");
     var password = $("#password");
     var password2 = $("#password2");
 
-    if(vecchiaPwd.val().trim().length == 0) {
-        notificaErrore(vecchiaPwd, "Inserire la <span lang='en'>password</span> corrente",$(".alert.errore"),$("form"));
+    if(vecchiaPwd.val().trim().length === 0) {
+        console.log("this");
+        notificaErrore(vecchiaPwd, "Inserire la <span lang='en'>password</span> corrente", $(".alert.errore"), $("form"));
         campiValidi = false;
     }
     else {

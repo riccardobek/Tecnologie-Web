@@ -7,7 +7,7 @@ $(document).ready(function() {
     $("#JSAbilitato").val("1");
 
     $("form").on("submit",function(event){
-        pulisciErrori();
+        pulisciErrori($(".alert.errore"),$("form"));
         event.preventDefault();
         if(validaFormUtente(true)) {
             $.post($("form").attr("action"),$("form").serialize(),function(r) {
@@ -15,7 +15,7 @@ $(document).ready(function() {
                 if(rispostaJSON.stato === 1)
                     $(".alert.successo").show();
                 else {
-                   $(".alert.errore").show();
+
                 }
             });
         }

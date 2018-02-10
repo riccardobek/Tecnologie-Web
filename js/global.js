@@ -24,7 +24,6 @@ $("document").ready(function() {
  */
 function notificaErrore(targetNode, testo, divAlert, formErr) {
     divAlert.append("<p>"+testo+"</p>");
-
     divAlert.show();
     targetNode.addClass("error");
     formErr.find(".error").first().focus();
@@ -42,7 +41,7 @@ function notificaErrore(targetNode, testo, divAlert, formErr) {
 /**
  * Funzione che elimina tutti i messaggi di errore dai vari campi del form
  */
-function pulisciErrori(divAlert,formErr) {
+function pulisciErrori(divAlert, formErr) {
     divAlert.find("p").not(".intestazione-alert").remove();
     divAlert.hide();
     formErr.find("input").removeClass("error");
@@ -90,7 +89,7 @@ function validaData(d) {
 }
 
 function validaFormUtente(validazionePassword) {
-    pulisciErrori();
+    pulisciErrori($(".alert.errore"),$("form"));
 
     var formValido = true;
 
