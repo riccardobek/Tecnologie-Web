@@ -641,7 +641,7 @@ textarea:focus{
     padding-top:1.5em;
 }
 
-.salva-dati {
+.btn.salva-dati {
     display:none;
 }
 

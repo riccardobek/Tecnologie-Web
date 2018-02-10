@@ -24,7 +24,10 @@ $("document").ready(function() {
  */
 function notificaErrore(targetNode, testo) {
     $(".alert.errore").append("<p>"+testo+"</p>");
+    $(".alert.errore").show();
     targetNode.addClass("error");
+    $("form .error").first().focus();
+
     /*var span = $("<span role='alert'>"+testo+"</span>");
     span.appendTo(targetNode);
 

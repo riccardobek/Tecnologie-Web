@@ -52,6 +52,7 @@ $(function() {
 
     $("#vecchia-password").on("focus", function () {
         $("#modifica").hide();
+        pulisciErrori();
         $(labelPassword).text("Password corrente: ");
         //se ho generato in precedenza lo span di successo lo elimino, se non c'è non succede nulla
         $('#successo').remove();
@@ -77,7 +78,7 @@ $(function() {
                     $("#vecchia-password").parent().append("<span class='successo'>"+risposta.messaggio+"</span>");
                 }
                 else{
-                    notificaErrore($("#vecchia-password").parent(), risposta.messaggio);
+                    notificaErrore($("#vecchia-password"), risposta.messaggio);
                 }
             });
         }
@@ -90,6 +91,7 @@ $(function() {
             //se ho generato in precedenza lo span di successo lo elimino, se non c'è non succede nulla
             $("#modifica").show();
             $('#successo').remove();
+            pulisciErrori();
             $(labelPassword).text(testoModificaPwd);
             $("input[type=password]").val('');
             $(".mostra-modifica").show();
@@ -102,9 +104,7 @@ $(function() {
     $("#invio-dati").on("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
-        $(".error").each(function () {
-            pulisciErrore($(this));
-        });
+        pulisciErrori();
 
         if(validaFormUtente(false)) {
             $.post("php/modifica_dati_utente.php",$("form").serialize(),function(risposta) {
@@ -114,7 +114,8 @@ $(function() {
                     datiForm = salvaDatiForm();
                 }
                 else{
-                    notificaErrore($("#email").parent(),risposta.messaggio);
+
+                    notificaErrore($("#email"),risposta.messaggio);
                 }
             });
         }
@@ -125,9 +126,7 @@ $(function() {
         e.stopPropagation();
         $(":text, :password").attr('disabled','disabled');
         ripristinaDatiInizialiForm(datiForm);
-        $(".error").each(function () {
-            pulisciErrore($(this));
-        });
+        pulisciErrori();
         $(".mostra-modifica").slideUp(200, function () {
             $(this).hide();
         });
@@ -148,10 +147,10 @@ $(function() {
                             boxWidth: calcolaDimensioneDialog(),
                             useBootstrap: false,
                             title: 'Conferma',
-                            content: "Dopo l'eliminazione verrà automaticamente effettuato il logout e il tuo account sarà eliminato. Confermi di voler di eliminare l'account?",
+                            content: "Dopo l'eliminazione verrà automaticamente effettuato il <span lang='en'>logout</span> e il tuo <span lang='en'>account</span> sarà eliminato. Confermi di voler di eliminare l'<span lang='en'>account</span>?",
                             buttons: {
                                 eliminaAccount: {
-                                    text: 'Elimina Account',
+                                    text: "Elimina <span lang='en'>account</span>",
                                     btnClass: 'btn-red',
                                     action: function () {eliminaAccount();}
                                 },
@@ -195,13 +194,13 @@ function validaCampiCambioPwd(){
     var password2 = $("#password2");
 
     if(vecchiaPwd.val().trim().length == 0) {
-        notificaErrore(vecchiaPwd.parent(), "Inserire la password corrente");
+        notificaErrore(vecchiaPwd, "Inserire la <span lang='en'>password</span> corrente");
         campiValidi = false;
     }
-
-    if(!validaPassword(password,password2))
-        campiValidi = false;
-
+    else {
+        if(!validaPassword(password,password2))
+            campiValidi = false;
+    }
     return campiValidi;
 }
 
