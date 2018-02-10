@@ -31,9 +31,7 @@ $(function() {
         $("#finestra-macro").fadeOut("Slow",function(){
             $(this).find("input[type=text],textarea").val('');
         });
-        $(".error").each(function () {
-            pulisciErrore($(this));
-        });
+        pulisciErrori();
     });
 
     //Modifica macro attivita
@@ -55,9 +53,7 @@ $(function() {
     $("#nuova-attivita button").on("click",function(e) {
         e.preventDefault();
         e.stopPropagation();
-        $(".error").each(function () {
-            pulisciErrore($(this));
-        });
+        pulisciErrori();
         fadeDialogoNuovaAttivita();
     });
 
@@ -106,7 +102,7 @@ $(function() {
                 }
                 else {
                     if(risposta.hasOwnProperty('Tipo')) {
-                        notificaErrore($("#nuova-attivita #nome").parent(),risposta.messaggio);
+                        notificaErrore($("#nuova-attivita #nome"),risposta.messaggio);
                     }
                     else {
                         generaAlert('red',"Errore",risposta.messaggio);
@@ -238,12 +234,10 @@ function salvaDati(target) {
 function validaFormModifica(target) {
     var valido = true;
     var inputs = $("#"+target).find("textarea,input[type=text]");
-    $(".error").each(function () {
-        pulisciErrore($(this));
-    });
+    pulisciErrori();
     $(inputs).each(function () {
         if($(this).val().trim().length == 0){
-            notificaErrore($(this).parent(),"Il campo "+' '+$(this).attr("name")+' '+" non può essere vuoto");
+            notificaErrore($(this),"Il campo "+' '+$(this).attr("name")+' '+" non può essere vuoto");
             valido = false;
         }
     });
@@ -295,9 +289,7 @@ function aggiugngiEventiSchedeAttivita() {
         $(this).prevAll(".salva-dati").hide();
         $(this).prev().show();
         //elimino le notifiche di errore
-        $(".error").each(function () {
-            pulisciErrore($(this));
-        });
+        pulisciErrori()
         //ripristino dati
         var target = $(this).attr('data-target');
         $("#nome-"+target).val(campiDati[target]["nome-attivita"]);
