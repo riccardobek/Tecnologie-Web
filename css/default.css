@@ -647,7 +647,7 @@ PANNELLO UTENTE E AMMINISTRATORE: MENU A TAB
 .tab button {
     background-color: inherit;
     float: left;
-    border: none;
+    /*border: none;*/
     outline: none;
     cursor: pointer;
     padding: 14px 16px;

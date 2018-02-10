@@ -147,6 +147,8 @@ function intestazione($activeIndex) {
     $VOCI_MENU="";
 
     for($i=0;$i<count($menuElements);$i++) {
+        if(isAdmin()){ if($i==7) $i++;}
+        else{ if($i==8) $i++;}
         if ($menuElements[$i]["Pulsante"])
             $PULSANTI .= creaElementoMenu($i, $activeIndex);
         else
