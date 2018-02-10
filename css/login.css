@@ -84,3 +84,7 @@ a{
 a:visited{
     color: #0020BB;
 }
+
+input:focus{
+    background-color: #adceff;
+}

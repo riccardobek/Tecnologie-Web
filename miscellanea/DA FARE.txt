@@ -1,7 +1,11 @@
 1. Sistemare tabindex di tutte le pagine
 2. Comparsa in live delle macroattività
+
 3. Sistemare CSS mobile
+
 4. Inglobare CSS in uno unico il default
 5. Elimina macroattività - ricorsione elimina attività
 6. Elimina attività - non si elimina ma si disattivano e riattivano
 7. Capire a cosa serve il modifica prenotazioni (sennò togliere)
+
+8. Datapicker da problemi perchè manca un submit nessun livello di accessibilità...
