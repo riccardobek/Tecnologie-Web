@@ -246,7 +246,6 @@ $(function() {
 
     new Chartist.Pie('.ct-chart', data);
     */
-<<<<<<< HEAD
     $(".pay").click(function (e){
         e.preventDefault();
         e.stopPropagation();
@@ -271,8 +270,6 @@ $(function() {
             }
         });
     });
-=======
->>>>>>> 47f4a9f16f872d665d0cd7fedbda97ad4b640433
 });
 
 $(".pay").click(function (e){
