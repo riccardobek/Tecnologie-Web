@@ -16,8 +16,8 @@ div#content > img{
     display: none;
 }
 div#content{
-    margin-bottom: 0em;
-    margin-top: 0em;
+    margin-bottom: 0;
+    margin-top: 0;
 }
 
 #menu-wrapper{
@@ -26,13 +26,13 @@ div#content{
 
 div.odd,div.even{
     color: black;
-    padding-top: 0em;
-    padding-bottom: 0em;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 #content .odd > .length-wrapper, #content .even > .length-wrapper{
 
-    padding-top: 0em;
-    padding-bottom: 0em;
+    padding-top: 0;
+    padding-bottom: 0;
 
 }
 span.primary-btn.inline-btn {
@@ -90,7 +90,7 @@ div.box_SP > img{
 }
 
 div.box_SP{
-    margin: 0em;
+    margin: 0;
 
 }
 div#intestazione-per-mobile.length-wrapper{

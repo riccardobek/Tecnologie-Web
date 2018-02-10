@@ -40,7 +40,7 @@
 .hamburger > img {
     margin: 0 auto;
     max-height: 3em;
-    padding: 0em;
+    padding: 0;
 }
 
 #header span{
@@ -150,8 +150,7 @@ div#menu-mobile ul li{
 .icona-menu{
     max-width: 4em;
     display: block;
-    margin: auto;
-    margin-bottom: 0.5em;
+    margin: auto auto 0.5em auto;
 }
 
 
@@ -175,7 +174,7 @@ div#menu-mobile ul > li.active{
 
 .btn {
     display: block;
-    margin: 1em 0em;
+    margin: 1em 0;
 }
 #intestazione-per-mobile{
     width: 100%;
@@ -199,7 +198,7 @@ div#menu-mobile ul > li.active{
 
 .tabcontent {
     border: none;
-    padding: 0em;
+    padding: 0;
 }
 .wrapper-tabella{
     overflow-x: auto;

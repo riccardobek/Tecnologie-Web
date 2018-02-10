@@ -1,7 +1,6 @@
 .form{
     width: 350px;
-    margin: auto;
-    margin-top: 4%;
+    margin: 4% auto auto auto;
     padding: 2em;
     background: white;
     color: black;
@@ -69,7 +68,7 @@ form .field-container:not(:first-child) label {
 #sectionPersonalData{
 	width:330px;
 	float:left;
-	margin-right:0px;
+	margin-right: 0;
 }
 
 #sectionAccountData{
