@@ -7,8 +7,7 @@ require_once  "php/funzioni/funzioni_attivita.php";
 $activeIndex = 7;
 
 if(isset($_POST["confermaPagamento"])) {
-    //settaPagato($_POST["codicePrenotazione"]);
-    successoJSON("porco");
+    settaPagato($_POST["codicePrenotazione"]);
     return;
 }
 
@@ -317,26 +316,25 @@ RIGA;
 }
 
 function settaPagato($codice){
-   /* global $db;
+    global $db;
     $db->beginTransaction();
     $queryControllo = $db->prepare("SELECT Codice FROM Prenotazioni WHERE Codice = ?");
     $queryControllo->execute(array($codice));
 
-    if($queryControllo->fetch()) {
-        $query = $db->prepare("UPDATE Prenotazioni SET Pagamento = '1' WHERE Codice = ?");
-        if($query->execute(array($codice))) {
-            $db->commit();
-            successoJSON("Pagamento effettuato con successo");
-            return;
-        }
-        else    {
-            $db->rollBack();
-            erroreJSON("Non è stato possibile effettuare il pagamento");
-            return;
-        }
-    }
-    else{
-        erroreJSON("Prenotazione non trovata");
+    if(!($queryControllo->fetch())) {
+        erroreJSON("Non è stato possibile effettuare il pagamento");
         return;
-    }*/
+    }
+    $query = $db->prepare("UPDATE Prenotazioni SET Pagamento = '1' WHERE Codice = ?");
+
+    if($query->execute(array($codice))) {
+        $db->commit();
+        successoJSON("Pagamento effettuato con successo");
+        return;
+        }
+
+    $db->rollBack();
+    erroreJSON("Non è stato possibile effettuare il pagamento");
+    return;
+
 }
