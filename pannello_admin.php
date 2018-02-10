@@ -55,8 +55,8 @@ $HTML = str_replace("[#SCHEDA-MACROATTIVITA]",$TEMPLATE_NUOVA_MACRO, $HTML);
 //Rimpiazza segna posto [#ATTIVITA]
 $HTML = str_replace("[#ATTIVITA]",stampaSchedeAttivita(), $HTML);
 
-//$HTML = str_replace("[#ENTRATE-DEL-MESE]",entrateDelMese(),$HTML);
-//$HTML = str_replace("[#ENTRATE-PREVISTE]",entratePreviste(),$HTML);
+$HTML = str_replace("[#ENTRATE-DEL-MESE]",entrateDelMese(),$HTML);
+$HTML = str_replace("[#ENTRATE-PREVISTE]",entratePreviste(),$HTML);
 //tabelle statistiche(rimpiazza i segnaposto [#ATTIVITA-PIU-PRENOTATE])
 $HTML = str_replace("[#ATTIVITA-PIU-PRENOTATE]",getAttivitaPiuPrenotate(),$HTML);
 //rimpiazza [#UTENTI-PIU-ATTIVI]
@@ -144,49 +144,45 @@ SCRIVI;
     }
     return $output;
 }
-/*
+
 function entrateDelMese(){
    global $db;
-    $today=date("t-m-Y");
-    $first_day_of_month=date('01-m-Y');
 
-    $query=$db->prepare("SELECT Attivita.Prezzo AS Prezzo,Prenotazioni.PostiPrenotati AS Posti,Prenotazioni.Giorno AS Giorno FROM Attivita, Prenotazioni WHERE Attivita.Codice=Prenotazioni.IDAttivita AND month(CURRENT_DATE)=month(Prenotazioni.Giorno) AND Prenotazioni.Stato='Confermata' AND Prenotazioni.Pagamento=1");
+   $today=date("t-m-Y");
+
+
+    $query=$db->prepare("SELECT Attivita.Prezzo AS Prezzo,Prenotazioni.PostiPrenotati AS Posti,Prenotazioni.Giorno AS Giorno FROM Attivita, Prenotazioni WHERE Attivita.Codice=Prenotazioni.IDAttivita AND month(CURRENT_DATE)=month(Prenotazioni.Giorno) AND Prenotazioni.Giorno<CURDATE() AND Prenotazioni.Stato='Confermata' AND Prenotazioni.Pagamento=1");
     $query->execute();
     $array=$query->fetchAll();
     $result=0;
-    foreach($array as $item) {
 
-        $check=date("t-m-Y",$item["Giorno"]);
-        if($today<$check){
-            $result=$result+($item["Prezzo"]*$item["Posti"]);
-        }
+    foreach($array as $item) {
+        $result=$result+($item["Prezzo"]*$item["Posti"]);
     }
     return <<<SCRIVI
- <h4>le entrate previste per il reso del mese sono:{$result}</h4>
+ <div class="results"><h4>le entrate del mese sono: {$result} € </h4></div>
 SCRIVI;
+
+
 }
 
 function entratePreviste(){
     global $db;
-    $today=date("t-m-Y");
-    $last_day_of_month=date("t-m-Y", strtotime($today));
 
-    $query=$db->prepare("SELECT Attivita.Prezzo AS Prezzo,Prenotazioni.PostiPrenotati AS Posti,Prenotazioni.Giorno AS Giorno FROM Attivita, Prenotazioni WHERE Attivita.Codice=Prenotazioni.IDAttivita AND month(CURRENT_DATE)=month(Prenotazioni.Giorno) AND Prenotazioni.Stato='Confermata' ");
+
+    $query=$db->prepare("SELECT Attivita.Prezzo AS Prezzo,Prenotazioni.PostiPrenotati AS Posti,Prenotazioni.Giorno AS Giorno FROM Attivita, Prenotazioni WHERE Attivita.Codice=Prenotazioni.IDAttivita AND month(CURRENT_DATE)=month(Prenotazioni.Giorno) AND Prenotazioni.Giorno>CURDATE() AND Prenotazioni.Stato='Confermata' ");
     $query->execute();
     $array=$query->fetchAll();
     $result=0;
     foreach($array as $item) {
+        $result=$result+($item["Prezzo"]*$item["Posti"]);
 
-        $check=date("t-m-Y",$item["Giorno"]);
-        if($today>$check){
-            $result=$result+($item["Prezzo"]*$item["Posti"]);
-        }
     }
     return <<<SCRIVI
- <h4>le entrate previste per il reso del mese sono:{$result}</h4>
+ <div class="results"><h4>le entrate previste per il resto del mese sono: {$result} €</h4></div>
 SCRIVI;
 }
-*/
+
 
 
 function getAttivitaPiuPrenotate() {

@@ -714,6 +714,26 @@ h1,h2,h3{
     font-weight: 400;
 }*/
 
+.results{
+
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    background-color: #F3F3F3;
+    margin: auto;
+
+}
+.length-wrapper > h3{
+    margin: auto;
+}
+.results> h4{
+    color: black;
+    float: none;
+    font-weight: 400;
+}
+
+
 .schede h2 {
     font-weight: 700;
 }
