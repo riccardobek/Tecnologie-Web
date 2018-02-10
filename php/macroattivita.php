@@ -42,7 +42,7 @@ if(isAdmin()){
         }
         else {
             $db->rollBack();
-            erroreJSON("Errore nella modifica dellla macroattività.");
+            erroreJSON("Errore nella modifica della macroattività.");
         }
     }
 }

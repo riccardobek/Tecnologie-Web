@@ -14,9 +14,6 @@ $(document).ready(function() {
                 rispostaJSON = JSON.parse(r);
                 if(rispostaJSON.stato === 1)
                     $(".alert.successo").show();
-                else {
-
-                }
             });
         }
     });

@@ -4,34 +4,53 @@ $(function() {
 
     //Nuova Macroattivita
     $("#crea-macro").on("click", function() {
-        $("#label-dialog2").val("Nuova macroattività");
+        $("#label-dialog2").text("Nuova macroattività");
         $("#finestra-macro").show();
+        $("#finestra-macro input[type=submit]").attr("data-fun","0");
 
     });
 
     $("#finestra-macro input[type=submit]").on("click", function(e){
         e.preventDefault();
         e.stopPropagation();
-        if(validaFormModifica("finestra-crea-macro")) {
-            $.post("php/macroattivita.php", $("#finestra-crea-macro form").serialize() + "&nuovaMacro=1", function (risposta) {
-                risposta = JSON.parse(risposta);
-                if (risposta.stato == 1) {
-                    generaAlert('green', "Successo", risposta.messaggio);
-                }
-                else {
-                    generaAlert('red', "Errore", risposta.messaggio);
-                }
-            });
+        var tipoOperazione = $(this).attr("data-fun");
+        console.log(tipoOperazione);
+        if(validaFormModifica("finestra-macro")) {
+            if(tipoOperazione == "0"){
+                $.post("php/macroattivita.php", $("#finestra-macro form").serialize() + "&"+"nuovaMacro=1", function (risposta) {
+                    risposta = JSON.parse(risposta);
+                    if (risposta.stato == 1) {
+                        generaAlert('green', "Successo", risposta.messaggio);
+                    }
+                    else {
+                        generaAlert('red', "Errore", risposta.messaggio);
+                    }
+                });
+            }
+            else{
+                $.post("php/macroattivita.php", $("#finestra-macro form").serialize(), function (risposta) {
+                    risposta = JSON.parse(risposta);
+                    if (risposta.stato == 1) {
+                        generaAlert('green', "Successo", risposta.messaggio);
+                    }
+                    else {
+                        generaAlert('red', "Errore", risposta.messaggio);
+                    }
+                });
+            }
+
         }
     });
 
     $("#annulla-macro").on("click", function(e){
         e.preventDefault();
         e.stopPropagation();
+        $("#label-dialog2").text("Nuova macroattività");
         $("#finestra-macro").fadeOut("Slow",function(){
+            pulisciErrori($("#finestra-macro").find(".alert.errore"),$("#finestra-macro").find("form"));
             $(this).find("input[type=text],textarea").val('');
         });
-        pulisciErrori();
+
     });
 
     //Modifica macro attivita
@@ -53,7 +72,7 @@ $(function() {
     $("#nuova-attivita button").on("click",function(e) {
         e.preventDefault();
         e.stopPropagation();
-        pulisciErrori();
+        pulisciErrori($("#nuova-attivita").find(".alert.errore"),$("#nuova-attivita").find("form"));
         fadeDialogoNuovaAttivita();
     });
 
@@ -233,11 +252,14 @@ function salvaDati(target) {
 //funzione che notifica gli errori nei vari campi dati del form di modifica delle attività
 function validaFormModifica(target) {
     var valido = true;
-    var inputs = $("#"+target).find("textarea,input[type=text]");
-    pulisciErrori();
+    var targetSelector = $("#"+target);
+    var divAlert = targetSelector.find(".alert.errore");
+    var formErr = targetSelector.find("form");
+    var inputs = targetSelector.find("textarea,input[type=text]");
+    pulisciErrori(divAlert, formErr);
     $(inputs).each(function () {
-        if($(this).val().trim().length == 0){
-            notificaErrore($(this),"Il campo "+' '+$(this).attr("name")+' '+" non può essere vuoto");
+        if($(this).val().trim().length == 0) {
+            notificaErrore($(this),"Il campo "+' '+$(this).attr("name")+' '+" non può essere vuoto",divAlert, formErr );
             valido = false;
         }
     });
@@ -289,7 +311,10 @@ function aggiugngiEventiSchedeAttivita() {
         $(this).prevAll(".salva-dati").hide();
         $(this).prev().show();
         //elimino le notifiche di errore
-        pulisciErrori()
+        var formPadre = $(this).parent().parent();
+        var divAlert = formPadre.parent().find(".alert.errore");
+
+        pulisciErrori(divAlert,formPadre);
         //ripristino dati
         var target = $(this).attr('data-target');
         $("#nome-"+target).val(campiDati[target]["nome-attivita"]);
@@ -344,15 +369,15 @@ function aggiungiEventiMacroAttivita() {
         var idMacro = $(this).parent().attr("data-target");
         $.post("pannello_admin.php", {RichiestaMacro: idMacro}, function(macro) {
             macro = JSON.parse(macro);
-            console.log(macro);
             $("#label-dialog2").text(macro.Nome+" - Modifica");
             $("#nome-macro").val(macro.Nome);
             $("#descrizione-macro").val(macro.Descrizione);
             $("#finestra-macro").show();
+            $("#finestra-macro input[type=submit]").attr("data-fun","1");
         });
-
     });
 }
+
 //blocca lo scroll se premo il tasto crea nuova macroattività
 function bloccaScroll(){
     $("body").css({"overflow" : "hidden"});
