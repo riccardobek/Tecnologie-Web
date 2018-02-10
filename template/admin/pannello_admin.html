@@ -21,13 +21,22 @@
 
         <div class="length-wrapper" id="intestazione-per-mobile">
             <div class="tab">
+                <button class="tablinks mobile-tab-button" id="act-tab" data-target="act-manager" >Attività</button>
                 <button class="tablinks mobile-tab-button" id="stat-tab" data-target="stat-manager" >Statistiche</button>
                 <button class="tablinks mobile-tab-button" id="usr-tab" data-target="usr-manager" >Utenti</button>
-                <button class="tablinks mobile-tab-button" id="act-tab" data-target="act-manager" >Attività</button>
                 <button class="tablinks mobile-tab-button " id="res-tab" data-target="res-manager" >Prenotazioni</button>
             </div>
         </div>
         <div class="length-wrapper" id="tab-content-mobile">
+
+            <div id="act-manager" class="tabcontent">
+                <h1>Gestione attività</h1>
+                <button class="btn btn-primary" id="crea-macro">Crea macroattività</button>
+                [#NUOVA-ATTIVITA]
+                [#SCHEDA-MACROATTIVITA]
+                [#ATTIVITA]
+            </div>
+
             <div id="stat-manager" class="tabcontent">
                 <div class="ct-chart"></div>
                 <h1>Statistiche sito</h1>
@@ -81,13 +90,7 @@
                 </div>
             </div>
 
-            <div id="act-manager" class="tabcontent">
-                <h1>Gestione attività</h1>
-                <button class="btn btn-primary" id="crea-macro">Crea macroattività</button>
-                [#NUOVA-ATTIVITA]
-                [#SCHEDA-MACROATTIVITA]
-                [#ATTIVITA]
-            </div>
+
 
             <div id="res-manager" class="tabcontent">
                 <h1>Gestione prenotazioni</h1>
