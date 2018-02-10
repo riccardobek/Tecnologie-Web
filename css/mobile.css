@@ -251,11 +251,11 @@ caption{
     border-left: 1px solid rgba(0,0,0,0.2);
 }
 
-h1,h2{
+.contact-header{
     font-size: 98%;
     font-weight: bolder;
 
 }
-p{
+.p-contact{
     font-size: 95%;
 }
