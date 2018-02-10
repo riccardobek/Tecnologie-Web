@@ -724,33 +724,51 @@ PANNELLO UTENTE E AMMINISTRATORE: CONTENUTO
 }
 
 .contenuto-schede {
-    padding:1em;
+    padding: 1em;
 }
 
 /*
 h1,h2,h3{
     font-weight: 400;
 }*/
+.stat {
+    text-align: center;
+    width: 46%;
+    background-color: #F3F3F3;
+    padding-top: 2em;
+    padding-bottom: 3em;
+    border-right: 1em;
+}
 
-.results{
+.stat.pari {
+    margin-right: 2em;
+}
+
+.results {
     color: black;
     font-size: 315%;
     font-weight: bolder;
     text-align: center;
-    padding-top: 2em;
-    padding-bottom: 2em;
-    background-color: #F3F3F3;
-    margin-right: 2em;
-    margin-left: 1em;
 
 }
-.scheda-wrapper > h3{
+
+.scheda-wrapper > h3 {
     margin-left: 2em;
 }
-.results> h4{
+
+#wrapper-schede-stat {
+  margin: auto;
+    padding-left: 3em;
+    padding-right: 3em;
+}
+.head-background{
+    color: darkgreen;
+    widht:100%;
+}
+.stat > h1 {
     color: black;
     float: none;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 
