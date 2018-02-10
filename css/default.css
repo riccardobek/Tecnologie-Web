@@ -2,7 +2,7 @@
 RESET CSS
 *********************/
 html, body, div, span, applet, object, iframe, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
+a, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
@@ -18,6 +18,10 @@ time, mark, audio, video {
     border: 0;
     font: inherit;
     vertical-align: baseline;
+}
+
+abbr {
+    speak: spell-out;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -201,14 +205,19 @@ div.attivita span.btn.btn-primary:active {
 }
 
 /*** VISUALIZZAZIONE DEGLI ERRORI NEL FORM ******/
-div.error > span{
+/*div.error > span{
     display: block;
     width: 100%;
     padding: 0.3em;
     color: red;
+}*/
+.alert.errore {
+    color:white;
+    text-align: left;
+    font-weight: bold;
 }
 
-div.error input{
+input.error {
     border-bottom-color: red;
 }
 
@@ -499,14 +508,18 @@ span.primary-btn.inline-btn{
     display: none;
 }
 div.alert {
-    padding: 0.7em 1.2em;
+    padding: 0.5em 1em;
     display: none;
     margin-bottom: 1em;
 }
 
 div.alert.errore {
-    background: #f44336;
+    background: #ac1911;
+}
+
+div.alert.errore p{
     color: white;
+    font-weight: bold;
 }
 
 div.alert.successo {

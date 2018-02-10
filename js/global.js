@@ -22,24 +22,26 @@ $("document").ready(function() {
  * @param targetNode è il div.field-container a cui si vuole aggiungere l'errore
  * @param testo è il testo dell'errore
  */
-function notificaErrore(targetNode,testo) {
-    var span = $("<span role='alert'>"+testo+"</span>");
+function notificaErrore(targetNode, testo) {
+    $(".alert.errore").append("<p>"+testo+"</p>");
+    targetNode.addClass("error");
+    /*var span = $("<span role='alert'>"+testo+"</span>");
     span.appendTo(targetNode);
 
-    targetNode.addClass("error");
+
 
     targetNode.children("input,textarea").on("focus",function() {
         pulisciErrore(targetNode);
-    });
+    });*/
 }
 
 /**
  * Funzione che elimina tutti i messaggi di errore dai vari campi del form
  */
 function pulisciErrori() {
-    $(".field-container").each(function() {
-        pulisciErrore($(this));
-    });
+    $(".alert.errore p").not(".intestazione-alert").remove();
+    $(".alert.errore").hide();
+    $("input").removeClass("error");
 }
 
 /**
@@ -47,7 +49,7 @@ function pulisciErrori() {
  * @param targetElement il div.field-container dal quale rimuovere l'eventuale messaggio di errore
  */
 function pulisciErrore(targetElement) {
-    if(targetElement.hasClass("error")) {
+    /*if(targetElement.hasClass("error")) {
         //Se l'elemento targetNode ha un errore (quindi ha la classe error) la tolgo
         targetElement.removeClass("error");
 
@@ -59,7 +61,7 @@ function pulisciErrore(targetElement) {
                 $(this).remove();
             }
         });
-    }
+    }*/
 }
 
 function validaData(d) {
@@ -91,7 +93,7 @@ function validaFormUtente(validazionePassword) {
     var anagrafica = $("#nome, #cognome");
     anagrafica.each(function() {
         if($(this).val().trim().length == 0) {
-            notificaErrore($(this).parent(),"Campo obbligatorio");
+            notificaErrore($(this),"Campo "+$(this).attr("name")+" obbligatorio");
             formValido = false;
         }
 
@@ -101,13 +103,13 @@ function validaFormUtente(validazionePassword) {
     //espressione regolare che valida un'email a grandi linee. Presa da
     //https://stackoverflow.com/questions/46155/how-to-validate-email-address-in-javascript quarta risposta
     if (/[^\s@]+@[^\s@]+\.[^\s@]+/.test(email.val().trim()) == false) {
-        notificaErrore(email.parent(), "Inserire un'email valida");
+        notificaErrore(email,"Inserire un'<span lang='en'> email </span> valida");
         formValido = false;
     }
 
     var username = $("#username");
     if (username.val().trim().length == 0) {
-        notificaErrore(username.parent(), "Inserire uno username valido");
+        notificaErrore(username,"Inserire uno <span lang='en'> username </span> valido");
         formValido = false;
     }
 
@@ -128,15 +130,15 @@ function validaPassword(password, password2) {
     passwordValide = true;
 
     if (password.val().trim().length == 0) {
-        notificaErrore(password.parent(), "Inserire una password valida");
+        notificaErrore(password,"Inserire una <span lang='en'> password </span> valida");
         passwordValide = false;
     }
     else if (password2.val().trim().length == 0) {
-        notificaErrore(password2.parent(), "Si prega di ripetere la password");
+        notificaErrore(password2,"Si prega di ripetere la <span lang='en'> password </span>");
         passwordValide = false;
     }
     else if (password.val() != password2.val()) {
-        notificaErrore(password2.parent(), "Le password non combaciano");
+        notificaErrore(password2,"Le <span lang='en'> password </span> non combaciano");
         passwordValide = false;
     }
 

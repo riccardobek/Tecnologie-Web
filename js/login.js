@@ -40,6 +40,7 @@ $(document).ready(function() {
             }
             else {
                 $("div.alert.errore").show();
+                $("#username").focus();
             }
         });
     });
