@@ -353,3 +353,11 @@ function aggiungiEventiMacroAttivita() {
 
     });
 }
+//blocca lo scroll se premo il tasto crea nuova macroattività
+function bloccaScroll(){
+    $("body").css({"overflow" : "hidden"});
+}
+//sblocca lo scroll se premo annulla
+function sbloccaScroll(){
+    $("body").css({"overflow":"scroll"});
+}
