@@ -160,7 +160,9 @@ function entrateDelMese(){
         $result=$result+($item["Prezzo"]*$item["Posti"]);
     }
     return <<<SCRIVI
- <div class="results">{$result} €</div>
+ <div class="results">
+    <h3>Entrate del mese</h3>{$result} €
+ </div>
 SCRIVI;
 
 
@@ -179,7 +181,9 @@ function entratePreviste(){
 
     }
     return <<<SCRIVI
-<div class="results">{$result} €</div>
+<div class="results"><h3>Entrate previste</h3>
+{$result} €
+</div>
 SCRIVI;
 }
 
@@ -247,18 +251,34 @@ function prenotazioniAttive(){
     impostaTestoPagamento($arrayPrenotazioni);
     $row="";
     foreach ($arrayPrenotazioni as $riga){
-        $row .= <<<RIGA
-<tr id="{$riga["CodicePrenotazione"]}">
-     <td>{$riga["Username"]}</td>
-     <td>{$riga["Attivita"]}</td>
-     <td>{$riga["Posti"]}</td>
-     <td>{$riga["Giorno"]}</td>
-     <td>{$riga["Stato"]}</td>
-     <td>{$riga["Pagato"]}</td>
-     <td>&#x270E;</td>
-     <td><button data-target="{$riga["CodicePrenotazione"]}" class="btn-cancella">&#x1F5D1;</button></td>
-</tr>
+    if($riga["Pagato"]=="Non pagato") {
+                $row .= <<<RIGA
+        <tr id="{$riga["CodicePrenotazione"]}">
+             <td>{$riga["Username"]}</td>
+             <td>{$riga["Attivita"]}</td>
+             <td>{$riga["Posti"]}</td>
+             <td>{$riga["Giorno"]}</td>
+             <td>{$riga["Stato"]}</td>
+             <td>{$riga["Pagato"]}</td>
+             <td><button data-target="{$riga["CodicePrenotazione"]}" class="btn btn-primary pay">Conferma Pagamento</button></td>
+             <td><button data-target="{$riga["CodicePrenotazione"]}" class="btn-cancella">&#x1F5D1;</button></td>
+        </tr>
 RIGA;
+     }
+     else{
+         $row .= <<<RIGA
+        <tr id="{$riga["CodicePrenotazione"]}">
+             <td>{$riga["Username"]}</td>
+             <td>{$riga["Attivita"]}</td>
+             <td>{$riga["Posti"]}</td>
+             <td>{$riga["Giorno"]}</td>
+             <td>{$riga["Stato"]}</td>
+             <td>{$riga["Pagato"]}</td>
+             <td>Pagamento effettuato</td>
+             <td><button data-target="{$riga["CodicePrenotazione"]}" class="btn-cancella">&#x1F5D1;</button></td>
+        </tr>
+RIGA;
+        }
     }
     return $row;
 }
@@ -286,5 +306,28 @@ RIGA;
     }
     return $row;
 }
+/*
+function settaPagato($codice){
+    global $db;
 
+    $db->beginTransaction();
 
+    $queryControllo=$db->prepare("SELECT Codice FROM Prenotazioni WHERE Codice=?");
+    $queryControllo->execute();
+
+    if(!($queryControllo->fetch())){
+        erroreJSON("Prenotazione non trovata",$queryControllo->errorInfo());
+        return;
+    }
+
+    $query=$db->prepare("UPDATE Prenotazioni SET Pagamento='1' WHERE Codice=?");
+    if($query->execute(array($codice))) {
+        $db->commmit();
+        successoJSON("Pagamento effettuato con successo");
+        return;
+    }
+
+    $db->rollBack();
+    erroreJSON("Non è stato possibile effettuare il pagamento",$queryControllo->errorInfo());
+}
+*/
