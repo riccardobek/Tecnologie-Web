@@ -264,6 +264,10 @@ caption{
 
 }
 
+#finestra-macro,#nuova-scheda-attivita{
+    overflow-y: auto;
+}
+
 #salva-macro,#annulla-macro,#nuova-scheda-attivita input[type="submit"],#annulla-att {
     margin: auto;
 }
@@ -273,14 +277,14 @@ caption{
 }
 
 .select-rate{
-    margin-left: 3.5em;
+    margin-left: 2.5em;
 }
 
 .btn.btn-primary.accept{
-    margin-top: 0.3em;
-    margin-left: 2.2em;
+    margin-left: 1em;
+    width: 60px;
+
 }
 .btn-cancella.cancel{
-    margin-top: 0.3em;
-    margin-left: 1em;
+    margin-left: 1.3em;
 }

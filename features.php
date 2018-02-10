@@ -1,8 +1,7 @@
 <?php
 require_once "php/database.php";
 require_once "php/funzioni/funzioni_pagina.php";
-phpinfo();
-/*
+
 //phpinfo();
 print_r(getcwd());
 die();

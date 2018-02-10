@@ -6,7 +6,6 @@ $(function() {
     $("#crea-macro").on("click", function() {
         $("#label-dialog2").text("Nuova macroattività");
         $("#finestra-macro").show();
-        bloccaScroll();
         $("#finestra-macro input[type=submit]").attr("data-fun","0");
 
     });
@@ -56,7 +55,6 @@ $(function() {
     $("#annulla-macro").on("click", function(e){
         e.preventDefault();
         e.stopPropagation();
-        sbloccaScroll();
         $("#label-dialog2").text("Nuova macroattività");
         $("#finestra-macro").fadeOut("Slow",function(){
             pulisciErrori($("#finestra-macro").find(".alert.errore"),$("#finestra-macro").find("form"));
@@ -77,7 +75,6 @@ $(function() {
         $("#nuova-attivita h2").prepend("<span>"+titoloMacro+" - </span>");
         $("#nuova-attivita input[type=submit]").attr("data-macro",idMacro);
         $("#nuova-scheda-attivita").show();
-        bloccaScroll();
         $("#nome").focus();
     });
 
@@ -87,7 +84,6 @@ $(function() {
         e.stopPropagation();
         pulisciErrori($("#nuova-attivita").find(".alert.errore"),$("#nuova-attivita").find("form"));
         fadeDialogoNuovaAttivita();
-        sbloccaScroll();
     });
 
     //aggiungo listener alle schede attività
@@ -250,6 +246,7 @@ $(function() {
 
     new Chartist.Pie('.ct-chart', data);
     */
+<<<<<<< HEAD
     $(".pay").click(function (e){
         e.preventDefault();
         e.stopPropagation();
@@ -274,9 +271,27 @@ $(function() {
             }
         });
     });
+=======
+>>>>>>> 47f4a9f16f872d665d0cd7fedbda97ad4b640433
 });
 
-
+$(".pay").click(function (e){
+    e.preventDefault();
+    e.stopPropagation();
+    var target =  $(this).attr("data-target");
+    $.post("pannello_admin.php", {confermaPagamento:"1", codicePrenotazione:target}, function (risposta) {
+        risposta = JSON.parse(risposta);
+        if(risposta.stato == 1) {
+            generaAlert('green','Pagamento effettuato',risposta.messaggio);
+            var rigaTabella = $(this).parent();
+            $(this).remove();
+            rigaTabella.text("Pagamento effettuato");
+        }
+        else{
+            generaAlert('red','Errore',risposta.messaggio);
+        }
+    });
+});
 
 function eliminaRigaTabella(target) {
     $('#'+target).slideUp('Slow', function () {
@@ -334,7 +349,7 @@ function aggiugngiEventiSchedeAttivita() {
 
     //array associativo per il vari campi dati delle varie schede
     var campiDati = {};
-    //Quando si preme il tasto modifica i campi di testo vengono abilitati e si mostra il bottone di annullamento delle modifiche
+    //Quando si preme il tasto modifica i campi di testo vengono abilitati e si mostra il bottone di annulamento delle modifiche
     $(".schede .modifica").on("click", function(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -360,7 +375,6 @@ function aggiugngiEventiSchedeAttivita() {
         $(this).hide();
         $(this).prevAll(".salva-dati").hide();
         $(this).prev().show();
-
         //elimino le notifiche di errore
         var formPadre = $(this).parent().parent();
         var divAlert = formPadre.parent().find(".alert.errore");

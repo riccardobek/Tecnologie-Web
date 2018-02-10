@@ -953,8 +953,8 @@ h1,h2,h3{
 }
 .btn-cancella.cancel{
     margin-top: 0.5em;
-}
-
-#finestra-macro,#nuova-scheda-attivita{
-    overflow-y: auto;
+    padding: 0;
+    font-size: 1em;
+    margin-left: 4.1em;
+    background-color: transparent;
 }
