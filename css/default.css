@@ -465,6 +465,11 @@ PAGINA INDEX
 /****************
 PAGINA ATTIVITA
 *****************/
+.gestione.btn-testo {
+    font-size: 1em;
+    padding-left: 0;
+}
+
 div.macroattivita.odd,
 div.macroattivita.even {
     color: #F3F3F3;

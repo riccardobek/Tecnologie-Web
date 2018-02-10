@@ -59,7 +59,7 @@ function stampaAttivita() {
             elseif(isAdmin()){
                 $str ="";
                 $str .= <<<RIGA
-<a href='pannello_admin.php#attivita-{$attivita["Codice"]}' class="btn-testo">Gestisci</a>
+<a href='pannello_admin.php#attivita-{$attivita["Codice"]}' class="gestione btn-testo">Gestisci</a>
 RIGA;
 
                 $sottoattivita = str_replace("[#ANCORA-GESTISCI-ATTIVITA]",$str,$sottoattivita);
