@@ -10,8 +10,6 @@
     <link rel="stylesheet" type="text/css" href="css/default.css" >
     <link rel="stylesheet" type="text/css" href="css/login.css" >
     <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="screen and (max-width:768px)"/>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/registrazione.js"></script>
 </head>
 <body>
 [#INTESTAZIONE]
@@ -20,11 +18,11 @@
 
         <form action="php/do_registrazione.php" method="POST">
             <div class="alert successo" aria-live="assertive" role="alert">Registrazione effettuata con successo. Clicca <a href="login.php">qua</a> per andare al <span lang="en">login</span>.</div>
-            <div class="alert errore" aria-live="assertive" role="alert"></div>
 
             <input type="hidden" id="JSAbilitato" name="JSAbilitato" value="0">
 
             <h1>Crea <span lang="en">account</span></h1>
+            <div class="alert errore" aria-live="assertive" role="alert"><p class="intestazione-alert">Errore:</p></div>
             <div id="sectionPersonalData">
                 <div class="field-container">
                     <label for="nome">Nome: </label>
@@ -55,7 +53,7 @@
             <div id="sectionAccountData">
                 <div class="field-container">
                     <label for="email" lang="en">Email: </label>
-                    <input type="text" id="email" name="email" placeholder="Inserisci emali">
+                    <input type="text" id="email" name="email" placeholder="Inserisci email">
                 </div>
                 <div class="field-container">
                     <label for="username">Nome utente: </label>
@@ -76,5 +74,6 @@
 </div>
 
 [#MENU-MOBILE]
+<script type="text/javascript" src="js/registrazione.js"></script>
 </body>
 </html>
