@@ -15,7 +15,10 @@ if(isset($_POST["confermaPagamento"])) {
     settaPagato($_POST["codicePrenotazione"]);
     return;
 }
+if(isset($_POST["nuovaMacro"])) {
 
+    return;
+}
 if(isset($_POST["nuovaScheda"])){
     $output = "";
     $output = file_get_contents("template/admin/scheda_attivita_admin.html");
@@ -138,17 +141,18 @@ function schedeAttivita($macroattivita) {
     return $output;
 }
 
+
 function stampaSchedeAttivita(){
     $elencoMacro = getMacroattivita();
     $output="";
 
-    foreach($elencoMacro as $attivita){
-        $listaSchede = schedeAttivita($attivita["Codice"]);
+    foreach($elencoMacro as $macroAttivita){
+        $listaSchede = schedeAttivita($macroAttivita["Codice"]);
         //Creare template per contenere macroattività che ha pulsanti titolo ecc.
         $output .= <<<SCRIVI
-<h1 class="titolo-macro">{$attivita["Nome"]} &nbsp;&nbsp;<span class="dim-mod-canc" data-target="macro-{$attivita["Codice"]}">( <a class="mod-macro" >modifica</a> | <a class="canc-macro">cancella</a> )</span></h1>
-<button class="btn btn-block btn-nuova-attivita" data-target="macro-{$attivita["Codice"]}" data-info="{$attivita["Nome"]}">Nuova attività</button>
-<div id="gruppo-macro-{$attivita["Codice"]}">
+<h1 class="titolo-macro">{$macroAttivita["Nome"]} &nbsp;&nbsp;<span class="dim-mod-canc" data-target="macro-{$macroAttivita["Codice"]}">( <a class="mod-macro" >modifica</a> | <a class="canc-macro">cancella</a> )</span></h1>
+<button class="btn btn-block btn-nuova-attivita" data-target="macro-{$macroAttivita["Codice"]}" data-info="{$macroAttivita["Nome"]}">Nuova attività</button>
+<div id="gruppo-macro-{$macroAttivita["Codice"]}">
     {$listaSchede}
     <div class="clearfix inserimento-scheda"></div>
 </div>

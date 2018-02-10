@@ -11,7 +11,7 @@ if(isAdmin()){
     $nomeMacroattivita = $_POST["nome-macro"];
     $descrizione = $_POST["descrizione-macro"];
     $img = isset($_POST["immagine"]) ? $_POST["immagine"] : NULL;
-	$banner = /*isset($_POST["immagine-banner"]) ? */$_POST["immagine-banner"]/* : NULL*/;
+	$banner = isset($_POST["immagine-banner"]) ? $_POST["immagine-banner"] : NULL;
 
     if(isset($_POST["nuovaMacro"])) {
         $queryControllo = $db->prepare("SELECT Nome FROM Macroattivita WHERE Nome = ?");
@@ -25,7 +25,12 @@ if(isAdmin()){
 
         if ($queryInserimento->execute(array($nomeMacroattivita, $descrizione, $img, $banner))) {
             $db->commit();
-            successoJSON("Nuova macroattività inserita con successo.");
+            //Macroattività inserita, ora serve una select per ottenere il codice
+            $queryCodiceMacro = $db->prepare("SELECT Codice FROM Macroattivita WHERE Nome = ?");
+            $queryCodiceMacro->execute(array($nomeMacroattivita));
+            $codice = $queryCodiceMacro->fetch();
+
+            successoJSON("Nuova macroattività inserita con successo.",array("idMacro"=>$codice["Codice"],"nome"=>$nomeMacroattivita,"descrizione"=>$descrizione,"immagine"=>$img,"banner"=>$banner));
         }
         else {
             $db->rollBack();
