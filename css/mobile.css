@@ -264,14 +264,14 @@ caption{
 
 }
 
-#finestra-macro{
-    max-height: 100%;
+#finestra-macro,#nuova-scheda-attivita{
     overflow-y: auto;
 }
 
-#salva-macro,#annulla-macro {
+#salva-macro,#annulla-macro,#nuova-scheda-attivita input[type="submit"],#annulla-att {
     margin: auto;
 }
-#annulla-macro {
-    margin-top: 0.2em;
+
+#annulla-macro,#annulla-att  {
+    margin-top: 0.4em;
 }
