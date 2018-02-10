@@ -6,6 +6,11 @@ require_once "php/funzioni/funzioni_pagina.php";
 require_once  "php/funzioni/funzioni_attivita.php";
 $activeIndex = 7;
 
+if(!isAdmin()) {
+    paginaErrore("Non hai l'autorizzazione per accedere a questa pagina");
+    return;
+}
+
 if(isset($_POST["confermaPagamento"])) {
     settaPagato($_POST["codicePrenotazione"]);
     return;
@@ -237,7 +242,7 @@ function utentiPiuAttivi(){
     <td>{$counter}</td>
     <td>{$item["Nome"]}</td>
     <td>{$item["Cognome"]}</td>
-    <td class="numero-prenotazioni" data-target="{$item["NomeAttivita"]}">{$item["NumeroPrenotazioni"]}</td>
+    <td class="numero-prenotazioni" data-target="{$item["Nome"]}">{$item["NumeroPrenotazioni"]}</td>
 </tr>
 RIGA;
         $counter = $counter + 1;
