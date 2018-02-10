@@ -10,8 +10,8 @@ $db->beginTransaction();
 if(isAdmin()){
     $nomeMacroattivita = $_POST["nome-macro"];
     $descrizione = $_POST["descrizione-macro"];
-    $img = $_POST["immagine"];
-	$banner = $_POST["immagine-banner"];
+    $img = isset($_POST["immagine"]) ? $_POST["immagine"] : NULL;
+	$banner = /*isset($_POST["immagine-banner"]) ? */$_POST["immagine-banner"]/* : NULL*/;
 
     if(isset($_POST["nuovaMacro"])) {
         $queryControllo = $db->prepare("SELECT Nome FROM Macroattivita WHERE Nome = ?");

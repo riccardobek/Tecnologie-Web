@@ -19,23 +19,33 @@ $(function() {
         if(validaFormModifica("finestra-macro")) {
             if(tipoOperazione == "0"){
                 $.post("php/macroattivita.php", $("#finestra-macro form").serialize() + "&"+"nuovaMacro=1", function (risposta) {
-                    risposta = JSON.parse(risposta);
-                    if (risposta.stato == 1) {
-                        generaAlert('green', "Successo", risposta.messaggio);
+                    try {
+                        risposta = JSON.parse(risposta);
+                        if (risposta.stato == 1) {
+                            generaAlert('green', "Successo", risposta.messaggio);
+                        }
+                        else {
+                            generaAlert('red', "Errore", risposta.messaggio);
+                        }
                     }
-                    else {
-                        generaAlert('red', "Errore", risposta.messaggio);
+                    catch(e) {
+                        generaAlertErroreGenerico();
                     }
                 });
             }
             else{
                 $.post("php/macroattivita.php", $("#finestra-macro form").serialize(), function (risposta) {
-                    risposta = JSON.parse(risposta);
-                    if (risposta.stato == 1) {
-                        generaAlert('green', "Successo", risposta.messaggio);
+                    try {
+                        risposta = JSON.parse(risposta);
+                        if (risposta.stato == 1) {
+                            generaAlert('green', "Successo", risposta.messaggio);
+                        }
+                        else {
+                            generaAlert('red', "Errore", risposta.messaggio);
+                        }
                     }
-                    else {
-                        generaAlert('red', "Errore", risposta.messaggio);
+                    catch(e) {
+                        generaAlertErroreGenerico();
                     }
                 });
             }
@@ -93,43 +103,48 @@ $(function() {
         if(validaFormModifica("nuova-attivita")) {
             var idMacro = $(this).attr('data-macro');
             $.post("php/modifica_attivita.php", $("#nuova-attivita form").serialize()+"&nuovaAttivita=true"+"&"+"idMacro="+idMacro, function (risposta) {
-                risposta = JSON.parse(risposta);
-                if(risposta.stato == 1) {
-                    var nSchedeModulo = ($("#gruppo-macro-"+risposta.idMacro+" .scheda-wrapper").length)%2;
-                    var classe = "";
-                    if(nSchedeModulo == 0)
-                        classe = 'pari';
-                    else
-                        classe = 'dispari';
-                    $.alert( {
-                        boxWidth: calcolaDimensioneDialog(),
-                        useBootstrap: false,
-                        type: 'green',
-                        title: 'Successo',
-                        content: risposta.messaggio,
-                        buttons: {
-                            Ok: {
-                                action: function () {
-                                    $.post("pannello_admin.php",
-                                        $("#nuova-attivita form").serialize()+"&nuovaScheda=1"+"&"+"Classe="+classe+"&"+"Codice="+risposta.CodiceAtt,
-                                        function(ris) {
-                                            $(ris).insertBefore($("#gruppo-macro-"+risposta.idMacro+' '+".inserimento-scheda"));
-                                            togliEventiSchedeAttivita();
-                                            fadeDialogoNuovaAttivita();
-                                            aggiugngiEventiSchedeAttivita();
-                                    });
+                try {
+                    risposta = JSON.parse(risposta);
+                    if (risposta.stato == 1) {
+                        var nSchedeModulo = ($("#gruppo-macro-" + risposta.idMacro + " .scheda-wrapper").length) % 2;
+                        var classe = "";
+                        if (nSchedeModulo == 0)
+                            classe = 'pari';
+                        else
+                            classe = 'dispari';
+                        $.alert({
+                            boxWidth: calcolaDimensioneDialog(),
+                            useBootstrap: false,
+                            type: 'green',
+                            title: 'Successo',
+                            content: risposta.messaggio,
+                            buttons: {
+                                Ok: {
+                                    action: function () {
+                                        $.post("pannello_admin.php",
+                                            $("#nuova-attivita form").serialize() + "&nuovaScheda=1" + "&" + "Classe=" + classe + "&" + "Codice=" + risposta.CodiceAtt,
+                                            function (ris) {
+                                                $(ris).insertBefore($("#gruppo-macro-" + risposta.idMacro + ' ' + ".inserimento-scheda"));
+                                                togliEventiSchedeAttivita();
+                                                fadeDialogoNuovaAttivita();
+                                                aggiugngiEventiSchedeAttivita();
+                                            });
+                                    }
                                 }
                             }
-                        }
-                    });
-                }
-                else {
-                    if(risposta.hasOwnProperty('Tipo')) {
-                        notificaErrore($("#nuova-attivita #nome"),risposta.messaggio);
+                        });
                     }
                     else {
-                        generaAlert('red',"Errore",risposta.messaggio);
+                        if (risposta.hasOwnProperty('Tipo')) {
+                            notificaErrore($("#nuova-attivita #nome"), risposta.messaggio);
+                        }
+                        else {
+                            generaAlert('red', "Errore", risposta.messaggio);
+                        }
                     }
+                }
+                catch(e) {
+                    generaAlertErroreGenerico();
                 }
             });
         }
@@ -175,12 +190,17 @@ $(function() {
                     btnClass: 'btn-blue',
                     action: function () {
                         $.post("php/modifica_dati_utente.php",{IDUtente:target},function (risposta) {
-                            risposta = JSON.parse(risposta);
-                            if(risposta.stato == 1) {
-                                generaAlert('green', 'Successo', risposta.messaggio);
+                            try {
+                                risposta = JSON.parse(risposta);
+                                if (risposta.stato == 1) {
+                                    generaAlert('green', 'Successo', risposta.messaggio);
+                                }
+                                else {
+                                    generaAlert('red', 'Errore', risposta.messaggio);
+                                }
                             }
-                            else{
-                                generaAlert('red', 'Errore', risposta.messaggio);
+                            catch(e) {
+                                generaAlertErroreGenerico();
                             }
                         });
                     }
@@ -237,15 +257,20 @@ $(function() {
         var bottoneCliccato = $(this);
 
         $.post("pannello_admin.php", {confermaPagamento:"1", codicePrenotazione:target}, function (risposta) {
-            risposta = JSON.parse(risposta);
-            if(risposta.stato == 1) {
-                generaAlert('green','Pagamento effettuato',risposta.messaggio);
-                var rigaTabella = bottoneCliccato.parent();
-                bottoneCliccato.remove();
-                rigaTabella.text("Pagamento effettuato");
+            try {
+                risposta = JSON.parse(risposta);
+                if (risposta.stato == 1) {
+                    generaAlert('green', 'Pagamento effettuato', risposta.messaggio);
+                    var rigaTabella = bottoneCliccato.parent();
+                    bottoneCliccato.remove();
+                    rigaTabella.text("Pagamento effettuato");
+                }
+                else {
+                    generaAlert('red', 'Errore', risposta.messaggio);
+                }
             }
-            else{
-                generaAlert('red','Errore',risposta.messaggio);
+            catch(e) {
+                generaAlertErroreGenerico();
             }
         });
     });
@@ -358,13 +383,18 @@ function aggiugngiEventiSchedeAttivita() {
         var target = $(this).attr('data-target');
         if(validaFormModifica(target)) {
             $.post("php/modifica_attivita.php",$("#"+target).find("form").serialize()+"&"+"idAttivita="+target, function(risposta) {
-                risposta = JSON.parse(risposta);
-                if(risposta.stato== 1) {
-                    campiDati[target] = salvaDati(target);
-                    generaAlert('green',"Successo",risposta.messaggio);
+                try {
+                    risposta = JSON.parse(risposta);
+                    if(risposta.stato== 1) {
+                        campiDati[target] = salvaDati(target);
+                        generaAlert('green',"Successo",risposta.messaggio);
+                    }
+                    else {
+                        generaAlert('red',"Errore",risposta.messaggio);
+                    }
                 }
-                else {
-                    generaAlert('red',"Errore",risposta.messaggio);
+                catch(e) {
+                    generaAlertErroreGenerico();
                 }
             });
         }
@@ -394,12 +424,17 @@ function aggiungiEventiMacroAttivita() {
         e.stopPropagation();
         var idMacro = $(this).parent().attr("data-target");
         $.post("pannello_admin.php", {RichiestaMacro: idMacro}, function(macro) {
-            macro = JSON.parse(macro);
-            $("#label-dialog2").text(macro.Nome+" - Modifica");
-            $("#nome-macro").val(macro.Nome);
-            $("#descrizione-macro").val(macro.Descrizione);
-            $("#finestra-macro").show();
-            $("#finestra-macro input[type=submit]").attr("data-fun","1");
+            try {
+                macro = JSON.parse(macro);
+                $("#label-dialog2").text(macro.Nome + " - Modifica");
+                $("#nome-macro").val(macro.Nome);
+                $("#descrizione-macro").val(macro.Descrizione);
+                $("#finestra-macro").show();
+                $("#finestra-macro input[type=submit]").attr("data-fun", "1");
+            }
+            catch(e) {
+                generaAlertErroreGenerico();
+            }
         });
     });
 }

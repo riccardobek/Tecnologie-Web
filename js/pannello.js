@@ -97,9 +97,26 @@ function sistemaSchede(target) {
     var pari = $('#'+target).nextAll(".pari");
     var dispari = $('#'+target).nextAll(".dispari");
 
+    var gruppoSchede = $("#"+target).parent();
+
     $('#'+target).slideUp('Slow', function(){
         $(this).remove();
+
+        if(gruppoSchede.find(".separatore").length > 0 ) {
+            gruppoSchede.parent().find(".separatore").remove();
+
+            var elementiPerRiga = 0;
+            gruppoSchede.children().each(function() {
+                elementiPerRiga++;
+                if(elementiPerRiga == 2) {
+                    $(this).after($("<div class='separatore'></div>"));
+                    elementiPerRiga = 0;
+                }
+            });
+        }
     });
+
+
     dispari.removeClass("dispari").addClass("pari");
     pari.removeClass("pari").addClass("dispari");
 }

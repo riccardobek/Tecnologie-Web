@@ -162,3 +162,7 @@ function generaAlert(colore,titolo,testo) {
         content: testo
     });
 }
+
+function generaAlertErroreGenerico() {
+    generaAlert('red',"Errore","Si è verificato un errore generico. Riprova più tardi.");
+}
