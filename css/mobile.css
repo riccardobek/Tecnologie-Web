@@ -275,3 +275,16 @@ caption{
 #annulla-macro,#annulla-att  {
     margin-top: 0.4em;
 }
+
+.select-rate{
+    margin-left: 3.5em;
+}
+
+.btn.btn-primary.accept{
+    margin-top: 0.3em;
+    margin-left: 2.2em;
+}
+.btn-cancella.cancel{
+    margin-top: 0.3em;
+    margin-left: 1em;
+}
