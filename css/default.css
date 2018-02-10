@@ -728,17 +728,19 @@ h1,h2,h3{
 }*/
 
 .results{
-
-    padding-left: 0.3em;
-    padding-right: 0.3em;
-    padding-top: 0.2em;
-    padding-bottom: 0.2em;
+    color: black;
+    font-size: 315%;
+    font-weight: bolder;
+    text-align: center;
+    padding-top: 2em;
+    padding-bottom: 2em;
     background-color: #F3F3F3;
-    margin: auto;
+    margin-right: 2em;
+    margin-left: 1em;
 
 }
-.length-wrapper > h3{
-    margin: auto;
+.scheda-wrapper > h3{
+    margin-left: 2em;
 }
 .results> h4{
     color: black;
