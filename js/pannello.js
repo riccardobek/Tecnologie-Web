@@ -27,7 +27,7 @@ function stileCellaPagamento(){
         if( $(this).text() === "Non pagato")
             $(this).css("color","#B80000");
         else
-            $(this).css("color","#34ba49");
+            $(this).css("color"," #247F32");
     });
 }
 
@@ -115,8 +115,6 @@ function sistemaSchede(target) {
             });
         }
     });
-
-
     dispari.removeClass("dispari").addClass("pari");
     pari.removeClass("pari").addClass("dispari");
 }
