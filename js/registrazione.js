@@ -21,7 +21,7 @@ $(document).ready(function() {
         }
         else{
             $(".alert.errore").show();
-            $(".errore")
+            $("form .error").first().focus();
         }
     });
 });
