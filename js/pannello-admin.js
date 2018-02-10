@@ -270,25 +270,31 @@ $(function() {
             }
         });
     });
-});
 
-$(".pay").click(function (e){
-    e.preventDefault();
-    e.stopPropagation();
-    var target =  $(this).attr("data-target");
-    $.post("pannello_admin.php", {confermaPagamento:"1", codicePrenotazione:target}, function (risposta) {
-        risposta = JSON.parse(risposta);
-        if(risposta.stato == 1) {
-            generaAlert('green','Pagamento effettuato',risposta.messaggio);
-            var rigaTabella = $(this).parent();
-            $(this).remove();
-            rigaTabella.text("Pagamento effettuato");
-        }
-        else{
-            generaAlert('red','Errore',risposta.messaggio);
-        }
+    $(".pay").click(function (e){
+        e.preventDefault();
+        e.stopPropagation();
+        var target =  $(this).attr("data-target");
+        $.post("pannello_admin.php", {confermaPagamento:"1", codicePrenotazione:target}, function (risposta) {
+            try {
+                risposta = JSON.parse(risposta);
+                if (risposta.stato == 1) {
+                    generaAlert('green', 'Pagamento effettuato', risposta.messaggio);
+                    var rigaTabella = $(this).parent();
+                    $(this).remove();
+                    rigaTabella.text("Pagamento effettuato");
+                }
+                else {
+                    generaAlert('red', 'Errore', risposta.messaggio);
+                }
+            }
+            catch(e) {
+                generaAlertErroreGenerico();
+            }
+        });
     });
 });
+
 
 function eliminaRigaTabella(target) {
     $('#'+target).slideUp('Slow', function () {
