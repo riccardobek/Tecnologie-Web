@@ -160,7 +160,7 @@ function entrateDelMese(){
         $result=$result+($item["Prezzo"]*$item["Posti"]);
     }
     return <<<SCRIVI
- <div class="results"><h4>le entrate del mese sono: {$result} € </h4></div>
+ <div class="results">{$result} € </div>
 SCRIVI;
 
 
@@ -179,7 +179,7 @@ function entratePreviste(){
 
     }
     return <<<SCRIVI
- <div class="results"><h4>le entrate previste per il resto del mese sono: {$result} €</h4></div>
+ <div class="results">{$result} €</div>
 SCRIVI;
 }
 

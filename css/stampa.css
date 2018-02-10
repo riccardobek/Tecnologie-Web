@@ -101,9 +101,12 @@ h1,h2,h3,h4,h5{
     color: black;
 
 }
+#elimina-account,#modifica{
+    display: none;
 
-div#prenotazioni.tabcontent,
-table#storico.tabella > thead,.tabella tr{
+}
+
+.tabcontent, table#storico.tabella > thead,.tabella tr{
     border: none;
 }
 
