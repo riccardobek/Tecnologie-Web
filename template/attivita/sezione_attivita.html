@@ -5,7 +5,7 @@
         <span class="price-tag">&euro; [#PREZZO-SOTTOATTIVITA] (a persona)</span>
     </p>
 
-    <div role="alertdialog" class="form-prenotazione-container">
+    <div class="form-prenotazione-container">
         <form action="conferma_prenotazione.php" method="POST">
             <input type="hidden" name="attivita" value="[#CODICE-SOTTOATTIVITA]">
             <input type="hidden" name="prezzo" class="prezzo-unitario" value="[#PREZZO-SOTTOATTIVITA]">
@@ -18,7 +18,7 @@
                 <label for="posti[#CODICE-SOTTOATTIVITA]">Numero posti: </label>
                 <input type="number" name="posti" id="posti[#CODICE-SOTTOATTIVITA]" class="posti" min="0">
             </div>
-            <div class="field-container" aria-live="assertive">
+            <div class="field-container">
                 Totale: &euro; <span class="totale">0</span>
             </div>
             <input type="submit" value="prenota" class="btn btn-primary btn-inline act-input">

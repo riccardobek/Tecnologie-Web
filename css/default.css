@@ -67,7 +67,7 @@ p,ul {
 }
 
 a {
- color: #16BFFF;
+ color: #85DEFF;
 }
 
 a:visited{
@@ -138,7 +138,6 @@ input:not([type=submit]):not([type=button]):focus {
 .btn.btn-primary {
     color: white;
     background-color: #0067c8;
-
     border-bottom-color: #0000c6;
 }
 
@@ -809,7 +808,8 @@ h1,h2,h3{
 }
 
 .pagamento {
-    font-weight: bold;
+    font-weight: 900;
+    font-size: 1.1em;
 }
 
 

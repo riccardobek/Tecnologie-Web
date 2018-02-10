@@ -21,7 +21,7 @@
 
 [#INTESTAZIONE]
 
-<div id="content">
+<div id="content" role="main">
     <noscript >
         <div class="alert errore" role="alert" style="display: block">Per favore abilita <span lang="en">javascript</span></div>
     </noscript>
@@ -73,7 +73,7 @@
                     <h2 id="btn-wrapper" ><span id="modifica" class="button">Modifica dati</span></h2>
                     <div class="clearfix"></div>
                 </div>
-                <div class="alert errore" aria-live="assertive" role="alert"><p class="intestazione-alert">Errore:</p></div>
+                <div class="alert errore" aria-live="assertive" role="alert" aria-atomic="true"><p class="intestazione-alert">Errore:</p></div>
                 <form action="php/modifica_dati_utente.php" method="POST">
                     <div class="field-container">
                         <label for="username" >Nome utente: </label>

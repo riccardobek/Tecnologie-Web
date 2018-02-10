@@ -27,7 +27,7 @@ function stileCellaPagamento(){
         if( $(this).text() === "Non pagato")
             $(this).css("color","#B80000");
         else
-            $(this).css("color"," #247F32");
+            $(this).css("color","#0F6600");
     });
 }
 

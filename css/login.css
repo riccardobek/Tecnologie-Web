@@ -77,11 +77,11 @@ form .field-container:not(:first-child) label {
 }
 
 a{
-    color: #00749E;
+    color: #00529E;
 }
 
 a:visited{
-    color: #0020BB;
+    color: #3DA1FF;
 }
 
 input:focus{
