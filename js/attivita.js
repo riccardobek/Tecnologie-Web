@@ -5,10 +5,11 @@ $(function () {
         $(this).prev().data("espanso",false);
         $(this).prev().prev().slideUp();
         $(this).hide();
+        $(this).prev().show();
     });
 
     $(".attivita > .btn.btn-primary").on("click",function(event) {
-
+        $(this).hide();
         var formContainer = $(event.target).parent().children(".form-prenotazione-container");
 
 
