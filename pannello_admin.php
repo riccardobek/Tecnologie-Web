@@ -4,6 +4,8 @@ define("PERCORSO_RELATIVO","");
 require_once "php/database.php";
 require_once "php/funzioni/funzioni_pagina.php";
 require_once  "php/funzioni/funzioni_attivita.php";
+require_once  "php/funzioni/funzioni_json.php";
+
 $activeIndex = 7;
 
 if(isset($_POST["confermaPagamento"])) {
@@ -221,8 +223,7 @@ RIGA;
 
 }
 
-function utentiPiuAttivi(){
-
+function utentiPiuAttivi() {
     global $db;
 
     $query=$db->prepare("SELECT Utenti.Nome AS Nome, Utenti.Cognome AS Cognome, COUNT(Prenotazioni.Codice) AS NumeroPrenotazioni FROM Prenotazioni, Utenti WHERE Prenotazioni.IDUtente = Utenti.ID AND Utenti.Tipo!='Admin' GROUP BY Nome, Cognome ORDER BY NumeroPrenotazioni DESC LIMIT 5");
@@ -237,20 +238,17 @@ function utentiPiuAttivi(){
     <td>{$counter}</td>
     <td>{$item["Nome"]}</td>
     <td>{$item["Cognome"]}</td>
-    <td class="numero-prenotazioni" data-target="{$item["NomeAttivita"]}">{$item["NumeroPrenotazioni"]}</td>
+    <td class="numero-prenotazioni" data-target="{$item["Nome"]}">{$item["NumeroPrenotazioni"]}</td>
 </tr>
 RIGA;
         $counter = $counter + 1;
     }
 
     return $row;
-
-
-
 }
 
 
-function prenotazioniAttive(){
+function prenotazioniAttive() {
     global $db;
 
     $prenotazioni=$db->prepare("SELECT Prenotazioni.Codice AS CodicePrenotazione, Utenti.Username AS Username, Attivita.Nome AS Attivita, Prenotazioni.PostiPrenotati AS Posti, Prenotazioni.Giorno AS Giorno, Prenotazioni.Stato AS Stato, Prenotazioni.Pagamento AS Pagato FROM Utenti, Attivita,Prenotazioni WHERE Utenti.ID=Prenotazioni.IDUtente AND Prenotazioni.IDAttivita=Attivita.Codice AND Giorno>=(SELECT CURDATE()) AND Utenti.Tipo<>'Admin' AND Prenotazioni.Stato<>'Cancellata' ORDER BY Giorno, Attivita, Username ASC");
@@ -258,35 +256,35 @@ function prenotazioniAttive(){
     $arrayPrenotazioni=$prenotazioni->fetchAll();
     impostaTestoPagamento($arrayPrenotazioni);
     $row="";
-    foreach ($arrayPrenotazioni as $riga){
-    if($riga["Pagato"]=="Non pagato") {
-                $row .= <<<RIGA
-        <tr id="{$riga["CodicePrenotazione"]}">
-             <td>{$riga["Username"]}</td>
-             <td>{$riga["Attivita"]}</td>
-             <td>{$riga["Posti"]}</td>
-             <td>{$riga["Giorno"]}</td>
-             <td>{$riga["Stato"]}</td>
-             <td>{$riga["Pagato"]}</td>
-             <td><button data-target="{$riga["CodicePrenotazione"]}" class="btn btn-primary pay">Conferma Pagamento</button></td>
-             <td><button data-target="{$riga["CodicePrenotazione"]}" class="btn-cancella">&#x1F5D1;</button></td>
-        </tr>
+    foreach ($arrayPrenotazioni as $riga) {
+        if($riga["Pagato"]=="Non pagato") {
+                    $row .= <<<RIGA
+            <tr id="{$riga["CodicePrenotazione"]}">
+                 <td>{$riga["Username"]}</td>
+                 <td>{$riga["Attivita"]}</td>
+                 <td>{$riga["Posti"]}</td>
+                 <td>{$riga["Giorno"]}</td>
+                 <td>{$riga["Stato"]}</td>
+                 <td>{$riga["Pagato"]}</td>
+                 <td><button data-target="{$riga["CodicePrenotazione"]}" class="btn btn-primary pay">Conferma Pagamento</button></td>
+                 <td><button data-target="{$riga["CodicePrenotazione"]}" class="btn-cancella">&#x1F5D1;</button></td>
+            </tr>
 RIGA;
-     }
-     else{
-         $row .= <<<RIGA
-        <tr id="{$riga["CodicePrenotazione"]}">
-             <td>{$riga["Username"]}</td>
-             <td>{$riga["Attivita"]}</td>
-             <td>{$riga["Posti"]}</td>
-             <td>{$riga["Giorno"]}</td>
-             <td>{$riga["Stato"]}</td>
-             <td>{$riga["Pagato"]}</td>
-             <td>Pagamento effettuato</td>
-             <td><button data-target="{$riga["CodicePrenotazione"]}" class="btn-cancella">&#x1F5D1;</button></td>
-        </tr>
+         }
+         else{
+             $row .= <<<RIGA
+            <tr id="{$riga["CodicePrenotazione"]}">
+                 <td>{$riga["Username"]}</td>
+                 <td>{$riga["Attivita"]}</td>
+                 <td>{$riga["Posti"]}</td>
+                 <td>{$riga["Giorno"]}</td>
+                 <td>{$riga["Stato"]}</td>
+                 <td>{$riga["Pagato"]}</td>
+                 <td>Pagamento effettuato</td>
+                 <td><button data-target="{$riga["CodicePrenotazione"]}" class="btn-cancella">&#x1F5D1;</button></td>
+            </tr>
 RIGA;
-        }
+            }
     }
     return $row;
 }

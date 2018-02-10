@@ -230,25 +230,28 @@ $(function() {
 
     new Chartist.Pie('.ct-chart', data);
     */
-});
+    $(".pay").click(function (e){
+        e.preventDefault();
+        e.stopPropagation();
+        var target =  $(this).attr("data-target");
+        var bottoneCliccato = $(this);
 
-$(".pay").click(function (e){
-    e.preventDefault();
-    e.stopPropagation();
-    var target =  $(this).attr("data-target");
-    $.post("pannello_admin.php", {confermaPagamento:"1", codicePrenotazione:target}, function (risposta) {
-        risposta = JSON.parse(risposta);
-        if(risposta.stato == 1) {
-            generaAlert('green','Pagamento effettuato',risposta.messaggio);
-            var rigaTabella = $(this).parent();
-            $(this).remove();
-            rigaTabella.text("Pagamento effettuato");
-        }
-        else{
-            generaAlert('red','Errore',risposta.messaggio);
-        }
+        $.post("pannello_admin.php", {confermaPagamento:"1", codicePrenotazione:target}, function (risposta) {
+            risposta = JSON.parse(risposta);
+            if(risposta.stato == 1) {
+                generaAlert('green','Pagamento effettuato',risposta.messaggio);
+                var rigaTabella = bottoneCliccato.parent();
+                bottoneCliccato.remove();
+                rigaTabella.text("Pagamento effettuato");
+            }
+            else{
+                generaAlert('red','Errore',risposta.messaggio);
+            }
+        });
     });
 });
+
+
 
 function eliminaRigaTabella(target) {
     $('#'+target).slideUp('Slow', function () {
