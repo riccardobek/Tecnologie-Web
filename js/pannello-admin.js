@@ -6,6 +6,7 @@ $(function() {
     $("#crea-macro").on("click", function() {
         $("#label-dialog2").text("Nuova macroattività");
         $("#finestra-macro").show();
+        bloccaScroll();
         $("#finestra-macro input[type=submit]").attr("data-fun","0");
 
     });
@@ -45,6 +46,7 @@ $(function() {
     $("#annulla-macro").on("click", function(e){
         e.preventDefault();
         e.stopPropagation();
+        sbloccaScroll();
         $("#label-dialog2").text("Nuova macroattività");
         $("#finestra-macro").fadeOut("Slow",function(){
             pulisciErrori($("#finestra-macro").find(".alert.errore"),$("#finestra-macro").find("form"));
@@ -65,6 +67,7 @@ $(function() {
         $("#nuova-attivita h2").prepend("<span>"+titoloMacro+" - </span>");
         $("#nuova-attivita input[type=submit]").attr("data-macro",idMacro);
         $("#nuova-scheda-attivita").show();
+        bloccaScroll();
         $("#nome").focus();
     });
 
@@ -74,6 +77,7 @@ $(function() {
         e.stopPropagation();
         pulisciErrori($("#nuova-attivita").find(".alert.errore"),$("#nuova-attivita").find("form"));
         fadeDialogoNuovaAttivita();
+        sbloccaScroll();
     });
 
     //aggiungo listener alle schede attività
@@ -302,7 +306,7 @@ function aggiugngiEventiSchedeAttivita() {
 
     //array associativo per il vari campi dati delle varie schede
     var campiDati = {};
-    //Quando si preme il tasto modifica i campi di testo vengono abilitati e si mostra il bottone di annulamento delle modifiche
+    //Quando si preme il tasto modifica i campi di testo vengono abilitati e si mostra il bottone di annullamento delle modifiche
     $(".schede .modifica").on("click", function(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -328,6 +332,7 @@ function aggiugngiEventiSchedeAttivita() {
         $(this).hide();
         $(this).prevAll(".salva-dati").hide();
         $(this).prev().show();
+
         //elimino le notifiche di errore
         var formPadre = $(this).parent().parent();
         var divAlert = formPadre.parent().find(".alert.errore");

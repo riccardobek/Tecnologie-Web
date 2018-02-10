@@ -954,3 +954,7 @@ h1,h2,h3{
 .btn-cancella.cancel{
     margin-top: 0.5em;
 }
+
+#finestra-macro,#nuova-scheda-attivita{
+    overflow-y: auto;
+}
