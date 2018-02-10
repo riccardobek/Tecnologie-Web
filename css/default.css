@@ -123,10 +123,12 @@ input:not([type=submit]):not([type=button]):focus {
 }
 
 .btn:hover {
-    background: #808080;
+    background: #595959;
+    color:white;
 }
 .btn:focus {
-    background: #808080;
+    background: #595959;
+    color:white;
 }
 
 .btn:active {
@@ -262,7 +264,7 @@ MENU
     font-style: normal;
     margin-left: 1em;
     margin-top: -0.3em;
-    color: #0067c8;
+    color: #00529e;
     padding: 0.4em;
 }
 
@@ -377,11 +379,11 @@ div.even , div.odd{
     right: 0;
     bottom: 0.1em;
     margin: 0;
-    color: #F3F3F3;
+    color: white;
     text-align: center;
     font-weight: 500;
-    background: rgba(59, 59, 59, 0.6); /* browsers */
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#4c3b3b3b', endColorstr='#4c3b3b3b'); /* IE */
+    background: #595959; /* browsers */
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#4c595959', endColorstr='#4c595959'); /* IE */
 }
 
 .img-wrapper{

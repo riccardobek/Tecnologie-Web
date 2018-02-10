@@ -15,13 +15,13 @@
     <body>
 
     [#INTESTAZIONE]
-    <div id="content">
+    <div id="content" role="form">
         <div class="form">
             <form method="POST" action="php/do_login.php">
                 <h1>Accedi</h1>
 
-                <div class="alert errore" aria-live="assertive" role="alert">Si è verificato un errore: <span lang="en">username</span> o <span lang="en">password</span> non corretti</div>
-                <div class="alert successo" aria-live="assertive" role="alert"><span lang="en">Login</span> effettuato con successo. <br>Reindirizzamento in corso (se non funziona cliccare <a href="[#HTTP_REFERER]">qua</a>).</div>
+                <div class="alert errore" aria-live="assertive" role="alert" aria-atomic="true">Si è verificato un errore: <span lang="en">username</span> o <span lang="en">password</span> non corretti</div>
+                <div class="alert successo" aria-live="assertive" role="alert" aria-atomic="true"><span lang="en">Login</span> effettuato con successo. <br>Reindirizzamento in corso (se non funziona cliccare <a href="[#HTTP_REFERER]">qua</a>).</div>
 
                 <div class="field-container">
                     <label for="username">Nome utente: </label>
