@@ -11,27 +11,8 @@ if(isAdmin()){
     //richiesta di eliminazione di un'attivita
     if(isset($_POST["eliminaAttivita"])) {
         $idAttivita = abs(filter_var($_POST["idAttivita"],FILTER_SANITIZE_NUMBER_INT));
-        $db->beginTransaction();
-        $queryDeletePrenotazioni = $db->prepare("DELETE FROM Prenotazioni WHERE IDAttivita = ?");
-        if($queryDeletePrenotazioni->execute(array($idAttivita))) {
-            $queryDeleteAttivita =  $db->prepare("DELETE FROM Attivita WHERE Codice = ?");
-            if($queryDeleteAttivita->execute(array($idAttivita))) {
-                $db->commit();
-                successoJSON("Attività eliminata con successo.");
-                return;
-            }
-            $db->rollBack();
-            erroreJSON("Non è stato possibile eliminare l'attività.");
-            return;
-        }
-        else{
-            $db->rollBack();
-            erroreJSON("Non è stato possibile eliminare l'attività.");
-            return;
-        }
+        eliminaAttivita($idAttivita);
     }
-
-
 
     $nomeAttivita = filter_var($_POST["nome"],FILTER_SANITIZE_STRING);
     $descrizione = filter_var($_POST["descrizione"], FILTER_SANITIZE_STRING);

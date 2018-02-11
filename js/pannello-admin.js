@@ -40,7 +40,9 @@ $(function() {
                             $.post("pannello_admin.php", form, function(ris) {
                                 togliEventiMacroAttivita();
                                 $("#act-manager").append(ris);
+                                sbloccaScroll();
                                 aggiungiEventiMacroAttivita();
+                                $("#finestra-macro form")[0].reset();
                             });
                         }
                         else {
@@ -286,8 +288,6 @@ function aggiugngiEventiSchedeAttivita() {
                                     generaAlert('green','Successo', risposta.messaggio);
                                     //al successo dell'eliminazione rimuovo la scheda
                                     sistemaSchede(idScheda);
-                                    console.log("[data-attivita='"+idScheda+"']");
-
                                     $("[data-attivita='"+idScheda.replace("attivita-","")+"']").remove();
                                 }
                                 else {
@@ -304,8 +304,6 @@ function aggiugngiEventiSchedeAttivita() {
                 Annulla: {}
             }
         });
-
-
     });
 
     //array associativo per il vari campi dati delle varie schede
@@ -493,6 +491,9 @@ function aggiungiEventiMacroAttivita() {
         }
     });
 
+    /**
+     * Modifica dei dati di una macroattività
+     */
     $(".mod-macro").on("click", function(e){
         e.preventDefault();
         e.stopPropagation();
@@ -512,6 +513,56 @@ function aggiungiEventiMacroAttivita() {
             }
         });
     });
+
+    /**
+     * listener per il pulsante elimina delle macroattività
+     */
+
+    $(".canc-macro").on("click",function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        var idMacro = $(this).parent().attr("data-target");
+        var padreBottone = $(this).parent().parent();
+
+        $.confirm({
+            boxWidth: calcolaDimensioneDialog(),
+            useBootstrap: false,
+            title: 'Conferma',
+            content: "Procedere con l'eliminazione della macroattività? Tutte le attività relative ad essa verrannò eliminate e conseguentemente verranno eliminate le prenotazioni di queste ultime  ",
+            buttons: {
+                Procedi: {
+                    btnClass: 'btn-red',
+                    action: function () {
+                        $.post("php/macroattivita.php",{idMacro:idMacro, eliminaMacro:1}, function(risposta){
+                            try{
+                                risposta = JSON.parse(risposta);
+                                if(risposta.stato == "1"){
+                                    generaAlert('green',"Successo",risposta.messaggio);
+                                    var listaAttivita = $("#gruppo-"+idMacro).find("div.schede-attivita");
+                                    listaAttivita.each(function () {
+                                        $("[data-attivita='"+$(this).attr("id").replace("attivita-","")+"']").remove();
+                                    });
+                                    $("#gruppo-"+idMacro).remove();
+                                    padreBottone.next().remove();
+                                    padreBottone.remove();
+                                }
+                                else{
+                                    generaAlert('red',"Errore",risposta.messaggio);
+                                }
+                            }
+                            catch(e) {
+                                console.log(e);
+                                generaAlertErroreGenerico();
+                            }
+                        });
+                    }
+                },
+                Annulla: {}
+            }
+        });
+    });
+
+
 }
 
 function togliEventiMacroAttivita() {
@@ -519,6 +570,7 @@ function togliEventiMacroAttivita() {
     $("#nuova-attivita button").off("click");
     $("#nuova-attivita input[type=submit]").off("click");
     $(".mod-macro").off("click");
+    $(".canc-macro").off("click");
 }
 //blocca lo scroll se premo il tasto crea nuova macroattività
 function bloccaScroll(){

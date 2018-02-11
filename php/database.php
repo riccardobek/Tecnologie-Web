@@ -129,4 +129,36 @@ function getNumeroPostiDisponibili($data) {
 
     return $capienzaTotale - intval($postiPrenotati->fetch()["PostiOccupati"]);
 }
+
+/**
+ * La funzione per eliminare l'attività elimina anche le prenotazioni relative a quell'attività
+ * @param $idAttivita ID dell'attività da eliminare
+ */
+function eliminaAttivita($idAttivita,$commit = true) {
+    global $db;
+    $queryDeletePrenotazioni = $db->prepare("DELETE FROM Prenotazioni WHERE IDAttivita = ?");
+    if($queryDeletePrenotazioni->execute(array($idAttivita))) {
+        $queryDeleteAttivita =  $db->prepare("DELETE FROM Attivita WHERE Codice = ?");
+        if($queryDeleteAttivita->execute(array($idAttivita))) {
+            if($commit) {
+                $db->commit();
+                successoJSON("Attività eliminata con successo.");
+            }
+
+            return true;
+        }
+        $db->rollBack();
+        if($commit)
+            erroreJSON("Non è stato possibile eliminare l'attività.");
+
+        return false;
+    }
+    else{
+        $db->rollBack();
+        if($commit)
+            erroreJSON("Non è stato possibile eliminare l'attività.");
+
+        return false;
+    }
+}
 ?>

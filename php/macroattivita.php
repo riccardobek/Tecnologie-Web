@@ -7,7 +7,36 @@ require_once "funzioni/funzioni_sicurezza.php";
 
 $db->beginTransaction();
 
-if(isAdmin()){
+if(isAdmin()) {
+    if(isset($_POST["eliminaMacro"])) {
+        $idMacro = abs(filter_var($_POST["idMacro"],FILTER_SANITIZE_NUMBER_INT));
+
+        $listaAttivita = getAttivita($idMacro);
+        $errore = false;
+        foreach ($listaAttivita as $attivita) {
+            if(!(eliminaAttivita($attivita["Codice"],false))) {
+                $errore = true;
+                break;
+            }
+        }
+        if($errore){
+            $db->rollBack();
+            erroreJSON("Errore durante l'eliminazione della macroattività.");
+            return;
+        }
+        $queryDeleteMacro = $db->prepare("DELETE FROM Macroattivita WHERE Codice = ?");
+        if($queryDeleteMacro->execute(array($idMacro))) {
+            $db->commit();
+            successoJSON("Macroattività eliminata con successo.");
+            return;
+        }
+        else{
+            $db->rollBack();
+            erroreJSON("Errore durante l'eliminazione della macroattività.");
+            return;
+        }
+    }
+
     $nomeMacroattivita = filter_var($_POST["nome-macro"], FILTER_SANITIZE_STRING);
     $descrizione = filter_var($_POST["descrizione-macro"], FILTER_SANITIZE_STRING);
     $img = isset($_POST["immagine"]) ? $_POST["immagine"] : NULL;
