@@ -36,94 +36,71 @@ $(function() {
 
     //Scheda Account
     var datiForm = salvaDatiForm();
+    var divErroreDati = $("#dati-utente").prev(".alert.errore");
+    var divErrorePwd = $("#mod-pwd-form").prev(".alert.errore");
+    $("input[type=text]").attr('disabled','disabled');
 
-    $("input[type=text], input[type=password]").attr('disabled','disabled');
-
-    $(".mostra-modifica, .mostra-modifica-password").hide();
+    $(".mostra-modifica").hide();
 
     $("#modifica").on("click", function () {
         $(".mostra-modifica").slideDown(200);
-        $(":text, :password").not('#username').removeAttr('disabled');
+        $(":text").not('#username').removeAttr('disabled');
+        $(this).hide();
     });
 
     //cambio password
     var labelPassword = $("label[for='vecchia-password']");
     var testoModificaPwd = "Modifica password:";
 
-    $("#vecchia-password").on("focus", function () {
-        $("#modifica").hide();
-
-        $(labelPassword).text("Password corrente: ");
-        //se ho generato in precedenza lo span di successo lo elimino, se non c'è non succede nulla
-        $('#successo').remove();
-        $(".mostra-modifica-password").show();
-        //nascondo il tasto modifica alla fine del form per evitare confusione
-        $(".mostra-modifica").hide();
-    });
-
     $("#bottone-modifica-password").on("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
-        pulisciErrori($(".alert.errore"), $("form"));
+        pulisciErrori(divErrorePwd, $("#mod-pwd-form"));
         //controllo se le password combaciano
-       //$(".mostra-modifica").show();
-        if(validaCampiCambioPwd()) {
+        if(validaCampiCambioPwd(divErrorePwd)) {
             //le password vanno bene faccio un richiesta di modifica della pwd
             $.post("php/modifica_dati_utente.php", {VecchiaPwd: $("#vecchia-password").val(), NuovaPwd: $("#password").val()}, function (risposta) {
                 try {
                     risposta = JSON.parse(risposta);
                     if(risposta.stato == 1) {
-                        $(labelPassword).text(testoModificaPwd);
-                        $(".mostra-modifica-password").hide();
-                        //se ho generato in precedenza lo span di successo lo elimino, se non c'è non succede nulla
-                        $('#successo').remove();
-                        $("#vecchia-password").parent().append("<span class='successo'>"+risposta.messaggio+"</span>");
+                        generaAlert('green',"Successo",risposta.messaggio);
                     }
                     else{
-                        notificaErrore($("#vecchia-password"), risposta.messaggio, $(".alert.errore"), $("form"));
+                        notificaErrore($("#vecchia-password"), risposta.messaggio, divErrorePwd, $("#mod-pwd-form"));
                     }
                 }
                 catch(e) {
                     generaAlertErroreGenerico();
                 }
-
             });
         }
     });
 
+    //annulla inserimento password, resetta il form
     $("#annulla-modifica-pwd").on("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
-        $(".mostra-modifica-password").hide(function () {
-            //se ho generato in precedenza lo span di successo lo elimino, se non c'è non succede nulla
-            $("#modifica").show();
-            $('#successo').remove();
-            pulisciErrori($(".alert.errore"), $("form"));
-            $(labelPassword).text(testoModificaPwd);
-            $("input[type=password]").val('');
-            $(".mostra-modifica").show();
-        });
+        $("#mod-pwd-form")[0].reset();
     });
-
 
 
     //Modifica dati account
     $("#invio-dati").on("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
-        pulisciErrori($(".alert.errore"), $("form"));
+        pulisciErrori(divErroreDati, $("#dati-utente"));
 
         if(validaFormUtente(false)) {
-            $.post("php/modifica_dati_utente.php",$("form").serialize(),function(risposta) {
+            $.post("php/modifica_dati_utente.php",$("#dati-utente").serialize(),function(risposta) {
                 try{
                     risposta = JSON.parse(risposta);
                     if(risposta.stato == 1){
                         generaAlert('green','Successo',risposta.messaggio);
                         datiForm = salvaDatiForm();
+                        $("#modifica").show();
                     }
                     else{
-
-                        notificaErrore($("#email"),risposta.messaggio);
+                        notificaErrore($("#email"),risposta.messaggio,divErroreDati, $("#dati-utente"));
                     }
                 }
                 catch(e) {
@@ -137,11 +114,12 @@ $(function() {
     $("#annulla").on("click",function (e) {
         e.preventDefault();
         e.stopPropagation();
-        $(":text, :password").attr('disabled','disabled');
+        $(":text").attr('disabled','disabled');
         ripristinaDatiInizialiForm(datiForm);
-        pulisciErrori($(".alert.errore"),$("form"));
+        pulisciErrori(divErroreDati,$("#dati-utente"));
         $(".mostra-modifica").slideUp(200, function () {
             $(this).hide();
+            $("#modifica").show();
         });
     });
 
@@ -205,7 +183,7 @@ function rispostaEliminiazionePrenotazione(target) {
     sistemaSchede(target);
 }
 
-function validaCampiCambioPwd() {
+function validaCampiCambioPwd(divErrore) {
     var campiValidi = true;
 
     var vecchiaPwd = $("#vecchia-password");
@@ -213,8 +191,7 @@ function validaCampiCambioPwd() {
     var password2 = $("#password2");
 
     if(vecchiaPwd.val().trim().length === 0) {
-        console.log("this");
-        notificaErrore(vecchiaPwd, "Inserire la <span lang='en'>password</span> corrente", $(".alert.errore"), $("form"));
+        notificaErrore(vecchiaPwd, "Inserire la <span lang='en'>password</span> corrente", divErrore, $("#mod-pwd-form"));
         campiValidi = false;
     }
     else {
@@ -250,9 +227,8 @@ function stampaStorico() {
     });
 }
 
-function controlloBottone() {
+function controlloSchede() {
     if($(".scheda-wrapper").length==0){
-        $("#stampa-schede").hide();
         $("<h2>Non ci sono prenotazioni attive</h2>").insertAfter($("#prenotazioni h1"));
     }
 
