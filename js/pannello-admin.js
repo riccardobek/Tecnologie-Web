@@ -162,6 +162,22 @@ $(function() {
     //Convalida prenotazione
     $("#scheda-QR").on("click", function(){
         $("#lettoreQR").show();
+        var scanner = new Instascan.Scanner({ video: $('#videoQR')[0] });
+        scanner.addListener('scan', function (content) {
+            $("#testoQR").val(content);
+        });
+        Instascan.Camera.getCameras().then(function (cameras) {
+            if (cameras.length > 0) {
+                scanner.start(cameras[0]);
+            } else {
+                //console.error('No cameras found.');
+                //Mostro errore nessuna camera trovata
+            }
+        }).catch(function (e) {
+            //Non supportato
+            console.error(e);
+        });
+
         bloccaScroll();
     });
 
@@ -170,6 +186,7 @@ $(function() {
         e.stopPropagation();
         $("#lettoreQR").fadeOut("Slow", function(){
             //pulisciErrori();
+
             sbloccaScroll();
         });
     });
