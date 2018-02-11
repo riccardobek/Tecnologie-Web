@@ -104,6 +104,47 @@ function getDettagliPrenotazione($codicePrenotazione) {
     return $query->fetch();
 }
 
+/**
+ * Funzione che convalida la prenotazione passata come parametro
+ * @param $codicePrenotazione il codice prenotazione nel formato contenuto nel qr
+ */
+function convalidaPrenotazione($codicePrenotazione) {
+    global $db;
+
+    try {
+        $partiCodicePrenotazione = explode("-",$codicePrenotazione);
+        if(count($partiCodicePrenotazione) != 3) {
+            throw new Exception("Codice prenotazione non valido");
+        }
+        /*
+         * Il codice prenotazione è formato da 3 parti:
+         * 1) La stringa "pr"
+         * 2) L'id della prenotazione
+         * 3) L'id dell'utente che ha compiuto quella prenotazione (per far si che uno non falsifichi il codice attribuendosi
+         * prenotazioni non sue
+         */
+        $prenotazione = getDettagliPrenotazione($partiCodicePrenotazione[1]);
+        if(!$prenotazione)
+            throw new Exception("Prenotazione non trovata");
+
+        if(intval($prenotazione["IDUtente"]) != intval($partiCodicePrenotazione[2]))
+            throw new Exception("Prenotazione non corrispondente all'ID utente segnato");
+
+        $db->beginTransaction();
+        $updateQ = $db->prepare("UPDATE Prenotazioni SET Stato = 'Confermata' WHERE Codice = ?");
+        if($updateQ->execute(array($partiCodicePrenotazione[1]))) {
+            $db->commit();
+            successoJSON("Prenotazione convalidata con successo");
+            return;
+        }
+        $db->rollBack();
+        throw new Exception("Errore nell'update");
+    }
+    catch(Exception $e) {
+        erroreJSON("Codice prenotazione non valido");
+    }
+}
+
 
 define("POSTI_DISPONIBILI_DEFAULT",50);
 

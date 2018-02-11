@@ -1,5 +1,5 @@
 var campiDati = {};
-
+var scanner = null;
 $(function() {
 
     //------SEZIONE GESTISCI ATTIVITA'--------
@@ -162,23 +162,51 @@ $(function() {
     //Convalida prenotazione
     $("#scheda-QR").on("click", function(){
         $("#lettoreQR").show();
-        var scanner = new Instascan.Scanner({ video: $('#videoQR')[0] });
+        scanner = new Instascan.Scanner({
+            video: $('#videoQR')[0],
+            backgroundScan: false
+        });
         scanner.addListener('scan', function (content) {
-            $("#testoQR").val(content);
-        });
-        Instascan.Camera.getCameras().then(function (cameras) {
-            if (cameras.length > 0) {
-                scanner.start(cameras[0]);
-            } else {
-                //console.error('No cameras found.');
-                //Mostro errore nessuna camera trovata
+            if(content.match("^pr-")) {
+                $("#testoQR").val(content);
+                //Visto che ho scansionato un QR apparentemente valido, provo subito la convalida senza che l'utente debba
+                //cliccare il tasto "conferma"
+                convalidaPrenotazione($("#testoQR").val());
             }
-        }).catch(function (e) {
-            //Non supportato
-            console.error(e);
+            else
+                generaAlert('red', "Errore", "Codice QR inquadrato non inerente ad una prenotazione.");
         });
+        try {
+            Instascan.Camera.getCameras().then(function (cameras) {
+                if (cameras.length > 0) {
 
+                    scanner.start(cameras[0]).catch(function(e) {
+                        generaAlert('red', "Errore", "La lettura dei codici QR via HTTP è supportata solo da Firefox o Edge. Assicurati di avere un browser compatibile o usa HTTPS per abilitare il supporto anche su Chrome");
+                    });
+                } else {
+                    generaAlert('red', "Errore", "Nessuna fotocamera trovata. La lettura dei codici QR verrà quindi disabilitata");
+                    //Mostro errore nessuna camera trovata
+                }
+            }).catch(function(e) {
+                generaAlert('red', "Errore", "Errore nell'inizializzazione del lettore QR. La lettura dei codici QR non sarà quindi possibile");
+            });
+        }
+        catch(e) {
+            generaAlert('red', "Errore", "Errore nell'inizializzazione del lettore QR. La lettura dei codici QR non sarà quindi possibile");
+        }
         bloccaScroll();
+    });
+
+    $("#convalidaQR").on("submit",function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if(!$("#testoQR").val().match("^pr-")) {
+            generaAlert('red', "Errore", "Codice prenotazione inserito non valido");
+        }
+        else {
+            convalidaPrenotazione($("#testoQR").val());
+        }
     });
 
     $("#annulla-QR").on("click", function(e){
@@ -186,7 +214,7 @@ $(function() {
         e.stopPropagation();
         $("#lettoreQR").fadeOut("Slow", function(){
             //pulisciErrori();
-
+            scanner.stop();
             sbloccaScroll();
         });
     });
@@ -596,5 +624,35 @@ function bloccaScroll(){
 }
 //sblocca lo scroll se premo annulla
 function sbloccaScroll(){
-    $("body").css({"overflow":"scroll"});
+    $("body").css({"overflow-y":"scroll"});
+}
+
+/**
+ * Funzione che convalida una prenotazione
+ * @param codicePrenotazione il codice della prenotazione da convalidare, nel formato in cui è scritto nel pdf (e nel QR)
+ */
+function convalidaPrenotazione(codicePrenotazione) {
+    $.post("pannello_admin.php", {
+        convalidaPrenotazione: true,
+        prenotazione: codicePrenotazione
+    }, function(responseText) {
+        try {
+            var rispostaJSON = JSON.parse(responseText);
+            if(rispostaJSON.stato == 1) {
+                generaAlert('green', "Successo", rispostaJSON.messaggio);
+                //Se sono arrivato qua significa che il codice della prenotazione è valido, quindi è nel formato che mi
+                //aspetto (grazie ai controlli server-side)
+                $("tr#"+(codicePrenotazione.split("-"))[1]+" > td.stato").text("Confermata");
+
+                $("form#convalidaQR")[0].reset();
+            }
+            else {
+                generaAlert('red',"Errore",rispostaJSON.messaggio);
+            }
+
+        }
+        catch(e) {
+            generaAlertErroreGenerico();
+        }
+    });
 }
