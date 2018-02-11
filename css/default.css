@@ -993,6 +993,11 @@ video {
 
 /*sezione impostazioni*/
 #impostazione-giorno{
-    width: 400px;
+    width: 500px;
     margin: auto;
+}
+
+#impostazione-giorno .imp-label{
+    width: 100%;
+    text-align: left;
 }

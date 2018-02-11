@@ -19,146 +19,185 @@
 [#INTESTAZIONE]
 <div id="content" role="main">
 
-        <div class="length-wrapper" id="intestazione-per-mobile">
-            <div class="tab">
-                <button class="tablinks mobile-tab-button" id="act-tab" data-target="act-manager" >Attività</button>
-                <button class="tablinks mobile-tab-button" id="stat-tab" data-target="stat-manager" >Statistiche</button>
-                <button class="tablinks mobile-tab-button" id="usr-tab" data-target="usr-manager" >Utenti</button>
-                <button class="tablinks mobile-tab-button " id="res-tab" data-target="res-manager" >Prenotazioni</button>
+    <div class="length-wrapper" id="intestazione-per-mobile">
+        <div class="tab">
+            <button class="tablinks mobile-tab-button" id="act-tab" data-target="act-manager" >Attività</button>
+            <button class="tablinks mobile-tab-button" id="stat-tab" data-target="stat-manager" >Statistiche</button>
+            <button class="tablinks mobile-tab-button" id="usr-tab" data-target="usr-manager" >Utenti</button>
+            <button class="tablinks mobile-tab-button " id="res-tab" data-target="res-manager" >Prenotazioni</button>
+            <button class="tablinks mobile-tab-button " id="day-tab" data-target="day-manager" >Impostazioni</button>
+        </div>
+    </div>
+    <div class="length-wrapper" id="tab-content-mobile">
+
+        <div id="act-manager" class="tabcontent">
+            <h1>Gestione attività</h1>
+            <button class="btn btn-primary" id="crea-macro">Crea macroattività</button>
+            [#NUOVA-ATTIVITA]
+            [#SCHEDA-MACROATTIVITA]
+            [#ATTIVITA]
+        </div>
+
+        <div id="stat-manager" class="tabcontent">
+            <div class="ct-chart"></div>
+
+            <h1>Statistiche sito</h1>
+            <div id="wrapper-schede-stat">
+
+                <div class="scheda-wrapper pari stat">
+                    <div class="head-background"></div>
+                    <h1>Entrate da inizio mese</h1>
+                    [#ENTRATE-DEL-MESE]
+                </div>
+
+                <div class="scheda-wrapper dispari stat">
+                    <div class="head-background"></div>
+                    <h1>Entrate mensili previste</h1>
+                    [#ENTRATE-PREVISTE]
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="wrapper-tabella">
+                <table class="tabella" summary="La tabella presenta le attività in ordine crescente in base al numero di prenotazioni effettuate">
+                    <caption><h3>Attività più prenotate</h3></caption>
+                    <tr class="intestazione-tabella">
+                        <th scope="col">Nome Attività</th>
+                        <th scope="col">Numero Prenotazioni</th>
+                    </tr>
+                    [#ATTIVITA-PIU-PRENOTATE]
+                </table>
+            </div>
+            <div class="wrapper-tabella">
+                <table class="tabella" summary="La tabella presenta gli utenti che hanno effettuato più prenotazioni in ordine crescente">
+                    <caption><h3>Utenti con più prenotazioni</h3></caption>
+                    <tr class="intestazione-tabella">
+                        <th scope="col">Posizione</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Cognome</th>
+                        <th scope="col">Numero Prenotazioni</th>
+                    </tr>
+                    [#UTENTI-PIU-ATTIVI]
+                </table>
             </div>
         </div>
-        <div class="length-wrapper" id="tab-content-mobile">
 
-            <div id="act-manager" class="tabcontent">
-                <h1>Gestione attività</h1>
-                <button class="btn btn-primary" id="crea-macro">Crea macroattività</button>
-                [#NUOVA-ATTIVITA]
-                [#SCHEDA-MACROATTIVITA]
-                [#ATTIVITA]
-            </div>
-
-            <div id="stat-manager" class="tabcontent">
-                <div class="ct-chart"></div>
-
-                <h1>Statistiche sito</h1>
-                <div id="wrapper-schede-stat">
-
-                    <div class="scheda-wrapper pari stat">
-                        <div class="head-background"></div>
-                        <h1>Entrate da inizio mese</h1>
-                        [#ENTRATE-DEL-MESE]
-                    </div>
-
-                    <div class="scheda-wrapper dispari stat">
-                        <div class="head-background"></div>
-                        <h1>Entrate mensili previste</h1>
-                        [#ENTRATE-PREVISTE]
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="wrapper-tabella">
-                    <table class="tabella" summary="La tabella presenta le attività in ordine crescente in base al numero di prenotazioni effettuate">
-                        <caption><h3>Attività più prenotate</h3></caption>
-                        <tr class="intestazione-tabella">
-                            <th scope="col">Nome Attività</th>
-                            <th scope="col">Numero Prenotazioni</th>
-                        </tr>
-                        [#ATTIVITA-PIU-PRENOTATE]
-                    </table>
-                </div>
-                <div class="wrapper-tabella">
-                    <table class="tabella" summary="La tabella presenta gli utenti che hanno effettuato più prenotazioni in ordine crescente">
-                        <caption><h3>Utenti con più prenotazioni</h3></caption>
-                        <tr class="intestazione-tabella">
-                            <th scope="col">Posizione</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Cognome</th>
-                            <th scope="col">Numero Prenotazioni</th>
-                        </tr>
-                        [#UTENTI-PIU-ATTIVI]
-                    </table>
-                </div>
-            </div>
-
-            <div id="usr-manager" class="tabcontent">
-                <div class="wrapper-tabella">
-                    <table class="tabella" summary="La tabella fornisce un elenco di informazioni riguardanti gli utenti con
+        <div id="usr-manager" class="tabcontent">
+            <div class="wrapper-tabella">
+                <table class="tabella" summary="La tabella fornisce un elenco di informazioni riguardanti gli utenti con
                         la possibilità di reimpostare la password e eliminare il loro account.">
-                        <caption><h3>Gestione utenti</h3></caption>
-                        <tr class="intestazione-tabella">
-                            <th scope="col">Nome</th>
-                            <th scope="col">Cognome</th>
-                            <th scope="col">Indirizzo</th>
-                            <th scope="col">Username</th>
-                            <th scope="col">Email</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        [#UTENTI]
-                    </table>
-                </div>
+                    <caption><h3>Gestione utenti</h3></caption>
+                    <tr class="intestazione-tabella">
+                        <th scope="col">Nome</th>
+                        <th scope="col">Cognome</th>
+                        <th scope="col">Indirizzo</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Email</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    [#UTENTI]
+                </table>
             </div>
+        </div>
 
 
 
-            <div id="res-manager" class="tabcontent">
-                <h1>Gestione prenotazioni</h1>
-                <button class="btn btn-primary" id="scheda-QR">Convalida prenotazione</button>
-                <div class="scheda-wrapper overlay"  id="lettoreQR">
-                    <div class="length-wrapper" role="dialog"  aria-labelledby="label-dialog3">
-                        <div class="schede form nuova-scheda" id="">
-                            <h2>Convalida prenotazione</h2>
-                            <div class="alert errore" aria-live="assertive" role="alert" aria-atomic="true"><p class="intestazione-alert">Errore:</p></div>
-                            <video id="videoQR"></video>
-                            <form>
-                                <div class="field-container">
-                                    <label for="testoQR" >Inserire il codice: </label>
-                                    <div class="input-container">
-                                        <input type="text" id="testoQR">
-                                    </div>
+        <div id="res-manager" class="tabcontent">
+            <h1>Gestione prenotazioni</h1>
+
+            <button class="btn btn-primary" id="scheda-QR">Convalida prenotazione</button>
+            <div class="scheda-wrapper overlay"  id="lettoreQR">
+                <div class="length-wrapper" role="dialog"  aria-labelledby="label-dialog3">
+                    <div class="schede form nuova-scheda" id="">
+                        <h2>Convalida prenotazione</h2>
+                        <div class="alert errore" aria-live="assertive" role="alert" aria-atomic="true"><p class="intestazione-alert">Errore:</p></div>
+                        <video id="videoQR"></video>
+                        <form id="convalidaQR">
+                            <div class="field-container">
+                                <label for="testoQR" >Inserire il codice: </label>
+                                <div class="input-container">
+                                    <input type="text" id="testoQR">
                                 </div>
-                                <div class="button-holder">
-                                    <input type="submit" value="Conferma"  name="conferma" class="btn btn-primary">
-                                    <button class="btn btn-color" id="annulla-QR">ANNULLA</button>
-                                </div>
-                            </form>
-                        </div>
+                            </div>
+                            <div class="button-holder">
+                                <input type="submit" value="Conferma"  name="conferma" class="btn btn-primary">
+                                <button class="btn btn-color" id="annulla-QR">ANNULLA</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-
-
-                <div class="wrapper-tabella">
-                    <table class="tabella" summary="La tabella presenta l'insieme di prenotazioni attive">
-                        <caption><h3>Prenotazioni attive</h3></caption>
-                        <tr class="intestazione-tabella">
-                            <th scope="col">Utente</th>
-                            <th scope="col">Attività</th>
-                            <th scope="col">Posti</th>
-                            <th scope="col">Giorno prenotato</th>
-                            <th scope="col">Stato</th>
-                            <th scope="col">Pagamento</th>
-                            <th scope="col">Conferma Pagamento</th>
-                            <th scope="col">Cancella</th>
-                        </tr>
-                        [#PRENOTAZIONI-ATTIVE]
-                    </table>
-                </div>
-                <div class="wrapper-tabella">
-                    <table class="tabella"  summary="La tabella presenta l'insieme di prenotazioni attive">
-                        <caption><h3>Storico prenotazioni</h3></caption>
-                        <tr class="intestazione-tabella">
-                            <th scope="col">Utente</th>
-                            <th scope="col">Attività</th>
-                            <th scope="col">Posti</th>
-                            <th scope="col">Giorno prenotato</th>
-                            <th scope="col">Stato</th>
-                            <th scope="col">Pagamento</th>
-                        </tr>
-                        [#PRENOTAZIONI-PASSATE]
-                    </table>
-                </div>
             </div>
 
+
+            <div class="wrapper-tabella">
+                <table class="tabella" summary="La tabella presenta l'insieme di prenotazioni attive">
+                    <caption><h3>Prenotazioni attive</h3></caption>
+                    <tr class="intestazione-tabella">
+                        <th scope="col">Utente</th>
+                        <th scope="col">Attività</th>
+                        <th scope="col">Posti</th>
+                        <th scope="col">Giorno prenotato</th>
+                        <th scope="col">Stato</th>
+                        <th scope="col">Pagamento</th>
+                        <th scope="col">Conferma Pagamento</th>
+                        <th scope="col">Cancella</th>
+                    </tr>
+                    [#PRENOTAZIONI-ATTIVE]
+                </table>
+            </div>
+            <div class="wrapper-tabella">
+                <table class="tabella"  summary="La tabella presenta l'insieme di prenotazioni attive">
+                    <caption><h3>Storico prenotazioni</h3></caption>
+                    <tr class="intestazione-tabella">
+                        <th scope="col">Utente</th>
+                        <th scope="col">Attività</th>
+                        <th scope="col">Posti</th>
+                        <th scope="col">Giorno prenotato</th>
+                        <th scope="col">Stato</th>
+                        <th scope="col">Pagamento</th>
+                    </tr>
+                    [#PRENOTAZIONI-PASSATE]
+                </table>
+            </div>
+        </div>
+
+        <div id="day-manager" class="tabcontent">
+            <h2>Giorni</h2>
+            <p>Numero di prenotazioni per giorno disponibili: 50</p>
+            <p>
+                Per procedere con l'inserimento di eventuali modifiche per giorni particolari procedere alla compilazione del seguente
+                form.
+            </p>
+
+            <div id="impostazione-giorno">
+                <form>
+                    <div class="field-container">
+                        <label for="imposta-data" class="imp-label">Data (dd/mm/yyyy): </label>
+                        <input type="text" id="imposta-data">
+                    </div>
+                    <div class="field-container">
+                        <label for="nPosti" class="imp-label">Inserire il numero di posti nuovo: </label>
+                        <input type="number" id="nPosti">
+                    </div>
+                    <div class="button-holder">
+                        <input type="submit" value="Conferma"  name="conferma" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+
+            <div class="wrapper-tabella">
+                <table class="tabella"  summary="La tabella presenta l'insieme dei giorni con
+                disponibilità impostate dall'amministratore diverse da quelle di default">
+                    <caption><h3>Disponibilità impostate dall'amministratore</h3></caption>
+                    <tr class="intestazione-tabella">
+                        <th scope="col">Giorni</th>
+                        <th scope="col">Disponibilità</th>
+                        <th scope="col">Elimina</th>
+                    </tr>
+                    [#TABELLA-GIORNI]
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 [#MENU-MOBILE]
@@ -166,5 +205,7 @@
 <script type="text/javascript" src="js/pannello.js"></script>
 <script type="text/javascript" src="js/pannello-admin.js"></script>
 <script type="text/javascript" src="js/instascan.min.js"></script>
+<script type="text/javascript" src="js/jquery-asDatepicker.js"></script>
+
 </body>
 </html>
