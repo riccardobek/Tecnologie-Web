@@ -199,7 +199,7 @@ $(function() {
         e.stopPropagation();
         var target =  $(this).attr("data-target");
         var bottoneCliccato = $(this);
-
+        var cellaPagamento = $(this).parent().prev();
         $.post("pannello_admin.php", {confermaPagamento:"1", codicePrenotazione:target}, function (risposta) {
             try {
                 risposta = JSON.parse(risposta);
@@ -208,6 +208,7 @@ $(function() {
                     var rigaTabella = bottoneCliccato.parent();
                     bottoneCliccato.remove();
                     rigaTabella.text("Pagamento effettuato");
+                    cellaPagamento.text("Pagato");
                 }
                 else {
                     generaAlert('red', 'Errore', risposta.messaggio);
@@ -285,6 +286,7 @@ function aggiugngiEventiSchedeAttivita() {
                                     generaAlert('green','Successo', risposta.messaggio);
                                     //al successo dell'eliminazione rimuovo la scheda
                                     sistemaSchede(idScheda);
+                                    console.log("[data-attivita='"+idScheda+"']");
                                     $("[data-attivita='"+idScheda+"']").remove();
                                 }
                                 else {
