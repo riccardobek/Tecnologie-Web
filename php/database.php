@@ -10,6 +10,43 @@ catch (PDOException $e) {
     die();
 }
 
+/**
+ * Funzioni inerenti al formato dei dati presenti nel database
+ */
+
+/**
+ * Funzione che converte una data da DD/MM/YYYY a YYYY/MM/DD (formato database)
+ * @param $dataDaConvertire la stringa che contiene la data in DD/MM/YYYY da convertire
+ * @return bool|string false se la stringa in input non è nel formato corretto, altrimenti una stringa contenente la data
+ * nel formato database
+ */
+function convertiData($dataDaConvertire) {
+    //Se l'input non è coinforme a quello che mi aspetto ritorno false
+    if(!preg_match("/^(\d{2})\/(\d{2})\/(\d{4})$/",$dataDaConvertire))
+        return false;
+
+    $matches = explode("/",$dataDaConvertire);
+    $dataCalcolata = new DateTime(intval($matches[2])."-".intval($matches[1])."-".intval($matches[0]));
+
+    //Se la data è nel formato corretto ma non è valida (ad esempio 31/02/2018) ritorno false
+    if($dataCalcolata->format("d/m/Y") != $dataDaConvertire)
+        return false;
+
+    //Converto la data dal formato dd/mm/yyyy al formato yyyy-mm-dd (accettato da mysql)
+    return $dataCalcolata->format("Y-m-d");
+}
+
+/**
+ * Funzione che converte la data da formato database a formato output
+ * @param $dataDaConvertire
+ * @return string la data nel formato output
+ */
+function convertiDataToOutput($dataDaConvertire){
+    return (new DateTime($dataDaConvertire))->format('d/m/Y');
+}
+/**
+ * Funzioni inerenti alle attivita
+ */
 function getMacroattivita() {
     global $db;
     $query = $db->prepare("SELECT Codice, Nome, Descrizione, Immagine, Banner, REPLACE(LOWER(`Nome`), ' ', '-') AS Ancora FROM Macroattivita");
@@ -48,5 +85,47 @@ function getMacroattivitaByCodice($codiceMacro) {
 
     $infoMacro = $query->fetch();
     return $infoMacro;
+}
+
+/**
+ * Funzioni inerenti alle prenotazioni
+ */
+function getDettagliPrenotazione($codicePrenotazione) {
+    global $db;
+
+    $query = $db->prepare("SELECT Prenotazioni.IDUtente, Prenotazioni.Giorno AS Data, Prenotazioni.PostiPrenotati as Posti, 
+          Attivita.Nome AS NomeAttivita, Attivita.Prezzo AS Prezzo, Utenti.Nome AS Nome, Utenti.Cognome AS Cognome,
+          Utenti.ID AS IDUtente
+          FROM Attivita JOIN (Utenti JOIN Prenotazioni ON Utenti.ID = Prenotazioni.IDUtente)
+            ON Attivita.Codice = Prenotazioni.IDAttivita WHERE Prenotazioni.Codice = ?");
+
+    $query->execute(array($codicePrenotazione));
+    return $query->fetch();
+}
+
+
+define("POSTI_DISPONIBILI_DEFAULT",50);
+
+/**
+ * Funzione che restituisce il numero di posti ancora disponibili per una data attività in un dato giorno
+ * @param $data (formato YYYY/MM/DD) la data di cui si vuole controllare la dispoonibilità
+ * @return int il numero di posti residui in quella determinata data
+ */
+function getNumeroPostiDisponibili($data) {
+    global $db;
+
+    $capienzaGiornalieraQuery = $db->prepare("SELECT PostiDisponibili FROM Disponibilita WHERE Giorno = ?");
+    $capienzaGiornalieraQuery->execute(array($data));
+
+    $postiPrenotati = $db->prepare("SELECT SUM(PostiPrenotati) AS PostiOccupati FROM Prenotazioni WHERE Giorno = ?");
+    $postiPrenotati->execute(array($data));
+
+
+    $capienzaTotale = ($capienzaGiornalieraQuery->rowCount() == 0 ) ?
+        POSTI_DISPONIBILI_DEFAULT :
+        intval($capienzaGiornalieraQuery->fetch()["PostiDisponibili"]);
+
+
+    return $capienzaTotale - intval($postiPrenotati->fetch()["PostiOccupati"]);
 }
 ?>

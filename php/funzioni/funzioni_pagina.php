@@ -280,10 +280,6 @@ function loginRichiesto() {
     }
 }
 
-function convertiDataToOutput($dataDaConvertire){
-    return (new DateTime($dataDaConvertire))->format('d/m/Y');
-}
-
 function impostaTestoPagamento(&$listaprenotazioni) {
     foreach($listaprenotazioni as &$prenotazione) {
         if($prenotazione["Pagato"]==0){
