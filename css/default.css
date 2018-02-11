@@ -986,3 +986,7 @@ a.btn-a {
 #finestra-macro,#nuova-scheda-attivita{
     overflow-y: auto;
 }
+
+video {
+    max-width: 100%;
+}
