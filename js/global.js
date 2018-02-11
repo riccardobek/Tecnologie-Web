@@ -24,8 +24,8 @@ function notificaErrore(targetNode, testo, divAlert, formErr) {
 
     divAlert.append("<p>"+testo+"</p>");
     divAlert.show();
-    targetNode.addClass("error");
-    formErr.find(".error").first().focus();
+    if(targetNode != null) targetNode.addClass("error");
+    if(formErr != null) formErr.find(".error").first().focus();
 }
 
 /**
@@ -34,7 +34,7 @@ function notificaErrore(targetNode, testo, divAlert, formErr) {
 function pulisciErrori(divAlert, formErr) {
     divAlert.find("p").not(".intestazione-alert").remove();
     divAlert.hide();
-    formErr.find("input").removeClass("error");
+    if(formErr != null) formErr.find("input").removeClass("error");
 }
 
 /**
