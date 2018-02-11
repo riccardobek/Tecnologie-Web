@@ -24,8 +24,10 @@ $(function() {
         var tipoOperazione = $(this).attr("data-fun");
         console.log(tipoOperazione);
         if(validaFormModifica("finestra-macro")) {
+            var form =  $("#finestra-macro form").serializeArray();
+            form.push({name:"nuovaMacro", value:"1"});
             if(tipoOperazione == "0"){
-                $.post("php/macroattivita.php", $("#finestra-macro form").serialize() + "&"+"nuovaMacro=1", function (risposta) {
+                $.post("php/macroattivita.php", form, function (risposta) {
                     try {
                         risposta = JSON.parse(risposta);
                         if (risposta.stato == 1) {
@@ -305,8 +307,11 @@ function aggiugngiEventiSchedeAttivita() {
         e.stopPropagation();
 
         var target = $(this).attr('data-target');
+
         if(validaFormModifica(target)) {
-            $.post("php/modifica_attivita.php",$("#"+target).find("form").serialize()+"&"+"idAttivita="+target, function(risposta) {
+            var arrayForm = $("#"+target).find("form").serializeArray();
+            arrayForm.push({name: "idAttivita", value:target});
+            $.post("php/modifica_attivita.php",arrayForm, function(risposta) {
                 try {
                     risposta = JSON.parse(risposta);
                     if(risposta.stato== 1) {
@@ -370,7 +375,9 @@ function aggiungiEventiMacroAttivita() {
 
         if(validaFormModifica("nuova-attivita")) {
             var idMacro = $(this).attr('data-macro');
-            $.post("php/modifica_attivita.php", $("#nuova-attivita form").serialize()+"&nuovaAttivita=true"+"&"+"idMacro="+idMacro, function (risposta) {
+            var form = $("#nuova-attivita form").serializeArray();
+            form.push({name:"nuovaAttivita", value:"true"},{name:"idMacro",value:idMacro});
+            $.post("php/modifica_attivita.php",form, function (risposta) {
                 try {
                     risposta = JSON.parse(risposta);
                     if (risposta.stato == 1) {
