@@ -3,6 +3,7 @@ define("PERCORSO_RELATIVO","");
 
 require_once "php/database.php";
 require_once "php/funzioni/funzioni_pagina.php";
+require_once "php/funzioni/funzioni_json.php";
 
 $activeIndex = 7;
 
@@ -225,16 +226,13 @@ function getAttivitaPiuPrenotate() {
     $array=$query->fetchAll();
 
     $row="";
-    $counter = 1;
     foreach($array as $item) {
         $row .= <<<RIGA
-<tr>
-    <td>{$counter}</td>
+<tr data-attivita="{$item["Codice"]}">
     <td>{$item["NomeAttivita"]}</td>
     <td class="numero-prenotazioni" data-target="{$item["NomeAttivita"]}">{$item["NumeroPrenotazioni"]}</td>
 </tr>
 RIGA;
-        $counter = $counter + 1;
     }
 
     return $row;
@@ -313,15 +311,16 @@ RIGA;
 function prenotazioniPassate(){
     global $db;
 
-    $prenotazioni=$db->prepare("SELECT Prenotazioni.Codice AS CodicePrenotazione, Utenti.Nome  AS Utente, Attivita.Nome AS Attivita, Prenotazioni.PostiPrenotati AS Posti, Prenotazioni.Giorno AS Giorno, Prenotazioni.Stato AS Stato, Prenotazioni.Pagamento AS Pagato 
-FROM Utenti, Attivita,Prenotazioni WHERE Utenti.ID=Prenotazioni.IDUtente AND Prenotazioni.IDAttivita=Attivita.Codice AND Giorno<(SELECT CURDATE()) AND Utente.Tipo<>'Admin' ORDER BY Giorno, Attivita, Utente ASC ");
+    $prenotazioni=$db->prepare("SELECT Prenotazioni.IDAttivita, Prenotazioni.Codice AS CodicePrenotazione, Utenti.Nome  AS Utente, Attivita.Nome AS Attivita, Prenotazioni.PostiPrenotati AS Posti, Prenotazioni.Giorno AS Giorno, Prenotazioni.Stato AS Stato, Prenotazioni.Pagamento AS Pagato 
+FROM Utenti, Attivita,Prenotazioni WHERE Utenti.ID=Prenotazioni.IDUtente AND Prenotazioni.IDAttivita=Attivita.Codice AND Giorno<(SELECT CURDATE()) ORDER BY Giorno, Attivita, Utente ASC ");
     $prenotazioni->execute();
     $arrayPrenotazioni=$prenotazioni->fetchAll();
     impostaTestoPagamento($arrayPrenotazioni);
     $row="";
     foreach ($arrayPrenotazioni as $riga){
+        $riga["Giorno"] = convertiDataToOutput($riga["Giorno"]);
         $row .= <<<RIGA
-<tr>
+<tr data-attivita="{$riga["IDAttivita"]}">
     <td>{$riga["Utente"]}</td>
     <td>{$riga["Attivita"]}</td>
     <td>{$riga["Posti"]}</td>
