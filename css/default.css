@@ -172,10 +172,9 @@ div.attivita span.btn.btn-primary:active {
 }
 
 .btn-cancella {
-    margin: auto;
     display: block;
     font-weight: 600;
-    font-size: 1.2em;
+    font-size: 1.5em;
     background-color: transparent;
     color:#B80000;
     border-bottom: 2px solid transparent;
@@ -985,4 +984,8 @@ a.btn-a {
 
 #finestra-macro,#nuova-scheda-attivita{
     overflow-y: auto;
+}
+
+video{
+    max-width: 100%;
 }
