@@ -711,6 +711,11 @@ PANNELLO UTENTE E AMMINISTRATORE: MENU A TAB
 /*
 PANNELLO UTENTE E AMMINISTRATORE: CONTENUTO
 */
+
+#scheda-QR{
+    margin:auto;
+}
+
 .btn.btn-color{
     background-color: #ccc;
 }
