@@ -52,6 +52,7 @@ $HTML = str_replace("[#POSTI]",$prenotazione["Posti"],$HTML);
 $HTML = str_replace("[#IMPORTO]",number_format(intval($prenotazione["Posti"])*doubleval($prenotazione["Prezzo"]),2),$HTML);
 
 $contenutoQR = "pr-".$codicePrenotazione."-".$prenotazione["IDUtente"];
+$HTML = str_replace("[#CONTENUTO-QR]",$contenutoQR,$HTML);
 
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
