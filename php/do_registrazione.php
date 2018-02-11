@@ -14,6 +14,17 @@ $campiRichiesti = array("nome","cognome","username","password","password2");
 $nome = filter_var($_POST["nome"],FILTER_SANITIZE_STRING);
 $cognome = filter_var($_POST["cognome"],FILTER_SANITIZE_STRING);
 
+if(strlen(filter_var($nome, FILTER_SANITIZE_NUMBER_INT))>0){
+    $messaggio = "Nome non valido";
+    errore($messaggio);
+    return;
+}
+if(strlen(filter_var($cognome, FILTER_SANITIZE_NUMBER_INT))>0){
+    $messaggio = "Nome non valido";
+    errore($messaggio);
+    return;
+}
+
 $username = filter_var($_POST["username"],FILTER_SANITIZE_STRING);
 
 $email = $_POST["email"];
@@ -23,7 +34,7 @@ $password2 = $_POST["password2"];
 $indirizzo = filter_var($_POST["indirizzo"],FILTER_SANITIZE_STRING);
 $civico = filter_var($_POST["civico"],FILTER_SANITIZE_STRING);
 $citta = filter_var($_POST["citta"],FILTER_SANITIZE_STRING);
-$CAP = filter_var($_POST["CAP"],FILTER_SANITIZE_NUMBER_INT);
+$CAP = strlen(trim(filter_var($_POST["CAP"]),FILTER_SANITIZE_NUMBER_INT) < 1)? NULL : trim(filter_var($_POST["CAP"],FILTER_SANITIZE_NUMBER_INT));
 
 //Variabile (passata dalla pagina) che mi dice se la richiesta arriva da ajax o no
 $jsAbilitato = boolval(filter_var($_POST["JSAbilitato"],FILTER_SANITIZE_NUMBER_INT));
@@ -54,6 +65,8 @@ if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     errore($messaggio);
     return;
 }
+
+$prova = NULL;
 
 $db->beginTransaction();
 $insertStatement = $db->prepare("INSERT INTO Utenti VALUES (NULL,?,?,?,?,?,?,?,?,?,'Utente',1)");
