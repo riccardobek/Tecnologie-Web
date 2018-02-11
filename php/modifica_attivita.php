@@ -8,12 +8,20 @@ require_once "funzioni/funzioni_sicurezza.php";
 $db->beginTransaction();
 
 if(isAdmin()){
+    //richiesta di eliminazione di un'attivita
+    if(isset($_POST["eliminaAttivita"])) {
+
+        
+    }
+
+
+
     $nomeAttivita = filter_var($_POST["nome"],FILTER_SANITIZE_STRING);
     $descrizione = filter_var($_POST["descrizione"], FILTER_SANITIZE_STRING);
-    $prezzo = filter_var($_POST["prezzo"],FILTER_SANITIZE_NUMBER_FLOAT);
+    $prezzo = filter_var(str_replace(',','.',$_POST["prezzo"]),FILTER_SANITIZE_NUMBER_FLOAT, array(
+        'flags'=>FILTER_FLAG_ALLOW_FRACTION));
 
-    //Modifico la possibile virgola nel prezzo in un punto
-    $prezzo = str_replace(',','.',$prezzo);
+
 
     if(isset($_POST["nuovaAttivita"])) {
         $queryControllo = $db->prepare("SELECT Nome FROM Attivita WHERE Nome = ?");

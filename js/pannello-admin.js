@@ -1,4 +1,5 @@
 var campiDati = {};
+
 $(function() {
 
     //------SEZIONE GESTISCI ATTIVITA'--------
@@ -13,11 +14,12 @@ $(function() {
     $("#crea-macro").on("click", function() {
         $("#label-dialog2").text("Nuova macroattività");
         $("#finestra-macro").show();
+        bloccaScroll();
         $("#finestra-macro input[type=submit]").attr("data-fun","0");
 
     });
 
-    //Creazione di una macroattività
+    //Creazione o modifica di una macroattività
     $("#finestra-macro input[type=submit]").on("click", function(e){
         e.preventDefault();
         e.stopPropagation();
@@ -25,16 +27,19 @@ $(function() {
         console.log(tipoOperazione);
         if(validaFormModifica("finestra-macro")) {
             var form =  $("#finestra-macro form").serializeArray();
-            form.push({name:"nuovaMacro", value:"1"});
+
             if(tipoOperazione == "0"){
+                form.push({name:"nuovaMacro", value:"1"});
                 $.post("php/macroattivita.php", form, function (risposta) {
                     try {
                         risposta = JSON.parse(risposta);
+                        form.push({name:"idMacro", value:risposta.idMacro});
                         if (risposta.stato == 1) {
                             generaAlert('green', "Successo", risposta.messaggio);
-                            $.post("pannello_admin.php",{nuovaMacro:"1", CodiceMacro:risposta.idMacro, Descrizione:risposta.descrizione, Imamgine:risposta.immagine, Banner:risposta.banner}, function(ris) {
-
+                            $("#finestra-macro").fadeOut('Slow');
+                            $.post("pannello_admin.php", form, function(ris) {
                                 togliEventiMacroAttivita();
+                                $("#act-manager").append(ris);
                                 aggiungiEventiMacroAttivita();
                             });
                         }
@@ -48,17 +53,28 @@ $(function() {
                 });
             }
             else{
-                $.post("php/macroattivita.php", $("#finestra-macro form").serialize(), function (risposta) {
+                var idMacro = $("#finestra-macro input[type=submit]").attr('data-fun');
+
+                form.push({name:"idMacro",value:idMacro});
+
+                $.post("php/macroattivita.php", form, function (risposta) {
                     try {
                         risposta = JSON.parse(risposta);
+                        console.log("parse OK")
                         if (risposta.stato == 1) {
                             generaAlert('green', "Successo", risposta.messaggio);
+                            //la macroattività è stata aggiornata con successo
+                            //aggiorno il titolo della macro nel pannello admin h1
+                            $("span[data-target='"+idMacro+"']").prev().text(form[0].value);
+                            $("#finestra-macro").fadeOut('Slow');
+
                         }
                         else {
                             generaAlert('red', "Errore", risposta.messaggio);
                         }
                     }
                     catch(e) {
+                        console.log(e);
                         generaAlertErroreGenerico();
                     }
                 });
@@ -74,6 +90,7 @@ $(function() {
         $("#finestra-macro").fadeOut("Slow",function(){
             pulisciErrori($("#finestra-macro").find(".alert.errore"),$("#finestra-macro").find("form"));
             $(this).find("input[type=text],textarea").val('');
+            sbloccaScroll();
         });
 
     });
@@ -217,7 +234,7 @@ function rispostaEliminiazionePrenotazione(target) {
 //funzione che permette di salvare i dati dei form delle varie schede attività
 //
 function salvaDati(target) {
-     var campiDati = $("#"+target).find("input[type=text], textarea");
+     var campiDati = $("#"+target).find("input[type=text], textarea,input[type=number]");
      var datiSalvati = {};
      $(campiDati).each(function () {
          datiSalvati[$(this).attr("class")] = $(this).val();
@@ -245,13 +262,41 @@ function validaFormModifica(target) {
 
 function aggiugngiEventiSchedeAttivita() {
     //Disabilito gli input dei vari form delle schede attività tranne gli input della dialog pre creare una nuova attività
-    $("[data-modifica=false]").find("input[type=text], textarea").attr('disabled','disabled');
+    $("[data-modifica=false]").find(" input[type=number],input[type=text], textarea").attr('disabled','disabled');
 
     //event listener per il bottone elimina attività
     $(".elimina-attivita").on("click", function () {
         //prendo l'attributo data target per sapere quale scheda eliminare
         var idScheda = $(this).attr("data-target");
-        //finestra di dialogo con ri chiesta AJAX
+        //finestra di dialogo con richiesta AJAX
+        $.confirm({
+            boxWidth: calcolaDimensioneDialog(),
+            useBootstrap: false,
+            title: 'Conferma',
+            content: "Procedere con l'eliminazione dell'attività? Tutte le prenotazioni relative a questa attività verrannò eliminate ",
+            buttons: {
+                Procedi: {
+                    btnClass: 'btn-red',
+                    action: function () {
+                        $.post("php/modifica_attivita",{eliminaAttivita:1, idAttivita: idScheda}, function(risposta){
+                            try {
+                                rispsota = JSON.parse(risposta);
+                                if(risposta.stato == 1) {
+                                    generaAlert('green','Successo', rispsota.messaggio);
+                                }
+                                else {
+                                    generaAlert('red','Errore', rispsota.messaggio);
+                                }
+                            }
+                            catch(e) {
+                                generaAlertErroreGenerico();
+                            }
+                        });
+                    }
+                },
+                Annulla: {}
+            }
+        });
         //al successo dell'eliminazione rimuovo la scheda
         sistemaSchede(idScheda);
     });
@@ -263,29 +308,19 @@ function aggiugngiEventiSchedeAttivita() {
         e.preventDefault();
         e.stopPropagation();
 
-        $(this).hide();
-        $(this).prev().show();
-        //mostro il pulsante annulla modifiche
-        $(this).next().show();
-
         //seleziono l'id del div del pulsante premuto
         var target = $(this).attr('data-target');
         $("#"+target).attr("data-modifica","true");
-        $("#"+target).find("textarea,input[type=text]").removeAttr('disabled');
-        $("#"+target+" .nome-attivita").focus();
+        abilitaModicaScheda(target);
         //salvo i dati dei vari campi
         campiDati[target] = salvaDati(target);
     });
 
     //listener per tasto cancella modifiche di un' attività
     $(".schede .bottone-annulla").on("click", function (e) {
-
         e.preventDefault();
         e.stopPropagation();
 
-        $(this).hide();
-        $(this).prevAll(".salva-dati").hide();
-        $(this).prev().show();
         //elimino le notifiche di errore
         var formPadre = $(this).parent().parent();
         var divAlert = formPadre.parent().find(".alert.errore");
@@ -293,13 +328,13 @@ function aggiugngiEventiSchedeAttivita() {
         pulisciErrori(divAlert,formPadre);
         //ripristino dati
         var target = $(this).attr('data-target');
+
         $("#"+target).attr("data-modifica","false");
         $("#nome-"+target).val(campiDati[target]["nome-attivita"]);
         $("#descrizione-"+target).val(campiDati[target]["descrizione"]);
-        $("#prezzo-"+target).val(campiDati[target]["prezzo"]);
+        $("#prezzo-"+target).val(""+campiDati[target]["prezzo"]);
+        disabilitaModificaScheda(target);
 
-        //disabilito i campi di testo
-        $("#"+target).find("textarea,input[type=text]").attr('disabled','disabled');
     });
 
     $(".salva-dati").on("click", function (e) {
@@ -316,13 +351,19 @@ function aggiugngiEventiSchedeAttivita() {
                     risposta = JSON.parse(risposta);
                     if(risposta.stato== 1) {
                         campiDati[target] = salvaDati(target);
+
                         generaAlert('green',"Successo",risposta.messaggio);
+
+                        disabilitaModificaScheda(target);
+
+                        $("#"+target+" h2").text(arrayForm[0].value);
                     }
                     else {
                         generaAlert('red',"Errore",risposta.messaggio);
                     }
                 }
                 catch(e) {
+                    console.log(e);
                     generaAlertErroreGenerico();
                 }
             });
@@ -330,7 +371,23 @@ function aggiugngiEventiSchedeAttivita() {
     });
 }
 
+function abilitaModicaScheda(target) {
+    $("#"+target).find("textarea,input[type=text],input[type=number]").removeAttr('disabled');
+    $("#"+target+" .salva-dati").show();
+    $("#"+target+" .bottone-annulla").show();
+    $("#"+target+" .modifica").hide();
+    $("#"+target+" .nome-attivita").focus();
+}
 
+function disabilitaModificaScheda(target) {
+    $("#"+target).find("textarea,input[type=text],input[type=number]").attr('disabled','disabled');
+    $("#"+target+" .salva-dati").hide();
+    $("#"+target+" .bottone-annulla").hide();
+    $("#"+target+" .modifica").show();
+}
+/**
+ * Questa funzione toglie gli eventi da tutte le schede attività
+ */
 function togliEventiSchedeAttivita() {
     $(".elimina-attivita").off("click");
     $(".salva-dati").off("click");
@@ -338,10 +395,14 @@ function togliEventiSchedeAttivita() {
     $(".schede .bottone-annulla").off("click");
 }
 
+/**
+ * Fade out della finestra di dialogo
+ */
 function fadeDialogoNuovaAttivita() {
     $("#nuova-scheda-attivita").fadeOut('Slow', function () {
-        $("#nuova-attivita").find("input[type=text],textarea").val('');
+        $("#nuova-attivita").find("input[type=text],textarea,input[type=number]").val('');
         $("#nuova-attivita h2 span").remove();
+        sbloccaScroll();
     });
 }
 
@@ -355,6 +416,7 @@ function aggiungiEventiMacroAttivita() {
         $("#nuova-attivita h2").prepend("<span>"+titoloMacro+" - </span>");
         $("#nuova-attivita input[type=submit]").attr("data-macro",idMacro);
         $("#nuova-scheda-attivita").show();
+        bloccaScroll();
         $("#nome").focus();
     });
 
@@ -424,6 +486,7 @@ function aggiungiEventiMacroAttivita() {
         }
     });
 
+    //bottone modifica macroattivita.
     $(".mod-macro").on("click", function(e){
         e.preventDefault();
         e.stopPropagation();
@@ -435,7 +498,8 @@ function aggiungiEventiMacroAttivita() {
                 $("#nome-macro").val(macro.Nome);
                 $("#descrizione-macro").val(macro.Descrizione);
                 $("#finestra-macro").show();
-                $("#finestra-macro input[type=submit]").attr("data-fun", "1");
+                bloccaScroll();
+                $("#finestra-macro input[type=submit]").attr("data-fun", idMacro);
             }
             catch(e) {
                 generaAlertErroreGenerico();
