@@ -10,7 +10,7 @@ $db->beginTransaction();
 
 $idUtente  = $_SESSION["Utente"]["ID"];
 
-$idUtenteDaEliminare = filter_var($_POST["IDUtente"], FILTER_SANITIZE_NUMBER_INT);
+$idUtenteDaEliminare = abs(filter_var($_POST["IDUtente"], FILTER_SANITIZE_NUMBER_INT));
 
 
 if($idUtenteDaEliminare != 0) {

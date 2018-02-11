@@ -51,7 +51,7 @@ $HTML_INTESTAZIONE = intestazione($activeIndex);
 $codiceAttivita = filter_var($_GET["attivita"],FILTER_SANITIZE_NUMBER_INT);
 $posti = intval(filter_var($_GET["posti"],FILTER_SANITIZE_NUMBER_INT));
 
-$data = filter_var($_GET["data"],FILTER_SANITIZE_STRING); 
+$data = filter_var($_GET["data"],FILTER_SANITIZE_STRING);
 if(!convertiData(filter_var($_GET["data"],FILTER_SANITIZE_STRING))) {
     paginaErrore("La data non è nel formato corretto. Riprova.","attivita.php","Torna indietro");
     return;
