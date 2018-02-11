@@ -749,6 +749,10 @@ PANNELLO UTENTE E AMMINISTRATORE: CONTENUTO
     padding: 1em;
 }
 
+.pay {
+    width: 80%;
+    padding-top: 0.6em;
+}
 /*
 h1,h2,h3{
     font-weight: 400;
