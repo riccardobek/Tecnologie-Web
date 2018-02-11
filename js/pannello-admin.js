@@ -410,7 +410,7 @@ function aggiungiEventiMacroAttivita() {
                     }
                     else {
                         if (risposta.hasOwnProperty('Tipo')) {
-                            notificaErrore($("#nuova-attivita #nome"), risposta.messaggio);
+                            notificaErrore($("#nuova-attivita #nome"), risposta.messaggio, $("#nuova-attivita .alert.errore"),$("#nuova-attivita"));
                         }
                         else {
                             generaAlert('red', "Errore", risposta.messaggio);

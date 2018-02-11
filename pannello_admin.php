@@ -3,20 +3,28 @@ define("PERCORSO_RELATIVO","");
 
 require_once "php/database.php";
 require_once "php/funzioni/funzioni_pagina.php";
-require_once  "php/funzioni/funzioni_attivita.php";
+
 $activeIndex = 7;
 
 if(!isAdmin()) {
     paginaErrore("Non hai l'autorizzazione per accedere a questa pagina");
     return;
 }
-
 if(isset($_POST["confermaPagamento"])) {
     settaPagato($_POST["codicePrenotazione"]);
     return;
 }
 if(isset($_POST["nuovaMacro"])) {
+    $nomeMacroattivita = filter_var($_POST["nome-macro"], FILTER_SANITIZE_STRING);
+    $idMacro = filter_var($_POST["idMacro"], FILTER_SANITIZE_NUMBER_INT);
 
+    $output = "";
+    $output .= file_get_contents("template/admin/settore_macroattivita.html");
+    $output = str_replace("[#NOME-MACRO]", $nomeMacroattivita, $output);
+    $output = str_replace("[#CODICE-MACRO]", $idMacro, $output);
+    $output = str_replace("[#SCHEDE]", '', $output);
+
+    echo $output;
     return;
 }
 if(isset($_POST["nuovaScheda"])) {
@@ -49,7 +57,6 @@ if(isset($_POST["nuovaScheda"])) {
 
 if(isset($_POST["RichiestaMacro"])){
     $idMacro = abs(filter_var($_POST["RichiestaMacro"],FILTER_SANITIZE_NUMBER_INT));
-    //$idMacro = str_replace("macro-",'',$idMacro);
     $ris = getMacroattivitaByCodice($idMacro);
     echo json_encode($ris);
     return;
@@ -159,15 +166,10 @@ function stampaSchedeAttivita(){
     foreach($elencoMacro as $macroAttivita){
         $listaSchede = schedeAttivita($macroAttivita["Codice"]);
         //Creare template per contenere macroattività che ha pulsanti titolo ecc.
-        $output .= <<<SCRIVI
-<h1 class="titolo-macro">{$macroAttivita["Nome"]} &nbsp;&nbsp;<span class="dim-mod-canc" data-target="macro-{$macroAttivita["Codice"]}">( <a class="mod-macro" >modifica</a> | <a class="canc-macro">cancella</a> )</span></h1>
-<button class="btn btn-block btn-nuova-attivita" data-target="macro-{$macroAttivita["Codice"]}" data-info="{$macroAttivita["Nome"]}">Nuova attività</button>
-<div id="gruppo-macro-{$macroAttivita["Codice"]}">
-    {$listaSchede}
-    <div class="clearfix inserimento-scheda"></div>
-</div>
-
-SCRIVI;
+        $output .= file_get_contents("template/admin/settore_macroattivita.html");
+        $output = str_replace("[#NOME-MACRO]", $macroAttivita["Nome"], $output);
+        $output = str_replace("[#CODICE-MACRO]", $macroAttivita["Codice"], $output);
+        $output = str_replace("[#SCHEDE]", $listaSchede, $output);
     }
     return $output;
 }
@@ -345,12 +347,12 @@ function settaPagato($codice){
 
     if($query->execute(array($codice))) {
         $db->commit();
-        successoJSON("Pagamento effettuato con successo");
+        successoJSON("Pagamento confermato con successo");
         return;
         }
 
     $db->rollBack();
-    erroreJSON("Non è stato possibile effettuare il pagamento");
+    erroreJSON("Non è stato possibile confermare il pagamento");
     return;
 
 }

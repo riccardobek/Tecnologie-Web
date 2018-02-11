@@ -13,6 +13,7 @@ if(isAdmin()){
     $img = isset($_POST["immagine"]) ? $_POST["immagine"] : NULL;
 	$banner = isset($_POST["immagine-banner"]) ? $_POST["immagine-banner"] : NULL;
 
+	//creazione di una nuova macro attività
     if(isset($_POST["nuovaMacro"])) {
         $queryControllo = $db->prepare("SELECT Nome FROM Macroattivita WHERE Nome = ?");
         $queryControllo->execute(array($nomeMacroattivita));
@@ -30,17 +31,18 @@ if(isAdmin()){
             $queryCodiceMacro->execute(array($nomeMacroattivita));
             $codice = $queryCodiceMacro->fetch();
 
-            successoJSON("Nuova macroattività inserita con successo.",array("idMacro"=>$codice["Codice"],"nome"=>$nomeMacroattivita,"descrizione"=>$descrizione,"immagine"=>$img,"banner"=>$banner));
+            successoJSON("Nuova macroattività inserita con successo.",array("idMacro"=>$codice["Codice"]));
         }
         else {
             $db->rollBack();
-            erroreJSON("Errore nell'inserimetno  della nuova macroattività.");
+            erroreJSON("Errore nell'inserimetno della nuova macroattività.");
         }
     }
+    //modifica di una macro attività
     else {
         $idMacro = abs(filter_var($_POST["idMacro"],FILTER_SANITIZE_NUMBER_INT));
 
-        $queryModifica = $db->prepare("UPDATE Macroattivita SET Nome = ?, Descrizione = ?, Immagine = ? Banner = ? WHERE Codice = ?");
+        $queryModifica = $db->prepare("UPDATE Macroattivita SET Nome = ?, Descrizione = ?, Immagine = ?, Banner = ? WHERE Codice = ?");
         if($queryModifica->execute(array($nomeMacroattivita,$descrizione,$img,$banner,$idMacro))) {
             $db->commit();
             successoJSON("Macroattività modificata con successo.");
