@@ -285,6 +285,7 @@ function aggiugngiEventiSchedeAttivita() {
                                     generaAlert('green','Successo', risposta.messaggio);
                                     //al successo dell'eliminazione rimuovo la scheda
                                     sistemaSchede(idScheda);
+                                    $("[data-attivita='"+idScheda+"']").remove();
                                 }
                                 else {
                                     generaAlert('red','Errore', risposta.messaggio);
