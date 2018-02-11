@@ -8,8 +8,8 @@ require_once "funzioni/funzioni_sicurezza.php";
 $db->beginTransaction();
 
 if(isAdmin()){
-    $nomeMacroattivita = $_POST["nome-macro"];
-    $descrizione = $_POST["descrizione-macro"];
+    $nomeMacroattivita = filter_var($_POST["nome-macro"], FILTER_SANITIZE_STRING);
+    $descrizione = filter_var($_POST["descrizione-macro"], FILTER_SANITIZE_STRING);
     $img = isset($_POST["immagine"]) ? $_POST["immagine"] : NULL;
 	$banner = isset($_POST["immagine-banner"]) ? $_POST["immagine-banner"] : NULL;
 
@@ -38,8 +38,8 @@ if(isAdmin()){
         }
     }
     else {
-        $idMacro = $_POST["idMacro"];
-        $idMacro = str_replace("macro-",'',$idMacro);
+        $idMacro = abs(filter_var($_POST["idMacro"],FILTER_SANITIZE_NUMBER_INT));
+
         $queryModifica = $db->prepare("UPDATE Macroattivita SET Nome = ?, Descrizione = ?, Immagine = ? Banner = ? WHERE Codice = ?");
         if($queryModifica->execute(array($nomeMacroattivita,$descrizione,$img,$banner,$idMacro))) {
             $db->commit();

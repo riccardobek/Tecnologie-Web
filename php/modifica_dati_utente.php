@@ -12,7 +12,7 @@ $db->beginTransaction();
 if(isset($_POST["IDUtente"])){
     //per maggiore sicurezza si controlla che chi ha fatto la richiesta di reset sia effettivamente l'admin altrimenti viene generato un errore JSON
     if(isAdmin()){
-        resetPassword($_POST["IDUtente"]);
+        resetPassword(filter_var($_POST["IDUtente"],FILTER_SANITIZE_NUMBER_INT));
     }
     else{
         erroreJSON("Non è stato possibile resettare la password");
@@ -35,13 +35,14 @@ function modificaDati() {
     global $db;
 
     $idUtente = $_SESSION["Utente"]["ID"];
-    $nome = $_POST["nome"];
-    $cognome = $_POST["cognome"];
-    $indirizzo = $_POST["indirizzo"];
-    $civico = $_POST["civico"];
-    $citta = $_POST["citta"];
-    $CAP = $_POST["CAP"];
-    $email = $_POST["email"];
+    $nome = filter_var($_POST["nome"], FILTER_SANITIZE_STRING);
+    $cognome = filter_var($_POST["cognome"], FILTER_SANITIZE_STRING);
+    $indirizzo = filter_var($_POST["indirizzo"], FILTER_SANITIZE_STRING);
+    $civico = filter_var($_POST["civico"],FILTER_SANITIZE_STRING);
+    $citta = filter_var($_POST["citta"], FILTER_SANITIZE_STRING);
+    $CAP = filter_var($_POST["CAP"], FILTER_SANITIZE_NUMBER_INT);
+    $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
+
     $queryUtente = $db->prepare("SELECT * FROM Utenti WHERE ID = ?");
     $queryUtente->execute(array($idUtente));
 

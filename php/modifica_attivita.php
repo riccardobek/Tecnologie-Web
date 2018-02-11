@@ -8,9 +8,9 @@ require_once "funzioni/funzioni_sicurezza.php";
 $db->beginTransaction();
 
 if(isAdmin()){
-    $nomeAttivita = $_POST["nome"];
-    $descrizione = $_POST["descrizione"];
-    $prezzo = $_POST["prezzo"];
+    $nomeAttivita = filter_var($_POST["nome"],FILTER_SANITIZE_STRING);
+    $descrizione = filter_var($_POST["descrizione"], FILTER_SANITIZE_STRING);
+    $prezzo = filter_var($_POST["prezzo"],FILTER_SANITIZE_NUMBER_FLOAT);
 
     //Modifico la possibile virgola nel prezzo in un punto
     $prezzo = str_replace(',','.',$prezzo);
@@ -43,8 +43,7 @@ if(isAdmin()){
         }
     }
     else {
-        $idAttivita = $_POST["idAttivita"];
-        $idAttivita = str_replace("attivita-",'',$idAttivita);
+        $idAttivita = abs(filter_var($_POST["idAttivita"], FILTER_SANITIZE_NUMBER_INT));
         $queryModifica = $db->prepare("UPDATE Attivita SET Nome = ?, Descrizione = ?, Prezzo = ? WHERE Codice = ?");
         if($queryModifica->execute(array($nomeAttivita,$descrizione,$prezzo,$idAttivita))) {
             $db->commit();

@@ -19,14 +19,24 @@ if(isset($_POST["nuovaMacro"])) {
 
     return;
 }
-if(isset($_POST["nuovaScheda"])){
+if(isset($_POST["nuovaScheda"])) {
+    $codiceAttivita = filter_var($_POST["Codice"], FILTER_SANITIZE_NUMBER_INT);
+    $classe = filter_var($_POST["Classe"], FILTER_SANITIZE_STRING);
     $output = "";
+
+    $querySelect = $db->prepare("SELECT * FROM Attivita WHERE Codice = ?");
+    $querySelect->execute(array($codiceAttivita));
+
+    if(!($attivita = $querySelect->fetch())) {
+        return $output;
+    }
+
     $output = file_get_contents("template/admin/scheda_attivita_admin.html");
-    $output = str_replace("[#NOME]", $_POST["nome"], $output );
-    $output = str_replace("[#DESCRIZIONE]", $_POST["descrizione"], $output );
-    $output = str_replace("[#PREZZO]", $_POST["prezzo"], $output );
-    $output = str_replace("[#CLASSE-SCHEDA]", $_POST["Classe"], $output );
-    $output = str_replace("[#CODICE-ATTIVITA]", $_POST["Codice"], $output );
+    $output = str_replace("[#NOME]", $attivita["Nome"], $output );
+    $output = str_replace("[#DESCRIZIONE]", $attivita["Descrizione"], $output );
+    $output = str_replace("[#PREZZO]", $attivita["Prezzo"], $output );
+    $output = str_replace("[#CLASSE-SCHEDA]", $classe, $output );
+    $output = str_replace("[#CODICE-ATTIVITA]",$codiceAttivita , $output );
     if($_POST["Classe"]=='dispari') {
         $output = str_replace("[#SEPARATORE]", "<div class=separatore></div>", $output );
     }
@@ -38,8 +48,8 @@ if(isset($_POST["nuovaScheda"])){
 }
 
 if(isset($_POST["RichiestaMacro"])){
-    $idMacro = $_POST["RichiestaMacro"];
-    $idMacro = str_replace("macro-",'',$idMacro);
+    $idMacro = abs(filter_var($_POST["RichiestaMacro"],FILTER_SANITIZE_NUMBER_INT));
+    //$idMacro = str_replace("macro-",'',$idMacro);
     $ris = getMacroattivitaByCodice($idMacro);
     echo json_encode($ris);
     return;

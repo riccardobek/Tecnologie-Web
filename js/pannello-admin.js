@@ -1,3 +1,4 @@
+var campiDati = {};
 $(function() {
 
     //------SEZIONE GESTISCI ATTIVITA'--------
@@ -5,9 +6,10 @@ $(function() {
     aggiungiEventiMacroAttivita();
 
     //aggiungo listener alle schede attività
+
     aggiugngiEventiSchedeAttivita();
 
-    //Nuova Macroattivita
+    //bottone crea nuova Macroattivita
     $("#crea-macro").on("click", function() {
         $("#label-dialog2").text("Nuova macroattività");
         $("#finestra-macro").show();
@@ -15,6 +17,7 @@ $(function() {
 
     });
 
+    //Creazione di una macroattività
     $("#finestra-macro input[type=submit]").on("click", function(e){
         e.preventDefault();
         e.stopPropagation();
@@ -72,12 +75,6 @@ $(function() {
         });
 
     });
-
-
-
-
-
-
 
     //--------SEZIONE GESTISCI UTENTI---------
     //Eliminazione di un account
@@ -258,7 +255,7 @@ function aggiugngiEventiSchedeAttivita() {
     });
 
     //array associativo per il vari campi dati delle varie schede
-    var campiDati = {};
+
     //Quando si preme il tasto modifica i campi di testo vengono abilitati e si mostra il bottone di annulamento delle modifiche
     $(".schede .modifica").on("click", function(e) {
         e.preventDefault();
@@ -280,6 +277,7 @@ function aggiugngiEventiSchedeAttivita() {
 
     //listener per tasto cancella modifiche di un' attività
     $(".schede .bottone-annulla").on("click", function (e) {
+
         e.preventDefault();
         e.stopPropagation();
 
@@ -382,7 +380,6 @@ function aggiungiEventiMacroAttivita() {
                             classe = 'pari';
                         else
                             classe = 'dispari';
-                        console.log(classe);
                         $.alert({
                             boxWidth: calcolaDimensioneDialog(),
                             useBootstrap: false,
@@ -392,8 +389,7 @@ function aggiungiEventiMacroAttivita() {
                             buttons: {
                                 Ok: {
                                     action: function () {
-                                        $.post("pannello_admin.php",
-                                            $("#nuova-attivita form").serialize() + "&nuovaScheda=1" + "&" + "Classe=" + classe + "&" + "Codice=" + risposta.CodiceAtt,
+                                        $.post("pannello_admin.php", {nuovaScheda:1, Classe:classe, Codice:risposta.CodiceAtt },
                                             function (ris) {
                                                 $(ris).insertBefore($("#gruppo-macro-" + risposta.idMacro + ' ' + ".inserimento-scheda"));
                                                 togliEventiSchedeAttivita();
