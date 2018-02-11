@@ -8,7 +8,39 @@ loginRichiesto();
 
 $activeIndex = INF;
 
-if(!isset($_POST["attivita"]) || !isset($_POST["posti"]) || !isset($_POST["data"])) {
+if(isset($_GET["successoPrenotazione"])) {
+    //Visualizzo messaggio di successo (avvenuto inserimento della prenotazione).
+
+    $codicePrenotazione = filter_var($_GET["successoPrenotazione"],FILTER_SANITIZE_NUMBER_INT);
+    
+    //Controllo che il codicePrenotazione passato come parametro corrisponda ad una prenotazione che ho effettuato io
+    $queryControlloPrenotazione = $db->prepare("SELECT IDUtente FROM Prenotazioni WHERE Codice = ?");
+    $queryControlloPrenotazione->execute(array($codicePrenotazione));
+    $dettaglioPrenotazione = $queryControlloPrenotazione->fetch();
+
+    if(!$dettaglioPrenotazione){
+        paginaErrore("Prenotazione non trovata");
+        return;
+    }
+    if($dettaglioPrenotazione["IDUtente"] != $_SESSION["Utente"]["ID"]) {
+        paginaErrore("Non sei autorizzato a visualizzare i dettagli di questa prenotazione");
+        return;
+    }
+
+    $linkAlternativo = array("HREF"=>"attivita.php","Messaggio"=>"Torna all'attivita");
+    paginaSuccesso("Prenotazione inserita con successo!","pdf_prenotazione.php?codice=".$codicePrenotazione,"Clicca qui per scaricare la conferma prenotazione",true,$linkAlternativo);
+    return;
+}
+
+elseif(isset($_GET["errorePrenotazione"])) {
+    $codiceErrore = filter_var($_GET["errorePrenotazione"],FILTER_SANITIZE_NUMBER_INT);
+    /*ERRORI_INSERIMENTO_ATTIVITA è un'array che, per ogni errore che si potrebbe verificare in do_prenotazione.php, associa
+    il codice al relativo messaggio*/
+    paginaErrore(ERRORI_INSERIMENTO_ATTIVITA[$codiceErrore],"attivita.php","Torna alla lista delle attivita");
+    return;
+}
+
+if(!isset($_GET["attivita"]) || !isset($_GET["posti"]) || !isset($_GET["data"])) {
     paginaErrore("Parametri non validi", "attivita.php","Torna alla lista di attività");
     return;
 }
@@ -16,10 +48,10 @@ if(!isset($_POST["attivita"]) || !isset($_POST["posti"]) || !isset($_POST["data"
 /*Intestazione: indica la pagina attualmente attiva --> non definita */
 $HTML_INTESTAZIONE = intestazione($activeIndex);
 
-$codiceAttivita = filter_var($_POST["attivita"],FILTER_SANITIZE_NUMBER_INT);
-$posti = intval(filter_var($_POST["posti"],FILTER_SANITIZE_NUMBER_INT));
+$codiceAttivita = filter_var($_GET["attivita"],FILTER_SANITIZE_NUMBER_INT);
+$posti = intval(filter_var($_GET["posti"],FILTER_SANITIZE_NUMBER_INT));
 
-$data = filter_var($_POST["data"],FILTER_SANITIZE_STRING);
+$data = filter_var($_GET["data"],FILTER_SANITIZE_STRING);
 
 if(!dataFutura(implode("-",array_reverse(explode("/",$data))))) {
     paginaErrore("Le prenotazioni per tale data sono chiuse. Selezionare una data futura.","attivita.php","Torna indietro");
