@@ -63,7 +63,10 @@ if(isset($_POST["RichiestaMacro"])){
     return;
 }
 
-
+if(isset($_POST["convalidaPrenotazione"])) {
+    convalidaPrenotazione(filter_var($_POST["codice"],FILTER_SANITIZE_STRING));
+    return;
+}
 
 loginRichiesto();
 
