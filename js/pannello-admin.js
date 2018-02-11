@@ -287,7 +287,8 @@ function aggiugngiEventiSchedeAttivita() {
                                     //al successo dell'eliminazione rimuovo la scheda
                                     sistemaSchede(idScheda);
                                     console.log("[data-attivita='"+idScheda+"']");
-                                    $("[data-attivita='"+idScheda+"']").remove();
+
+                                    $("[data-attivita='"+idScheda.replace("attivita-","")+"']").remove();
                                 }
                                 else {
                                     generaAlert('red','Errore', risposta.messaggio);
