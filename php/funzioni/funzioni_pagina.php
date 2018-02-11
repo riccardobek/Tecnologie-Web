@@ -241,7 +241,7 @@ function paginaErrore($messaggio="Si è verificato un errore. Riprova più tardi
     echo $HTML;
 }
 
-function paginaSuccesso($messaggio,$href,$testoLink) {
+function paginaSuccesso($messaggio,$href,$testoLink,$targetBlank=false) {
     $HTML_INTESTAZIONE = intestazione(INF);
 
     /*Richiamo pagina contatti*/
@@ -252,6 +252,8 @@ function paginaSuccesso($messaggio,$href,$testoLink) {
     $HTML = str_replace("[#MESAGGIO-SUCCESSO]", $messaggio, $HTML);
     $HTML = str_replace("[#HREF-LINK]", $href, $HTML);
     $HTML = str_replace("[#TESTO-LINK]", $testoLink, $HTML);
+
+    $HTML = str_replace("[#TARGET]", $targetBlank ? "_blank" : "_self", $HTML);
 
     /*Rimpiazza il segnaposto con il menù*/
     $HTML = str_replace("[#INTESTAZIONE]",$HTML_INTESTAZIONE, $HTML);

@@ -64,7 +64,7 @@ else {
         if($jsAbilitato)
             successoJSON("Prenotazione inserita",array("CodicePrenotazione"=>$codicePrenotazione));
         else {
-            paginaSuccesso("Prenotazione inserita con successo!","../pdf_prenotazione.php?codice=".$codicePrenotazione,"Clicca qui per scaricare la conferma prenotazione");
+            paginaSuccesso("Prenotazione inserita con successo!","../pdf_prenotazione.php?codice=".$codicePrenotazione,"Clicca qui per scaricare la conferma prenotazione",true);
         }
         $db->commit();
     }
