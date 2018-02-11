@@ -7,18 +7,19 @@
 
     <div class="form-prenotazione-container">
         <form action="conferma_prenotazione.php" method="POST">
+            <input type="hidden" name="JSAbilitato" value="0">
             <input type="hidden" name="attivita" value="[#CODICE-SOTTOATTIVITA]">
             <input type="hidden" name="prezzo" class="prezzo-unitario" value="[#PREZZO-SOTTOATTIVITA]">
 
             <div class="field-container">
                 <label for="data[#CODICE-SOTTOATTIVITA]">Data (dd/mm/yyyy): </label>
-                <input type="text" id="data[#CODICE-SOTTOATTIVITA]" name="data" class="data" placeholder="Data in formato dd/mm/yyyy">
+                <input type="text" id="data[#CODICE-SOTTOATTIVITA]" name="data" class="data" placeholder="Data in formato dd/mm/yyyy" value="[#DATA]">
             </div>
             <div class="field-container">
                 <label for="posti[#CODICE-SOTTOATTIVITA]">Numero posti: </label>
-                <input type="number" name="posti" id="posti[#CODICE-SOTTOATTIVITA]" class="posti" min="0">
+                <input type="number" name="posti" id="posti[#CODICE-SOTTOATTIVITA]" class="posti" min="1" value="1">
             </div>
-            <div class="field-container">
+            <div class="field-container solo-js">
                 Totale: &euro; <span class="totale">0</span>
             </div>
 
@@ -28,6 +29,6 @@
         </form>
     </div>
     [#ANCORA-GESTISCI-ATTIVITA]
-    <[#BTN-LOGGATO] class="btn btn-primary btn-inline">[#TESTO-PULSANTE]</[#BTN-LOGGATO]>
+    <[#BTN-LOGGATO] class="btn btn-primary btn-inline solo-js">[#TESTO-PULSANTE]</[#BTN-LOGGATO]>
     <button class="btn chiudi-form-prenotazione btn-inline">Chiudi</button>
 </div>

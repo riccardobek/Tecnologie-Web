@@ -1,5 +1,7 @@
 $(function () {
     $(".form-prenotazione-container").hide();
+    $(".solo-js").show();
+    $("input[name='JSAbilitato']").val("1");
 
     $(".chiudi-form-prenotazione").on("click", function () {
         $(this).prev().prev().slideUp();

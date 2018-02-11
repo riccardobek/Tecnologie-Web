@@ -6,6 +6,9 @@ require_once "funzioni/funzioni_sicurezza.php";
 require_once "funzioni/funzioni_pagina.php";
 require_once "funzioni/funzioni_json.php";
 
+define("LINK_PAGINA_ERRORE","../registrazione.php");
+define("TESTO_LINK_PAGINA_ERRORE", "Torna alla registrazione");
+
 $campiRichiesti = array("nome","cognome","username","password","password2");
 
 $nome = filter_var($_POST["nome"],FILTER_SANITIZE_STRING);
@@ -25,8 +28,6 @@ $CAP = filter_var($_POST["CAP"],FILTER_SANITIZE_NUMBER_INT);
 //Variabile (passata dalla pagina) che mi dice se la richiesta arriva da ajax o no
 $jsAbilitato = boolval(filter_var($_POST["JSAbilitato"],FILTER_SANITIZE_NUMBER_INT));
 
-define("LINK_PAGINA_ERRORE","../registrazione.php");
-define("TESTO_LINK_PAGINA_ERRORE", "Torna alla registrazione");
 
 foreach($campiRichiesti as $campo) {
     if(!(validaCampo($$campo))) {
@@ -79,15 +80,6 @@ else {
 $messaggio = "Utente inserito con successo";
 $jsAbilitato ? successoJSON($messaggio) : paginaSuccesso($messaggio,"../login.php","Vai al login");
 
-/**
- * Funzione che, in base al fatto che javascript sia abilitato, stampa un errore o come pagina o come JSON
- * @param $messaggio il messaggio di errore da stampare
- */
-function errore($messaggio) {
-    global $jsAbilitato;
-
-    $jsAbilitato ? erroreJSON($messaggio) : paginaErrore($messaggio,LINK_PAGINA_ERRORE,TESTO_LINK_PAGINA_ERRORE);
-}
 
 /**
  * Funzione che controlla se il parametro passato è settato e non vuoto

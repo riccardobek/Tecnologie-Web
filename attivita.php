@@ -30,6 +30,7 @@ function stampaAttivita() {
     $listaMacroAttivita = getMacroattivita();
 
     $output = "";
+    $data = (new DateTime())->add(new DateInterval("P1D"))->format('d/m/Y');;
 
     foreach($listaMacroAttivita as $macro) {
         $output.= file_get_contents("template/attivita/sezione_macroattivita.html");
@@ -46,6 +47,7 @@ function stampaAttivita() {
             $sottoattivita  = str_replace("[#DESCRIZIONE-SOTTOATTIVITA]", $attivita["Descrizione"], $sottoattivita );
             $sottoattivita  = str_replace("[#CODICE-SOTTOATTIVITA]", $attivita["Codice"], $sottoattivita );
             $sottoattivita  = str_replace("[#PREZZO-SOTTOATTIVITA]", $attivita["Prezzo"], $sottoattivita );
+            $sottoattivita  = str_replace("[#DATA]", $data, $sottoattivita );
 
             /**
              * Viene visualizzato il pulsante "Prenota" se si è loggati, altrimenti viene visualizzato uno span con

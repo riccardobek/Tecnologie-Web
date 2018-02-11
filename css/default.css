@@ -959,3 +959,12 @@ h1,h2,h3{
     margin-left: 4.1em;
     background-color: transparent;
 }
+
+.solo-js,
+.btn.btn-inline.solo-js {
+    display: none;
+}
+
+.btn.act-input {
+    margin-top: 1em;
+}

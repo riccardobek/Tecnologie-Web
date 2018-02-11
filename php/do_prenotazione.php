@@ -1,9 +1,15 @@
 <?php
-session_start();
+define("PERCORSO_RELATIVO","../");
+
 require_once "database.php";
 require_once "funzioni/funzioni_json.php";
 require_once "funzioni/funzioni_sicurezza.php";
+require_once "funzioni/funzioni_pagina.php";
 
+define("LINK_PAGINA_ERRORE","../attivita.php");
+define("TESTO_LINK_PAGINA_ERRORE", "Torna alla lista di attività");
+
+$jsAbilitato = boolval(filter_var($_POST["JSAbilitato"],FILTER_SANITIZE_NUMBER_INT));
 
 /*
  * Bisogna prendere i dati in input dal form di registrazione e controllare la loro correttezza.
@@ -14,12 +20,12 @@ require_once "funzioni/funzioni_sicurezza.php";
 //La data passata è nel formato DD/MM/YYYY, mentre la devo convertire nel formato YYYY/MM/DD
 $data = convertiData(filter_var($_POST["data"],FILTER_SANITIZE_FULL_SPECIAL_CHARS));
 if(!$data) {
-    erroreJSON("Data non valida");
+    errore("Data non valida");
     return;
 }
 
 if(!dataFutura($data)) {
-    erroreJSON("Impossibile prenotare un'attività per tale data.");
+    errore("Impossibile prenotare un'attività per tale data.");
     return;
 }
 
@@ -46,7 +52,7 @@ $PostiPrenotati->execute(array($attivita, $data));
 $PostiDisponibiliEffettivi = intval($PostiDisponibiliGiornata) - intval($PostiPrenotati->fetch()["PostiOccupati"]);
 
 if ($nPosti > $PostiDisponibiliEffettivi) {
-    erroreJSON("Numero posti inserti maggiore del numero posti disponibili");
+    errore("Numero posti inserti maggiore del numero posti disponibili");
     return;
 }
 
@@ -54,12 +60,17 @@ else {
     $db->beginTransaction();
     $insertStatement = $db->prepare("INSERT INTO Prenotazioni VALUES(NULL,?,?,?,?,'Sospesa','0',NULL)");
     if($insertStatement->execute(array($attivita,$utente,$data,$nPosti))) {
-        $messaggio = successoJSON("Prenotazione inserita",array("CodicePrenotazione"=>$db->lastInsertId()));
+        $codicePrenotazione = $db->lastInsertId();
+        if($jsAbilitato)
+            successoJSON("Prenotazione inserita",array("CodicePrenotazione"=>$codicePrenotazione));
+        else {
+            paginaSuccesso("Prenotazione inserita con successo!","../pdf_prenotazione.php?codice=".$codicePrenotazione,"Clicca qui per scaricare la conferma prenotazione");
+        }
         $db->commit();
     }
     else{
         $db->rollBack();
-        erroreJSON("Errore nell'inserimento della prenotazione nel database.");
+        errore("Errore nell'inserimento della prenotazione nel database.");
     }
 }
 

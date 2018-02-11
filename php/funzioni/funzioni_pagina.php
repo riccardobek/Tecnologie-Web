@@ -282,3 +282,13 @@ function impostaTestoPagamento(&$listaprenotazioni) {
         }
     }
 }
+
+/**
+ * Funzione che, in base al fatto che javascript sia abilitato, stampa un errore o come pagina o come JSON
+ * @param $messaggio il messaggio di errore da stampare
+ */
+function errore($messaggio) {
+    global $jsAbilitato;
+
+    $jsAbilitato ? erroreJSON($messaggio) : paginaErrore($messaggio,LINK_PAGINA_ERRORE,TESTO_LINK_PAGINA_ERRORE);
+}
