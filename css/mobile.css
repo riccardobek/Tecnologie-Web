@@ -173,7 +173,7 @@ div#menu-mobile ul > li.active{
 }
 
 .btn {
-    display: block;
+    /*display: block;*/
     margin: 1em 0;
 }
 #intestazione-per-mobile{
@@ -276,14 +276,25 @@ caption{
 }
 
 .select-rate{
+    margin-bottom: 1em;
     margin-left: 2.5em;
 }
 
 .btn.btn-primary.accept{
+
     margin-left: 1em;
     width: 60px;
 
 }
 .btn-cancella.cancel{
+    margin-top: 1em;
     margin-left: 1.3em;
+}
+
+.pay{
+    width:100%;
+}
+
+#prenotazioni{
+    padding-bottom: 25%;
 }

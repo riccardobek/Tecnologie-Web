@@ -135,6 +135,7 @@ input:not([type=submit]):not([type=button]):focus {
 }
 
 .btn.btn-primary {
+    margin:auto;
     color: white;
     background-color: #0067c8;
     border-bottom-color: #0000c6;
@@ -838,7 +839,7 @@ h1,h2,h3{
 
 .rate-wrapper a.btn-primary{
     font-size: 73%;
-    width: 50%;
+    margin-right: 0.7em;
     padding: 0.5em 0.7em;
     margin-bottom:0.3em;
 }
