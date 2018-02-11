@@ -4,6 +4,8 @@ require_once "php/database.php";
 require_once "php/funzioni/funzioni_pagina.php";
 require_once "php/tcpdf/tcpdf_import.php";
 
+loginRichiesto();
+
 define("PDF_PATH",getcwd().DIRECTORY_SEPARATOR."pdf".DIRECTORY_SEPARATOR);
 
 if(!isset($_GET["codice"])) {
@@ -11,8 +13,22 @@ if(!isset($_GET["codice"])) {
     return;
 }
 
-
 $codicePrenotazione = filter_var($_GET["codice"],FILTER_SANITIZE_NUMBER_INT);
+
+//Controllo che il codicePrenotazione corrisponda ad una prenotazione che ho effettuato io e non qualcun altro
+$prenotazione = getDettagliPrenotazione($codicePrenotazione);
+//La funzione getDettaglioPrenotazione si trova in fondo a questo file
+
+if(!$prenotazione) {
+    paginaErrore("Prenotazione non trovata");
+    return;
+}
+
+if($prenotazione["IDUtente"] != $_SESSION["Utente"]["ID"]) {
+    paginaErrore("Non sei autorizzato a visualizzare questa prenotazione");
+    return;
+}
+
 
 $nomePDF = "prenotazione_".$codicePrenotazione.".pdf";
 $nomePDFCompleto = PDF_PATH.$nomePDF;
@@ -28,8 +44,6 @@ if(file_exists($nomePDFCompleto)) {
     echo file_get_contents($nomePDFCompleto);
     die();
 }
-
-$prenotazione = getDettagliPrenotazione($codicePrenotazione);
 
 $HTML = file_get_contents("template/attivita/conferma_prenotazione_pdf.html");
 $HTML = str_replace("[#NOME]",$prenotazione["Nome"]." ".$prenotazione["Cognome"],$HTML);
@@ -74,7 +88,7 @@ $pdf->Output(PDF_PATH."prenotazione_{$codicePrenotazione}.pdf", 'FI');
 function getDettagliPrenotazione($codicePrenotazione) {
     global $db;
 
-    $query = $db->prepare("SELECT Prenotazioni.Giorno AS Data, Prenotazioni.PostiPrenotati as Posti, 
+    $query = $db->prepare("SELECT Prenotazioni.IDUtente, Prenotazioni.Giorno AS Data, Prenotazioni.PostiPrenotati as Posti, 
           Attivita.Nome AS NomeAttivita, Attivita.Prezzo AS Prezzo, Utenti.Nome AS Nome, Utenti.Cognome AS Cognome,
           Utenti.ID AS IDUtente
           FROM Attivita JOIN (Utenti JOIN Prenotazioni ON Utenti.ID = Prenotazioni.IDUtente)

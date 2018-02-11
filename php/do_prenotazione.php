@@ -1,13 +1,12 @@
 <?php
+session_start();
+
 define("PERCORSO_RELATIVO","../");
 
 require_once "database.php";
 require_once "funzioni/funzioni_json.php";
 require_once "funzioni/funzioni_sicurezza.php";
-require_once "funzioni/funzioni_pagina.php";
 
-define("LINK_PAGINA_ERRORE","../attivita.php");
-define("TESTO_LINK_PAGINA_ERRORE", "Torna alla lista di attività");
 
 $jsAbilitato = boolval(filter_var($_POST["JSAbilitato"],FILTER_SANITIZE_NUMBER_INT));
 
@@ -20,12 +19,12 @@ $jsAbilitato = boolval(filter_var($_POST["JSAbilitato"],FILTER_SANITIZE_NUMBER_I
 //La data passata è nel formato DD/MM/YYYY, mentre la devo convertire nel formato YYYY/MM/DD
 $data = convertiData(filter_var($_POST["data"],FILTER_SANITIZE_FULL_SPECIAL_CHARS));
 if(!$data) {
-    errore("Data non valida");
+    errore(0); //Data non valida
     return;
 }
 
 if(!dataFutura($data)) {
-    errore("Impossibile prenotare un'attività per tale data.");
+    errore(1); //Impossibile prenotare un'attività per tale data
     return;
 }
 
@@ -52,7 +51,7 @@ $PostiPrenotati->execute(array($attivita, $data));
 $PostiDisponibiliEffettivi = intval($PostiDisponibiliGiornata) - intval($PostiPrenotati->fetch()["PostiOccupati"]);
 
 if ($nPosti > $PostiDisponibiliEffettivi) {
-    errore("Numero posti inserti maggiore del numero posti disponibili");
+    errore(2); //Numero posti inserti maggiore del numero posti disponibili
     return;
 }
 
@@ -61,16 +60,17 @@ else {
     $insertStatement = $db->prepare("INSERT INTO Prenotazioni VALUES(NULL,?,?,?,?,'Sospesa','0',NULL)");
     if($insertStatement->execute(array($attivita,$utente,$data,$nPosti))) {
         $codicePrenotazione = $db->lastInsertId();
+        $db->commit();
+
         if($jsAbilitato)
             successoJSON("Prenotazione inserita",array("CodicePrenotazione"=>$codicePrenotazione));
         else {
-            paginaSuccesso("Prenotazione inserita con successo!","../pdf_prenotazione.php?codice=".$codicePrenotazione,"Clicca qui per scaricare la conferma prenotazione",true);
+            header("Location: ../conferma_prenotazione.php?successoPrenotazione=".$codicePrenotazione);
         }
-        $db->commit();
     }
     else{
         $db->rollBack();
-        errore("Errore nell'inserimento della prenotazione nel database.");
+        errore(3); //Errore nell'inserimento della prenotazione nel database
     }
 }
 
@@ -88,6 +88,17 @@ function convertiData($dataDaConvertire) {
 
     //Converto la data dal formato dd/mm/yyyy al formato yyyy-mm-dd (accettato da mysql)
     return $dataCalcolata->format("Y-m-d");
+}
+
+/**
+ * Funzione che mostra un errore tenendo conto del fatto che la pagina sia stata caricata attraverso una richiesta AJAX o
+ * no
+ * @param $codice il codice dell'errore, indice dell'array ERRORI_INSERIMENTO_ATTIVITA definito in funzioni_sicurezza.php
+ */
+function errore($codice) {
+    global $jsAbilitato;
+
+    $jsAbilitato ? erroreJSON(ERRORI_INSERIMENTO_ATTIVITA[$codice]) : header("Location: ../conferma_prenotazione.php?errorePrenotazione=".$codice);
 }
 ?>
 

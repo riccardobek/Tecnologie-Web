@@ -17,3 +17,10 @@ function isAdmin() {
 function dataFutura($dataDaValidare) {
     return strtotime((new DateTime())->format("Y-m-d")) < strtotime($dataDaValidare);
 }
+
+define("ERRORI_INSERIMENTO_ATTIVITA", array(
+    "Data non valida.",
+    "Impossibile prenotare un'attività per tale data.",
+    "Numero posti inserti maggiore del numero posti disponibili.",
+    "Errore nell'inserimento della prenotazione nel database."
+));
