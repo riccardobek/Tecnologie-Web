@@ -223,9 +223,7 @@ function menuMobile($activeIndex)
 
     $VOCI_MENU = "";
     for ($i = 0; $i < count($menuElements); $i++) {
-        if(isAdmin()){if($i==7) $i++;}
         $VOCI_MENU.=creaElementoMenuMobile($i, $activeIndex);
-        if(!isAdmin()){if($i==7) $i++;}
     }
 
     $MENU_MOBILE = str_replace("[#VOCI-MENU]", $VOCI_MENU, $MENU_MOBILE);
