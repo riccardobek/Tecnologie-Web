@@ -64,7 +64,7 @@ if(isset($_POST["RichiestaMacro"])){
 }
 
 if(isset($_POST["convalidaPrenotazione"])) {
-    convalidaPrenotazione(filter_var($_POST["codice"],FILTER_SANITIZE_STRING));
+    convalidaPrenotazione(filter_var($_POST["prenotazione"],FILTER_SANITIZE_STRING));
     return;
 }
 
@@ -286,7 +286,7 @@ function prenotazioniAttive(){
                  <td>{$riga["Attivita"]}</td>
                  <td>{$riga["Posti"]}</td>
                  <td>{$riga["Giorno"]}</td>
-                 <td>{$riga["Stato"]}</td>
+                 <td class="stato">{$riga["Stato"]}</td>
                  <td>{$riga["Pagato"]}</td>
                  <td><button data-target="{$riga["CodicePrenotazione"]}" class="btn btn-primary pay">Conferma Pagamento</button></td>
                  <td><button data-target="{$riga["CodicePrenotazione"]}" class="btn-cancella" title="Elimina">X</button></td>
@@ -300,7 +300,7 @@ RIGA;
                  <td>{$riga["Attivita"]}</td>
                  <td>{$riga["Posti"]}</td>
                  <td>{$riga["Giorno"]}</td>
-                 <td>{$riga["Stato"]}</td>
+                 <td class="stato">{$riga["Stato"]}</td>
                  <td>{$riga["Pagato"]}</td>
                  <td>Pagamento effettuato</td>
                  <td><button data-target="{$riga["CodicePrenotazione"]}" class="btn-cancella" title="Elimina">X</button></td>
