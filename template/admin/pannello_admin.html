@@ -104,6 +104,29 @@
             <div id="res-manager" class="tabcontent">
                 <h1>Gestione prenotazioni</h1>
                 <button class="btn btn-primary" id="scheda-QR">Convalida prenotazione</button>
+                <div class="scheda-wrapper overlay"  id="lettoreQR">
+                    <div class="length-wrapper" role="dialog"  aria-labelledby="label-dialog3">
+                        <div class="schede form nuova-scheda" id="">
+                            <h2>Convalida prenotazione</h2>
+                            <div class="alert errore" aria-live="assertive" role="alert" aria-atomic="true"><p class="intestazione-alert">Errore:</p></div>
+                            <video id="ideo"></video>
+                            <form>
+                                <div class="field-container">
+                                    <label for="testoQR" >Inserire il codice: </label>
+                                    <div class="input-container">
+                                        <input type="text" id="testoQR">
+                                    </div>
+                                </div>
+                                <div class="button-holder">
+                                    <input type="submit" value="Conferma"  name="conferma" class="btn btn-primary">
+                                    <button class="btn btn-color" id="annulla-QR">ANNULLA</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="wrapper-tabella">
                     <table class="tabella" summary="La tabella presenta l'insieme di prenotazioni attive">
                         <caption><h3>Prenotazioni attive</h3></caption>

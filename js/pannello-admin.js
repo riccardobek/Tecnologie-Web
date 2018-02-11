@@ -158,6 +158,22 @@ $(function() {
 
 
     //----SEZIONE GESTISCI PRENOTAZIONI----
+
+    //Convalida prenotazione
+    $("#scheda-QR").on("click", function(){
+        $("#lettoreQR").show();
+        bloccaScroll();
+    });
+
+    $("#annulla-QR").on("click", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        $("#lettoreQR").fadeOut("Slow", function(){
+            //pulisciErrori();
+            sbloccaScroll();
+        });
+    });
+
     //Cancella prenotazione
     $("#res-manager .btn-cancella").on("click", function (e) {
         e.preventDefault();
