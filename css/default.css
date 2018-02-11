@@ -860,7 +860,7 @@ h1,h2,h3{
     display: none;
 }
 
-#titolo-form {
+.titolo-form {
     width:100%;
 }
 
@@ -989,4 +989,10 @@ a.btn-a {
 
 video {
     max-width: 100%;
+}
+
+/*sezione impostazioni*/
+#impostazione-giorno{
+    width: 400px;
+    margin: auto;
 }
