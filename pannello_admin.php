@@ -125,7 +125,7 @@ function listaUtenti(){
     <td class="username">{$r["Username"]}</td>
     <td>{$r["Email"]}</td>
     <td><button data-target="utente-{$r["ID"]}"  class="btn btn-testo btn-reimposta">Reimposta password</button></td>
-    <td><button data-target="utente-{$r["ID"]}" class="btn-cancella">&#x1F5D1;</button></td>
+    <td><button data-target="utente-{$r["ID"]}" class="btn-cancella" title="Elimina">X</button></td>
  </tr>
 SCRIVI;
         
@@ -286,7 +286,7 @@ function prenotazioniAttive(){
                  <td>{$riga["Stato"]}</td>
                  <td>{$riga["Pagato"]}</td>
                  <td><button data-target="{$riga["CodicePrenotazione"]}" class="btn btn-primary pay">Conferma Pagamento</button></td>
-                 <td><button data-target="{$riga["CodicePrenotazione"]}" class="btn-cancella">&#x1F5D1;</button></td>
+                 <td><button data-target="{$riga["CodicePrenotazione"]}" class="btn-cancella" title="Elimina">X</button></td>
             </tr>
 RIGA;
          }
@@ -300,7 +300,7 @@ RIGA;
                  <td>{$riga["Stato"]}</td>
                  <td>{$riga["Pagato"]}</td>
                  <td>Pagamento effettuato</td>
-                 <td><button data-target="{$riga["CodicePrenotazione"]}" class="btn-cancella">&#x1F5D1;</button></td>
+                 <td><button data-target="{$riga["CodicePrenotazione"]}" class="btn-cancella" title="Elimina">X</button></td>
             </tr>
 RIGA;
         }
@@ -356,3 +356,4 @@ function settaPagato($codice){
     return;
 
 }
+
