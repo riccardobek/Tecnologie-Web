@@ -11,31 +11,19 @@ $("document").ready(function() {
 });
 
 
-
 /**
- * Funzione che notifica un errore in un campo del form.
+ * Funzione che mostra eventuali errori in un form
  *
- * La funzione si divide in due parti:
- * 1- Aggiunge la classe "error" all'elemento "targetNode" (ovvero al div.field-container passato come parametro)
- * 2- Crea e aggiunge a tale div lo span contenente il testo dell'errore
- *
- * @param targetNode è il div.field-container a cui si vuole aggiungere l'errore
- * @param testo è il testo dell'errore
+ * @param targetNode è il campo che ha generato l'errore (input o textarea)
+ * @param testo il testo dell'errore
+ * @param divAlert il div.alert.errore che conterrà gli errori da mostrare
+ * @param formErr il form che ha generato l'errore
  */
 function notificaErrore(targetNode, testo, divAlert, formErr) {
     divAlert.append("<p>"+testo+"</p>");
     divAlert.show();
     targetNode.addClass("error");
     formErr.find(".error").first().focus();
-
-    /*var span = $("<span role='alert'>"+testo+"</span>");
-    span.appendTo(targetNode);
-
-
-
-    targetNode.children("input,textarea").on("focus",function() {
-        pulisciErrore(targetNode);
-    });*/
 }
 
 /**
@@ -48,25 +36,10 @@ function pulisciErrori(divAlert, formErr) {
 }
 
 /**
- * Funzione che elimina il messaggio di errore (se esiste) dal div.field-container passato come parametro
- * @param targetElement il div.field-container dal quale rimuovere l'eventuale messaggio di errore
+ * Funzione che prende una stringa e se essa non rappresenta una data allora la converte in oggetto Date
+ * @param d la data da val
+ * @returns {*}
  */
-function pulisciErrore(targetElement) {
-    /*if(targetElement.hasClass("error")) {
-        //Se l'elemento targetNode ha un errore (quindi ha la classe error) la tolgo
-        targetElement.removeClass("error");
-
-        //Prendo tutti i figli del div.field-container che sto esaminando e rimuovo lo span
-        targetElement.children().each(function() {
-            //Itero sui figli del div.field-container che sto esaminando alla disperata ricerca dello span da rimuovere
-            if($(this).is("span")) {
-                //quando l'ho trovato lo rimuovo
-                $(this).remove();
-            }
-        });
-    }*/
-}
-
 function validaData(d) {
     var match = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(d);
     if (!match) {
