@@ -977,3 +977,7 @@ h1,h2,h3{
 a.btn-a {
     line-height: 3em;
 }
+
+#finestra-macro,#nuova-scheda-attivita{
+    overflow-y: auto;
+}

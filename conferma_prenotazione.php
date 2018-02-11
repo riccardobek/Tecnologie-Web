@@ -51,10 +51,20 @@ $HTML_INTESTAZIONE = intestazione($activeIndex);
 $codiceAttivita = filter_var($_GET["attivita"],FILTER_SANITIZE_NUMBER_INT);
 $posti = intval(filter_var($_GET["posti"],FILTER_SANITIZE_NUMBER_INT));
 
-$data = filter_var($_GET["data"],FILTER_SANITIZE_STRING);
+$data = convertiData(filter_var($_GET["data"],FILTER_SANITIZE_STRING)); //Ritorna false se la data non è nel formato corretto
+if(!$data) {
+    paginaErrore("La data non è nel formato corretto. Riprova.","attivita.php","Torna indietro");
+    return;
+}
 
 if(!dataFutura(implode("-",array_reverse(explode("/",$data))))) {
     paginaErrore("Le prenotazioni per tale data sono chiuse. Selezionare una data futura.","attivita.php","Torna indietro");
+    return;
+}
+
+$postiDisponibili = getNumeroPostiDisponibili($data);
+if($posti > $postiDisponibili) {
+    paginaErrore("I posti che si vogliono prenotare sono maggiori della disponibilità (che è di {$postiDisponibili} posti)","attivita.php","Torna indietro");
     return;
 }
 

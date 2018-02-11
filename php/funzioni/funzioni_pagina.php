@@ -65,7 +65,8 @@ $menuElements = array(
         "Icona"=> PERCORSO_RELATIVO."images/icone/icona_logout.png",
         "Pulsante"=>true,
         "LoginDipendente"=>true,
-        "VisibileGuest"=>false
+        "VisibileGuest"=>false,
+        "TipoUtente"=>"normale"
     ),
     array(
         "Nome" => "Pannello admin",
@@ -73,7 +74,8 @@ $menuElements = array(
         "Icona"=> PERCORSO_RELATIVO."images/icone/icona_logout.png",
         "Pulsante"=>true,
         "LoginDipendente"=>true,
-        "VisibileGuest"=>false
+        "VisibileGuest"=>false,
+        "TipoUtente"=>"admin"
     )
 );
 /**
@@ -100,6 +102,19 @@ function creaElementoMenu($index, $activeIndex) {
         //Se l'elemento del menu può essere visualizzato solo dagli utenti non loggati (ad esempio link alla pagina
         //"login") e l'utente corrente è loggato, allora non lo visualizzo
         return $element;
+    }
+
+    //Se l'elemento del menu è visibile solo ad una tipologia di utente, controllo che l'utente attualmente loggato
+    //appartenga a quella tipologia
+    else if(isset($menuElements[$index]["TipoUtente"])) {
+        //Se l'elemento è visibile solo agli admin e l'utente non è un admin, ritorno stringa vuota
+        if($menuElements[$index]["TipoUtente"] == "admin" && !isAdmin()) {
+            return $element;
+        }
+        //Se l'elemento è visibile solo ad un utente normale (non admin) e l'utente loggato è un admin, ritorno stringa vuota
+        else if($menuElements[$index]["TipoUtente"] == "normale" && isAdmin()) {
+            return $element;
+        }
     }
 
     if($menuElements[$index]["Pulsante"]) {
@@ -147,12 +162,10 @@ function intestazione($activeIndex) {
     $VOCI_MENU="";
 
     for($i=0;$i<count($menuElements);$i++) {
-        if(isAdmin()){if($i==7) $i++;}
         if ($menuElements[$i]["Pulsante"])
             $PULSANTI .= creaElementoMenu($i, $activeIndex);
         else
             $VOCI_MENU .= creaElementoMenu($i,$activeIndex);
-        if(!isAdmin()){if($i==7) $i++;}
     }
 
 
@@ -210,9 +223,7 @@ function menuMobile($activeIndex)
 
     $VOCI_MENU = "";
     for ($i = 0; $i < count($menuElements); $i++) {
-        if(isAdmin()){if($i==7) $i++;}
         $VOCI_MENU.=creaElementoMenuMobile($i, $activeIndex);
-        if(!isAdmin()){if($i==7) $i++;}
     }
 
     $MENU_MOBILE = str_replace("[#VOCI-MENU]", $VOCI_MENU, $MENU_MOBILE);
@@ -278,10 +289,6 @@ function loginRichiesto() {
         paginaErrore("Per visualizzare questa pagina effettua prima il login", PERCORSO_RELATIVO."login.php","Vai al login");
         die();
     }
-}
-
-function convertiDataToOutput($dataDaConvertire){
-    return (new DateTime($dataDaConvertire))->format('d/m/Y');
 }
 
 function impostaTestoPagamento(&$listaprenotazioni) {

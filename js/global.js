@@ -20,6 +20,8 @@ $("document").ready(function() {
  * @param formErr il form che ha generato l'errore
  */
 function notificaErrore(targetNode, testo, divAlert, formErr) {
+    pulisciErrori(divAlert,formErr);
+
     divAlert.append("<p>"+testo+"</p>");
     divAlert.show();
     targetNode.addClass("error");

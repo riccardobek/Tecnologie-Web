@@ -17,7 +17,6 @@ $codicePrenotazione = filter_var($_GET["codice"],FILTER_SANITIZE_NUMBER_INT);
 
 //Controllo che il codicePrenotazione corrisponda ad una prenotazione che ho effettuato io e non qualcun altro
 $prenotazione = getDettagliPrenotazione($codicePrenotazione);
-//La funzione getDettaglioPrenotazione si trova in fondo a questo file
 
 if(!$prenotazione) {
     paginaErrore("Prenotazione non trovata");
@@ -82,18 +81,3 @@ $pdf->write2DBarcode($contenutoQR, 'QRCODE,H', 160, 10, 50, 50, $QRStyle, 'N');
 $pdf->lastPage();
 
 $pdf->Output(PDF_PATH."prenotazione_{$codicePrenotazione}.pdf", 'FI');
-
-
-
-function getDettagliPrenotazione($codicePrenotazione) {
-    global $db;
-
-    $query = $db->prepare("SELECT Prenotazioni.IDUtente, Prenotazioni.Giorno AS Data, Prenotazioni.PostiPrenotati as Posti, 
-          Attivita.Nome AS NomeAttivita, Attivita.Prezzo AS Prezzo, Utenti.Nome AS Nome, Utenti.Cognome AS Cognome,
-          Utenti.ID AS IDUtente
-          FROM Attivita JOIN (Utenti JOIN Prenotazioni ON Utenti.ID = Prenotazioni.IDUtente)
-            ON Attivita.Codice = Prenotazioni.IDAttivita WHERE Prenotazioni.Codice = ?");
-
-    $query->execute(array($codicePrenotazione));
-    return $query->fetch();
-}
