@@ -57,20 +57,18 @@ function stampaAttivita() {
                 $sottoattivita = str_replace("[#ANCORA-GESTISCI-ATTIVITA]",' ',$sottoattivita);
                 $sottoattivita = str_replace("[#BTN-LOGGATO]","button",$sottoattivita);
                 $sottoattivita = str_replace("[#TESTO-PULSANTE]","Voglio prenotare",$sottoattivita);
+                $sottoattivita = str_replace("[#HREF]", "",$sottoattivita);
             }
-            elseif(isAdmin()){
-                $str ="";
-                $str .= <<<RIGA
-<a href='pannello_admin.php#attivita-{$attivita["Codice"]}' class="gestione btn-testo">Gestisci</a>
-RIGA;
-
-                $sottoattivita = str_replace("[#ANCORA-GESTISCI-ATTIVITA]",$str,$sottoattivita);
-                $sottoattivita = str_replace("<[#BTN-LOGGATO] class=\"btn btn-primary btn-inline\" data-espanso=\"false\">[#TESTO-PULSANTE]</[#BTN-LOGGATO]>", ' ',$sottoattivita);
+            elseif(isAdmin()) {
+                $sottoattivita = str_replace("[#BTN-LOGGATO]","a",$sottoattivita);
+                $sottoattivita = str_replace("[#TESTO-PULSANTE]","Gestisci",$sottoattivita);
+                $sottoattivita = str_replace("[#HREF]", "href='pannello_admin.php#attivita-{$attivita["Codice"]}'",$sottoattivita);
             }
             else{
                 $sottoattivita = str_replace("[#ANCORA-GESTISCI-ATTIVITA]",' ',$sottoattivita);
                 $sottoattivita = str_replace("[#BTN-LOGGATO]","span",$sottoattivita);
                 $sottoattivita = str_replace("[#TESTO-PULSANTE]","Effettua il <a href = 'login.php'>login</a> o <a href='registrazione.php'>registrati</a>  per poter prenotare",$sottoattivita);
+                $sottoattivita = str_replace("[#HREF]", "",$sottoattivita);
             }
         }
 

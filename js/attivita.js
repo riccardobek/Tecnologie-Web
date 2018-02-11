@@ -9,7 +9,7 @@ $(function () {
         $(this).hide();
     });
 
-    $(".attivita > .btn.btn-primary").on("click",function(event) {
+    $(".attivita > button.btn.btn-primary").on("click",function(event) {
         var formContainer = $(event.target).parent().children(".form-prenotazione-container");
         formContainer.slideDown(function() {
             formContainer.find("input.data").filter(":first").focus();

@@ -67,13 +67,12 @@ p,ul {
 }
 
 a {
- color: #85DEFF;
+ color: #52ABFF;
 }
 
 a:visited{
     color: #0067C6;
 }
-
 /**********************
 STILE DEGLI INPUT
 **********************/
@@ -530,9 +529,15 @@ div.alert.errore p{
 }
 
 div.alert.successo {
-    background: #4CAF50;
-    color: white;
+    background: /*#4CAF50*/#75C277;
+    color: black;
 }
+
+div.alert.successo a,
+div.alert.successo a:visited {
+    color: #010189;
+}
+
 
 /**********************************
 * PAGINA DI CONFERMA PRENOTAZIONE
@@ -966,5 +971,9 @@ h1,h2,h3{
 }
 
 .btn.act-input {
-    margin-top: 1em;
+    margin-top: 10px
+}
+
+a.btn-a {
+    line-height: 3em;
 }
