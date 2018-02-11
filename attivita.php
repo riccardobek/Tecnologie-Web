@@ -54,7 +54,7 @@ function stampaAttivita() {
             if(isUtenteLoggato() && !isAdmin()) {
                 $sottoattivita = str_replace("[#ANCORA-GESTISCI-ATTIVITA]",' ',$sottoattivita);
                 $sottoattivita = str_replace("[#BTN-LOGGATO]","button",$sottoattivita);
-                $sottoattivita = str_replace("[#TESTO-PULSANTE]","Prenota",$sottoattivita);
+                $sottoattivita = str_replace("[#TESTO-PULSANTE]","Voglio prenotare",$sottoattivita);
             }
             elseif(isAdmin()){
                 $str ="";
