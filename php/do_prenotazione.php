@@ -10,12 +10,6 @@ require_once "funzioni/funzioni_sicurezza.php";
 
 $jsAbilitato = boolval(filter_var($_POST["JSAbilitato"],FILTER_SANITIZE_NUMBER_INT));
 
-/*
- * Bisogna prendere i dati in input dal form di registrazione e controllare la loro correttezza.
- * In caso positivo si procede all'inserimento del DB
- * In caso negativo si rigetta ritornando una oggetto JSON
- */
-
 //La data passata è nel formato DD/MM/YYYY, mentre la devo convertire nel formato YYYY/MM/DD
 $data = convertiData(filter_var($_POST["data"],FILTER_SANITIZE_FULL_SPECIAL_CHARS));
 if(!$data) {

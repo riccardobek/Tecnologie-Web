@@ -4,6 +4,12 @@ define("PERCORSO_RELATIVO","");
 require_once "php/funzioni/funzioni_pagina.php";
 require_once "php/database.php";
 
+if(isset($_POST["getPostiDisponibili"])) {
+    $data = convertiData(filter_var($_POST["Data"],FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+    if($data)
+        echo getNumeroPostiDisponibili($data);
+    return;
+}
 
 $activeIndex = 1;
 

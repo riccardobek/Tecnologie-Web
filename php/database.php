@@ -47,6 +47,7 @@ function convertiDataToOutput($dataDaConvertire){
 /**
  * Funzioni inerenti alle attivita
  */
+
 function getMacroattivita() {
     global $db;
     $query = $db->prepare("SELECT Codice, Nome, Descrizione, Immagine, Banner, REPLACE(LOWER(`Nome`), ' ', '-') AS Ancora FROM Macroattivita");

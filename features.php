@@ -1,16 +1,7 @@
 <?php
-require_once "php/database.php";
-require_once "php/funzioni/funzioni_pagina.php";
-
-//phpinfo();
-print_r(getcwd());
-die();
-
-if(true)
-    echo "JS";
-else
-    paginaSuccesso("Login effettuato con successo","index.php","Prosegui la navigazione");
-die();
+$numero = "34.50";
+echo filter_var($numero,FILTER_SANITIZE_NUMBER_FLOAT, array(
+  'flags'=>FILTER_FLAG_ALLOW_FRACTION));
 ?>
 
 <!--
