@@ -278,17 +278,20 @@ function aggiugngiEventiSchedeAttivita() {
                 Procedi: {
                     btnClass: 'btn-red',
                     action: function () {
-                        $.post("php/modifica_attivita",{eliminaAttivita:1, idAttivita: idScheda}, function(risposta){
+                        $.post("php/modifica_attivita.php",{eliminaAttivita:1, idAttivita: idScheda}, function(risposta){
                             try {
-                                rispsota = JSON.parse(risposta);
-                                if(risposta.stato == 1) {
-                                    generaAlert('green','Successo', rispsota.messaggio);
+                                risposta = JSON.parse(risposta);
+                                if(risposta.stato == "1") {
+                                    generaAlert('green','Successo', risposta.messaggio);
+                                    //al successo dell'eliminazione rimuovo la scheda
+                                    sistemaSchede(idScheda);
                                 }
                                 else {
-                                    generaAlert('red','Errore', rispsota.messaggio);
+                                    generaAlert('red','Errore', risposta.messaggio);
                                 }
                             }
                             catch(e) {
+                                console.log(e);
                                 generaAlertErroreGenerico();
                             }
                         });
@@ -297,8 +300,8 @@ function aggiugngiEventiSchedeAttivita() {
                 Annulla: {}
             }
         });
-        //al successo dell'eliminazione rimuovo la scheda
-        sistemaSchede(idScheda);
+
+
     });
 
     //array associativo per il vari campi dati delle varie schede
@@ -486,7 +489,6 @@ function aggiungiEventiMacroAttivita() {
         }
     });
 
-    //bottone modifica macroattivita.
     $(".mod-macro").on("click", function(e){
         e.preventDefault();
         e.stopPropagation();

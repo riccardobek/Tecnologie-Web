@@ -5,13 +5,30 @@ require_once "database.php";
 require_once "funzioni/funzioni_json.php";
 require_once "funzioni/funzioni_sicurezza.php";
 
-$db->beginTransaction();
+
 
 if(isAdmin()){
     //richiesta di eliminazione di un'attivita
     if(isset($_POST["eliminaAttivita"])) {
-
-        
+        $idAttivita = abs(filter_var($_POST["idAttivita"],FILTER_SANITIZE_NUMBER_INT));
+        $db->beginTransaction();
+        $queryDeletePrenotazioni = $db->prepare("DELETE FROM Prenotazioni WHERE IDAttivita = ?");
+        if($queryDeletePrenotazioni->execute(array($idAttivita))) {
+            $queryDeleteAttivita =  $db->prepare("DELETE FROM Attivita WHERE Codice = ?");
+            if($queryDeleteAttivita->execute(array($idAttivita))) {
+                $db->commit();
+                successoJSON("Attività eliminata con successo.");
+                return;
+            }
+            $db->rollBack();
+            erroreJSON("Non è stato possibile eliminare l'attività.");
+            return;
+        }
+        else{
+            $db->rollBack();
+            erroreJSON("Non è stato possibile eliminare l'attività.");
+            return;
+        }
     }
 
 
@@ -24,6 +41,7 @@ if(isAdmin()){
 
 
     if(isset($_POST["nuovaAttivita"])) {
+        $db->beginTransaction();
         $queryControllo = $db->prepare("SELECT Nome FROM Attivita WHERE Nome = ?");
         $queryControllo->execute(array($nomeAttivita));
         if($queryControllo->fetch()) {
@@ -51,6 +69,7 @@ if(isAdmin()){
         }
     }
     else {
+        $db->beginTransaction();
         $idAttivita = abs(filter_var($_POST["idAttivita"], FILTER_SANITIZE_NUMBER_INT));
         $queryModifica = $db->prepare("UPDATE Attivita SET Nome = ?, Descrizione = ?, Prezzo = ? WHERE Codice = ?");
         if($queryModifica->execute(array($nomeAttivita,$descrizione,$prezzo,$idAttivita))) {
