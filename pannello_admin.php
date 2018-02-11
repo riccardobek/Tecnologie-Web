@@ -104,6 +104,8 @@ $HTML = str_replace("[#UTENTI-PIU-ATTIVI]",utentiPiuAttivi(),$HTML);
 $HTML = str_replace("[#PRENOTAZIONI-ATTIVE]",prenotazioniAttive(),$HTML);
 $HTML = str_replace("[#PRENOTAZIONI-PASSATE]",prenotazioniPassate(),$HTML);
 
+$HTML = str_replace("[#TABELLA-GIORNI]",impostaGiorni(),$HTML);
+
 
 //Footer
 $HTML = str_replace("[#MENU-MOBILE]",menuMobile($activeIndex),$HTML);
@@ -360,3 +362,24 @@ function settaPagato($codice){
 
 }
 
+function impostaGiorni(){
+    global $db;
+
+    $giorni=$db->prepare("SELECT * FORM Disponibilita");
+    $giorni->execute();
+    $arrayGiorni=$giorni->fetchAll();
+
+    $riga="";
+
+    foreach ($arrayGiorni as $g){
+        $g["Giorno"] = convertiDataToOutput($riga["Giorno"]);
+        $riga .= <<<DAY
+<tr data-attivita="{$g["Giorno"]}">
+    <td>{$g["Giorno"]}</td>
+    <td>{$g["PostiDisponibili"]}</td>
+    <td><button data-target="{$g["Giorno"]}" class="btn-cancella" title="Elimina">X</button></td>
+</tr>
+DAY;
+    }
+    return $riga;
+}
