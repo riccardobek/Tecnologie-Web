@@ -239,17 +239,14 @@ caption{
     text-align: left;
 }
 
-#stat-tab{
+#stat-tab,#act-tab{
     border-bottom: 1px solid rgba(0,0,0,0.2);
 }
-#usr-tab{
-    border-left: 1px solid rgba(0,0,0,0.2);
-    border-bottom: 1px solid rgba(0,0,0,0.2);
+#day-tab{
+    float: left;
+    border-top: 1px solid rgba(0,0,0,0.2);
+    width: 100%;
 }
-#res-tab{
-    border-left: 1px solid rgba(0,0,0,0.2);
-}
-
 .contact-header{
     font-size: 98%;
     font-weight: bolder;
@@ -297,4 +294,10 @@ caption{
 
 #prenotazioni{
     padding-bottom: 25%;
+}
+
+#impostazione-giorno > form > .button-holder {
+    margin-left: 0;
+    margin-right: 0;
+    float: left;
 }
