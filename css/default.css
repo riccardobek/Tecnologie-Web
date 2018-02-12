@@ -1002,3 +1002,7 @@ video {
     width: 100%;
     text-align: left;
 }
+
+#nPosti, #imposta-data{
+    color: #FFFFFF;
+}
