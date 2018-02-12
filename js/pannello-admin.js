@@ -63,14 +63,6 @@ $(function() {
                                        $("#finestra-macro form")[0].reset();
                                     }
                                 });
-                                /*
-                                $.post("pannello_admin.php", formData, function(ris) {
-                                    togliEventiMacroAttivita();
-                                    $("#act-manager").append(ris);
-                                    sbloccaScroll();
-                                    aggiungiEventiMacroAttivita();
-                                    $("#finestra-macro form")[0].reset();
-                                });*/
                             }
                             else {
                                 generaAlert('red', "Errore", risposta.messaggio);
@@ -104,7 +96,7 @@ $(function() {
                                 generaAlert('green', "Successo", risposta.messaggio);
                                 //la macroattività è stata aggiornata con successo
                                 //aggiorno il titolo della macro nel pannello admin h1
-                                $("span[data-target='" + idMacro + "']").prev().text(form[0].value);
+                                $("span[data-target='" + idMacro + "']").prev().text(formData.get("nome-macro"));
                                 $("#finestra-macro").fadeOut('slow',function() {
                                     sbloccaScroll();
                                     $("#finestra-macro form")[0].reset();
@@ -679,7 +671,7 @@ function aggiungiEventiMacroAttivita() {
                 macro = JSON.parse(macro);
                 $("#label-dialog2").text(macro.Nome + " - Modifica");
                 $("#nome-macro").val(macro.Nome);
-                $("#descrizione-macro").val(macro.Descrizione);
+                $("#descrizione-macro").val($("<textarea/>").html(macro.Descrizione).text()); //Serve per interpretare i caratteri speciali di HTML, tipo &#039; ecc.
                 $("#finestra-macro").show();
                 bloccaScroll();
                 $("#finestra-macro input[type=submit]").attr("data-fun", idMacro);

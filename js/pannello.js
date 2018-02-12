@@ -52,7 +52,9 @@ function eliminaPrenotazione(codicePrenotazione) {
 
 
 
-function eliminaAccount(idUtente=0) {
+function eliminaAccount(idUtente) {
+    if(idUtente == undefined) idUtente = 0;
+
     var id = idUtente.replace("utente-","");
     $.post("php/delete_account.php",{IDUtente:idUtente}, function(risposta) {
         try{
@@ -79,8 +81,6 @@ function eliminaAccount(idUtente=0) {
                     return true;
                 }
                 else {
-
-                    alert("qua");
                     //console.log($("[data-user='"+idUtente+"']"));
                     //elimino nel pannello admin tutti gli elemente che si riferiscono all'utente eliminato
                    $("[data-user='"+id+"']").each(function() {
