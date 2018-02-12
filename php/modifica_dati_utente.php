@@ -43,6 +43,15 @@ function modificaDati() {
     $CAP = filter_var($_POST["CAP"], FILTER_SANITIZE_NUMBER_INT);
     $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
 
+    if(strlen(filter_var($nome, FILTER_SANITIZE_NUMBER_INT))>0){
+        erroreJSON("Nome non valido");
+        return;
+    }
+    if(strlen(filter_var($cognome, FILTER_SANITIZE_NUMBER_INT))>0){
+        erroreJSON( "Cognome non valido");
+        return;
+    }
+
     $queryUtente = $db->prepare("SELECT * FROM Utenti WHERE ID = ?");
     $queryUtente->execute(array($idUtente));
 

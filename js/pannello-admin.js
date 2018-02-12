@@ -340,7 +340,6 @@ $(function() {
             $.post("pannello_admin.php", form, function(risposta) {
                 try {
                     risposta = JSON.parse(risposta);
-                    console.log("parse OK");
                     if(risposta.stato == "1") {
                         generaAlert('green','Succeso',risposta.messaggio );
                         $("#tabella-giorni").append("<tr id='"+data+"'><td>"+data+"</td><td>"+nposti+"</td><td><button data-target='"+data+"'class='btn-cancella' title='Elimina'>X</button></td></tr>");
