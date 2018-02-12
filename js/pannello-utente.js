@@ -181,6 +181,7 @@ function assegnaVoto(){
 
 function rispostaEliminiazionePrenotazione(target) {
     sistemaSchede(target);
+    generaAlert("green","Successo","Attività eliminata con successo");
 }
 
 function validaCampiCambioPwd(divErrore) {
