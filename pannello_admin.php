@@ -170,7 +170,7 @@ echo $HTML;
 //Funzione che crea la tabella degli utenti
 function listaUtenti(){
     global $db;
-    $listaUtenti = $db->prepare("SELECT Utenti.ID AS ID, Utenti.Nome as Nome, Utenti.Cognome as Cognome, Utenti.Indirizzo as Indirizzo, Utenti.Username as Username, Utenti.Email as Email FROM Utenti WHERE Utenti.Tipo='Utente' AND Utenti.Stato=1");
+    $listaUtenti = $db->prepare("SELECT Utenti.ID AS ID, Utenti.Nome as Nome, Utenti.Cognome as Cognome, Utenti.Indirizzo as Indirizzo, Utenti.Username as Username, Utenti.Email as Email FROM Utenti WHERE Utenti.Tipo='Utente' ");
     $listaUtenti->execute();
     $risultato = $listaUtenti->fetchAll();
 
@@ -304,7 +304,7 @@ function utentiPiuAttivi(){
 
     global $db;
 
-    $query=$db->prepare("SELECT Utenti.ID AS ID, Utenti.Nome AS Nome, Utenti.Cognome AS Cognome, COUNT(Prenotazioni.Codice) AS NumeroPrenotazioni FROM Prenotazioni, Utenti WHERE Prenotazioni.IDUtente = Utenti.ID AND Utenti.Tipo!='Admin' GROUP BY Nome, Cognome ORDER BY NumeroPrenotazioni DESC LIMIT 5");
+    $query=$db->prepare("SELECT Utenti.ID AS ID, Utenti.Nome AS Nome, Utenti.Cognome AS Cognome, COUNT(Prenotazioni.Codice) AS NumeroPrenotazioni FROM Prenotazioni, Utenti WHERE Prenotazioni.IDUtente = Utenti.ID AND Utenti.Tipo!='Admin' GROUP BY Nome, Cognome, ID ORDER BY NumeroPrenotazioni DESC LIMIT 5");
     $query->execute();
     $array=$query->fetchAll();
 
