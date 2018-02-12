@@ -200,6 +200,18 @@ function creaElementoMenuMobile($index, $activeIndex){
         return $element;
     }
 
+    //Se l'elemento del menu è visibile solo ad una tipologia di utente, controllo che l'utente attualmente loggato
+    //appartenga a quella tipologia
+    else if(isset($menuElements[$index]["TipoUtente"])) {
+        //Se l'elemento è visibile solo agli admin e l'utente non è un admin, ritorno stringa vuota
+        if($menuElements[$index]["TipoUtente"] == "admin" && !isAdmin()) {
+            return $element;
+        }
+        //Se l'elemento è visibile solo ad un utente normale (non admin) e l'utente loggato è un admin, ritorno stringa vuota
+        else if($menuElements[$index]["TipoUtente"] == "normale" && isAdmin()) {
+            return $element;
+        }
+    }
 
     $element = ($index == $activeIndex) ?
 <<<ELEMENTO

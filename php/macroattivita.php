@@ -45,7 +45,7 @@ if(isAdmin()) {
                 eliminaImage($macroAttivita["Immagine"],"index");
             if(strlen($macroAttivita["Banner"]) > 0)
                 eliminaImage($macroAttivita["Banner"],"banner");
-            
+
             $db->commit();
 
             successoJSON("Macroattività eliminata con successo.");
