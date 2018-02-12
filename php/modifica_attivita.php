@@ -12,6 +12,7 @@ if(isAdmin()){
     if(isset($_POST["eliminaAttivita"])) {
         $idAttivita = abs(filter_var($_POST["idAttivita"],FILTER_SANITIZE_NUMBER_INT));
         eliminaAttivita($idAttivita);
+        return;
     }
 
     $nomeAttivita = filter_var($_POST["nome"],FILTER_SANITIZE_STRING);
