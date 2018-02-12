@@ -72,7 +72,7 @@ p,ul {
 }
 
 a {
- color: #52ABFF;
+ color: #A8D5FF;
 }
 
 a:visited{
@@ -1069,7 +1069,7 @@ form .field-container:not(:first-child) label {
 }
 
 
-
+/*
 a{
     color: #00529E;
 }
@@ -1077,7 +1077,7 @@ a{
 a:visited{
     color: #3DA1FF;
 }
-
+*/
 input:focus{
     background-color: #adceff;
 }
@@ -1106,3 +1106,6 @@ form .log-field-container:not(:first-child) label {
     border-bottom: 2px solid transparent;
 }
 
+#reg-sistema{
+    color: #0057A8;
+}
