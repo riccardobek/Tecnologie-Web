@@ -227,10 +227,3 @@ function stampaStorico() {
         $(".schede-prenotazioni").show();
     });
 }
-
-function controlloSchede() {
-    if($(".scheda-wrapper").length==0){
-        $("<h2>Non ci sono prenotazioni attive</h2>").insertAfter($("#prenotazioni h1"));
-    }
-
-}
