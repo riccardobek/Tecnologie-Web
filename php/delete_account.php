@@ -33,7 +33,14 @@ function eliminaAccount($utenteDaEliminare) {
     $query->execute(array($utenteDaEliminare));
     $errore = false;
 
-    if($query->fetchAll()) {
+    $prenotazioni = $query->fetchALl();
+    foreach($prenotazioni as $prenotazione) {
+        if(file_exists("../pdf/prenotazione_{$prenotazione["Codice"]}.pdf")) {
+            unlink("../pdf/prenotazione_{$prenotazione["Codice"]}.pdf");
+        }
+    }
+
+    if(count($prenotazioni) > 0) {
         $deleteStatement = $db->prepare("DELETE FROM Prenotazioni WHERE IDUtente = ?");
        if(!$deleteStatement->execute(array($utenteDaEliminare)))
            $errore = true;
