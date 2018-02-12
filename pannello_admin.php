@@ -282,7 +282,7 @@ function entratePreviste(){
     global $db;
 
 
-    $query=$db->prepare("SELECT Attivita.Prezzo AS Prezzo,Prenotazioni.PostiPrenotati AS Posti,Prenotazioni.Giorno AS Giorno FROM Attivita, Prenotazioni WHERE Attivita.Codice=Prenotazioni.IDAttivita AND month(CURRENT_DATE)=month(Prenotazioni.Giorno) AND Prenotazioni.Giorno>CURDATE() AND Prenotazioni.Stato='Confermata' ");
+    $query=$db->prepare("SELECT Attivita.Prezzo AS Prezzo,Prenotazioni.PostiPrenotati AS Posti,Prenotazioni.Giorno AS Giorno FROM Attivita, Prenotazioni WHERE Attivita.Codice=Prenotazioni.IDAttivita AND month(CURRENT_DATE)=month(Prenotazioni.Giorno) AND Prenotazioni.Stato='Confermata' ");
     $query->execute();
     $array=$query->fetchAll();
     $result=0;
