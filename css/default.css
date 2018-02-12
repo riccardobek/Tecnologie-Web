@@ -312,7 +312,7 @@ MENU
 #contatti-header img {
     vertical-align: middle;
     max-width: 1em;
-    padding-bottom: 4px;
+    padding-bottom: 0.25em;
 }
 
 .hamburger {
@@ -665,7 +665,7 @@ a parte
 PANNELLO UTENTE E AMMINISTRATORE: MENU A TAB
 ********************************************/
 .tab {
-    margin-top: 10px;
+    margin-top: 0.625em;
     overflow: hidden;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
@@ -677,9 +677,9 @@ PANNELLO UTENTE E AMMINISTRATORE: MENU A TAB
     /*border: none;*/
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
+    padding: 0.8em 0.9em;
     transition: 0.3s;
-    font-size: 17px;
+    font-size: 1em;
 }
 
 .tablinks {
