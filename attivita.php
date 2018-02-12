@@ -66,8 +66,11 @@ function stampaAttivita() {
                 $sottoattivita = str_replace("[#HREF]", "",$sottoattivita);
             }
             elseif(isAdmin()) {
+                $label = str_replace("\"","",$attivita["Nome"]);
+
                 $sottoattivita = str_replace("[#BTN-LOGGATO]","a",$sottoattivita);
                 $sottoattivita = str_replace("[#TESTO-PULSANTE]","Gestisci",$sottoattivita);
+                $sottoattivita = str_replace("[#ARIA-LABEL","Gestisci {$label}",$sottoattivita);
                 $sottoattivita = str_replace("[#HREF]", "href='pannello_admin.php#attivita-{$attivita["Codice"]}'",$sottoattivita);
             }
             else{
