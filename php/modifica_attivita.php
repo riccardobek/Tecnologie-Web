@@ -12,14 +12,13 @@ if(isAdmin()){
     if(isset($_POST["eliminaAttivita"])) {
         $idAttivita = abs(filter_var($_POST["idAttivita"],FILTER_SANITIZE_NUMBER_INT));
         eliminaAttivita($idAttivita);
+        return;
     }
 
     $nomeAttivita = filter_var($_POST["nome"],FILTER_SANITIZE_STRING);
     $descrizione = filter_var($_POST["descrizione"], FILTER_SANITIZE_STRING);
     $prezzo = filter_var(str_replace(',','.',$_POST["prezzo"]),FILTER_SANITIZE_NUMBER_FLOAT, array(
         'flags'=>FILTER_FLAG_ALLOW_FRACTION));
-
-
 
     if(isset($_POST["nuovaAttivita"])) {
         $db->beginTransaction();
