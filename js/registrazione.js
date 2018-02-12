@@ -1,8 +1,3 @@
-/**
- * Funzione che valida il form di registrazione ed, eventualmente (con return false) ne interrompe il submit
- * @returns {boolean}
- */
-
 $(document).ready(function() {
     $("#JSAbilitato").val("1");
 
