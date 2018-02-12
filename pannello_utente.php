@@ -11,6 +11,10 @@ require_once "php/funzioni/funzioni_pagina.php";
 require_once "php/funzioni/funzioni_json.php";
 loginRichiesto();
 
+if(isAdmin()) {
+    header("Location: pannello_admin.php");
+}
+
 $activeIndex = 6;
 
 if(isset($_POST["funzione"])){

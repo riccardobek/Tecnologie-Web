@@ -258,7 +258,7 @@ function stampaSchedeAttivita(){
 function entrateDelMese(){
    global $db;
 
-   $today=date("t-m-Y");
+   //$today=date("t-m-Y");
 
 
     $query=$db->prepare("SELECT Attivita.Prezzo AS Prezzo,Prenotazioni.PostiPrenotati AS Posti,Prenotazioni.Giorno AS Giorno FROM Attivita, Prenotazioni WHERE Attivita.Codice=Prenotazioni.IDAttivita AND month(CURRENT_DATE)=month(Prenotazioni.Giorno) AND Prenotazioni.Giorno<CURDATE() AND Prenotazioni.Stato='Confermata' AND Prenotazioni.Pagamento=1");
