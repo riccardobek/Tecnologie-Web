@@ -81,12 +81,9 @@ function eliminaAccount(idUtente) {
                     return true;
                 }
                 else {
-                    //console.log($("[data-user='"+idUtente+"']"));
                     //elimino nel pannello admin tutti gli elemente che si riferiscono all'utente eliminato
                    $("[data-user='"+id+"']").each(function() {
-                       console.log("ci sono prima");
                        $(this).remove();
-                       console.log("ci sono");
                    });
                     eliminaRigaTabella(idUtente);
                     generaAlert('green','Successo',risposta.messaggio);

@@ -24,7 +24,7 @@ $(function() {
         e.preventDefault();
         e.stopPropagation();
         var tipoOperazione = $(this).attr("data-fun");
-        console.log(tipoOperazione);
+        //console.log(tipoOperazione);
         if(validaFormModifica("finestra-macro")) {
             var form =  $("#finestra-macro form");
             var formData = new FormData();
@@ -91,7 +91,7 @@ $(function() {
                     success: function (risposta) {
                         try {
                             risposta = JSON.parse(risposta);
-                            console.log("parse OK")
+                            //console.log("parse OK")
                             if (risposta.stato == 1) {
                                 generaAlert('green', "Successo", risposta.messaggio);
                                 //la macroattività è stata aggiornata con successo
@@ -107,7 +107,7 @@ $(function() {
                             }
                         }
                         catch (e) {
-                            console.log(e);
+                            //console.log(e);
                             generaAlertErroreGenerico();
                         }
                     }
@@ -463,7 +463,7 @@ function aggiugngiEventiSchedeAttivita() {
                                 }
                             }
                             catch(e) {
-                                console.log(e);
+                                //console.log(e);
                                 generaAlertErroreGenerico();
                             }
                         });
@@ -536,7 +536,7 @@ function aggiugngiEventiSchedeAttivita() {
                     }
                 }
                 catch(e) {
-                    console.log(e);
+                    //console.log(e);
                     generaAlertErroreGenerico();
                 }
             });
@@ -719,7 +719,7 @@ function aggiungiEventiMacroAttivita() {
                                 }
                             }
                             catch(e) {
-                                console.log(e);
+                                //console.log(e);
                                 generaAlertErroreGenerico();
                             }
                         });
