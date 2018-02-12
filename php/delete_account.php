@@ -16,47 +16,48 @@ $idUtenteDaEliminare = abs(filter_var($_POST["IDUtente"], FILTER_SANITIZE_NUMBER
 if($idUtenteDaEliminare != 0) {
     //se è stato passato l'id dell'utente (!= 0 ) da eliminare allora è la richiesta è arrivata dalla pagina admin, in ogni caso
     //si fa un controllo per essere sicuri che effettivamente sia effettivamente l'admin ad eliminare un account
-    if(!(isAdmin())) {
+    if (!(isAdmin())) {
         erroreJSON("Non è stato possibile eliminare l'account.");
         return;
     }
-    //l'utente è l'admin quindi posso eliminare
-    $query = $db->prepare("SELECT Codice FROM Prenotazioni  WHERE  IDUtente = ?");
-    $query->execute(array($idUtenteDaEliminare));
-
-    //se l'utente non ha prenotazioni allora il risultato della query è vuoto quindi si può eliminare l'account definitvamente
-    if(!$query->fetch()) {
-        eliminaAccountSenzaPrenotazioni($idUtenteDaEliminare);
-    }
-    else {
-        eliminaAccountConPrenotazioni($idUtenteDaEliminare);
-    }
+    eliminaAccount($idUtenteDaEliminare);
 }
 else {
-    //l'utente vuole eliminare il suo account.
-    //Controllo se l'utente ha prenotazioni
-    $query = $db->prepare("SELECT Codice FROM Prenotazioni  WHERE IDUtente = ?");
-    $query->execute(array($idUtente));
-    if(!$query->fetch()) {
-        eliminaAccountSenzaPrenotazioni($idUtente);
-    }
-    else {
-        eliminaAccountConPrenotazioni($idUtente);
-    }
-
+    eliminaAccount($idUtente);
 }
 
-function eliminaAccountSenzaPrenotazioni($utenteDaEliminare) {
+function eliminaAccount($utenteDaEliminare) {
     global $db;
+
+    $query = $db->prepare("SELECT Codice FROM Prenotazioni  WHERE IDUtente = ?");
+    $query->execute(array($utenteDaEliminare));
+    $errore = false;
+    $risQuery=$query->fetchAll();
+    foreach ($risQuery as $attivita) {
+        if(!eliminaAttivita($attivita["Codice"],false)) {
+            $errore = true;
+            break;
+        }
+    }
+    if($errore) {
+        $db->rollBack();
+        erroreJSON("Errore durante l'eliminazione dell'account");
+        return;
+    }
+
     $queryDelete = $db->prepare("DELETE FROM Utenti WHERE ID = ?");
+
     if ($queryDelete->execute(array($utenteDaEliminare))) {
         $db->commit();
         successoJSON("Account eliminato con successo");
         return;
     }
-    $db->rollBack();
-    erroreJSON("Errore nel processo di eliminazione dell'account.");
-    return;
+    else {
+        $db->rollBack();
+        erroreJSON("Errore nel processo di eliminazione dell'account.");
+        return;
+    }
+
 }
 
 

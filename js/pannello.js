@@ -25,7 +25,7 @@ function toggleMostra() {
 function stileCellaPagamento(){
     $(".pagamento").each(function () {
         if( $(this).text() === "Non pagato")
-            $(this).css("color","#B80000");
+            $(this).css("color","#A80000");
         else
             $(this).css("color","#0F6600");
     });

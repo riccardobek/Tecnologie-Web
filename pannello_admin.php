@@ -51,7 +51,7 @@ if(isset($_POST["Disponibilita"])) {
         return;
     }
     //controllo se la data selezionata è del passato esclusa la data corrente
-    if(!(dataFutura($data))&& strtotime((new DateTime())->format("Y-m-d")) != strtotime($data)) {
+    if(!(dataFutura($data))) {
         erroreJSON("Data selezionata non valida");
         return;
     }
