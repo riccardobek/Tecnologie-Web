@@ -39,8 +39,8 @@ if(isAdmin()) {
 
     $nomeMacroattivita = filter_var($_POST["nome-macro"], FILTER_SANITIZE_STRING);
     $descrizione = filter_var($_POST["descrizione-macro"], FILTER_SANITIZE_STRING);
-    $img = isset($_POST["immagine"]) ? $_POST["immagine"] : NULL;
-	$banner = isset($_POST["immagine-banner"]) ? $_POST["immagine-banner"] : NULL;
+    $img = isset($_FILES["immagine"]) ? uploadImage("immagine","index") : NULL;
+	$banner = isset($_FILES["immagine-banner"]) ? uploadImage("immagine-banner","banner") : NULL;
 
 	//creazione di una nuova macro attività
     if(isset($_POST["nuovaMacro"])) {
@@ -84,4 +84,44 @@ if(isAdmin()) {
 }
 else {
     erroreJSON("Permesso negato.");
+}
+
+/**
+ * Funzione che carica un immagine o nella cartella images/attivita/banner o nella cartella images/attivita/index
+ * @param $image l'immagine che si vuole caricare
+ * @param $cartella la cartella nella quale si vuole caricare l'immagine
+ */
+function uploadImage($image,$cartella) {
+    $imageFileType = strtolower(pathinfo($_FILES[$image]["name"], PATHINFO_EXTENSION));
+
+    $nomeNuovoFile = time().rand(0,9999).".".$imageFileType;
+
+    if ($cartella == "index" || $cartella = "banner") {
+        $target_file = str_replace("macroattivita.php","",__FILE__)."../images/attivita/".$cartella."/".$nomeNuovoFile;
+    }
+    else {
+        return false; //parametri non corretti
+    }
+
+    if (isset($_POST["submit"])) {
+        $check = getimagesize($_FILES[$image]["tmp_name"]);
+        if ($check === false) {
+            //erroreJSON("il file non è una immagine");
+            return false;
+        }
+    }
+
+    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif") {
+        erroreJSON("formato immagine non riconosciuto ");
+        return false;
+    }
+
+    if (move_uploaded_file($_FILES[$image]["tmp_name"], $target_file)) {
+        //successoJSON("Immagine caricata con successo");
+        return $nomeNuovoFile;
+    } else {
+        //erroreJSON("Errore nel caricamento del file");
+        return false;
+    }
 }

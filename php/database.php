@@ -177,6 +177,8 @@ function getNumeroPostiDisponibili($data) {
  */
 function eliminaAttivita($idAttivita,$commit = true) {
     global $db;
+    if($commit) $db->beginTransaction();
+
     $queryDeletePrenotazioni = $db->prepare("DELETE FROM Prenotazioni WHERE IDAttivita = ?");
     if($queryDeletePrenotazioni->execute(array($idAttivita))) {
         $queryDeleteAttivita =  $db->prepare("DELETE FROM Attivita WHERE Codice = ?");
@@ -194,7 +196,7 @@ function eliminaAttivita($idAttivita,$commit = true) {
 
         return false;
     }
-    else{
+    else {
         $db->rollBack();
         if($commit)
             erroreJSON("Non è stato possibile eliminare l'attività.");

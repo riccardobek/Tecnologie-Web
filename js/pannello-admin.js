@@ -26,58 +26,98 @@ $(function() {
         var tipoOperazione = $(this).attr("data-fun");
         console.log(tipoOperazione);
         if(validaFormModifica("finestra-macro")) {
-            var form =  $("#finestra-macro form").serializeArray();
+            var form =  $("#finestra-macro form");
+            var formData = new FormData();
+            formData.append("nome-macro", $("#nome-macro").val());
+            formData.append("descrizione-macro", $("#descrizione-macro").val());
+            formData.append("immagine",$("#immagine")[0].files[0]);
+            formData.append("immagine-banner",$("#immagine-banner")[0].files[0]);
 
-            if(tipoOperazione == "0"){
-                form.push({name:"nuovaMacro", value:"1"});
-                $.post("php/macroattivita.php", form, function (risposta) {
-                    try {
-                        risposta = JSON.parse(risposta);
-                        form.push({name:"idMacro", value:risposta.idMacro});
-                        if (risposta.stato == 1) {
-                            generaAlert('green', "Successo", risposta.messaggio);
-                            $("#finestra-macro").fadeOut('Slow');
-                            $.post("pannello_admin.php", form, function(ris) {
-                                togliEventiMacroAttivita();
-                                $("#act-manager").append(ris);
-                                sbloccaScroll();
-                                aggiungiEventiMacroAttivita();
-                                $("#finestra-macro form")[0].reset();
-                            });
+            if(tipoOperazione == "0") {
+                formData.append("nuovaMacro","1");
+                $.ajax({
+                    type: 'POST',
+                    data: formData,
+                    url: "php/macroattivita.php",
+                    contentType: false,
+                    processData: false,
+                    async:true,
+                    success: function (risposta) {
+                        try {
+                            risposta = JSON.parse(risposta);
+                            formData.append("idMacro",risposta.idMacro);
+                            if (risposta.stato == 1) {
+                                generaAlert('green', "Successo", risposta.messaggio);
+                                $("#finestra-macro").fadeOut('Slow');
+                                $.ajax({
+                                    url: "pannello_admin.php",
+                                    data: formData,
+                                    processData: false,
+                                    contentType: false,
+                                    type: 'POST',
+                                    success:function(ris) {
+                                       togliEventiMacroAttivita();
+                                       $("#act-manager").append(ris);
+                                       sbloccaScroll();
+                                       aggiungiEventiMacroAttivita();
+                                       $("#finestra-macro form")[0].reset();
+                                    }
+                                });
+                                /*
+                                $.post("pannello_admin.php", formData, function(ris) {
+                                    togliEventiMacroAttivita();
+                                    $("#act-manager").append(ris);
+                                    sbloccaScroll();
+                                    aggiungiEventiMacroAttivita();
+                                    $("#finestra-macro form")[0].reset();
+                                });*/
+                            }
+                            else {
+                                generaAlert('red', "Errore", risposta.messaggio);
+                            }
                         }
-                        else {
-                            generaAlert('red', "Errore", risposta.messaggio);
+                        catch(e) {
+                            console.error(e);
+                            generaAlertErroreGenerico();
                         }
                     }
-                    catch(e) {
-                        generaAlertErroreGenerico();
-                    }
-                });
+                }
+                );
             }
             else{
                 var idMacro = $("#finestra-macro input[type=submit]").attr('data-fun');
 
-                form.push({name:"idMacro",value:idMacro});
+                formData.append("idMacro",idMacro);
 
-                $.post("php/macroattivita.php", form, function (risposta) {
-                    try {
-                        risposta = JSON.parse(risposta);
-                        console.log("parse OK")
-                        if (risposta.stato == 1) {
-                            generaAlert('green', "Successo", risposta.messaggio);
-                            //la macroattività è stata aggiornata con successo
-                            //aggiorno il titolo della macro nel pannello admin h1
-                            $("span[data-target='"+idMacro+"']").prev().text(form[0].value);
-                            $("#finestra-macro").fadeOut('Slow');
-
+                $.ajax({
+                    type: 'POST',
+                    data: formData,
+                    url: "php/macroattivita.php",
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (risposta) {
+                        try {
+                            risposta = JSON.parse(risposta);
+                            console.log("parse OK")
+                            if (risposta.stato == 1) {
+                                generaAlert('green', "Successo", risposta.messaggio);
+                                //la macroattività è stata aggiornata con successo
+                                //aggiorno il titolo della macro nel pannello admin h1
+                                $("span[data-target='" + idMacro + "']").prev().text(form[0].value);
+                                $("#finestra-macro").fadeOut('slow',function() {
+                                    sbloccaScroll();
+                                    $("#finestra-macro form")[0].reset();
+                                });
+                            }
+                            else {
+                                generaAlert('red', "Errore", risposta.messaggio);
+                            }
                         }
-                        else {
-                            generaAlert('red', "Errore", risposta.messaggio);
+                        catch (e) {
+                            console.log(e);
+                            generaAlertErroreGenerico();
                         }
-                    }
-                    catch(e) {
-                        console.log(e);
-                        generaAlertErroreGenerico();
                     }
                 });
             }
