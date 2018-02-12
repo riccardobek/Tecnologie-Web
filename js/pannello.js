@@ -52,7 +52,7 @@ function eliminaPrenotazione(codicePrenotazione) {
 
 
 
-function eliminaAccount(idUtente) {
+function eliminaAccount(idUtente="0") {
     $.post("php/delete_account.php",{IDUtente:idUtente}, function(risposta) {
         try{
             risposta = JSON.parse(risposta);
