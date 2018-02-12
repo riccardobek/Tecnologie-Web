@@ -52,7 +52,8 @@ function eliminaPrenotazione(codicePrenotazione) {
 
 
 
-function eliminaAccount(idUtente="0") {
+function eliminaAccount(idUtente=0) {
+    var id = idUtente.replace("utente-","");
     $.post("php/delete_account.php",{IDUtente:idUtente}, function(risposta) {
         try{
             risposta = JSON.parse(risposta);
@@ -75,13 +76,22 @@ function eliminaAccount(idUtente="0") {
                             }
                         }
                     });
+                    return true;
                 }
-                //richiesta di eliminazione dal pannello admin bisogna solo mostrare un dialog
-                else{
+                else {
+
+                    alert("qua");
+                    //console.log($("[data-user='"+idUtente+"']"));
+                    //elimino nel pannello admin tutti gli elemente che si riferiscono all'utente eliminato
+                   $("[data-user='"+id+"']").each(function() {
+                       console.log("ci sono prima");
+                       $(this).remove();
+                       console.log("ci sono");
+                   });
                     eliminaRigaTabella(idUtente);
                     generaAlert('green','Successo',risposta.messaggio);
+                    return true;
                 }
-                return true;
             }
             else{
                 generaAlert('red','Errore',risposta.messaggio);
@@ -91,7 +101,6 @@ function eliminaAccount(idUtente="0") {
         catch(e) {
             generaAlertErroreGenerico();
         }
-
     });
 }
 

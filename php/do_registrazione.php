@@ -71,7 +71,7 @@ if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 $prova = NULL;
 
 $db->beginTransaction();
-$insertStatement = $db->prepare("INSERT INTO Utenti VALUES (NULL,?,?,?,?,?,?,?,?,?,'Utente',1)");
+$insertStatement = $db->prepare("INSERT INTO Utenti VALUES (NULL,?,?,?,?,?,?,?,?,?,'Utente')");
 if($insertStatement->execute(array(
     $nome,
     $cognome,

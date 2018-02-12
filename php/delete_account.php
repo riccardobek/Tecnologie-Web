@@ -32,13 +32,13 @@ function eliminaAccount($utenteDaEliminare) {
     $query = $db->prepare("SELECT Codice FROM Prenotazioni  WHERE IDUtente = ?");
     $query->execute(array($utenteDaEliminare));
     $errore = false;
-    $risQuery=$query->fetchAll();
-    foreach ($risQuery as $attivita) {
-        if(!eliminaAttivita($attivita["Codice"],false)) {
-            $errore = true;
-            break;
-        }
+
+    if($query->fetchAll()) {
+        $deleteStatement = $db->prepare("DELETE FROM Prenotazioni WHERE IDUtente = ?");
+       if(!$deleteStatement->execute(array($utenteDaEliminare)))
+           $errore = true;
     }
+
     if($errore) {
         $db->rollBack();
         erroreJSON("Errore durante l'eliminazione dell'account");
@@ -60,16 +60,3 @@ function eliminaAccount($utenteDaEliminare) {
 
 }
 
-
-function eliminaAccountConPrenotazioni($utenteDaEliminare) {
-    global $db;
-    $queryDelete = $db->prepare("UPDATE Utenti SET Stato = 0 WHERE ID = ?");
-    if ($queryDelete->execute(array($utenteDaEliminare))) {
-        $db->commit();
-        successoJSON("Account eliminato con successo");
-        return;
-    }
-    $db->rollBack();
-    erroreJSON("Errore durante il processo di eliminazione dell'account.");
-    return;
-}

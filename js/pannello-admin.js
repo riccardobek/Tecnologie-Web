@@ -356,8 +356,6 @@ $(function() {
         }
 
     });
-
-
 });
 
 function aggiungiListenerBottoneDisponibilita() {
