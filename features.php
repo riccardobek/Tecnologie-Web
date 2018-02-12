@@ -1,8 +1,5 @@
 <?php
-$numero = "34.50";
-echo filter_var($numero,FILTER_SANITIZE_NUMBER_FLOAT, array(
-  'flags'=>FILTER_FLAG_ALLOW_FRACTION));
-?>
+echo exec('whoami'); ?>
 
 <!--
 <!DOCTYPE html>

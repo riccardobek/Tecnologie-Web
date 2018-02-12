@@ -40,8 +40,6 @@
                 <div class="clearfix"></div>
             </div>
 
-
-
             <div class="wrapper-tabella">
                 <table class="tabella" id="storico" summary="La tabella riporta tutte le tue prenotazioni passate con le relative informazioni
                     e valutazioni assegnate">
@@ -66,15 +64,15 @@
         </div>
 
         <div id="account" class="tabcontent">
-            <div class="form" id="container_form">
-                <div id="titolo-form">
+            <div class="form container_form">
+                <div class="titolo-form">
                     <h1 id="titolo">Riepilogo dati <span lang="en">account</span></h1>
 
-                    <h2 id="btn-wrapper" ><span id="modifica" class="button">Modifica dati</span></h2>
+                    <h2 id="btn-wrapper"><span id="modifica" class="button">Modifica dati</span></h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="alert errore" aria-live="assertive" role="alert" aria-atomic="true"><p class="intestazione-alert">Errore:</p></div>
-                <form action="php/modifica_dati_utente.php" method="POST">
+                <form action="" method="POST" id="dati-utente">
                     <div class="field-container">
                         <label for="username" >Nome utente: </label>
                         <div class="input-container">
@@ -87,29 +85,8 @@
                             <input type="text" id="email" name="email" value="[#EMAIL]">
                         </div>
                     </div>
-                    <div class="field-container">
-                        <label for="vecchia-password" >Modifica <span lang="en">password</span>: </label>
-                        <div class="input-container">
-                            <input type="password" id="vecchia-password" name="vecchia-password" placeholder="Password corrente">
-                        </div>
-                    </div>
-                    <div class="field-container mostra-modifica-password">
-                        <label for="password" >Nuova <span lang="en">password</span>: </label>
-                        <div class="input-container">
-                            <input type="password" id="password" name="password" placeholder="Inserisci la nuova password">
-                        </div>
-                    </div>
-                    <div class="field-container mostra-modifica-password">
-                        <label for="password2">Ripeti nuova <span lang="en">password</span>: </label>
-                        <div class="input-container">
-                            <input type="password" id="password2" name="password2" placeholder="Ripeti la nuova password">
-                        </div>
-                    </div>
 
-                    <div class="button-holder mostra-modifica-password" >
-                        <button id="bottone-modifica-password" name="modifica" class="btn btn-primary">Modifica <span lang="en">password</span></button>
-                        <button id="annulla-modifica-pwd" class="btn">Annulla</button>
-                    </div>
+
                     <div class="field-container">
                         <label for="nome" >Nome: </label>
                         <div class="input-container">
@@ -153,7 +130,37 @@
                         <button class="btn" id="annulla" >Annulla</button>
                     </div>
                 </form>
-            </div>
+                    <div class="titolo-form">
+                        <h2>Modifica <span lang="en">password</span></h2>
+                    </div>
+                    <div class="alert errore" aria-live="assertive" role="alert" aria-atomic="true"><p class="intestazione-alert">Errore:</p></div>
+                    <form action="" method="POST" id="mod-pwd-form">
+                        <div class="field-container">
+                            <label for="vecchia-password" ><span lang="en">Password</span> corrente: </label>
+                            <div class="input-container">
+                                <input type="password" id="vecchia-password" name="vecchia-password" placeholder="Password corrente">
+                            </div>
+                        </div>
+                        <div class="field-container">
+                            <label for="password" >Nuova <span lang="en">password</span>: </label>
+                            <div class="input-container">
+                                <input type="password" id="password" name="password" placeholder="Inserisci la nuova password">
+                            </div>
+                        </div>
+                        <div class="field-container">
+                            <label for="password2">Ripeti nuova <span lang="en">password</span>: </label>
+                            <div class="input-container">
+                                <input type="password" id="password2" name="password2" placeholder="Ripeti la nuova password">
+                            </div>
+                        </div>
+
+                        <div class="button-holder" >
+                            <button id="bottone-modifica-password" name="modifica" class="btn btn-primary">Modifica <span lang="en">password</span></button>
+                            <button id="annulla-modifica-pwd" class="btn">Annulla</button>
+                        </div>
+                    </form>
+                </div>
+
             <button id="elimina-account" class="btn btn-red">Elimina <span lang="en">account</span></button>
         </div>
     </div>

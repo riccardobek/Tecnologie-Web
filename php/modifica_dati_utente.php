@@ -81,11 +81,11 @@ function modificaPassword($vecchiaPwd, $nuovaPwd) {
     $risQueryPwd = $controlloPwdCorrente->fetch();
 
     if(strcmp(criptaPassword($vecchiaPwd),$risQueryPwd["Password"] ) !== 0){
-        erroreJSON("Errore: Password inserita non corrisponde alla password corrente");
+        erroreJSON("Password inserita non corrisponde alla password corrente");
         return;
     }
     if(strcmp(criptaPassword($vecchiaPwd),criptaPassword($nuovaPwd) ) === 0){
-        erroreJSON("Errore: La nuova password corrisponde a quella corrente");
+        erroreJSON("La nuova password corrisponde a quella corrente");
         return;
     }
 

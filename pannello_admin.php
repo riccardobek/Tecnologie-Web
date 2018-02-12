@@ -11,6 +11,17 @@ if(!isAdmin()) {
     paginaErrore("Non hai l'autorizzazione per accedere a questa pagina");
     return;
 }
+if(isset($_POST["Disponibilita"])) {
+
+    $data = convertiData(filter_var($_POST["data"],FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+    if(!$data){
+        erroreJSON("Data non valida");
+        return;
+    }
+    $queryControllo = $db->prepare("SELECT Giorno FROM Disponibilita")
+    return;
+}
+
 if(isset($_POST["confermaPagamento"])) {
     settaPagato($_POST["codicePrenotazione"]);
     return;
@@ -374,7 +385,7 @@ function impostaGiorni(){
     foreach ($arrayGiorni as $g){
         $g["Giorno"] = convertiDataToOutput($riga["Giorno"]);
         $riga .= <<<DAY
-<tr data-attivita="{$g["Giorno"]}">
+<tr id="{$g["Giorno"]}">
     <td>{$g["Giorno"]}</td>
     <td>{$g["PostiDisponibili"]}</td>
     <td><button data-target="{$g["Giorno"]}" class="btn-cancella" title="Elimina">X</button></td>

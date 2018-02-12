@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pannello amministratore</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/asDatepicker.css"/>
     <link rel="stylesheet" type="text/css" href="css/default.css"/>
     <link rel="stylesheet" type="text/css" href="css/utente.css">
     <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="screen and (max-width:768px)"/>
@@ -170,14 +171,17 @@
             </p>
 
             <div id="impostazione-giorno">
+                <div class="alert errore"  aria-live="assertive" role="alert" aria-atomic="true"><p class="intestazione-alert">Errore:</p></div>
                 <form>
-                    <div class="field-container">
+                    <div class="field-container ">
                         <label for="imposta-data" class="imp-label">Data (dd/mm/yyyy): </label>
-                        <input type="text" id="imposta-data">
+                        <div class="calenda-inputWrap">
+                            <input type="text" id="imposta-data" class="data calendar-input" name="data">
+                        </div>
                     </div>
                     <div class="field-container">
-                        <label for="nPosti" class="imp-label">Inserire il numero di posti diverso dal default: </label>
-                        <input type="number" min="0" id="nPosti">
+                        <label for="nPosti" class="imp-label">Inserire il numero di posti diverso dal<span lang='en'> default </span>: </label>
+                        <input type="number" min="0" id="nPosti" name="posti">
                     </div>
                     <div class="button-holder">
                         <input type="submit" value="Conferma"  name="conferma" class="btn btn-primary">
@@ -186,7 +190,7 @@
             </div>
 
             <div class="wrapper-tabella">
-                <table class="tabella"  summary="La tabella presenta l'insieme dei giorni con
+                <table class="tabella" id="tabella-giorni"  summary="La tabella presenta l'insieme dei giorni con
                 disponibilità impostate dall'amministratore diverse da quelle di default">
                     <caption><h3>Disponibilità impostate dall'amministratore</h3></caption>
                     <tr class="intestazione-tabella">
@@ -204,6 +208,7 @@
 <script src="js/jquery-confirm.js"></script>
 <script type="text/javascript" src="js/pannello.js"></script>
 <script type="text/javascript" src="js/pannello-admin.js"></script>
+<script type="text/javascript" src="js/tmp_admin.js"></script>
 <script type="text/javascript" src="js/instascan.min.js"></script>
 <script type="text/javascript" src="js/jquery-asDatepicker.js"></script>
 
