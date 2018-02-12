@@ -59,7 +59,7 @@
                 <div class="clearfix"></div>
             </div>
             <div class="wrapper-tabella">
-                <table class="tabella" summary="La tabella presenta le attività in ordine crescente in base al numero di prenotazioni effettuate">
+                <table class="tabella">
                     <caption><h3>Attività più prenotate</h3></caption>
                     <tr class="intestazione-tabella">
                         <th scope="col">Nome Attività</th>
@@ -69,7 +69,7 @@
                 </table>
             </div>
             <div class="wrapper-tabella">
-                <table class="tabella" summary="La tabella presenta gli utenti che hanno effettuato più prenotazioni in ordine crescente">
+                <table class="tabella">
                     <caption><h3>Utenti con più prenotazioni</h3></caption>
                     <tr class="intestazione-tabella">
                         <th scope="col">Posizione</th>
@@ -84,8 +84,7 @@
 
         <div id="usr-manager" class="tabcontent">
             <div class="wrapper-tabella">
-                <table class="tabella" summary="La tabella fornisce un elenco di informazioni riguardanti gli utenti con
-                        la possibilità di reimpostare la password e eliminare il loro account.">
+                <table class="tabella">
                     <caption><h3>Gestione utenti</h3></caption>
                     <tr class="intestazione-tabella">
                         <th scope="col">Nome</th>
@@ -110,7 +109,7 @@
             <div class="scheda-wrapper overlay"  id="lettoreQR">
                 <div class="length-wrapper" role="dialog"  aria-labelledby="label-dialog3">
                     <div class="schede form nuova-scheda">
-                        <h2>Convalida prenotazione</h2>
+                        <h2 id="label-dialog3">Convalida prenotazione</h2>
                         <div class="alert errore" aria-live="assertive" role="alert" aria-atomic="true"><p class="intestazione-alert">Errore:</p></div>
                         <video id="videoQR"></video>
                         <form id="convalidaQR">
@@ -131,7 +130,7 @@
 
 
             <div class="wrapper-tabella">
-                <table class="tabella" summary="La tabella presenta l'insieme di prenotazioni attive">
+                <table class="tabella">
                     <caption><h3>Prenotazioni attive</h3></caption>
                     <tr class="intestazione-tabella">
                         <th scope="col">Utente</th>
@@ -147,7 +146,7 @@
                 </table>
             </div>
             <div class="wrapper-tabella">
-                <table class="tabella"  summary="La tabella presenta l'insieme di prenotazioni attive">
+                <table class="tabella">
                     <caption><h3>Storico prenotazioni</h3></caption>
                     <tr class="intestazione-tabella">
                         <th scope="col">Utente</th>
@@ -190,8 +189,7 @@
             </div>
 
             <div class="wrapper-tabella">
-                <table class="tabella" id="tabella-giorni"  summary="La tabella presenta l'insieme dei giorni con
-                disponibilità impostate dall'amministratore diverse da quelle di default">
+                <table class="tabella" id="tabella-giorni">
                     <caption><h3>Disponibilità impostate dall'amministratore</h3></caption>
                     <tr class="intestazione-tabella">
                         <th scope="col">Giorni</th>
