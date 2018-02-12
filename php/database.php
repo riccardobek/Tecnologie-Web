@@ -149,6 +149,20 @@ function convalidaPrenotazione($codicePrenotazione) {
 define("POSTI_DISPONIBILI_DEFAULT",50);
 
 /**
+ * Funzione che restituisce il numero di posti già prenotati in una determinata data
+ * @param $data la data (in formato SQL, quindi YYYY-MM-DD) da controllare
+ * @return int il numero di posti prenotati in quella determinata data
+ */
+function getNumeroPostiPrenotati($data) {
+    global $db;
+
+    $postiPrenotati = $db->prepare("SELECT SUM(PostiPrenotati) AS PostiOccupati FROM Prenotazioni WHERE Giorno = ?");
+    $postiPrenotati->execute(array($data));
+
+    return intval($postiPrenotati->fetch()["PostiOccupati"]);
+}
+
+/**
  * Funzione che restituisce il numero di posti ancora disponibili per una data attività in un dato giorno
  * @param $data (formato YYYY/MM/DD) la data di cui si vuole controllare la dispoonibilità
  * @return int il numero di posti residui in quella determinata data
@@ -159,16 +173,15 @@ function getNumeroPostiDisponibili($data) {
     $capienzaGiornalieraQuery = $db->prepare("SELECT PostiDisponibili FROM Disponibilita WHERE Giorno = ?");
     $capienzaGiornalieraQuery->execute(array($data));
 
-    $postiPrenotati = $db->prepare("SELECT SUM(PostiPrenotati) AS PostiOccupati FROM Prenotazioni WHERE Giorno = ?");
-    $postiPrenotati->execute(array($data));
+    $capienzaGiornaliera = $capienzaGiornalieraQuery->fetch();
 
 
-    $capienzaTotale = ($capienzaGiornalieraQuery->rowCount() == 0 ) ?
-        POSTI_DISPONIBILI_DEFAULT :
-        intval($capienzaGiornalieraQuery->fetch()["PostiDisponibili"]);
+    $capienzaTotale = intval(POSTI_DISPONIBILI_DEFAULT);
+    if($capienzaGiornaliera) {
+        $capienzaTotale = intval($capienzaGiornaliera["PostiDisponibili"]);
+    }
 
-
-    return $capienzaTotale - intval($postiPrenotati->fetch()["PostiOccupati"]);
+    return intval($capienzaTotale) - getNumeroPostiPrenotati($data);
 }
 
 /**

@@ -19,15 +19,24 @@ if(isset($_POST["Disponibilita"])) {
     $queryControllo = $db->prepare("SELECT Giorno FROM Disponibilita WHERE Giorno = ?");
     $queryControllo->execute(array($data));
 
+    $postiPrenotati = getNumeroPostiPrenotati($data);
+
     if(isset($_POST["Elimina"])){
         if(!($queryControllo->fetch())) {
             erroreJSON("Disponibilità non trovata");
             return;
         }
+        if($postiPrenotati > POSTI_DISPONIBILI_DEFAULT) {
+            //NON posso eliminare la disponibilità perché ci sono già delle prenotazioni il cui totale dei posti supera
+            //il numero di posti disponibili di default (che è quello che andrei a ripristinare)
+            erroreJSON("Non è stato possibile ripristinare la disponibilità in quanto esistono già delle prenotazioni per un totale di ".$postiPrenotati." posti.");
+            return;
+        }
+
         $queryDelete = $db->prepare("DELETE FROM Disponibilita WHERE Giorno = ?");
         if($queryDelete->execute(array($data))) {
             $db->commit();
-            successoJSON("Disponibilità di <span lang='en'>default</span> ripristinata");
+            successoJSON("Disponibilità predefinita ripristinata");
             return;
         }
         $db->rollBack();
@@ -40,8 +49,8 @@ if(isset($_POST["Disponibilita"])) {
         return;
     }
     $posti = abs(filter_var($_POST["posti"], FILTER_SANITIZE_NUMBER_INT));
-    if($posti == 50) {
-        erroreJSON("Non puoi selezionare un numero posti uguale al valore di <span lang='en'>default</span>");
+    if($posti == POSTI_DISPONIBILI_DEFAULT) {
+        erroreJSON("Non puoi selezionare un numero posti uguale al valore predefinito");
         return;
     }
 
@@ -53,6 +62,13 @@ if(isset($_POST["Disponibilita"])) {
     //controllo se la data selezionata è del passato esclusa la data corrente
     if(!(dataFutura($data))) {
         erroreJSON("Data selezionata non valida");
+        return;
+    }
+
+    if($postiPrenotati > $posti) {
+        //NON posso modificare la disponibilità perché ci sono già delle prenotazioni il cui totale dei posti supera
+        //il numero di posti disponibili che vorrei inserire
+        erroreJSON("Non è stato possibile modificare la disponibilità in quanto esistono già delle prenotazioni per un totale di ".$postiPrenotati." posti.");
         return;
     }
 
@@ -162,6 +178,9 @@ $HTML = str_replace("[#PRENOTAZIONI-PASSATE]",prenotazioniPassate(),$HTML);
 
 $HTML = str_replace("[#TABELLA-GIORNI]",impostaGiorni(),$HTML);
 
+
+//Scheda impostazioni
+$HTML = str_replace("[#POSTI-DISPONIBILI-DEFAULT]",POSTI_DISPONIBILI_DEFAULT,$HTML);
 
 //Footer
 $HTML = str_replace("[#MENU-MOBILE]",menuMobile($activeIndex),$HTML);
