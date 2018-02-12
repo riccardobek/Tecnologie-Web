@@ -164,8 +164,6 @@ $HTML = str_replace("[#SCHEDA-MACROATTIVITA]",$TEMPLATE_NUOVA_MACRO, $HTML);
 //Rimpiazza segna posto [#ATTIVITA]
 $HTML = str_replace("[#ATTIVITA]",stampaSchedeAttivita(), $HTML);
 
-$HTML = str_replace("[#ENTRATE-DEL-MESE]",entrateDelMese(),$HTML);
-$HTML = str_replace("[#ENTRATE-PREVISTE]",entratePreviste(),$HTML);
 //tabelle statistiche(rimpiazza i segnaposto [#ATTIVITA-PIU-PRENOTATE])
 $HTML = str_replace("[#ATTIVITA-PIU-PRENOTATE]",getAttivitaPiuPrenotate(),$HTML);
 //rimpiazza [#UTENTI-PIU-ATTIVI]
@@ -254,48 +252,6 @@ function stampaSchedeAttivita(){
     }
     return $output;
 }
-
-function entrateDelMese(){
-   global $db;
-
-   //$today=date("t-m-Y");
-
-
-    $query=$db->prepare("SELECT Attivita.Prezzo AS Prezzo,Prenotazioni.PostiPrenotati AS Posti,Prenotazioni.Giorno AS Giorno FROM Attivita, Prenotazioni WHERE Attivita.Codice=Prenotazioni.IDAttivita AND month(CURRENT_DATE)=month(Prenotazioni.Giorno) AND Prenotazioni.Giorno<CURDATE() AND Prenotazioni.Stato='Confermata' AND Prenotazioni.Pagamento=1");
-    $query->execute();
-    $array=$query->fetchAll();
-    $result=0;
-
-    foreach($array as $item) {
-        $result=$result+($item["Prezzo"]*$item["Posti"]);
-    }
-    return <<<SCRIVI
- <div class="results">
-    {$result} €
- </div>
-SCRIVI;
-
-
-}
-
-function entratePreviste(){
-    global $db;
-
-
-    $query=$db->prepare("SELECT Attivita.Prezzo AS Prezzo,Prenotazioni.PostiPrenotati AS Posti,Prenotazioni.Giorno AS Giorno FROM Attivita, Prenotazioni WHERE Attivita.Codice=Prenotazioni.IDAttivita AND month(CURRENT_DATE)=month(Prenotazioni.Giorno) AND Prenotazioni.Stato='Confermata' ");
-    $query->execute();
-    $array=$query->fetchAll();
-    $result=0;
-    foreach($array as $item) {
-        $result=$result+($item["Prezzo"]*$item["Posti"]);
-    }
-    return <<<SCRIVI
-<div class="results">
-{$result} €
-</div>
-SCRIVI;
-}
-
 
 
 function getAttivitaPiuPrenotate() {
