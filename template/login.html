@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="css/default.css"/>
-    <link rel="stylesheet" type="text/css" href="css/login.css" >
     <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="screen and (max-width:768px)"/>
     <link rel="icon" href="images/favicon.ico">
 
@@ -17,25 +16,25 @@
     [#INTESTAZIONE]
     <div id="content" role="form">
         <div class="form">
-            <form method="POST" action="php/do_login.php">
+            <form method="POST" action="php/do_login.php" class="log-form">
                 <h1>Accedi</h1>
 
                 <div class="alert errore" aria-live="assertive" role="alert" aria-atomic="true">Si è verificato un errore: <span lang="en">username</span> o <span lang="en">password</span> non corretti</div>
                 <div class="alert successo" aria-live="assertive" role="alert" aria-atomic="true"><span lang="en">Login</span> effettuato con successo. <br>Reindirizzamento in corso (se non funziona cliccare <a href="[#HTTP_REFERER]">qua</a>).</div>
 
-                <div class="field-container">
-                    <label for="username">Nome utente: </label>
+                <div class="log-field-container">
+                    <label for="username" class="log-label">Nome utente: </label>
                     <input type="text" id="username" name="username" placeholder="Nome utente..">
                 </div>
-                <div class="field-container">
-                    <label for="password" lang="en">Password: </label>
+                <div class="log-field-container">
+                    <label for="password" lang="en" class="log-label">Password: </label>
                     <input type="password" id="password" name="password" placeholder="Password..">
                 </div>
                 <div class="button-holder"><input type="submit" value="Login" class="btn btn-primary" ></div>
 
                 <input type="hidden" id="HTTP_REFERER" name="HTTP_REFERER" value="[#HTTP_REFERER]">
                 <input type="hidden" id="JSAbilitato" name="JSAbilitato" value="0">
-                <p>Non sei ancora registrato? <a href="registrazione.php">Registrati</a></p>
+                <p id="not-registered">Non sei ancora registrato? <a href="registrazione.php">Registrati</a></p>
             </form>
         </div>
     </div>

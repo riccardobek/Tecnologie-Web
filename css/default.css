@@ -1,18 +1,10 @@
 /********************
 RESET CSS
 *********************/
-html, body, div, span, applet, object, iframe, p, blockquote, pre,
-a, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, input, button,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html, body, div, span, iframe, p,
+a, img, i, ol, ul, li,
+fieldset, form, label, table, caption, tbody, tfoot, thead, tr, th, td,
+input, button, header, nav, video {
     margin: 0;
     padding: 0;
     border: 0;
@@ -23,9 +15,8 @@ time, mark, audio, video {
 abbr {
     speak: spell-out;
 }
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+
+nav{
     display: block;
 }
 
@@ -36,6 +27,11 @@ html,body {
     clear: both;
     font-family: 'Roboto',serif;
     height: 100%;
+}
+
+#not-registered{
+    color: black;
+    font-size: 100%
 }
 
 textarea,
@@ -56,6 +52,15 @@ div, form {
     margin: 0;
     padding: 0;
 }
+
+.form{
+    width: 350px;
+    margin: 4% auto auto auto;
+    padding: 2em;
+    background: white;
+    color: black;
+}
+
 
 a, a.button, button, .inline-btn, .primary-btn, input[type=submit], input[type=reset] {
     cursor: pointer;
@@ -643,7 +648,7 @@ textarea:focus{
     border: 2px solid #302A85;
 }
 
-.form .bottone-annulla{
+.schede .bottone-annulla{
     display: none;
 }
 .btn-a-capo{
@@ -1006,3 +1011,98 @@ video {
 #nPosti, #imposta-data{
     color: #FFFFFF;
 }
+
+/*login*/
+#indirizzo-container,
+#citta-container {
+    float:left;
+    width: 78%;
+}
+
+#civico-container, #cap-container {
+    text-align: right;
+}
+
+#civico-container input,
+#cap-container input {
+    width: 4em;
+    text-align: right;
+}
+
+#sectionPersonalData {
+    width:330px;
+    float:left;
+    margin-right: 0;
+}
+
+#sectionAccountData {
+    width: 330px;
+    margin-left:350px;
+    margin-top: 2em;
+}
+.log-form{
+
+    width: 100%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-radius: 4px ;
+}
+
+.log-form h2 {
+    font-weight: 100;
+    color:black;
+    margin-top:1.5em;
+}
+
+.log-label {
+    display: block;
+    padding-bottom: 0.3em;
+}
+.container_form{
+    width: 700px;
+    margin-bottom:60px;
+}
+
+
+form .field-container:not(:first-child) label {
+    margin-top: 1em;
+}
+
+
+
+a{
+    color: #00529E;
+}
+
+a:visited{
+    color: #3DA1FF;
+}
+
+input:focus{
+    background-color: #adceff;
+}
+
+/*utente*/
+form .log-field-container:not(:first-child) label {
+    margin-top:0.4em;
+
+}
+
+.log-field-container {
+    margin-top:1em;
+}
+#dati-utente label, .imp-label{
+    float:left;
+    margin-top: 0.5em;
+    font-weight: bold;
+    width: 25%;
+    padding-bottom: 0;
+    text-align: right;
+}
+
+
+.disabilita:disabled{
+    border:0;
+    border-bottom: 2px solid transparent;
+}
+

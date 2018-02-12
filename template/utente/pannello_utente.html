@@ -10,7 +10,6 @@
     <link rel="stylesheet" type="text/css" href="css/default.css"/>
     <link rel="stylesheet" type="text/css" href="css/stampa.css" media="print">
 
-    <link rel="stylesheet" type="text/css" href="css/login.css">
     <link rel="stylesheet" type="text/css" href="css/utente.css">
 
     <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="screen and (max-width:768px)"/>
@@ -72,54 +71,54 @@
                 </div>
                 <div class="alert errore" aria-live="assertive" role="alert" aria-atomic="true"><p class="intestazione-alert">Errore:</p></div>
                 <form id="dati-utente">
-                    <div class="field-container">
-                        <label for="username" >Nome utente: </label>
+                    <div class="log-field-container">
+                        <label  for="username" class="">Nome utente: </label>
                         <div class="input-container">
                             <input type="text" id="username" name="username" value="[#USERNAME]">
                         </div>
                     </div>
-                    <div class="field-container">
+                    <div class="log-field-container">
                         <label for="email" lang="en">Email: </label>
                         <div class="input-container">
-                            <input type="text" id="email" name="email" value="[#EMAIL]">
+                            <input type="text" id="email" name="email" value="[#EMAIL]" class="disabilita">
                         </div>
                     </div>
 
 
-                    <div class="field-container">
+                    <div class="log-field-container">
                         <label for="nome" >Nome: </label>
                         <div class="input-container">
-                            <input type="text" class="form-input" id="nome" name="nome" value="[#NOME]">
+                            <input type="text" class="form-input" id="nome" name="nome" value="[#NOME]"class="disabilita">
                         </div>
                     </div>
-                    <div class="field-container">
+                    <div class="log-field-container">
                         <label for="cognome" >Cognome: </label>
                         <div class="input-container">
-                            <input type="text" id="cognome" name="cognome" value="[#COGNOME]">
+                            <input type="text" id="cognome" name="cognome" value="[#COGNOME]"class="disabilita">
                         </div>
                     </div>
-                    <div class="field-container">
+                    <div class="log-field-container">
                         <label for="indirizzo" >Indirizzo: </label>
                         <div class="input-container">
-                            <input type="text" id="indirizzo" name="indirizzo" value="[#INDIRIZZO]">
+                            <input type="text" id="indirizzo" name="indirizzo" value="[#INDIRIZZO]"class="disabilita">
                         </div>
                     </div>
-                    <div class="field-container" >
+                    <div class="log-field-container" >
                         <label for="civico" >Civico: </label>
                         <div class="input-container">
-                            <input type="text"  size="4" id="civico" name="civico" value="[#CIVICO]">
+                            <input type="text"  size="4" id="civico" name="civico" value="[#CIVICO]" class="disabilita">
                         </div>
                     </div>
-                    <div class="field-container">
+                    <div class="log-field-container">
                         <label for="citta" >Citt&agrave;: </label>
                         <div class="input-container">
-                            <input type="text" id="citta" name="citta" value="[#CITTA]">
+                            <input type="text" id="citta" name="citta" value="[#CITTA]" class="disabilita">
                         </div>
                     </div>
-                    <div class="field-container">
+                    <div class="log-field-container">
                         <label for="CAP"><abbr title="Codice di avviamento postale">CAP</abbr>: </label>
                         <div class="input-container">
-                            <input type="text"  size="4" id="CAP" name="CAP" value="[#CAP]">
+                            <input type="text"  size="4" id="CAP" name="CAP" value="[#CAP]"class="disabilita">
                         </div>
                     </div>
 
@@ -134,22 +133,22 @@
                     </div>
                     <div class="alert errore" aria-live="assertive" role="alert" aria-atomic="true"><p class="intestazione-alert">Errore:</p></div>
                     <form id="mod-pwd-form">
-                        <div class="field-container">
+                        <div class="log-field-container">
                             <label for="vecchia-password" ><span lang="en">Password</span> corrente: </label>
                             <div class="input-container">
-                                <input type="password" id="vecchia-password" name="vecchia-password" placeholder="Password corrente">
+                                <input type="password" id="vecchia-password" name="vecchia-password" placeholder="Password corrente" class="disabilita">
                             </div>
                         </div>
-                        <div class="field-container">
+                        <div class="log-field-container">
                             <label for="password" >Nuova <span lang="en">password</span>: </label>
                             <div class="input-container">
-                                <input type="password" id="password" name="password" placeholder="Inserisci la nuova password">
+                                <input type="password" id="password" name="password" placeholder="Inserisci la nuova password" class="disabilita">
                             </div>
                         </div>
-                        <div class="field-container">
+                        <div class="log-field-container">
                             <label for="password2">Ripeti nuova <span lang="en">password</span>: </label>
                             <div class="input-container">
-                                <input type="password" id="password2" name="password2" placeholder="Ripeti la nuova password">
+                                <input type="password" id="password2" name="password2" placeholder="Ripeti la nuova password" class="disabilita">
                             </div>
                         </div>
 
