@@ -11,9 +11,30 @@ if(!isAdmin()) {
     paginaErrore("Non hai l'autorizzazione per accedere a questa pagina");
     return;
 }
+//gestisci diponibilità
 if(isset($_POST["Disponibilita"])) {
-
     $data = convertiData(filter_var($_POST["data"],FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+    $db->beginTransaction();
+
+    $queryControllo = $db->prepare("SELECT Giorno FROM Disponibilita WHERE Giorno = ?");
+    $queryControllo->execute(array($data));
+
+    if(isset($_POST["Elimina"])){
+        if(!($queryControllo->fetch())) {
+            erroreJSON("Disponibilità non trovata");
+            return;
+        }
+        $queryDelete = $db->prepare("DELETE FROM Disponibilita WHERE Giorno = ?");
+        if($queryDelete->execute(array($data))) {
+            $db->commit();
+            successoJSON("Disponibilità di <span lang='en'>default</span> ripristinata");
+            return;
+        }
+        $db->rollBack();
+        erroreJSON("Non è stato possibile ripristinare la disponibilità.");
+        return;
+    }
+
     if(!$data){
         erroreJSON("Data non valida");
         return;
@@ -23,8 +44,7 @@ if(isset($_POST["Disponibilita"])) {
         erroreJSON("Non puoi selezionare un numero posti uguale al valore di <span lang='en'>default</span>");
         return;
     }
-    $queryControllo = $db->prepare("SELECT Giorno FROM Disponibilita WHERE Giorno = ?");
-    $queryControllo->execute(array($data));
+
 
     if($queryControllo->fetch()) {
         erroreJSON("Disponibilità per la data selezionata già modificata");
@@ -35,7 +55,7 @@ if(isset($_POST["Disponibilita"])) {
         erroreJSON("Data selezionata non valida");
         return;
     }
-    $db->beginTransaction();
+
     $queryInserimento = $db->prepare("INSERT INTO Disponibilita VALUES (?,?)");
     if($queryInserimento->execute(array($data,$posti))) {
         $db->commit();

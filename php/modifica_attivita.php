@@ -19,8 +19,6 @@ if(isAdmin()){
     $prezzo = filter_var(str_replace(',','.',$_POST["prezzo"]),FILTER_SANITIZE_NUMBER_FLOAT, array(
         'flags'=>FILTER_FLAG_ALLOW_FRACTION));
 
-
-
     if(isset($_POST["nuovaAttivita"])) {
         $db->beginTransaction();
         $queryControllo = $db->prepare("SELECT Nome FROM Attivita WHERE Nome = ?");

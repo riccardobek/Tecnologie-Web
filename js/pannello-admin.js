@@ -309,12 +309,11 @@ $(function() {
     });
     // ---SEZIONE IMPOSTAZIONI----
     $("#imposta-data").asDatepicker();
-
+    aggiungiListenerBottoneDisponibilita()
 
     $("#impostazione-giorno form").on("submit", function (e) {
         e.preventDefault();
         e.stopPropagation();
-
 
         var divAlert = $("#impostazione-giorno .alert.errore");
         var formAlert = $("#impostazione-giorno form");
@@ -342,8 +341,9 @@ $(function() {
                     risposta = JSON.parse(risposta);
                     if(risposta.stato == "1") {
                         generaAlert('green','Succeso',risposta.messaggio );
-                        $("#tabella-giorni").append("<tr id='"+data+"'><td>"+data+"</td><td>"+nposti+"</td><td><button data-target='"+data+"'class='btn-cancella' title='Elimina'>X</button></td></tr>");
-
+                        $("#tabella-giorni").append("<tr id='"+data.replace(/\//g,'')+"'><td>"+data+"</td><td>"+nposti+"</td><td><button data-target='"+data.replace(/\//g,'')+"'class='btn-cancella' title='Elimina'>X</button></td></tr>");
+                        togliListenerBottoneDisponibilita();
+                        aggiungiListenerBottoneDisponibilita();
                     }
                     else {
                         notificaErrore($("#imposta-data"),risposta.messaggio,divAlert, formAlert);
@@ -356,8 +356,51 @@ $(function() {
         }
 
     });
+
+
 });
 
+function aggiungiListenerBottoneDisponibilita() {
+    $("#tabella-giorni button").on("click", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        var target = $(this).attr('data-target');
+        var dataD = $("#"+target+" td").first().text();
+        var rigaDaEliminare = $("#"+target);
+        $.confirm({
+            boxWidth: calcolaDimensioneDialog(),
+            useBootstrap: false,
+            title: 'Conferma',
+            content: "Ripristinare i posti disponibili a 50 per il giorno"+dataD+"?",
+            buttons: {
+                Procedi: {
+                    action: function () {
+                        $.post("pannello_admin.php",{Disponibilita:1,Elimina:1, data:dataD},function(risposta){
+                            try{
+                                risposta = JSON.parse(risposta);
+                                if(risposta.stato == "1") {
+                                    generaAlert('green','Successo',risposta.messaggio);
+                                    rigaDaEliminare.remove();
+                                }
+                                else {
+                                    generaAlert('red','Errore',risposta.messaggio);
+                                }
+                            }
+                            catch(e) {
+                                generaAlertErroreGenerico();
+                            }
+                        });
+                    }
+                },
+                Annulla:{}
+            }
+        });
+    });
+}
+
+function togliListenerBottoneDisponibilita () {
+    $("#tabella-giorni button").off("click");
+}
 
 function eliminaRigaTabella(target) {
     $('#'+target).slideUp('Slow', function () {
