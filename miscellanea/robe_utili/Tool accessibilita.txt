@@ -1,7 +1,0 @@
-- FANG: Estensione per facebook che emula uno screen reader, non è uno screen reader
-- VisCheck: Sito per i disturbi visivi, la versione online non funziona mai ma ci sono dei plugin (Photoshop fa le stesse cose)
-- Color Contrast Analizer, per verificare il contrasto dei colori scelti link:
-http://www.webaccessibile.org/articoli/contrast-analyser-versione-22/
-- Total Validator estensione per firefox/chromium utile per controllare vari aspetti di CSS, XHTML e accessibilità
-- Validatore CSS W3C http://jigsaw.w3.org/css-validator/
-- Validatore XHTML W3C (Usare XHTML Strict) http://validator.w3.org/

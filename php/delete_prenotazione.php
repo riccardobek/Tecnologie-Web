@@ -21,7 +21,7 @@ if($tipoUtente != 'Admin') {
 }
 
 //L'utente o è admin oppure è un utente che vuole cancellare la sua prenotazione
-$deleteStatement = $db->prepare("UPDATE Prenotazioni SET Stato = 'Cancellata' WHERE Codice = ?");
+$deleteStatement = $db->prepare("DELETE FROM Prenotazioni WHERE Codice = ?");
 
 if($deleteStatement->execute(array($idPrenotazione))){
     $db->commit();
