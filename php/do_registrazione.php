@@ -9,10 +9,13 @@ require_once "funzioni/funzioni_json.php";
 define("LINK_PAGINA_ERRORE","../registrazione.php");
 define("TESTO_LINK_PAGINA_ERRORE", "Torna alla registrazione");
 
+$jsAbilitato = boolval(filter_var($_POST["JSAbilitato"],FILTER_SANITIZE_NUMBER_INT));
+
+
 $campiRichiesti = array("nome","cognome","username","password","password2");
 
-$nome = filter_var($_POST["nome"],FILTER_SANITIZE_STRING);
-$cognome = filter_var($_POST["cognome"],FILTER_SANITIZE_STRING);
+$nome = trim(filter_var($_POST["nome"],FILTER_SANITIZE_STRING));
+$cognome = trim(filter_var($_POST["cognome"],FILTER_SANITIZE_STRING));
 
 if(strlen(filter_var($nome, FILTER_SANITIZE_NUMBER_INT))>0){
     $messaggio = "Nome non valido";
@@ -20,7 +23,7 @@ if(strlen(filter_var($nome, FILTER_SANITIZE_NUMBER_INT))>0){
     return;
 }
 if(strlen(filter_var($cognome, FILTER_SANITIZE_NUMBER_INT))>0){
-    $messaggio = "Nome non valido";
+    $messaggio = "Cognome non valido";
     errore($messaggio);
     return;
 }
@@ -37,7 +40,6 @@ $citta = filter_var($_POST["citta"],FILTER_SANITIZE_STRING);
 $CAP = strlen(trim(filter_var($_POST["CAP"]),FILTER_SANITIZE_NUMBER_INT) < 1)? NULL : trim(filter_var($_POST["CAP"],FILTER_SANITIZE_NUMBER_INT));
 
 //Variabile (passata dalla pagina) che mi dice se la richiesta arriva da ajax o no
-$jsAbilitato = boolval(filter_var($_POST["JSAbilitato"],FILTER_SANITIZE_NUMBER_INT));
 
 
 foreach($campiRichiesti as $campo) {
