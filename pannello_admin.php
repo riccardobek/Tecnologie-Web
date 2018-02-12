@@ -18,7 +18,32 @@ if(isset($_POST["Disponibilita"])) {
         erroreJSON("Data non valida");
         return;
     }
-    $queryControllo = $db->prepare("SELECT Giorno FROM Disponibilita")
+    $posti = abs(filter_var($_POST["posti"], FILTER_SANITIZE_NUMBER_INT));
+    if($posti == 50) {
+        erroreJSON("Non puoi selezionare un numero posti uguale al valore di <span lang='en'>default</span>");
+        return;
+    }
+    $queryControllo = $db->prepare("SELECT Giorno FROM Disponibilita WHERE Giorno = ?");
+    $queryControllo->execute(array($data));
+
+    if($queryControllo->fetch()) {
+        erroreJSON("Disponibilità per la data selezionata già modificata");
+        return;
+    }
+    //controllo se la data selezionata è del passato esclusa la data corrente
+    if(!(dataFutura($data))&& strtotime((new DateTime())->format("Y-m-d")) != strtotime($data)) {
+        erroreJSON("Data selezionata non valida");
+        return;
+    }
+    $db->beginTransaction();
+    $queryInserimento = $db->prepare("INSERT INTO Disponibilita VALUES (?,?)");
+    if($queryInserimento->execute(array($data,$posti))) {
+        $db->commit();
+        successoJSON("Disponibilità modificata con successo");
+        return;
+    }
+    $db->rollBack();
+    erroreJSON("Errore durante l'inserimeto.");
     return;
 }
 
@@ -376,19 +401,20 @@ function settaPagato($codice){
 function impostaGiorni(){
     global $db;
 
-    $giorni=$db->prepare("SELECT * FORM Disponibilita");
+    $giorni=$db->prepare("SELECT * FROM Disponibilita");
     $giorni->execute();
     $arrayGiorni=$giorni->fetchAll();
 
     $riga="";
 
     foreach ($arrayGiorni as $g){
-        $g["Giorno"] = convertiDataToOutput($riga["Giorno"]);
+        $g["Giorno"] = convertiDataToOutput($g["Giorno"]);
+        $giornoID = filter_var($g["Giorno"], FILTER_SANITIZE_NUMBER_INT);
         $riga .= <<<DAY
-<tr id="{$g["Giorno"]}">
+<tr id="{$giornoID}">
     <td>{$g["Giorno"]}</td>
     <td>{$g["PostiDisponibili"]}</td>
-    <td><button data-target="{$g["Giorno"]}" class="btn-cancella" title="Elimina">X</button></td>
+    <td><button data-target="{$giornoID}" class="btn-cancella" title="Elimina">X</button></td>
 </tr>
 DAY;
     }
