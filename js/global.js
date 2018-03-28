@@ -20,12 +20,13 @@ $("document").ready(function() {
  * @param formErr il form che ha generato l'errore
  */
 function notificaErrore(targetNode, testo, divAlert, formErr) {
-    pulisciErrori(divAlert,formErr);
+   //pulisciErrori(divAlert,formErr);
 
     divAlert.append("<p>"+testo+"</p>");
     divAlert.show();
     if(targetNode != null) targetNode.addClass("error");
     if(formErr != null) formErr.find(".error").first().focus();
+
 }
 
 /**
@@ -64,12 +65,13 @@ function validaData(d) {
 }
 
 function validaFormUtente(validazionePassword) {
+
     pulisciErrori($(".alert.errore"),$("form"));
 
     var formValido = true;
-
     var anagrafica = $("#nome, #cognome");
     anagrafica.each(function() {
+
         if($(this).val().trim().length == 0) {
             notificaErrore($(this),"Campo "+$(this).attr("name")+" obbligatorio",$(".alert.errore"),$("form"));
             formValido = false;

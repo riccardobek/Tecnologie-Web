@@ -24,8 +24,20 @@ $(function() {
         e.preventDefault();
         e.stopPropagation();
         var tipoOperazione = $(this).attr("data-fun");
-        //console.log(tipoOperazione);
-        if(validaFormModifica("finestra-macro")) {
+        var divErrore = $(this).parent().parent().prev(".alert.errore");
+        var formErr = $(this).parent().parent();
+        pulisciErrori(divErrore, formErr);
+        console.log("qua");
+        var verifica = true;
+        if($("#nome-macro").val().trim().length < 5){
+            verifica = false;
+            notificaErrore($("#nome-macro"),"Il nome della macroattività deve essere almeno di 5 caratteri",divErrore,formErr);
+        }
+        if($("#descrizione-macro").val().trim().length < 5) {
+            verifica = false;
+            notificaErrore($("#descrizione-macro"),"La descrizione della macroattività deve essere almeno di 5 caratteri",divErrore,formErr);
+        }
+        if(verifica == true && validaFormModifica("finestra-macro")){
             var form =  $("#finestra-macro form");
             var formData = new FormData();
             formData.append("nome-macro", $("#nome-macro").val());
@@ -36,44 +48,44 @@ $(function() {
             if(tipoOperazione == "0") {
                 formData.append("nuovaMacro","1");
                 $.ajax({
-                    type: 'POST',
-                    data: formData,
-                    url: "php/macroattivita.php",
-                    contentType: false,
-                    processData: false,
-                    async:true,
-                    success: function (risposta) {
-                        try {
-                            risposta = JSON.parse(risposta);
-                            formData.append("idMacro",risposta.idMacro);
-                            if (risposta.stato == 1) {
-                                generaAlert('green', "Successo", risposta.messaggio);
-                                $("#finestra-macro").fadeOut('Slow');
-                                $.ajax({
-                                    url: "pannello_admin.php",
-                                    data: formData,
-                                    processData: false,
-                                    contentType: false,
-                                    type: 'POST',
-                                    success:function(ris) {
-                                       togliEventiMacroAttivita();
-                                       $("#act-manager").append(ris);
-                                       sbloccaScroll();
-                                       aggiungiEventiMacroAttivita();
-                                       $("#finestra-macro form")[0].reset();
-                                    }
-                                });
+                        type: 'POST',
+                        data: formData,
+                        url: "php/macroattivita.php",
+                        contentType: false,
+                        processData: false,
+                        async:true,
+                        success: function (risposta) {
+                            try {
+                                risposta = JSON.parse(risposta);
+                                formData.append("idMacro",risposta.idMacro);
+                                if (risposta.stato == 1) {
+                                    generaAlert('green', "Successo", risposta.messaggio);
+                                    $("#finestra-macro").fadeOut('Slow');
+                                    $.ajax({
+                                        url: "pannello_admin.php",
+                                        data: formData,
+                                        processData: false,
+                                        contentType: false,
+                                        type: 'POST',
+                                        success:function(ris) {
+                                            togliEventiMacroAttivita();
+                                            $("#act-manager").append(ris);
+                                            sbloccaScroll();
+                                            aggiungiEventiMacroAttivita();
+                                            $("#finestra-macro form")[0].reset();
+                                        }
+                                    });
+                                }
+                                else {
+                                    generaAlert('red', "Errore", risposta.messaggio);
+                                }
                             }
-                            else {
-                                generaAlert('red', "Errore", risposta.messaggio);
+                            catch(e) {
+                                console.error(e);
+                                generaAlertErroreGenerico();
                             }
-                        }
-                        catch(e) {
-                            console.error(e);
-                            generaAlertErroreGenerico();
                         }
                     }
-                }
                 );
             }
             else{
@@ -113,8 +125,8 @@ $(function() {
                     }
                 });
             }
-
         }
+
     });
 
     $("#annulla-macro").on("click", function(e){
@@ -515,8 +527,24 @@ function aggiugngiEventiSchedeAttivita() {
         e.stopPropagation();
 
         var target = $(this).attr('data-target');
-
-        if(validaFormModifica(target)) {
+        var verifica = true;
+        var divErrore = $(this).parent().parent().prev(".alert.errore");
+        var formErr = $(this).parent().parent();
+        var nome = $("#nome-"+target);
+        pulisciErrori(divErrore, formErr);
+        if(nome.val().trim().length < 5 ){
+            verifica = false;
+             notificaErrore(nome,"Il nome dell'attività deve essere almeno di 5 caratteri",divErrore,formErr);
+        }
+        if($("#descrizione-"+target).val().trim().length < 5) {
+            verifica = false;
+            notificaErrore($("descrizione-"+target),"La descrizione dell'attività deve essere almeno di 5 caratteri",divErrore,formErr);
+        }
+        if($("#prezzo-"+target).val() <= 0 || $("#prezzo"+target).val().trim().length == 0 ) {
+            verifica = false;
+            notificaErrore($("#prezzo"+target),"Il prezzo deve essere positivo",divErrore, formErr);
+        }
+        if(verifica == true && validaFormModifica(target)) {
             var arrayForm = $("#"+target).find("form").serializeArray();
             arrayForm.push({name: "idAttivita", value:target});
             $.post("php/modifica_attivita.php",arrayForm, function(risposta) {
@@ -605,10 +633,25 @@ function aggiungiEventiMacroAttivita() {
     $("#nuova-attivita input[type=submit]").on("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
-
+        var verifica = true;
         var divDaAggiornare = $(this).next("div");
-
-        if(validaFormModifica("nuova-attivita")) {
+        var divErrore = $(this).parent().parent().prev(".alert.errore");
+        var formErr = $(this).parent().parent();
+        pulisciErrori(divErrore, formErr);
+        if($("#nome").val().trim().length < 5 ){
+            verifica = false;
+            console.log("qua");
+            notificaErrore($("#nome"),"Il nome dell'attività deve essere almeno di 5 caratteri",divErrore,formErr);
+        }
+        if($("#descrizione").val().trim().length < 5) {
+            verifica = false;
+            notificaErrore($("#descrizione"), "La descrizione dell'attività deve essere almeno di 5 caratteri", divErrore, formErr);
+        }
+        if($("#prezzo").val() <= 0 || $("#prezzo").val().trim().length == 0 ) {
+            verifica = false;
+            notificaErrore($("#prezzo"),"Il prezzo deve essere positivo",divErrore, formErr);
+        }
+        if(verifica == true && validaFormModifica("nuova-attivita")) {
             var idMacro = $(this).attr('data-macro');
             var form = $("#nuova-attivita form").serializeArray();
             form.push({name:"nuovaAttivita", value:"true"},{name:"idMacro",value:idMacro});

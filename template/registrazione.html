@@ -24,11 +24,11 @@
             <div class="alert errore" aria-live="assertive" role="alert" aria-atomic="true"><p class="intestazione-alert">Errore:</p></div>
             <div id="sectionPersonalData">
                 <div class="log-field-container">
-                    <label for="nome">Nome: </label>
+                    <label for="nome">Nome: (obbligatorio)</label>
                     <input type="text" id="nome" name="nome" placeholder="Inserisci il tuo nome">
                 </div>
                 <div class="log-field-container">
-                    <label for="cognome" class="log-label">Cognome: </label>
+                    <label for="cognome" class="log-label">Cognome: (obbligatorio)</label>
                     <input type="text" id="cognome" name="cognome" placeholder="Inserisci il tuo cognome">
                 </div>
                 <div class="log-field-container" id="indirizzo-container">
@@ -51,19 +51,19 @@
             </div>
             <div id="sectionAccountData">
                 <div class="field-container">
-                    <label for="email" lang="en" class="log-label">Email: </label>
+                    <label for="email" lang="en" class="log-label">Email: (obbligatorio)</label>
                     <input type="text" id="email" name="email" placeholder="Inserisci email">
                 </div>
                 <div class="field-container">
-                    <label for="username" class="log-label">Nome utente: </label>
+                    <label for="username" class="log-label">Nome utente: (obbligatorio)</label>
                     <input type="text" id="username" name="username" placeholder="Inserisci nome utente">
                 </div>
                 <div class="field-container">
-                    <label for="password" lang="en" class="log-label">Password: </label>
+                    <label for="password" class="log-label"><span lang="en">Password</span>: (obbligatorio)</label>
                     <input type="password" id="password" name="password" placeholder="Password...">
                 </div>
                 <div class="field-container">
-                    <label for="password2" class="log-label">Ripeti <span lang="en">password</span>: </label>
+                    <label for="password2" class="log-label">Ripeti <span lang="en">password</span>: (obbligatorio)</label>
                     <input type="password" id="password2" name="password2" placeholder="Ripeti password..">
                 </div>
             </div>
@@ -73,6 +73,7 @@
 </div>
 
 [#MENU-MOBILE]
-<script type="text/javascript" src="js/registrazione.min.js"></script>
+
+<script src="js/registrazione.js"></script>
 </body>
 </html>
