@@ -100,8 +100,8 @@ div#intestazione-per-mobile.length-wrapper{
 
 h1,h2,h3,h4,h5{
     color: black;
-
 }
+
 div.title-wrapper > h1{
     text-align: left;
     font-weight: 300;
@@ -137,22 +137,35 @@ div.title-wrapper > h1{
 
 .scheda-wrapper{
     width: 100%;
+    margin: 0;
     page-break-inside: avoid;
 }
 
 textarea{
     border: none;
     width: 100%;
-    overflow: auto;
+    height: 100%;
+    color: black;
+}
+
+
+.input-container{
+    margin-left: 0;
+    margin-top: 8px;
 }
 
 input[type=text], input[type=number]{
     border: none;
 }
+
 p{
     color: black;
 }
+.schede-attivita .field-container{
+    margin: 0;
+}
 
-.titolo-macro{
-    page-break-before: avoid;
+.titolo-scheda-attivita {
+    margin: 0;
+    padding: 0;
 }

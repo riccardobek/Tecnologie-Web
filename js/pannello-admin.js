@@ -543,7 +543,7 @@ function aggiugngiEventiSchedeAttivita() {
             verifica = false;
             notificaErrore($("descrizione-"+target),"La descrizione dell'attività deve essere almeno di 5 caratteri",divErrore,formErr);
         }
-        if($("#prezzo-"+target).val() <= 0 || $("#prezzo"+target).val().trim().length == 0 ) {
+        if($("#prezzo-"+target).val() <= 0 || $("#prezzo-"+target).val().trim().length == 0 ) {
             verifica = false;
             notificaErrore($("#prezzo"+target),"Il prezzo deve essere positivo",divErrore, formErr);
         }

@@ -1064,11 +1064,15 @@ video {
 }
 
 
-form .field-container:not(:first-child) label {
-    margin-top: 1em;
+.schede-attivita .field-container label {
+    margin-top: 0.5em;
+    float: left;
 }
 
+.schede-attivita .field-container{
+    margin-top: 1em;
 
+}
 /*
 a{
     color: #00529E;
@@ -1091,6 +1095,7 @@ input:focus{
 .log-field-container {
     margin-top:1em;
 }
+
 #dati-utente label, .imp-label{
     float:left;
     margin-top: 0.5em;
@@ -1112,3 +1117,4 @@ input:focus{
 .clearfix.only-mobile {
     display:none;
 }
+
