@@ -1083,10 +1083,10 @@ input:focus{
 }
 
 /*utente*/
-form .log-field-container:not(:first-child) label {
+/*form .log-field-container:not(:first-child) label {
     margin-top:0.4em;
 
-}
+}*/
 
 .log-field-container {
     margin-top:1em;
@@ -1108,4 +1108,7 @@ form .log-field-container:not(:first-child) label {
 
 #reg-sistema{
     color: #0057A8;
+}
+.clearfix.only-mobile {
+    display:none;
 }

@@ -306,3 +306,9 @@ caption{
     width: 90%;
 }
 
+.clearfix.only-mobile {
+    display:block;
+}
+.mobile-align {
+    text-align: right;
+}
