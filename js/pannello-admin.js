@@ -19,7 +19,12 @@ $(function() {
 
     });
 
-    //Creazione o modifica di una macroattività
+    /**
+     *  Creazione o modifica di una macroattività con relativi controlli sugli input.
+     *  Si utilizza lo stesso template HTML per la creazione e per la modifica per cui per differenziare le due funzionalità
+     *  si utilizza un micro-data "data-fun" che se impostato a 0 allora la finestra si riferisce alla creazione di una nuova macroattività
+     *  se impostato a 1 allora si richiede la modifica di una macroattività già esistente.
+     */
     $("#finestra-macro input[type=submit]").on("click", function(e){
         e.preventDefault();
         e.stopPropagation();
@@ -27,7 +32,6 @@ $(function() {
         var divErrore = $(this).parent().parent().prev(".alert.errore");
         var formErr = $(this).parent().parent();
         pulisciErrori(divErrore, formErr);
-        console.log("qua");
         var verifica = true;
         if($("#nome-macro").val().trim().length < 5){
             verifica = false;
@@ -415,7 +419,6 @@ function rispostaEliminiazionePrenotazione(target) {
 }
 
 //funzione che permette di salvare i dati dei form delle varie schede attività
-//
 function salvaDati(target) {
      var campiDati = $("#"+target).find("input[type=text], textarea,input[type=number]");
      var datiSalvati = {};
@@ -564,7 +567,6 @@ function aggiugngiEventiSchedeAttivita() {
                     }
                 }
                 catch(e) {
-                    //console.log(e);
                     generaAlertErroreGenerico();
                 }
             });
@@ -640,7 +642,6 @@ function aggiungiEventiMacroAttivita() {
         pulisciErrori(divErrore, formErr);
         if($("#nome").val().trim().length < 5 ){
             verifica = false;
-            console.log("qua");
             notificaErrore($("#nome"),"Il nome dell'attività deve essere almeno di 5 caratteri",divErrore,formErr);
         }
         if($("#descrizione").val().trim().length < 5) {

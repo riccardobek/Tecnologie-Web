@@ -12,7 +12,7 @@ $(function () {
     $(".attivita > button.btn.btn-primary").on("click",function(event) {
         var formContainer = $(event.target).parent().children(".form-prenotazione-container");
         formContainer.slideDown(function() {
-            formContainer.find("input.data").trigger("change"); //Così mi carica il numero dei posti disponibili
+            formContainer.find("input.data").trigger("change"); //carica il numero dei posti disponibili
             formContainer.find("input.data").filter(":first").focus();
         });
         $(event.target).next().show(); //Mostro il tasto "Chiudi"
