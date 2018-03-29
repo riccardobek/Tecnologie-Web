@@ -78,8 +78,6 @@ div.column {
 
 }
 
-
-
 div.button-holder{
     display: none;
 }
@@ -153,4 +151,8 @@ input[type=text], input[type=number]{
 }
 p{
     color: black;
+}
+
+.titolo-macro{
+    page-break-before: avoid;
 }
