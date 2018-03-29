@@ -18,7 +18,6 @@ $(function() {
         $("#finestra-macro input[type=submit]").attr("data-fun","0");
 
     });
-
     /**
      *  Creazione o modifica di una macroattività con relativi controlli sugli input.
      *  Si utilizza lo stesso template HTML per la creazione e per la modifica per cui per differenziare le due funzionalità
