@@ -7,11 +7,18 @@
 }
 
 
-div.attivita span.btn.btn-primary, div.attivita span.btn.btn-primary:hover, div.attivita span.btn.btn-primary:active {
+div.attivita span.btn.btn-primary, div.attivita span.btn.btn-primary:hover, div.attivita span.btn.btn-primary:active, .no-print {
     display: none;
 }
-
-
+.banner {
+    display:none;
+}
+.no-print {
+    background-color: red;
+}
+btn.btn-primary.btn-inline.solo-js.btn-a.no-print{
+    display: none;
+}
 div#content > img{
     display: none;
 }
@@ -60,7 +67,6 @@ a.primary-btn.inline-btn {
     page-break-inside: avoid;
 }
 span.price-tag {
-    font-weight: 200;
     color: black;
 }
 
@@ -74,7 +80,8 @@ div.column {
 div.title-wrapper > h1{
     text-align: left;
     color: black;
-    font-weight: 100;
+    display: block;
+    
 }
 
 div.button-holder{
