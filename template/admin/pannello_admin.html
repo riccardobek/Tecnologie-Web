@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/asDatepicker.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/default.min.css"/>
     <link rel="stylesheet" type="text/css"  href="css/mobile.min.css" media="screen and (max-width:768px)"/>
-    <link rel="stylesheet" type="text/css" href="css/stampa.min.css" media="print">
+    <link rel="stylesheet" type="text/css" href="css/stampa.css" media="print">
 
     <link rel="icon" href="images/favicon.ico">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
@@ -127,8 +127,8 @@
                         <th scope="col">Giorno prenotato</th>
                         <th scope="col">Stato</th>
                         <th scope="col">Pagamento</th>
-                        <th scope="col">Conferma Pagamento</th>
-                        <th scope="col">Cancella</th>
+                        <th scope="col" class="no-print">Conferma Pagamento</th>
+                        <th scope="col" class="no-print">Cancella</th>
                     </tr>
                     [#PRENOTAZIONI-ATTIVE]
                 </table>
@@ -152,7 +152,7 @@
         <div id="day-manager" class="tabcontent">
             <h2>Disponibilità giorni</h2>
             <p>Numero di prenotazioni per giorno disponibili: [#POSTI-DISPONIBILI-DEFAULT]</p>
-            <p>
+            <p class="no-print">
                 Per procedere con l'inserimento di eventuali modifiche per giorni particolari procedere alla compilazione del seguente
                 form.
             </p>
@@ -182,7 +182,7 @@
                     <tr class="intestazione-tabella">
                         <th scope="col">Giorni</th>
                         <th scope="col">Disponibilità</th>
-                        <th scope="col">Elimina</th>
+                        <th scope="col" class="no-print">Elimina</th>
                     </tr>
                     [#TABELLA-GIORNI]
                 </table>

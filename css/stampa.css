@@ -123,3 +123,34 @@ div.title-wrapper > h1{
     display:block;
     float:none;
 }
+
+.titolo-form:not(:first-child), #mod-pwd-form > .log-field-container{
+    display: none;
+}
+
+#username{
+    border-bottom: none;
+
+}
+
+#crea-macro, #finestra-macro, #nuova-scheda-attivita,.elimina-attivita,.btn.btn-block.btn-nuova-attivita,.dim-mod-canc, .btn.btn-testo.btn-reimposta, .btn-cancella, #scheda-QR, #lettoreQR, #impostazione-giorno{
+    display: none;
+}
+
+.scheda-wrapper{
+    width: 100%;
+    page-break-inside: avoid;
+}
+
+textarea{
+    border: none;
+    width: 100%;
+    overflow: auto;
+}
+
+input[type=text], input[type=number]{
+    border: none;
+}
+p{
+    color: black;
+}
