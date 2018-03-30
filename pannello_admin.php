@@ -169,6 +169,8 @@ $HTML = str_replace("[#ATTIVITA-PIU-PRENOTATE]",getAttivitaPiuPrenotate(),$HTML)
 //rimpiazza [#UTENTI-PIU-ATTIVI]
 $HTML = str_replace("[#UTENTI-PIU-ATTIVI]",utentiPiuAttivi(),$HTML);
 
+$HTML = str_replace("[#VALUTAZIONE-MEDIA]",valutazioneMedia(),$HTML);
+
 
 //Rimpiazza segna posto [#PRENOTAZIONI-...]
 $HTML = str_replace("[#PRENOTAZIONI-ATTIVE]",prenotazioniAttive(),$HTML);
@@ -299,7 +301,27 @@ RIGA;
 
     return $row;
 }
+function valutazioneMedia(){
+    global $db;
 
+    $valutazioni=$db->prepare("SELECT Attivita.Codice AS Codice, Attivita.Nome AS Nome, AVG(Valutazione) AS Valutazione FROM Attivita, Prenotazioni WHERE Prenotazioni.IDAttivita=Attivita.Codice GROUP BY Attivita.Codice ORDER BY Valutazione DESC");
+    $valutazioni->execute();
+    $arrayValutazioni=$valutazioni->fetchAll();
+
+    $row="";
+    foreach($arrayValutazioni as $riga){
+        $val=round($riga["Valutazione"],2);
+    $row .=<<<RIGA
+    <tr data-info="{$riga["Codice"]}">
+    <td>{$riga["Codice"]}</td>
+    <td>{$riga["Nome"]}</td>
+    <td>{$val}</td>
+    </tr>
+RIGA;
+    }
+
+    return $row;
+}
 
 function prenotazioniAttive(){
     global $db;
@@ -368,6 +390,8 @@ RIGA;
     }
     return $row;
 }
+
+
 
 function settaPagato($codice){
     global $db;
