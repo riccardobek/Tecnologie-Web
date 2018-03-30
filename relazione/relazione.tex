@@ -25,19 +25,22 @@
  		\vspace{2cm}
  		
  		\textbf{Dati di accesso}
- 	
- 		\begin{tabular}{| l | l | l |}	
- 			\hline
- 			\multicolumn{1}{|c|}{\bfseries Tipologia} & \multicolumn{1}{c}{\bfseries Nome Utente} & \multicolumn{1}{|c|}{\bfseries Password} \\
- 			\hline
- 			Amministratore&\texttt{admin}&\texttt{admin}\\
- 			Utente&\texttt{user}&\texttt{user}\\
- 			\hline
- 		\end{tabular}
+ 		\begin{table}[H]
+ 			\centering
+	 		\begin{tabular}{| l | l | l |}	
+	 			\hline
+	 			\multicolumn{1}{|c|}{\bfseries Tipologia} & \multicolumn{1}{c}{\bfseries Nome Utente} & \multicolumn{1}{|c|}{\bfseries Password} \\
+	 			\hline
+	 			Amministratore&\texttt{admin}&\texttt{admin}\\
+	 			Utente&\texttt{user}&\texttt{user}\\
+	 			\hline
+	 		\end{tabular}
+ 		\end{table}
 	\end{titlepage}
 	\newpage
 	\tableofcontents
-	\include{abstract}
-	\include{accessibilita}
-	\include{gerarchia}
+	\newpage
+	\input{abstract}
+	\input{accessibilita}
+	\input{gerarchia}
 \end{document}
