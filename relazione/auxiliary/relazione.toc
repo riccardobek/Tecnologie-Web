@@ -1,5 +1,12 @@
 \select@language {italian}
 \select@language {italian}
 \contentsline {section}{\numberline {1}Abstract}{2}{section.1}
-\contentsline {section}{\numberline {2}Accessibilit\`a}{2}{section.2}
-\contentsline {section}{\numberline {3}Gerarchia dei file}{2}{section.3}
+\contentsline {section}{\numberline {2}Struttura del sito}{2}{section.2}
+\contentsline {paragraph}{Home}{2}{section*.2}
+\contentsline {paragraph}{Attivit\`a}{2}{section*.3}
+\contentsline {paragraph}{Contattaci}{2}{section*.4}
+\contentsline {paragraph}{Login e Registrati}{2}{section*.5}
+\contentsline {paragraph}{Pannello Utente}{3}{section*.6}
+\contentsline {paragraph}{Pannello Admin}{3}{section*.7}
+\contentsline {section}{\numberline {3}Accessibilit\`a}{3}{section.3}
+\contentsline {section}{\numberline {4}Gerarchia dei file}{3}{section.4}
