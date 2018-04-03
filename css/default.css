@@ -940,10 +940,13 @@ h1,h2,h3{
     bottom: 0;
     background-color: rgba(0,0,0,0.5);
 }
-
+/*Dialog convalida prenotazione*/
+#lettoreQR {
+    overflow-y: scroll;
+}
 .nuova-scheda {
     position: relative;
-    margin: 10% auto auto;
+    margin: 7% auto auto;
     width: 50%;
 }
 #macro {
