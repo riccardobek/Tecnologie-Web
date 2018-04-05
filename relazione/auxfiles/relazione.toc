@@ -2,20 +2,24 @@
 \select@language {italian}
 \contentsline {section}{\numberline {1}Abstract}{2}{section.1}
 \contentsline {section}{\numberline {2}Utenti}{2}{section.2}
-\contentsline {paragraph}{Utente non registrato}{2}{section*.2}
-\contentsline {paragraph}{Utente "loggato"}{2}{section*.3}
-\contentsline {paragraph}{Amministratore}{2}{section*.4}
+\contentsline {paragraph}{Utente non registrato}{2}{section*.3}
+\contentsline {paragraph}{Utente "loggato"}{2}{section*.4}
+\contentsline {paragraph}{Amministratore}{2}{section*.5}
 \contentsline {section}{\numberline {3}Struttura del sito}{3}{section.3}
-\contentsline {paragraph}{Home}{3}{section*.5}
-\contentsline {paragraph}{Attivit\`a}{3}{section*.6}
-\contentsline {paragraph}{Contattaci}{3}{section*.7}
-\contentsline {paragraph}{Registrati e Login}{3}{section*.8}
-\contentsline {paragraph}{Pannello Utente}{3}{section*.9}
-\contentsline {paragraph}{Pannello Admin}{4}{section*.10}
-\contentsline {subparagraph}{Attivit\`a:}{4}{section*.11}
-\contentsline {subparagraph}{Statistiche:}{4}{section*.12}
-\contentsline {subparagraph}{Utenti:}{4}{section*.13}
-\contentsline {subparagraph}{Prenotazioni:}{4}{section*.14}
-\contentsline {subparagraph}{Impostazioni:}{4}{section*.15}
+\contentsline {paragraph}{Home}{3}{section*.6}
+\contentsline {paragraph}{Attivit\`a}{3}{section*.7}
+\contentsline {paragraph}{Contattaci}{3}{section*.8}
+\contentsline {paragraph}{Registrati e Login}{3}{section*.9}
+\contentsline {paragraph}{Pannello Utente}{3}{section*.10}
+\contentsline {paragraph}{Pannello Admin}{4}{section*.11}
+\contentsline {subparagraph}{Attivit\`a:}{4}{section*.12}
+\contentsline {subparagraph}{Statistiche:}{4}{section*.13}
+\contentsline {subparagraph}{Utenti:}{4}{section*.14}
+\contentsline {subparagraph}{Prenotazioni:}{4}{section*.15}
+\contentsline {subparagraph}{Impostazioni:}{4}{section*.16}
 \contentsline {section}{\numberline {4}Accessibilit\`a}{5}{section.4}
-\contentsline {section}{\numberline {5}Gerarchia dei file}{5}{section.5}
+\contentsline {subsection}{\numberline {4.1}Colori}{5}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Contenuto, presentazione e comportamento}{6}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Tag}{6}{subsection.4.3}
+\contentsline {paragraph}{Tag WAI-ARIA}{6}{section*.18}
+\contentsline {section}{\numberline {5}Gerarchia dei file}{6}{section.5}
