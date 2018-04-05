@@ -1,15 +1,22 @@
 \section{Struttura del sito}
-Il sito si compone di nelle seguenti pagine.
+Il sito presenta una struttura a ipertesto, le varie unità informative sono interconnesse fra loro e ogni unità è visualizzabile con un esiguo numero di click.
+Poichè il sito è sito dedicato alla prenotazione di attività relative agli sport fluviali, è stata posta particolare attenzione alla struttura delle attività.
+Le attività sono suddivise per macro-gruppi (chiamati macroattività nel database); ciascun gruppo presenta nella pagina \texttt{attività.php} la lista di attività disponibili per la prenotazione, con il prezzo ben visibile.
+Una suddivisione del genere ha permesso una più ordinata gestione dei dati, insieme ad una più facile comprensione del contenuto da parte dell'utente.
+In ogni pagina è ben visibile il menù di navigazione, che dà accesso ad ogni pagina che il tipo di utente può visualizzare.
 \paragraph{Home}\mbox{}\\
 La pagina Home racchiude tutte le informazioni principali riguardanti l'azienda Onda Selvaggia.
+
 \hypertarget{paginaAttivita}{\paragraph{Attività}}\mbox{}\\
-E' una delle pagine principali poichè attraverso questa pagina, dopo aver effettuato il login, è possibile poter prenotare un'attivita in base al giorno e al numero di partecipanti. Inoltre è una pagina dinamica che viene modificata dal pagina \textbf{Pannello Admin}.
+E' una delle pagine principali poichè attraverso questa pagina, dopo aver effettuato il login, è possibile poter prenotare un'attivita in base al giorno e al numero di partecipanti. Inoltre è una pagina dinamica poichè può venire modificata dal pagina \textbf{Pannello Admin}.
 \paragraph{Contattaci}\mbox{}\\
 Contiene tutte le informazioni necessarie a poter raggiungere e contattare il centro fluviale Onda Selvaggia.
-\paragraph{Login e Registrati}\mbox{}\\
+\paragraph{Registrati e Login}\mbox{}\\
 Sono le pagine di registrazione al sito e di login. Il login è necessario per poter prenotare le attività. Inoltre gli utenti loggati possono accedere alla loro pagina personale \textbf{Pannello utente}.
-\paragraph{Pannello Utente}\mbox{}\\
-Questa pagina permette agli utenti di poter visualizzare le prenotazioni attive e il loro stato (pagata o non pagata). Per prenotazioni attive si intendono le prenotazioni di attività che devono essere svolte e l'utente ha la possibiltà di poterle eliminare. Inoltre viene visualizzato lo storico delle prenotazioni e in relazione ad esse l'utente può esprimere un giudizio sull'attività svolta.
+
+
+\hypertarget{pannelloUtente}{\paragraph{Pannello Utente}}\mbox{}\\
+Questa pagina permette agli utenti loggati di poter visualizzare le prenotazioni attive e il loro stato (pagata o non pagata). Per prenotazioni attive si intendono le prenotazioni di attività che devono essere svolte e l'utente ha la possibiltà di poterle eliminare. Inoltre viene visualizzato lo storico delle prenotazioni e in relazione ad esse l'utente può esprimere un giudizio sull'attività svolta.
 Infine nel pannello è possibile gestire i dati anagrafici e i dati dell'account e l'eliminazione di esso.
 
 
@@ -39,7 +46,7 @@ Il pannello di amministrazione prensenta varie schede le quali ricoprono specifi
 	Infine è possibile  visualizzare lo storico di tutte le prenotazioni effettuate da tutti gli utenti iscritti al sito.
 \end{identazione}
 
-\subparagraph{Disponibilità:}
+\subparagraph{Impostazioni:}
 \begin{identazione}
-	contenuto...
+	Per rispecchiare il più possibile la realtà nella pagina Disponibilità è possibile impostare un numero massimo di posti disponibili per quella giornata, indipendentemente dalle attività. Nel caso in cui i posti disponibili per un giorno non sono stati modificati allora per default i posti disponibili per quel giorno sono 50. 
 \end{identazione}

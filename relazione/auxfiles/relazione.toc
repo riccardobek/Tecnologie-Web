@@ -1,17 +1,21 @@
 \select@language {italian}
 \select@language {italian}
 \contentsline {section}{\numberline {1}Abstract}{2}{section.1}
-\contentsline {section}{\numberline {2}Struttura del sito}{2}{section.2}
-\contentsline {paragraph}{Home}{2}{section*.2}
-\contentsline {paragraph}{Attivit\`a}{2}{section*.3}
-\contentsline {paragraph}{Contattaci}{2}{section*.4}
-\contentsline {paragraph}{Login e Registrati}{2}{section*.5}
-\contentsline {paragraph}{Pannello Utente}{3}{section*.6}
-\contentsline {paragraph}{Pannello Admin}{3}{section*.7}
-\contentsline {subparagraph}{Attivit\`a:}{3}{section*.8}
-\contentsline {subparagraph}{Statistiche:}{3}{section*.9}
-\contentsline {subparagraph}{Utenti:}{3}{section*.10}
-\contentsline {subparagraph}{Prenotazioni:}{3}{section*.11}
-\contentsline {subparagraph}{Disponibilit\`a:}{4}{section*.12}
-\contentsline {section}{\numberline {3}Accessibilit\`a}{4}{section.3}
-\contentsline {section}{\numberline {4}Gerarchia dei file}{4}{section.4}
+\contentsline {section}{\numberline {2}Utenti}{2}{section.2}
+\contentsline {paragraph}{Utente non registrato}{2}{section*.2}
+\contentsline {paragraph}{Utente "loggato"}{2}{section*.3}
+\contentsline {paragraph}{Amministratore}{2}{section*.4}
+\contentsline {section}{\numberline {3}Struttura del sito}{3}{section.3}
+\contentsline {paragraph}{Home}{3}{section*.5}
+\contentsline {paragraph}{Attivit\`a}{3}{section*.6}
+\contentsline {paragraph}{Contattaci}{3}{section*.7}
+\contentsline {paragraph}{Registrati e Login}{3}{section*.8}
+\contentsline {paragraph}{Pannello Utente}{3}{section*.9}
+\contentsline {paragraph}{Pannello Admin}{4}{section*.10}
+\contentsline {subparagraph}{Attivit\`a:}{4}{section*.11}
+\contentsline {subparagraph}{Statistiche:}{4}{section*.12}
+\contentsline {subparagraph}{Utenti:}{4}{section*.13}
+\contentsline {subparagraph}{Prenotazioni:}{4}{section*.14}
+\contentsline {subparagraph}{Impostazioni:}{4}{section*.15}
+\contentsline {section}{\numberline {4}Accessibilit\`a}{5}{section.4}
+\contentsline {section}{\numberline {5}Gerarchia dei file}{5}{section.5}
