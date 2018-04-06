@@ -20,9 +20,25 @@ Secondo i criteri standard si ha completa tra contenuto, presentazione e comport
 Per quanto concerne i tag che migliorano l'accessibilità si ha:
 \begin{itemize}
  	\item Sono stati utilizzati in modo corretto i tag \texttt{alt} per le immagini.
- 	\item Le parole in lingua inglese sono state racchiuse in un tag \texttt{<span lang="en"></span>} così da poter garantire una lettura corretta da parte degli screen-reader.
+ 	\item Le parole in lingua inglese sono state racchiuse in un tag \texttt{<span lang="en"></span>} così da poter garantire una lettura corretta da parte degli screen reader.
  	\item Sono stati utilizzati i tag \texttt{tabindex} in modo da permettere la navigazione corretta del sito attraverso il tasto TAB. Inoltre poichè l'intestazione del sito si ripete per ogni pagina è stato introdotta una voce del menù non visibile \texttt{Salta intestazione} che permette allo screen reader di saltare la lettura dell'intestazione e passare direttamente al contenuto.
 \end{itemize}
 \paragraph{Tag WAI-ARIA}\mbox{}\\
-Sono stati utilizzati dei tag introdotti dalle specifiche WAI-ARIA che permettono di migliorare l'accessibilità per gli utenti che utilizzano uno screen-reader.\\
+Sono stati utilizzati dei tag introdotti dalle specifiche WAI-ARIA che permettono di migliorare l'accessibilità per gli utenti che utilizzano uno screen-reader. 
+\paragraph{div di errore per i form}\mbox{}\\
+Per segnalare all'utente degli errori di input nei vari form è stato creato un 
+\texttt{div} che ha i seguenti attributi:
+\begin{itemize}
+	\item \texttt{aria-live="assertive"} Le tenologie assistive (AT), come uno screen reader, notificano immediatamente all'utente la regione dichiarata \texttt{assertive}, in questo caso il \texttt{div} di errore verrà notificato e verrano letti gli errori, permettendo all'utente di correggere l'input.  
+	\item \texttt{aria-atomic="true"} Indica allo screen reader di leggere interamente la regione di errore e non solo i suoi cambiamenti. In questo modo se l'utente non ha corretto un errore segnalato in precedenza questo viene notificato nuovamente.
+\end{itemize}
+Il \texttt{div} di errore viene nascosto, mostrato e modificato tramite JavaScript, se quest'ultimo dovesse essere disabilitato allora viene visualizzata una pagina di errore che elenca tutti gli errori di input.
+\paragraph{div di dialog}\mbox{}\\
+Per le finestre di dialogo create da noi (\emph{non quelle della libreria \texttt{jquery-confirm}}) sono stati utilizzati i seguenti tag:
+\begin{itemize}
+	\item \texttt{role="dialog"} Serve ad informare gli utenti che utilizzano uno screen reader che è apparsa una finestra di dialogo col la quale deve interagire.
+	\item \texttt{aria-labelledby=}[id elemento che descrive la dialog] Permette allo screen reader di leggere il contenuto dell'elemento che ha l'\texttt{id} specificato nell'attributo \texttt{aria-labelledby}, nel nostro caso lo screen reader infomerà l'utente di quale finestra di dialogo è stata aperta leggendone il titolo.
+\end{itemize}
+Tutte le finestre di dialogo sono utilizzate nella parte interna del sito cioè nella pagina \texttt{Pannelo Utente} e nella pagina \texttt{Pannello Admin}.
+
 
