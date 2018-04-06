@@ -1076,15 +1076,7 @@ video {
     margin-top: 1em;
 
 }
-/*
-a{
-    color: #00529E;
-}
 
-a:visited{
-    color: #3DA1FF;
-}
-*/
 input:focus{
     background-color: #adceff;
 }
@@ -1094,6 +1086,11 @@ input:focus{
     margin-top:0.4em;
 
 }*/
+
+.alert.errore.no-js {
+    text-align: center;
+    font-size: 2em;
+}
 
 .log-field-container {
     margin-top:1em;

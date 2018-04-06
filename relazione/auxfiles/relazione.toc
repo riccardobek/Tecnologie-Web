@@ -19,9 +19,11 @@
 \contentsline {subparagraph}{Impostazioni:}{4}{section*.16}
 \contentsline {section}{\numberline {4}Accessibilit\`a}{5}{section.4}
 \contentsline {subsection}{\numberline {4.1}Colori}{5}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Contenuto, presentazione e comportamento}{6}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Tag}{6}{subsection.4.3}
-\contentsline {paragraph}{Tag WAI-ARIA}{6}{section*.18}
-\contentsline {paragraph}{div di errore per i form}{6}{section*.19}
-\contentsline {paragraph}{div di dialog}{7}{section*.20}
+\contentsline {subsection}{\numberline {4.2}Tag}{6}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}Tag WAI-ARIA}{6}{subsubsection.4.2.1}
+\contentsline {paragraph}{div di errore per i form}{6}{section*.18}
+\contentsline {paragraph}{div di dialog}{7}{section*.19}
+\contentsline {subsection}{\numberline {4.3}Dispositivi}{7}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Contenuto}{7}{subsection.4.4}
 \contentsline {section}{\numberline {5}Gerarchia dei file}{7}{section.5}
+\contentsline {section}{\numberline {6}Validazione e Test}{8}{section.6}

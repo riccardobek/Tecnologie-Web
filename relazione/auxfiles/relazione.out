@@ -3,6 +3,9 @@
 \BOOKMARK [1][-]{section.3}{Struttura del sito}{}% 3
 \BOOKMARK [1][-]{section.4}{Accessibilit\340}{}% 4
 \BOOKMARK [2][-]{subsection.4.1}{Colori}{section.4}% 5
-\BOOKMARK [2][-]{subsection.4.2}{Contenuto, presentazione e comportamento}{section.4}% 6
-\BOOKMARK [2][-]{subsection.4.3}{Tag}{section.4}% 7
-\BOOKMARK [1][-]{section.5}{Gerarchia dei file}{}% 8
+\BOOKMARK [2][-]{subsection.4.2}{Tag}{section.4}% 6
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Tag WAI-ARIA}{subsection.4.2}% 7
+\BOOKMARK [2][-]{subsection.4.3}{Dispositivi}{section.4}% 8
+\BOOKMARK [2][-]{subsection.4.4}{Contenuto}{section.4}% 9
+\BOOKMARK [1][-]{section.5}{Gerarchia dei file}{}% 10
+\BOOKMARK [1][-]{section.6}{Validazione e Test}{}% 11
