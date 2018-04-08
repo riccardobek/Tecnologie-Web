@@ -58,8 +58,8 @@ if(isAdmin()) {
         }
     }
 
-    $nomeMacroattivita = filter_var($_POST["nome-macro"], FILTER_SANITIZE_STRING);
-    $descrizione = filter_var($_POST["descrizione-macro"], FILTER_SANITIZE_STRING);
+    $nomeMacroattivita = eliminaRitorniACapoESpazi(filter_var($_POST["nome-macro"], FILTER_SANITIZE_STRING));
+    $descrizione = eliminaRitorniACapoESpazi(filter_var($_POST["descrizione-macro"], FILTER_SANITIZE_STRING));
     $img = isset($_FILES["immagine"]) ? uploadImage("immagine","index") : NULL;
 	$banner = isset($_FILES["immagine-banner"]) ? uploadImage("immagine-banner","banner") : NULL;
 
@@ -128,7 +128,7 @@ if(isAdmin()) {
             if($imgDaEliminare != false) eliminaImage($imgDaEliminare,"index");
             if($bannerDaEliminare != false) eliminaImage($bannerDaEliminare,"banner");
 
-            successoJSON("Macroattività modificata con successo.");
+            successoJSON("Macroattività modificata con successo.", array("titoloAttivita"=>$nomeMacroattivita, "descrizone"=>$descrizione));
         }
         else {
             $db->rollBack();

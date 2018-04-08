@@ -15,8 +15,8 @@ if(isAdmin()){
         return;
     }
 
-    $nomeAttivita = filter_var($_POST["nome"],FILTER_SANITIZE_STRING);
-    $descrizione = filter_var($_POST["descrizione"], FILTER_SANITIZE_STRING);
+    $nomeAttivita = eliminaRitorniACapoESpazi(filter_var($_POST["nome"],FILTER_SANITIZE_STRING));
+    $descrizione =  eliminaRitorniACapoESpazi(filter_var($_POST["descrizione"], FILTER_SANITIZE_STRING));
     $prezzo = filter_var(str_replace(',','.',$_POST["prezzo"]),FILTER_SANITIZE_NUMBER_FLOAT, array(
         'flags'=>FILTER_FLAG_ALLOW_FRACTION));
 
@@ -54,7 +54,7 @@ if(isAdmin()){
         $queryModifica = $db->prepare("UPDATE Attivita SET Nome = ?, Descrizione = ?, Prezzo = ? WHERE Codice = ?");
         if($queryModifica->execute(array($nomeAttivita,$descrizione,$prezzo,$idAttivita))) {
             $db->commit();
-            successoJSON("Attività modificata con successo.");
+            successoJSON("Attività modificata con successo.",array("titoloAttivita"=>$nomeAttivita,"descrizone"=>$descrizione,"prezzo"=>$prezzo));
         }
         else {
             $db->rollBack();
@@ -65,3 +65,4 @@ if(isAdmin()){
 else {
     erroreJSON("Non è stato possibile modificare l'attività.");
 }
+
