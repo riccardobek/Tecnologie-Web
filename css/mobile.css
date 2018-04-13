@@ -217,9 +217,15 @@ form label {
 #btn-wrapper, #titolo{
     float:none;
 }
-#bottone-modifica-password, .mostra-modifica >.btn.btn-primary{
+.mostra-modifica >.btn.btn-primary{
     width:100%;
 }
+
+#bottone-modifica-password{
+    width: 50%;
+    display: block;
+}
+
 #footer_logo{
     display: none;
 }
@@ -230,7 +236,15 @@ form label {
     margin-top: 0;
 }
 
+#conferma-pren {
+    display: block;
+}
 
+#annulla-pren {
+    display: block;
+    width: 40%;
+    margin-left: 4.8em;
+}
 .mobile-tab-button{
     width: 50%;
     float: left;
@@ -312,3 +326,9 @@ caption{
 .mobile-align {
     text-align: right;
 }
+
+#dati-utente label {
+    text-align: left;
+    width: 40%;
+}
+

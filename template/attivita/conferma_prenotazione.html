@@ -6,7 +6,7 @@
     <link rel="icon" href="images/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/default.min.css"/>
-    <link rel="stylesheet" type="text/css"  href="css/mobile.min.css" media="screen and (max-width:480px), only screen and (max-device-width:480px)"/>
+    <link rel="stylesheet" type="text/css"  href="css/mobile.css" media="screen and (max-width:480px), only screen and (max-device-width:480px)"/>
     <title>Onda Selvaggia - Conferma prenotazione</title>
 </head>
 <body>
@@ -39,8 +39,8 @@
             <input type="hidden" name="posti" value="[#POSTI-PRENOTAZIONE]">
 
             <div id="pulsanti-container">
-                <input type="submit" class="btn btn-primary" value="Conferma prenotazione">
-                <a href="attivita.php" class="btn">Torna indietro</a>
+                <input type="submit" class="btn btn-primary" id="conferma-pren" value="Conferma prenotazione">
+                <a href="attivita.php" class="btn" id="annulla-pren">Torna indietro</a>
             </div>
             <div id="pulsanti-fine-prenotazione">
                 <a href="attivita.php" class="btn">Torna alla pagina Attività</a>
