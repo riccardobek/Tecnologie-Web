@@ -633,7 +633,7 @@ table th{
 
 /* AREA DI TESTO GESTIONE ATTIVITA */
 textarea{
-    width:100%;
+    width:97%;
     height: auto;
     margin:0;
     border: 2px solid silver;
@@ -652,7 +652,7 @@ textarea:focus{
     display: none;
 }
 .btn-a-capo{
-    padding-top:1.5em;
+    margin-top:1.5em;
 }
 
 .btn.salva-dati {
@@ -719,7 +719,7 @@ PANNELLO UTENTE E AMMINISTRATORE: CONTENUTO
 */
 
 .btn.btn-color{
-    background-color: #ccc;
+    background-color: #ddd;
 }
 
 .btn.btn-color:focus, .btn.btn-color:hover{
@@ -949,6 +949,20 @@ h1,h2,h3{
     margin: 7% auto auto;
     width: 50%;
 }
+
+.nuova-scheda .field-container {
+    margin-top: 1em;
+}
+
+.nuova-scheda .field-container label {
+    margin-top: 0.5em;
+    float: left;
+}
+
+#immagine-banner {
+    padding-top: 0.4em;
+}
+
 #macro {
     display:none;
 }
@@ -1081,12 +1095,6 @@ input:focus{
     background-color: #adceff;
 }
 
-/*utente*/
-/*form .log-field-container:not(:first-child) label {
-    margin-top:0.4em;
-
-}*/
-
 .alert.errore.no-js {
     text-align: center;
     font-size: 2em;
@@ -1114,7 +1122,11 @@ input:focus{
 #reg-sistema{
     color: #0057A8;
 }
+
 .clearfix.only-mobile {
     display:none;
 }
 
+.descrizione-macro-nascosta {
+    display:none;
+}

@@ -106,12 +106,12 @@ $(function() {
                     success: function (risposta) {
                         try {
                             risposta = JSON.parse(risposta);
-                            //console.log("parse OK")
                             if (risposta.stato == 1) {
                                 generaAlert('green', "Successo", risposta.messaggio);
                                 //la macroattività è stata aggiornata con successo
                                 //aggiorno il titolo della macro nel pannello admin h1
                                 $("span[data-target='" + idMacro + "']").prev().text(formData.get("nome-macro"));
+                                $(".descrizione-macro-nascosta[data-target='" + idMacro + "']").text(formData.get("descrizione-macro"));
                                 $("#finestra-macro").fadeOut('slow',function() {
                                     sbloccaScroll();
                                     $("#finestra-macro form")[0].reset();
@@ -122,14 +122,13 @@ $(function() {
                             }
                         }
                         catch (e) {
-                            //console.log(e);
+                            console.log(e);
                             generaAlertErroreGenerico();
                         }
                     }
                 });
             }
         }
-
     });
 
     $("#annulla-macro").on("click", function(e){
@@ -141,7 +140,6 @@ $(function() {
             $(this).find("input[type=text],textarea").val('');
             sbloccaScroll();
         });
-
     });
 
     //--------SEZIONE GESTISCI UTENTI---------
@@ -703,27 +701,23 @@ function aggiungiEventiMacroAttivita() {
     });
 
     /**
-     * Modifica dei dati di una macroattività
+     * Modifica dei dati di una macroattività, prendo le info dal titolo e dal paragravo nascosto
      */
-    $(".mod-macro").on("click", function(e){
+    $(".mod-macro").on("click", function(e) {
         e.preventDefault();
         e.stopPropagation();
         var idMacro = $(this).parent().attr("data-target");
-        $.post("pannello_admin.php", {RichiestaMacro: idMacro}, function(macro) {
-            try {
-                macro = JSON.parse(macro);
-                $("#label-dialog2").text(macro.Nome + " - Modifica");
-                $("#nome-macro").val(macro.Nome);
-                $("#descrizione-macro").val($("<textarea/>").html(macro.Descrizione).text()); //Serve per interpretare i caratteri speciali di HTML, tipo &#039; ecc.
-                $("#finestra-macro").show();
-                bloccaScroll();
-                $("#finestra-macro input[type=submit]").attr("data-fun", idMacro);
-            }
-            catch(e) {
-                generaAlertErroreGenerico();
-            }
-        });
+        var nomeMacro = $(this).parent().prev().text();
+        var descrizioneMacro = $(".descrizione-macro-nascosta[data-target='" + idMacro + "']").text();
+
+        $("#label-dialog2").text(nomeMacro + " - Modifica");
+        $("#nome-macro").val(nomeMacro);
+        $("#descrizione-macro").val($("<textarea/>").html(descrizioneMacro).text()); //Serve per interpretare i caratteri speciali di HTML, tipo &#039; ecc.
+        $("#finestra-macro").show();
+        bloccaScroll();
+        $("#finestra-macro input[type=submit]").attr("data-fun", idMacro);
     });
+
 
     /**
      * listener per il pulsante elimina delle macroattività
@@ -757,14 +751,9 @@ function aggiungiEventiMacroAttivita() {
                                     padreBottone.next().remove();
                                     padreBottone.remove();
                                 }
-                                else{
-                                    generaAlert('red',"Errore",risposta.messaggio);
-                                }
+                                else{ generaAlert('red',"Errore",risposta.messaggio); }
                             }
-                            catch(e) {
-                                //console.log(e);
-                                generaAlertErroreGenerico();
-                            }
+                            catch(e){ generaAlertErroreGenerico(); }
                         });
                     }
                 },
@@ -772,8 +761,6 @@ function aggiungiEventiMacroAttivita() {
             }
         });
     });
-
-
 }
 
 function togliEventiMacroAttivita() {

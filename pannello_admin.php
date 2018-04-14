@@ -250,6 +250,7 @@ function stampaSchedeAttivita(){
         $output .= file_get_contents("template/admin/settore_macroattivita.html");
         $output = str_replace("[#NOME-MACRO]", $macroAttivita["Nome"], $output);
         $output = str_replace("[#CODICE-MACRO]", $macroAttivita["Codice"], $output);
+        $output = str_replace ("[#DESCRIZIONE-MACRO]", $macroAttivita["Descrizione"], $output);
         $output = str_replace("[#SCHEDE]", $listaSchede, $output);
     }
     return $output;

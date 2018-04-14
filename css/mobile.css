@@ -217,8 +217,15 @@ form label {
 #btn-wrapper, #titolo{
     float:none;
 }
+#titolo {
+    text-align: center;
+    margin-top: 0;
+}
 .mostra-modifica >.btn.btn-primary{
     width:100%;
+}
+#annulla-modifica-pwd {
+    width:50%;
 }
 
 #bottone-modifica-password{
