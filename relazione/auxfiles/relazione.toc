@@ -1,6 +1,7 @@
 \select@language {italian}
 \select@language {italian}
 \contentsline {section}{\numberline {1}Abstract}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}Bacino d'utenza}{2}{subsection.1.1}
 \contentsline {section}{\numberline {2}Utenti}{2}{section.2}
 \contentsline {paragraph}{Utente non registrato}{2}{section*.3}
 \contentsline {paragraph}{Utente "loggato"}{2}{section*.4}
@@ -19,11 +20,22 @@
 \contentsline {subparagraph}{Impostazioni:}{4}{section*.16}
 \contentsline {section}{\numberline {4}Accessibilit\`a}{5}{section.4}
 \contentsline {subsection}{\numberline {4.1}Colori}{5}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Tag}{6}{subsection.4.2}
-\contentsline {subsubsection}{\numberline {4.2.1}Tag WAI-ARIA}{6}{subsubsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2}Tag}{5}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}Tag WAI-ARIA}{5}{subsubsection.4.2.1}
 \contentsline {paragraph}{div di errore per i form}{6}{section*.18}
 \contentsline {paragraph}{div di dialog}{7}{section*.19}
 \contentsline {subsection}{\numberline {4.3}Dispositivi}{7}{subsection.4.3}
 \contentsline {subsection}{\numberline {4.4}Contenuto}{7}{subsection.4.4}
-\contentsline {section}{\numberline {5}Gerarchia dei file}{7}{section.5}
-\contentsline {section}{\numberline {6}Validazione e Test}{8}{section.6}
+\contentsline {section}{\numberline {5}Tecnologie utilizzate}{7}{section.5}
+\contentsline {subsection}{\numberline {5.1}HTML 5}{8}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}PHP}{8}{subsection.5.2}
+\contentsline {subsubsection}{\numberline {5.2.1}Dinamicit\`a}{8}{subsubsection.5.2.1}
+\contentsline {subsubsection}{\numberline {5.2.2}Sicurezza}{8}{subsubsection.5.2.2}
+\contentsline {subsection}{\numberline {5.3}JavaScript}{8}{subsection.5.3}
+\contentsline {subsubsection}{\numberline {5.3.1}Librerie}{8}{subsubsection.5.3.1}
+\contentsline {subsection}{\numberline {5.4}Database}{8}{subsection.5.4}
+\contentsline {section}{\numberline {6}Gerarchia dei file}{8}{section.6}
+\contentsline {section}{\numberline {7}Validazione e Test}{9}{section.7}
+\contentsline {section}{\numberline {8}Gestione dati}{9}{section.8}
+\contentsline {subsection}{\numberline {8.1}Database}{9}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}Caricamento delle immagini}{9}{subsection.8.2}
