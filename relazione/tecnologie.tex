@@ -1,10 +1,12 @@
 \section{Tecnologie utilizzate}
 Di seguito si descrivono le tecnologie e le motivazioni del loro utilizzio per la realizzazione del sito. Inoltre per ogni tecnologia si mettono in evidenza alcune meccaniche di implementazione che altrimenti potrebbero non essere ovvie guardando il codice.
 \subsection{HTML 5}
-
+La scelta di utilizzare HTML 5 (rispetto a XHTML strict) è stata presa per garantire compatibilità con il maggior numero di browser possibili. Per questo motivo, inoltre, è stato evitato l'utilizzo di tag  particolari (tag Meta o di markup strutturale).
 \subsection{PHP}
 \subsubsection{Dinamicità}
 PHP svolge un ruolo fondamentale per il funzionamento del sito, infatti grazie a PHP abbiamo realizzato un sito dinamico i cui contenuti (le attività offerte) possono essere aggiunti, modificati ed eliminati attraverso il \hyperlink{pannelloAdmin}{pannello di amministrazione} che si trova nella parte interna del sito. Inoltre visto che sono presenti elementi che vengono ripetuti, come ad esempio l'intestazione e il menu, si è optato per una templetizzazione di essi e attraverso dei segnaposto (con la seguente sintassi: [\#SEGNAPOSTO]) che vengono rimpiazzati dal contenuto attraverso PHP. 
+
+Le funzioni che gestiscono operazioni come il login, la prenotazione/cancellazione di attività, il caricamento delle immagini e la generazione di pdf sono collocate nella cartella php.
 \subsubsection{Sicurezza}
 \subsection{JavaScript}
 \subsubsection{Librerie}
