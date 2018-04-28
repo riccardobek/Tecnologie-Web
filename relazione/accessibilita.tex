@@ -1,7 +1,7 @@
   \section{Accessibilità}
 Tutte le scelte progettuali sono state prese in base al tema dell'accesibilità, seguendo le linee guida del W3C.\vspace{-0.2cm}
 \subsection{Colori}
-Per migliorare l'accessibilià al sito si è evitato di utilizzare combinazioni di colori che potessero creare problemi di accessibilità, usabilità e comprensione del contenuto a persone affette da daltonismo. Si riportano di seguito degli screenshot di varie simulazioni di daltonismo della pagina Attività. Inoltre è stato mantenuto un contrasto pari a 7:1 tra il colore di sfondo e il colore dei testi.
+Si è evitato di utilizzare combinazioni di colori che potessero creare problemi di accessibilità, usabilità e comprensione del contenuto a persone affette da daltonismo. Si riportano di seguito degli screenshot di varie simulazioni di daltonismo della pagina Attività. Inoltre è stato mantenuto un contrasto pari a 7:1 tra il colore di sfondo e il colore dei testi.
 \begin{figure}[h]
 	\centering
 	\subfloat[][\emph{Immagine Originale}]
@@ -21,6 +21,8 @@ Per quanto concerne i tag che migliorano l'accessibilità si ha:
  	\item Sono stati utilizzati in modo corretto i tag \texttt{alt} per le immagini.
  	\item Le parole in lingua inglese sono state racchiuse in un tag \texttt{<span lang="en"> </span>} così da poter garantire una lettura corretta da parte degli screen reader.
  	\item Sono stati utilizzati i tag \texttt{tabindex} in modo da permettere la navigazione corretta del sito attraverso il tasto TAB. Inoltre poichè l'intestazione del sito si ripete per ogni pagina è stato introdotta una voce del menù non visibile \texttt{Salta intestazione} che permette algli utenti che utilizzano uno screen reader di saltare la lettura dell'intestazione e passare direttamente al contenuto.
+ 	\item E' stato utilizzato in modo corretto il tag \texttt{scope} dove necessario, inoltre è stato evitato l'utilizzo di tabelle per realizzare la struttura del sito.
+ 	\item Per rendere accessibili i form, sono stati utilizzati correttamente i tag \texttt{label, fieldset e title}, unita a una gestione degli errori che comprende la dimensione dell'input e la sua presenza per i campi obbligatori.
 \end{itemize}
 \subsubsection{Tag WAI-ARIA}
 Sono stati utilizzati dei tag introdotti dalle specifiche WAI-ARIA che permettono di migliorare l'accessibilità per gli utenti che utilizzano uno screen-reader. 
