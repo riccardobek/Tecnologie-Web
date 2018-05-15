@@ -3,7 +3,7 @@ Di seguito si descrivono le tecnologie e le motivazioni del loro utilizzio per l
 \subsection{HTML 5}
 La scelta di utilizzare \texttt{HTML 5}(rispetto a \texttt{XHTML strict}) è stata presa per garantire compatibilità con il maggior numero di browser possibili. Per questo motivo, inoltre, è stato evitato l'utilizzo di tag  particolari (tag Meta o di markup strutturale).
 
-\section{CSS}
+\subsection{CSS}
 Per la gestione del layout del sito, il \texttt{CSS embedded} è stato evitato completamente, a favore di una separazione completa tra layout e struttura attraverso l'utlizzo di fogli di stile: lo standard adottato è il \texttt{CSS 3.0}.
 \\
 In fase di realizzazione del sito, si è deciso di incorporare tutti i fogli di stile in un unico file(\texttt{deafult.css}), sono stati poi realizzati layout a parte per la versione mobile e per la stampa.
@@ -12,25 +12,36 @@ Sono poi presenti altri 2 fogli di stile: uno per il date-picker(vedi sezione 5.
 \subsection{PHP}
 \subsubsection{Dinamicità}
 PHP svolge un ruolo fondamentale per il funzionamento del sito, infatti grazie a questa tecnologia abbiamo realizzato un sito dinamico i cui contenuti (le attività offerte) possono essere aggiunti, modificati ed eliminati attraverso il \hyperlink{pannelloAdmin}{pannello di amministrazione} che si trova nella parte interna del sito. Inoltre visto che sono presenti elementi che vengono ripetuti, come ad esempio l'intestazione e il menu, si è optato per una templetizzazione di essi e attraverso dei segnaposto (con la seguente sintassi: [\#SEGNAPOSTO]) che vengono rimpiazzati dal contenuto attraverso \texttt{PHP}. 
-
 Le funzioni che gestiscono operazioni come il login, la prenotazione/cancellazione di attività, il caricamento delle immagini e la generazione di pdf sono collocate nella cartella \texttt{php}.
 \subsubsection{Sicurezza}
-Il tema della sicurezza ha avuto un ruolo fondamentale durante la realizzazione del sito, infatti sono state create delle funzioni di sicurezza che permettono di garantire il controllo completo sulle operazioni che vengono richieste al server. Tale controllo consiste nel verificare quale tipologia di utente ha fatto la richiesta attraverso le informazioni contenute nella sessione; se l'utente non è un amministratore allora il server rigetta la richiesta.
-\\
-Per le richieste HTTP, si è preferito un utilizzo del metodo \texttt{POST}, ideale per situazioni in cui bisogna trattare dati personali e sensibili degli utenti(come, ad esempio, la registrazione e il login); tutti i dati inviati al server vengono sanificati in modo tale da impedire attacchi SQL Injection, questo permette la 
-
+Il tema della sicurezza ha avuto un ruolo fondamentale durante la realizzazione del sito, infatti sono state create delle funzioni che permettono di garantire il controllo completo sulle operazioni che vengono richieste al server. Tale controllo consiste nel verificare quale tipologia di utente ha fatto la richiesta attraverso le informazioni contenute nella sessione; se l'utente non è un amministratore ed esso ha cercato di utilizzare delle funzionalità riservate ad un admin allora il server rigetta la richiesta. \\
+Per le richieste HTTP, si è preferito un utilizzo del metodo \texttt{POST}, ideale per situazioni in cui bisogna trattare dati personali e sensibili degli utenti(come, ad esempio, la registrazione e il login).
+\paragraph{PHP PDO - SQL Injection} \mbox{}\\
+Per la connessione e l'interazione con il database è stato utilizzato \texttt{PDO} poichè permette di gestire con facilità la connessione con diversi DBMS (nel nostro caso abbiamo utilizzato MySQL). Inoltre grazie al meccanismo di preparazione degli \texttt{statement} (statement precompilati), i dati inseriti dagli utenti vengono automaticamente sanificati in modo da impedire qualsiasi tipo di SQL-Injection, questo permette l'integrità e la sicurezza del database.
 \subsubsection{Caricamento delle immagini}
 Nel momento in cui viene creata una nuova macroattività, vi è la possibilità di caricare  2 immagini distinte.
 Tale funzionalità è stata implementata tramite una funzione PHP uploadImage, che posiziona l'immagine nelle cartella images/attivita/index e images/attivita/banner.
 Una soluzione che risulta essere in linea con il principio della dinamicità del sito gestita, ove possibile, da PHP.
-
 \subsection{JavaScript}
 \subsubsection{Librerie}
 Di seguito sono elencate le librerie JavaScript utilizate ai fini del progetto.
 \begin{itemize}
-	\item \textbf{jquery-asDatepicker.js:} libreria che permette di visualizzare un date-picker per la selezione di una data della prenotazione. Per problemi dovuti all'accessibilità, sono state necessarie alcune modifiche in modo da permettere a uno screen reader una corretta lettura del contenuto.
-	 
-	\item \textbf{jquery-confirm.js:} genera finestre di dialogo pop-up; anche in questo caso sono state necessarie alcune modifiche per rendere l'output accessibile a uno screen reader.  
+	\item \textbf{jquery-asDatepicker.js:} libreria che permette di visualizzare un date-picker per la selezione di una data della prenotazione.	 
+	\item \textbf{jquery-confirm.js:} Questa libreria è stata utilizzata anzitutto perchè è accessibile, infatti la finestra di dialogo viene notificata ad uno screen reader, ed è possibile iteragire con essa anche utilizzando solo la tastiera. Inoltre la libreria è semplice da utilizzare per creare finestre di dialogo semplici che sono state templizzate attraverso la funzione \texttt{generaAlert(colore,"titolo","messaggio")} (creata da noi) che permette di creare una finestra di dialogo in modo semplice ed intuitivo. 
+	
+	genera finestre di dialogo pop-up di questo tipo:
+	\begin{figure}[h]
+		\centering
+		\subfloat[][\emph{Finestra di dialogo di jquety-confirm.js}]
+		{\includegraphics[scale=0.5]{images/dialog_lib.png}} 
+	\end{figure}
+	Per le finestre di dialogo più complesse presenti nel pannello admin, come ad esempio quelle di inserimento di una nuova macroattività, si è deciso di creare dei template HTML che vengono modificati in PHP e visualizzati attraverso JS, ovviamente si ha avuto particolare riguardo per l'accessibilità (vedi \hyperlink{aria}{Tag WAI-ARIA}).
+	\begin{figure}[h]
+		\centering
+		\subfloat[][\emph{Finestra di dialogo creata da noi}]
+		{\includegraphics[scale=0.5]{images/dialog.png}} 
+	\end{figure}
+	
 \end{itemize}
 \newpage
 \subsection{Database}

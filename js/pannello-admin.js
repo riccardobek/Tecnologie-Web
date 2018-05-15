@@ -34,11 +34,11 @@ $(function() {
         var verifica = true;
         if($("#nome-macro").val().trim().length < 5){
             verifica = false;
-            notificaErrore($("#nome-macro"),"Il nome della macroattività deve essere almeno di 5 caratteri",divErrore,formErr);
+            notificaErrore($("#nome-macro"),"Il nome della macroattività deve essere almeno di 5 caratteri.",divErrore,formErr);
         }
         if($("#descrizione-macro").val().trim().length < 5) {
             verifica = false;
-            notificaErrore($("#descrizione-macro"),"La descrizione della macroattività deve essere almeno di 5 caratteri",divErrore,formErr);
+            notificaErrore($("#descrizione-macro"),"La descrizione della macroattività deve essere almeno di 5 caratteri.",divErrore,formErr);
         }
         if(verifica == true && validaFormModifica("finestra-macro")){
             var form =  $("#finestra-macro form");
@@ -226,18 +226,18 @@ $(function() {
                 if (cameras.length > 0) {
 
                     scanner.start(cameras[0]).catch(function(e) {
-                        generaAlert('red', "Errore", "La lettura dei codici QR via HTTP è supportata solo da Firefox o Edge. Assicurati di avere un browser compatibile o usa HTTPS per abilitare il supporto anche su Chrome");
+                        generaAlert('red', "Errore", "La lettura dei codici QR via HTTP è supportata solo da Firefox o Edge. Assicurati di avere un browser compatibile o usa HTTPS per abilitare il supporto anche su Chrome.");
                     });
                 } else {
-                    generaAlert('red', "Errore", "Nessuna fotocamera trovata. La lettura dei codici QR verrà quindi disabilitata");
+                    generaAlert('red', "Errore", "Nessuna fotocamera trovata. La lettura dei codici QR verrà quindi disabilitata.");
                     //Mostro errore nessuna camera trovata
                 }
             }).catch(function(e) {
-                generaAlert('red', "Errore", "Errore nell'inizializzazione del lettore QR. La lettura dei codici QR non sarà quindi possibile");
+                generaAlert('red', "Errore", "Errore nell'inizializzazione del lettore QR. La lettura dei codici QR non sarà quindi possibile.");
             });
         }
         catch(e) {
-            generaAlert('red', "Errore", "Errore nell'inizializzazione del lettore QR. La lettura dei codici QR non sarà quindi possibile");
+            generaAlert('red', "Errore", "Errore nell'inizializzazione del lettore QR. La lettura dei codici QR non sarà quindi possibile.");
         }
         bloccaScroll();
     });
@@ -247,7 +247,7 @@ $(function() {
         event.stopPropagation();
 
         if(!$("#testoQR").val().match("^pr-")) {
-            generaAlert('red', "Errore", "Codice prenotazione inserito non valido");
+            generaAlert('red', "Errore", "Codice prenotazione inserito non valido.");
         }
         else {
             convalidaPrenotazione($("#testoQR").val());
@@ -273,7 +273,7 @@ $(function() {
             boxWidth: calcolaDimensioneDialog(),
             useBootstrap: false,
             title: 'Conferma',
-            content: "Procedere con l'eliminazione della prenotazione ? ",
+            content: "Procedere con l'eliminazione della prenotazione? ",
             buttons: {
                 Procedi: {
                     btnClass: 'btn-red',
@@ -337,7 +337,7 @@ $(function() {
             var nposti = $("#nPosti").val();
             //controllo lato client se la disponibilità per quella data è già stata modificata, guardo nella tabella
             if($("#"+data.replace(/\//g,'')).length){
-                notificaErrore($("#nPosti"),"Disponibilità per la data selezionata già modificata", divAlert, formAlert);
+                notificaErrore($("#nPosti"),"Disponibilità per la data selezionata già modificata.", divAlert, formAlert);
             }
             var form = $("#impostazione-giorno form").serializeArray();
             form.push({name:"Disponibilita", value:"1"});
@@ -435,7 +435,7 @@ function validaFormModifica(target) {
     pulisciErrori(divAlert, formErr);
     $(inputs).each(function () {
         if($(this).val().trim().length == 0) {
-            notificaErrore($(this),"Il campo "+' '+$(this).attr("name")+' '+" non può essere vuoto",divAlert, formErr );
+            notificaErrore($(this),"Il campo "+' '+$(this).attr("name")+' '+" non può essere vuoto.",divAlert, formErr );
             valido = false;
         }
     });
@@ -456,7 +456,7 @@ function aggiugngiEventiSchedeAttivita() {
             boxWidth: calcolaDimensioneDialog(),
             useBootstrap: false,
             title: 'Conferma',
-            content: "Procedere con l'eliminazione dell'attività? Tutte le prenotazioni relative a questa attività verrannò eliminate ",
+            content: "Procedere con l'eliminazione dell'attività? Tutte le prenotazioni relative a questa attività verranno eliminate.",
             buttons: {
                 Procedi: {
                     btnClass: 'btn-red',
@@ -534,11 +534,11 @@ function aggiugngiEventiSchedeAttivita() {
         pulisciErrori(divErrore, formErr);
         if(nome.val().trim().length < 5 ){
             verifica = false;
-             notificaErrore(nome,"Il nome dell'attività deve essere almeno di 5 caratteri",divErrore,formErr);
+             notificaErrore(nome,"Il nome dell'attività deve essere almeno di 5 caratteri.",divErrore,formErr);
         }
         if($("#descrizione-"+target).val().trim().length < 5) {
             verifica = false;
-            notificaErrore($("descrizione-"+target),"La descrizione dell'attività deve essere almeno di 5 caratteri",divErrore,formErr);
+            notificaErrore($("descrizione-"+target),"La descrizione dell'attività deve essere almeno di 5 caratteri.",divErrore,formErr);
         }
         if($("#prezzo-"+target).val() <= 0 || $("#prezzo-"+target).val().trim().length == 0 ) {
             verifica = false;
@@ -639,11 +639,11 @@ function aggiungiEventiMacroAttivita() {
         pulisciErrori(divErrore, formErr);
         if($("#nome").val().trim().length < 5 ){
             verifica = false;
-            notificaErrore($("#nome"),"Il nome dell'attività deve essere almeno di 5 caratteri",divErrore,formErr);
+            notificaErrore($("#nome"),"Il nome dell'attività deve essere almeno di 5 caratteri.",divErrore,formErr);
         }
         if($("#descrizione").val().trim().length < 5) {
             verifica = false;
-            notificaErrore($("#descrizione"), "La descrizione dell'attività deve essere almeno di 5 caratteri", divErrore, formErr);
+            notificaErrore($("#descrizione"), "La descrizione dell'attività deve essere almeno di 5 caratteri.", divErrore, formErr);
         }
         if($("#prezzo").val() <= 0 || $("#prezzo").val().trim().length == 0 ) {
             verifica = false;
@@ -733,7 +733,7 @@ function aggiungiEventiMacroAttivita() {
             boxWidth: calcolaDimensioneDialog(),
             useBootstrap: false,
             title: 'Conferma',
-            content: "Procedere con l'eliminazione della macroattività? Tutte le attività relative ad essa verrannò eliminate e conseguentemente verranno eliminate le prenotazioni di queste ultime  ",
+            content: "Procedere con l'eliminazione della macroattività? Tutte le attività relative ad essa verrannò eliminate e conseguentemente verranno eliminate le prenotazioni di queste ultime.",
             buttons: {
                 Procedi: {
                     btnClass: 'btn-red',
