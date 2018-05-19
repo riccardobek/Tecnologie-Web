@@ -1,7 +1,8 @@
 \section{Tecnologie utilizzate}
-Di seguito si descrivono le tecnologie e le motivazioni del loro utilizzio per la realizzazione del sito. Inoltre per ogni tecnologia si mettono in evidenza alcune meccaniche di implementazione che altrimenti potrebbero non essere ovvie guardando il codice.
+Di seguito si descrivono le tecnologie e le motivazioni del loro utilizzo per la realizzazione del sito. Inoltre per ogni tecnologia si mettono in evidenza alcune meccaniche di implementazione che altrimenti potrebbero non essere ovvie guardando il codice.
+
 \subsection{HTML 5}
-La scelta di utilizzare \texttt{HTML 5}(rispetto a \texttt{XHTML strict}) è stata presa per garantire compatibilità con il maggior numero di browser possibili. Per questo motivo, inoltre, è stato evitato l'utilizzo di tag  particolari (tag Meta o di markup strutturale).
+La scelta di utilizzare \texttt{HTML 5} è stata motivata dal fatto che questa tecnologia è moderna ma retrocompatibile (almeno in parte). Per favorire la retrocompatibilità non sono stati utilizzati i tag semantici introdotti da \texttt{HTML 5} (quali ad esempio, \texttt{nav, footer, section}). Infine questa tecnologia offre la possibiltà di utilizzare i \texttt{data-*attributes} i quali permettono di associare in modo semplice dati a tag (ovvero si possono memorizzare dei dati all'interno dei tag html). 
 
 \subsection{CSS}
 Per la gestione del layout del sito, il \texttt{CSS embedded} è stato evitato completamente, a favore di una separazione completa tra layout e struttura attraverso l'utlizzo di fogli di stile: lo standard adottato è il \texttt{CSS 3.0}.
