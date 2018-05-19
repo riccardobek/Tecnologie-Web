@@ -1,46 +1,52 @@
   \section{Accessibilità}
-Tutte le scelte progettuali sono state prese in base al tema dell'accesibilità, seguendo le linee guida del W3C.\vspace{-0.2cm}
+Tutte le scelte progettuali sono state prese in base al tema dell'accesibilità, seguendo le linee guida del W3C.\vspace{-0.3cm}
 \subsection{Colori}
 Si è evitato di utilizzare combinazioni di colori che potessero creare problemi di accessibilità, usabilità e comprensione del contenuto a persone affette da daltonismo. Si riportano di seguito degli screenshot di varie simulazioni di daltonismo della pagina Attività. Inoltre è stato mantenuto un contrasto pari a 7:1 tra il colore di sfondo e il colore dei testi.
 \begin{figure}[h]
 	\centering
 	\subfloat[][\emph{Immagine Originale}]
-	{\includegraphics[scale=0.26]{images/normal_color.png}} \quad
+	{\includegraphics[scale=0.25]{images/normal_color.png}} \quad
 	\subfloat[][\emph{Deutenatropia}]
-	{\includegraphics[scale=0.26]{images/deut.png}} \\
+	{\includegraphics[scale=0.25]{images/deut.png}} \\
+\end{figure}
+\begin{figure}[h]
 	\subfloat[][\emph{Protanopia}]
-	{\includegraphics[scale=0.26]{images/tren.png}} \quad
+	{\includegraphics[scale=0.25]{images/tren.png}} \quad
 	\subfloat[][\emph{Tritanopia}]
-	{\includegraphics[scale=0.26]{images/tritano.png}} \\
+	{\includegraphics[scale=0.25]{images/tritano.png}} \\
 	\caption{Simulazione di daltonismo}
 \end{figure} \\
-Per migliorare il contrasto il colore dei link è stato modificato rendedo comunque riconoscibili i link non visitati e quelli visitati.
+
+\newpage
+\noindent
+Per migliorare il contrasto il colore dei link è stato modificato rendendo comunque riconoscibili i link visitati e non.
+
 \subsection{Tag}
-Per quanto concerne i tag che migliorano l'accessibilità si ha:
+Per quanto concerne i tag che migliorano l'accessibilità:
 \begin{itemize}
- 	\item Sono stati utilizzati in modo corretto i tag \texttt{alt} per le immagini.
+ 	\item Sono stati utilizzati i tag \texttt{alt} per le immagini seguendo le linee guida del W3C.
  	\item Le parole in lingua inglese sono state racchiuse in un tag \texttt{<span lang="en"> </span>} così da poter garantire una lettura corretta da parte degli screen reader.
- 	\item Sono stati utilizzati i tag \texttt{tabindex} in modo da permettere la navigazione corretta del sito attraverso il tasto TAB. Inoltre poichè l'intestazione del sito si ripete per ogni pagina è stato introdotta una voce del menù non visibile \texttt{Salta intestazione} che permette algli utenti che utilizzano uno screen reader di saltare la lettura dell'intestazione e passare direttamente al contenuto.
- 	\item E' stato utilizzato in modo corretto il tag \texttt{scope} dove necessario, inoltre è stato evitato l'utilizzo di tabelle per realizzare la struttura del sito.
- 	\item Per rendere accessibili i form, sono stati utilizzati correttamente i tag \texttt{label, fieldset e title}, unita a una gestione degli errori che comprende la dimensione dell'input e la sua presenza per i campi obbligatori.
+ 	\item Sono stati utilizzati i tag \texttt{tabindex} in modo da permettere la navigazione corretta del sito attraverso il tasto TAB. Inoltre, poichè l'intestazione del sito si ripete per ogni pagina, è stato introdotta una voce del menù non visibile \texttt{Salta intestazione} che permette agli utenti che utilizzano uno screen reader di saltare la lettura dell'intestazione e passare direttamente al contenuto.
+ 	\item \'{E} stato utilizzato il tag \texttt{scope} dove necessario seguendo i dettami del W3C. Inoltre è stato evitato l'utilizzo di tabelle per realizzare il layout del sito.
+ 	\item Per rendere accessibili i form, sono stati utilizzati i tag \texttt{label, fieldset e title}, assieme ad una gestione degli errori che comprende  controlli di validità dell'input.
 \end{itemize}
 \hypertarget{aria}{\subsubsection{Tag WAI-ARIA}}
-Sono stati utilizzati dei tag introdotti dalle specifiche WAI-ARIA che permettono di migliorare l'accessibilità per gli utenti che utilizzano uno screen-reader. 
+Sono stati utilizzati dei tag introdotti dalle specifiche WAI-ARIA che permettono di migliorare l'accessibilità per gli utenti che utilizzano uno screen reader. 
 \paragraph{div di errore per i form}\mbox{}\\
 Per segnalare all'utente degli errori di input nei vari form è stato creato un 
 \texttt{div} che ha i seguenti attributi:
 \begin{itemize}
-	\item \texttt{aria-live="assertive"} Le tenologie assistive (AT), come uno screen reader, notificano immediatamente all'utente la regione dichiarata \texttt{assertive}, in questo caso il \texttt{div} di errore verrà notificato e verrano letti gli errori, permettendo all'utente di correggere l'input.  
-	\item \texttt{aria-atomic="true"} Indica allo screen reader di leggere interamente la regione di errore e non solo i suoi cambiamenti. In questo modo se l'utente non ha corretto un errore segnalato in precedenza questo viene notificato nuovamente.
+	\item \texttt{aria-live="assertive"} Le tecnologie assistive (AT), come uno screen reader, notificano immediatamente all'utente la regione dichiarata \texttt{assertive}, in questo caso il \texttt{div} di errore verrà notificato e verranno letti gli errori, permettendo all'utente di correggere l'input.  
+	\item \texttt{aria-atomic="true"} Indica allo screen reader di leggere interamente la regione di errore e non solo i suoi cambiamenti. In questo modo se l'utente non ha corretto un errore segnalato in precedenza, questo viene notificato nuovamente.
 \end{itemize}
-Il \texttt{div} di errore viene nascosto, mostrato e modificato tramite JavaScript, se quest'ultimo dovesse essere disabilitato allora viene visualizzata una pagina di errore che elenca tutti gli errori di input.
+Il \texttt{div} di errore viene nascosto, mostrato e modificato tramite JavaScript e se quest'ultimo dovesse essere disabilitato, allora all'invio dei dati, viene visualizzata una pagina di errore che elenca tutti gli eventuali errori di input.
 \paragraph{div di dialog}\mbox{}\\
 Per le finestre di dialogo create da noi (\emph{non quelle della libreria \texttt{jquery-confirm}}) sono stati utilizzati i seguenti tag:
 \begin{itemize}
 	\item \texttt{role="dialog"} Serve ad informare gli utenti che utilizzano uno screen reader che è apparsa una finestra di dialogo con la quale deve interagire.
-	\item \texttt{aria-labelledby=}[id elemento che descrive la dialog] Permette allo screen reader di leggere il contenuto dell'elemento che ha l'\texttt{id} specificato nell'attributo \texttt{aria-labelledby}, nel nostro caso lo screen reader infomerà l'utente di quale finestra di dialogo è stata aperta leggendone il titolo.
+	\item \texttt{aria-labelledby=}[id elemento che descrive la dialog] Permette allo screen reader di leggere il contenuto dell'elemento che ha l'\texttt{id} specificato nell'attributo \texttt{aria-labelledby}; nel nostro caso lo screen reader informerà l'utente quale finestra di dialogo è stata aperta leggendone il titolo.
 \end{itemize}
-Tutte le finestre di dialogo sono utilizzate nella parte interna del sito cioè nella pagina \texttt{Pannelo Utente} e nella pagina \texttt{Pannello Admin}.
+Tutte le finestre di dialogo sono utilizzate nella parte interna del sito, ovvero nella pagina \texttt{Pannelo Utente} e nella pagina \texttt{Pannello Admin}.
 \subsection{Dispositivi}
 Nella progettazione si è tenuto conto del fatto che l'utenza avrebbe acceduto al sito da vari dispostivi. Alla luce di questa considerazione il sito presenta una versione desktop ed una versione mobile realizzata creando un file \texttt{css} apposito senza intaccare la struttura e il contenuto, possibile grazie ad una \textbf{completa} separazione tra contenuto, presentazione e comportamento. Il sito è stato testato su più dispositivi, browser e sistemi operativi possibili in modo tale da avere un costante feedback sulle scelte adottate (Vedere la sezione \hyperref[test]{Validazione e Test} per i dettagli).
 \subsection{Contenuto}
