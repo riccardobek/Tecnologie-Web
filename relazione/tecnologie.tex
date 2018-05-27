@@ -21,6 +21,8 @@ Altre funzioni presenti in questa cartella sono quelle dedicate all'astrazione d
 
 \subsubsection{Sicurezza}
 Il tema della sicurezza ha avuto un ruolo fondamentale durante la realizzazione del sito, infatti sono state create delle funzioni che permettono di garantire il controllo completo sulle operazioni che vengono richieste al server. Tale controllo consiste nel verificare quale tipologia di utente ha fatto la richiesta attraverso le informazioni contenute nella sessione; se l'utente non è un amministratore ed esso ha cercato di utilizzare delle funzionalità riservate ad un admin allora il server rigetta la richiesta. 
+Infine gli input provenienti dall'utente vengo filtrati da apposite funzioni che, quasi sempre, fanno uso di 
+\texttt{filter\_var}.
 
 \paragraph{PHP PDO - SQL Injection} \mbox{}\\
 Per la connessione e l'interazione con il database è stato utilizzato \texttt{PDO} poichè permette di gestire con facilità la connessione con diversi DBMS (nel nostro caso abbiamo utilizzato MySQL). Inoltre grazie al meccanismo di preparazione degli \texttt{statement} (statement precompilati), i dati inseriti dagli utenti vengono automaticamente sanificati in modo da impedire qualsiasi tipo di SQL Injection, questo permette l'integrità e la sicurezza del database.
@@ -59,12 +61,16 @@ Di seguito sono elencate le librerie JavaScript utilizzate ai fini di realizzazi
 	
 \end{itemize}
 
-\subsubsection{JS obbligatorio}
-Nelle pagine interne del sito, pannello admin e pannello utente, Javascript è richiesto affinchè sia possibile utilizzare le  funzionalità offerte da esse. Questa scelta è stata fatta per mettere al primo posto la "fluidit'a" di utilizzo di tali pagine. Infatti, senza l'ausilio di Javascript, si incorrerebbe in innumerevoli reindirizzamenti verso pagine diverse (per quasi ogni interazione con gli elementi del pannello).\\Grazie a Javascript, invece, è possibile inserire, modificare ed eliminare elementi all'interno della pagina senza dover rirenderizzare (quindi ricaricare) l'intera pagina. Pertanto è possibile, ad esempio, mostrare finestre di dialogo e messaggi di vario tipo, inserire dinamicamente elementi in tabelle o liste e prevalidare form senza dover indirizzare l'utente verso una pagina "secondaria", che magari differisce dalla "principale" solo per un elemento in più visualizzato o nascosto.\\
+\subsubsection{Obbligatorietà}
+Nelle pagine interne del sito, pannello admin e pannello utente, Javascript è richiesto affinchè sia possibile utilizzare le  funzionalità offerte da esse. Questa scelta è stata fatta per mettere al primo posto la "fluidità" di utilizzo di tali pagine. Infatti, senza l'ausilio di Javascript, si incorrerebbe in innumerevoli reindirizzamenti verso pagine diverse (per quasi ogni interazione con gli elementi del pannello).\\Grazie a Javascript, invece, è possibile inserire, modificare ed eliminare elementi all'interno della pagina senza dover rirenderizzare (quindi ricaricare) l'intera pagina. Pertanto è possibile, ad esempio, mostrare finestre di dialogo e messaggi di vario tipo, inserire dinamicamente elementi in tabelle o liste e prevalidare form senza dover indirizzare l'utente verso una pagina "secondaria", che magari differisce dalla "principale" solo per un elemento in più visualizzato o nascosto.\\
 Nel caso in cui i pannelli dovessero essere utilizzabili senza suddetta tecnologia abilitata allora viene visualizzato un messaggio di errore che avverte l'utente di abilitare Javascript per poter utilizzare le funzionalità.
 Infine, sempre nei pannelli utente ed admin, Javascript permette l'invio dei dati dei vari form tramite chiamate HTTP asincrone, senza necessità di ricaricamento della pagina (grazie ad AJAX).
 \subsubsection{AJAX}
-Come detto in precedenza AJAX permette di eseguire richieste asincrone al server che vengono inoltrate a specifiche pagine PHP le quali sono adibite all'elaborazione delle richieste, come ad esempio la creazione, modifica od eliminazione di una macroattività
+Come detto in precedenza AJAX permette di eseguire richieste asincrone al server che vengono inoltrate a specifiche pagine PHP, le quali sono adibite all'elaborazione delle richieste (come ad esempio la creazione, modifica od eliminazione di una macroattività). Quando viene fatta una chiamata AJAX, il server può rispondere in due modi: 
+\begin{itemize}
+	\item \texttt{JSON}, che è un formato "universale" che permette di realizzare il disaccoppiamento e quindi l'indipendenza tra il frontend ed il backend. Grazie a questa scelta, se si volesse realizzare un ulteriore frontend (come ad esempio un'applicazione nativa mobile) non si dovrebbe intervenire sul backend.
+	\item Codice \texttt{HTML}, che premette di prerenderizzare degli elementi sfruttando i vari template già creati, in questo modi si è evitato di ripetere la struttura \texttt{HTML} di alcuni elementi all'interno del codice \texttt{JavaScript}.
+\end{itemize}
 % richieste ajax
 % js obbligatorio
 
