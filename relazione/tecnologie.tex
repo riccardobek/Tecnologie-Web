@@ -21,8 +21,7 @@ Altre funzioni presenti in questa cartella sono quelle dedicate all'astrazione d
 
 \subsubsection{Sicurezza}
 Il tema della sicurezza ha avuto un ruolo fondamentale durante la realizzazione del sito, infatti sono state create delle funzioni che permettono di garantire il controllo completo sulle operazioni che vengono richieste al server. Tale controllo consiste nel verificare quale tipologia di utente ha fatto la richiesta attraverso le informazioni contenute nella sessione; se l'utente non è un amministratore ed esso ha cercato di utilizzare delle funzionalità riservate ad un admin allora il server rigetta la richiesta. 
-Infine gli input provenienti dall'utente vengo filtrati da apposite funzioni che, quasi sempre, fanno uso di 
-\texttt{filter\_var}.
+Infine gli input provenienti dall'utente vengo filtrati da apposite funzioni che, quasi sempre, fanno uso di \texttt{filter\_var}.
 
 \paragraph{PHP PDO - SQL Injection} \mbox{}\\
 Per la connessione e l'interazione con il database è stato utilizzato \texttt{PDO} poichè permette di gestire con facilità la connessione con diversi DBMS (nel nostro caso abbiamo utilizzato MySQL). Inoltre grazie al meccanismo di preparazione degli \texttt{statement} (statement precompilati), i dati inseriti dagli utenti vengono automaticamente sanificati in modo da impedire qualsiasi tipo di SQL Injection, questo permette l'integrità e la sicurezza del database.
