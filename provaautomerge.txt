@@ -717,6 +717,8 @@ app.post("/revoke",(req,res) => {
  * @returns {void}
  */
 function sendSuccessMessage(res) {
+	console.log("Messaggio inviato");
+	Ciao bolzo guarda quanto sono bravo
     res.send({
         "status": "success",
         "message": "Proposal has been revoked successfully"
