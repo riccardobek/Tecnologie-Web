@@ -1,4 +1,4 @@
-/*
+﻿/*
  * FileName: agreement.js
  * Date: 2018-05-02
  * Authors:
@@ -131,15 +131,9 @@ app.post("/proposal",function(req,res) {
         });
         return;
     }
-
-    User.findById(req.body.to, function(err,user) {
-        if(err || !user) {
-            res.send({
-                status: "error",
-                message: err ? err : "Invalid parameters1"
-            });
-            return;
-        }
+ciao culo
+prova di tutto sto modificando un sacco
+boia can
         User.findById(req.body.from, function(e,u) {
             if(e || !u) {
                 res.send({
