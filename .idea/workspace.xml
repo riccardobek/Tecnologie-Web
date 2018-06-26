@@ -42,7 +42,7 @@
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-96" />
-    <option name="y" value="17" />
+    <option name="y" value="16" />
     <option name="width" value="1386" />
     <option name="height" value="788" />
   </component>
@@ -93,9 +93,6 @@
         </RuleState>
       </list>
     </option>
-  </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
