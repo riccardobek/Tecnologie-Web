@@ -232,3 +232,5 @@ TSWLatexianTemp*
 *.DS_Store
 
 # End of https://www.gitignore.io/api/latex
+.idea/deployment.xml
+.idea/inspectionProfiles/profiles_settings.xml
