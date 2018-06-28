@@ -247,33 +247,9 @@ $(function() {
             }
         });
     });
+    //Inizializza gli eventi dei tasti "conferma" e "revoca" pagamento
+    reinizializzaEventiPagamento();
 
-    //Tasto conferma pagamento
-    $(".pay").click(function (e){
-        e.preventDefault();
-        e.stopPropagation();
-        var target =  $(this).attr("data-target");
-        var bottoneCliccato = $(this);
-        var cellaPagamento = $(this).parent().prev();
-        $.post("pannello_admin.php", {confermaPagamento:"1", codicePrenotazione:target}, function (risposta) {
-            try {
-                risposta = JSON.parse(risposta);
-                if (risposta.stato == 1) {
-                    generaAlert('green', 'Pagamento effettuato', risposta.messaggio);
-                    var rigaTabella = bottoneCliccato.parent();
-                    bottoneCliccato.remove();
-                    rigaTabella.text("Pagamento effettuato");
-                    cellaPagamento.text("Pagato");
-                }
-                else {
-                    generaAlert('red', 'Errore', risposta.messaggio);
-                }
-            }
-            catch(e) {
-                generaAlertErroreGenerico();
-            }
-        });
-    });
     // ---SEZIONE IMPOSTAZIONI----
     $("#imposta-data").asDatepicker();
     aggiungiListenerBottoneDisponibilita()
@@ -731,6 +707,69 @@ function togliEventiMacroAttivita() {
     $("#nuova-attivita input[type=submit]").off("click");
     $(".mod-macro").off("click");
     $(".canc-macro").off("click");
+}
+
+function reinizializzaEventiPagamento() {
+    //Tasto conferma pagamento
+    $(".pay,.revoke-pay").off("click");
+
+    $(".pay").click(function (e){
+        e.preventDefault();
+        e.stopPropagation();
+        var target =  $(this).attr("data-target");
+        var bottoneCliccato = $(this);
+        var cellaPagamento = $(this).parent().prev();
+        $.post("pannello_admin.php", {confermaPagamento:"1", codicePrenotazione:target}, function (risposta) {
+            try {
+                risposta = JSON.parse(risposta);
+                if (risposta.stato == 1) {
+                    generaAlert('green', 'Pagamento effettuato', risposta.messaggio);
+                    cellaPagamento.text("Pagato");
+
+                    bottoneCliccato.text("Revoca pagamento");
+                    bottoneCliccato.removeClass("pay");
+                    bottoneCliccato.addClass("revoke-pay");
+
+                    reinizializzaEventiPagamento();
+                }
+                else {
+                    generaAlert('red', 'Errore', risposta.messaggio);
+                }
+            }
+            catch(e) {
+                generaAlertErroreGenerico();
+            }
+        });
+    });
+
+    //Revoca pagamento
+    $(".revoke-pay").click(function (e){
+        e.preventDefault();
+        e.stopPropagation();
+        var target =  $(this).attr("data-target");
+        var bottoneCliccato = $(this);
+        var cellaPagamento = $(this).parent().prev();
+        $.post("pannello_admin.php", {confermaPagamento:"0", codicePrenotazione:target}, function (risposta) {
+            try {
+                risposta = JSON.parse(risposta);
+                if (risposta.stato == 1) {
+                    generaAlert('green', 'Pagamento revocato', risposta.messaggio);
+                    bottoneCliccato.text("Conferma pagamento");
+                    cellaPagamento.text("Non Pagato");
+                    bottoneCliccato.removeClass("revoke-pay");
+                    bottoneCliccato.addClass("pay");
+
+                    reinizializzaEventiPagamento();
+                }
+                else {
+                    generaAlert('red', 'Errore', risposta.messaggio);
+                }
+            }
+            catch(e) {
+                generaAlertErroreGenerico();
+            }
+        });
+    });
 }
 //blocca lo scroll se premo il tasto crea nuova macroattività
 function bloccaScroll(){

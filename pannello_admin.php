@@ -84,7 +84,12 @@ if(isset($_POST["Disponibilita"])) {
 }
 
 if(isset($_POST["confermaPagamento"])) {
-    settaPagato($_POST["codicePrenotazione"]);
+    $conferma = filter_var($_POST["confermaPagamento"],FILTER_SANITIZE_NUMBER_INT);
+    $codicePrenotazione = filter_var($_POST["codicePrenotazione"],FILTER_SANITIZE_NUMBER_INT);
+
+    $conferma = intval($conferma) == 1;
+
+    settaPagato($conferma,$codicePrenotazione);
     return;
 }
 if(isset($_POST["nuovaMacro"])) {
@@ -335,34 +340,25 @@ function prenotazioniAttive(){
     foreach ($arrayPrenotazioni as $riga) {
         $riga["Giorno"] = convertiDataToOutput($riga["Giorno"]);
 
+        $testoBottone = "Revoca pagamento";
+        $classeBottone = "revoke-pay";
+
         if($riga["Pagato"]=="Non pagato") {
-            $row .= <<<RIGA
-            <tr id="{$riga["CodicePrenotazione"]}" data-attivita="{$riga["IDAttivita"]}" data-user="{$riga["ID"]}">
-                 <td>{$riga["Username"]}</td>
-                 <td>{$riga["Attivita"]}</td>
-                 <td>{$riga["Posti"]}</td>
-                 <td>{$riga["Giorno"]}</td>
-                 <td class="stato">{$riga["Stato"]}</td>
-                 <td>{$riga["Pagato"]}</td>
-                 <td><button data-target="{$riga["CodicePrenotazione"]}" class="btn btn-primary pay">Conferma Pagamento</button></td>
-                 <td><button data-target="{$riga["CodicePrenotazione"]}" class="btn-cancella" title="Elimina">X</button></td>
-            </tr>
-RIGA;
-         }
-         else {
-            $row .= <<<RIGA
-            <tr id="{$riga["CodicePrenotazione"]}" data-attivita="{$riga["IDAttivita"]}" data-user="{$riga["ID"]}">
-                 <td>{$riga["Username"]}</td>
-                 <td>{$riga["Attivita"]}</td>
-                 <td>{$riga["Posti"]}</td>
-                 <td>{$riga["Giorno"]}</td>
-                 <td class="stato">{$riga["Stato"]}</td>
-                 <td>{$riga["Pagato"]}</td>
-                 <td>Pagamento effettuato</td>
-                 <td><button data-target="{$riga["CodicePrenotazione"]}" class="btn-cancella" title="Elimina">X</button></td>
-            </tr>
-RIGA;
+            $testoBottone = "Conferma pagamento";
+            $classeBottone = "pay";
         }
+        $row .= <<<RIGA
+        <tr id="{$riga["CodicePrenotazione"]}" data-attivita="{$riga["IDAttivita"]}" data-user="{$riga["ID"]}">
+             <td>{$riga["Username"]}</td>
+             <td>{$riga["Attivita"]}</td>
+             <td>{$riga["Posti"]}</td>
+             <td>{$riga["Giorno"]}</td>
+             <td class="stato">{$riga["Stato"]}</td>
+             <td>{$riga["Pagato"]}</td>
+             <td><button data-target="{$riga["CodicePrenotazione"]}" class="btn btn-primary {$classeBottone}">{$testoBottone}</button></td>
+             <td><button data-target="{$riga["CodicePrenotazione"]}" class="btn-cancella" title="Elimina">X</button></td>
+        </tr>
+RIGA;
     }
     return $row;
 }
@@ -394,26 +390,30 @@ RIGA;
 
 
 
-function settaPagato($codice){
+function settaPagato($conferma,$codice){
     global $db;
     $db->beginTransaction();
     $queryControllo = $db->prepare("SELECT Codice FROM Prenotazioni WHERE Codice = ?");
+
     $queryControllo->execute(array($codice));
 
+    $messaggioInfinito = $conferma ? "confermare" : "revocare";
+
     if(!($queryControllo->fetch())) {
-        erroreJSON("Non è stato possibile effettuare il pagamento");
+        erroreJSON("Non è stato possibile {$messaggioInfinito} il pagamento");
         return;
     }
-    $query = $db->prepare("UPDATE Prenotazioni SET Pagamento = '1' WHERE Codice = ?");
+    $query = $db->prepare("UPDATE Prenotazioni SET Pagamento = ? WHERE Codice = ?");
 
-    if($query->execute(array($codice))) {
+    if($query->execute(array(intval($conferma),$codice))) {
         $db->commit();
-        successoJSON("Pagamento confermato con successo");
+        $messaggio = $conferma ? "confermato" : "revocato";
+        successoJSON("Pagamento {$messaggio} con successo");
         return;
-        }
+    }
 
     $db->rollBack();
-    erroreJSON("Non è stato possibile confermare il pagamento");
+    erroreJSON("Non è stato possibile {$messaggioInfinito} il pagamento ");
     return;
 
 }
