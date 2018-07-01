@@ -1130,3 +1130,7 @@ input:focus{
 .descrizione-macro-nascosta {
     display:none;
 }
+
+#mod-pwd-form label {
+	margin-top: 0;
+}
