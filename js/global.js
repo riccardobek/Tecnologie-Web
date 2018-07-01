@@ -110,15 +110,15 @@ function validaPassword(password, password2) {
     passwordValide = true;
 
     if (password.val().trim().length == 0) {
-        notificaErrore(password,"Inserire una nuova <span lang='en'> password </span> valida",$(".alert.errore"),$("form"));
+        notificaErrore(password,"Inserire una nuova <span lang='en'> password </span> valida",$(".alert.errore"),$("form").not("#dati-utente"));
         passwordValide = false;
     }
     else if (password2.val().trim().length == 0) {
-        notificaErrore(password2,"Si prega di ripetere la nuova <span lang='en'> password </span>",$(".alert.errore"),$("form"));
+        notificaErrore(password2,"Si prega di ripetere la nuova <span lang='en'> password </span>",$(".alert.errore"),$("form").not("#dati-utente"));
         passwordValide = false;
     }
     else if (password.val() != password2.val()) {
-        notificaErrore(password2,"Le <span lang='en'> password </span> non combaciano",$(".alert.errore"),$("form"));
+        notificaErrore(password2,"Le <span lang='en'> password </span> non combaciano",$(".alert.errore"),$("form").not("#dati-utente"));
         passwordValide = false;
     }
 
