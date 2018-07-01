@@ -1,13 +1,10 @@
 $("document").ready(function() {
     $("#menu-mobile > ul > li").on("click",function(event) {
         var url = $(event.target).children("a").attr("href");
-        if(url != undefined && url != null && location.href != url)
-            location.href = url;
+        if(url != undefined && url != null && location.href != url) location.href = url;
     });
     $("body").on("touchstart", function(){ /* ontouchstart fixa il comportamento degli eventi touch su Safari per iOS */
-
     });
-
 });
 
 
@@ -69,9 +66,14 @@ function validaFormUtente(validazionePassword) {
     var formValido = true;
     var anagrafica = $("#nome, #cognome");
     anagrafica.each(function() {
-
-        if($(this).val().trim().length == 0) {
+        var testo = $(this).val().trim();
+        if(testo.length == 0) {
             notificaErrore($(this),"Campo "+$(this).attr("name")+" obbligatorio",$(".alert.errore"),$("form"));
+            formValido = false;
+        }
+
+        if(/\d+/.test(testo)){
+            notificaErrore($(this),"Il campo "+$(this).attr("name")+" non può contenere numeri ",$(".alert.errore"),$("form"));
             formValido = false;
         }
 
