@@ -90,7 +90,7 @@ $(function() {
         e.stopPropagation();
         pulisciErrori(divErroreDati, $("#dati-utente"));
 
-        if(validaFormUtente(false)) {
+        if(validaFormUtente(false,$(".alert.errore"),$("form"))) {
             $.post("php/modifica_dati_utente.php",$("#dati-utente").serialize(),function(risposta) {
                 try{
                     risposta = JSON.parse(risposta);
@@ -186,17 +186,18 @@ function rispostaEliminiazionePrenotazione(target) {
 
 function validaCampiCambioPwd(divErrore) {
     var campiValidi = true;
-
+    var form = $("#mod-pwd-form");
     var vecchiaPwd = $("#vecchia-password");
     var password = $("#password");
     var password2 = $("#password2");
 
     if(vecchiaPwd.val().trim().length === 0) {
-        notificaErrore(vecchiaPwd, "Inserire la <span lang='en'>password</span> corrente", divErrore, $("#mod-pwd-form"));
+        alert("Mostro errore");
+        notificaErrore(vecchiaPwd, "Inserire la <span lang='en'>password</span> corrente", divErrore, form);
         campiValidi = false;
     }
     else {
-        if(!validaPassword(password,password2))
+        if(!validaPassword(password,password2,divErrore,form))
             campiValidi = false;
     }
     return campiValidi;

@@ -4,7 +4,7 @@ $(document).ready(function() {
     $("form").on("submit",function(event){
         //pulisciErrori($(".alert.errore"),$("form"));
         event.preventDefault();
-        if(validaFormUtente(true)) {
+        if(validaFormUtente(true,$(".alert.errore"),$("form"))) {
             $.post($("form").attr("action"),$("form").serialize(),function(r) {
                 rispostaJSON = JSON.parse(r);
                 if(rispostaJSON.stato === 1)

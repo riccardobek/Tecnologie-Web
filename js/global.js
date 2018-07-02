@@ -59,9 +59,9 @@ function validaData(d) {
     return false;
 }
 
-function validaFormUtente(validazionePassword) {
+function validaFormUtente(validazionePassword, alertErrore, form) {
 
-    pulisciErrori($(".alert.errore"),$("form"));
+    pulisciErrori(alertErrore,form);
 
     var formValido = true;
     var anagrafica = $("#nome, #cognome");
@@ -83,13 +83,13 @@ function validaFormUtente(validazionePassword) {
     //espressione regolare che valida un'email a grandi linee. Presa da
     //https://stackoverflow.com/questions/46155/how-to-validate-email-address-in-javascript quarta risposta
     if (/[^\s@]+@[^\s@]+\.[^\s@]+/.test(email.val().trim()) == false) {
-        notificaErrore(email,"Inserire un'<span lang='en'> email </span> valida",$(".alert.errore"),$("form"));
+        notificaErrore(email,"Inserire un'<span lang='en'> email </span> valida",alertErrore,form);
         formValido = false;
     }
 
     var username = $("#username");
     if (username.val().trim().length == 0) {
-        notificaErrore(username,"Inserire uno <span lang='en'> username </span> valido",$(".alert.errore"),$("form"));
+        notificaErrore(username,"Inserire uno <span lang='en'> username </span> valido",alertErrore,form);
         formValido = false;
     }
 
@@ -98,27 +98,27 @@ function validaFormUtente(validazionePassword) {
         var password = $("#password");
         var password2 = $("#password2");
 
-        if (!validaPassword(password, password2))
+        if (!validaPassword(password, password2,alertErrore,form))
             formValido = false;
     }
 
     return formValido;
 }
 
-function validaPassword(password, password2) {
+function validaPassword(password, password2, divErrore, formErrore) {
 
     passwordValide = true;
 
     if (password.val().trim().length == 0) {
-        notificaErrore(password,"Inserire una nuova <span lang='en'> password </span> valida",$(".alert.errore"),$("form"));
+        notificaErrore(password,"Inserire una nuova <span lang='en'> password </span> valida",divErrore,formErrore);
         passwordValide = false;
     }
     else if (password2.val().trim().length == 0) {
-        notificaErrore(password2,"Si prega di ripetere la nuova <span lang='en'> password </span>",$(".alert.errore"),$("form"));
+        notificaErrore(password2,"Si prega di ripetere la nuova <span lang='en'> password </span>",divErrore,formErrore);
         passwordValide = false;
     }
     else if (password.val() != password2.val()) {
-        notificaErrore(password2,"Le <span lang='en'> password </span> non combaciano",$(".alert.errore"),$("form"));
+        notificaErrore(password2,"Le <span lang='en'> password </span> non combaciano",divErrore,formErrore);
         passwordValide = false;
     }
 
