@@ -685,6 +685,7 @@ function aggiungiEventiMacroAttivita() {
                                     listaAttivita.each(function () {
                                         $("[data-attivita='"+$(this).attr("id").replace("attivita-","")+"']").remove();
                                     });
+                                    $(".btn[data-target='"+idMacro+"']").remove();
                                     $("#gruppo-"+idMacro).remove();
                                     padreBottone.next().remove();
                                     padreBottone.remove();
