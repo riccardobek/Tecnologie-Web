@@ -7,5 +7,5 @@ utente registrato e amministratore. Nella realizzazione è richiesta particolare
 esaustiva delle scelte effettuate e di come si è realizzato il progetto.
 
 ## Autori
-|[Riccardo Bernucci](https://github.com/riccardobek) | [Mattia Bolzonella](https://github.com/KamiShire) | [Michele Tagliabue](https://github.com/sommoMicc) | Ludovico Brocca |
+|[Riccardo Bernucci](https://github.com/riccardobek) | [Mattia Bolzonella](https://github.com/KamiShire) | [Michele Tagliabue](https://github.com/sommoMicc) | [Ludovico Brocca](https://github.com/ludobrocca) |
 |---|---|---|---|
